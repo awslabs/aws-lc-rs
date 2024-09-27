@@ -110,8 +110,8 @@ where
 pub const AWSLC_VERSION_NAME: &[u8; 7] = b"AWS-LC\0";
 pub const OPENSSL_VERSION_NUMBER: i32 = 269488255;
 pub const SSLEAY_VERSION_NUMBER: i32 = 269488255;
-pub const AWSLC_API_VERSION: i32 = 29;
-pub const AWSLC_VERSION_NUMBER_STRING: &[u8; 7] = b"1.34.2\0";
+pub const AWSLC_API_VERSION: i32 = 30;
+pub const AWSLC_VERSION_NUMBER_STRING: &[u8; 7] = b"1.35.1\0";
 pub const AES_ENCRYPT: i32 = 1;
 pub const AES_DECRYPT: i32 = 0;
 pub const AES_MAXNR: i32 = 14;
@@ -132,7 +132,7 @@ pub const CRYPTO_LOCK: i32 = 1;
 pub const CRYPTO_UNLOCK: i32 = 2;
 pub const CRYPTO_READ: i32 = 4;
 pub const CRYPTO_WRITE: i32 = 8;
-pub const OPENSSL_VERSION_TEXT: &[u8; 42] = b"OpenSSL 1.1.1 (compatible; AWS-LC 1.34.2)\0";
+pub const OPENSSL_VERSION_TEXT: &[u8; 42] = b"OpenSSL 1.1.1 (compatible; AWS-LC 1.35.1)\0";
 pub const OPENSSL_VERSION: i32 = 0;
 pub const OPENSSL_CFLAGS: i32 = 1;
 pub const OPENSSL_BUILT_ON: i32 = 2;
@@ -910,6 +910,7 @@ pub const EVP_R_NOT_XOF_OR_INVALID_LENGTH: i32 = 135;
 pub const EVP_R_EMPTY_PSK: i32 = 136;
 pub const EVP_R_INVALID_BUFFER_SIZE: i32 = 137;
 pub const EVP_R_BAD_DECRYPT: i32 = 138;
+pub const EVP_R_EXPECTING_A_DH_KEY: i32 = 139;
 pub const EVP_R_INVALID_PSS_MD: i32 = 500;
 pub const EVP_R_INVALID_PSS_SALT_LEN: i32 = 501;
 pub const EVP_R_INVALID_PSS_TRAILER_FIELD: i32 = 502;
@@ -3261,6 +3262,16 @@ pub const SN_MLKEM768IPD: &[u8; 12] = b"MLKEM768IPD\0";
 pub const NID_MLKEM768IPD: i32 = 986;
 pub const SN_MLKEM1024IPD: &[u8; 13] = b"MLKEM1024IPD\0";
 pub const NID_MLKEM1024IPD: i32 = 987;
+pub const SN_MLKEM512: &[u8; 9] = b"MLKEM512\0";
+pub const NID_MLKEM512: i32 = 988;
+pub const SN_MLKEM768: &[u8; 9] = b"MLKEM768\0";
+pub const NID_MLKEM768: i32 = 989;
+pub const SN_MLKEM1024: &[u8; 10] = b"MLKEM1024\0";
+pub const NID_MLKEM1024: i32 = 990;
+pub const SN_X25519MLKEM768: &[u8; 15] = b"X25519MLKEM768\0";
+pub const NID_X25519MLKEM768: i32 = 991;
+pub const SN_SecP256r1MLKEM768: &[u8; 18] = b"SecP256r1MLKEM768\0";
+pub const NID_SecP256r1MLKEM768: i32 = 992;
 pub const OBJ_NAME_TYPE_MD_METH: i32 = 1;
 pub const OBJ_NAME_TYPE_CIPHER_METH: i32 = 2;
 pub const OBJ_R_UNKNOWN_NID: i32 = 100;
@@ -3273,13 +3284,13 @@ pub const EVP_PKEY_ED25519: i32 = 949;
 pub const EVP_PKEY_X25519: i32 = 948;
 pub const EVP_PKEY_HKDF: i32 = 969;
 pub const EVP_PKEY_HMAC: i32 = 855;
+pub const EVP_PKEY_DH: i32 = 28;
 pub const EVP_PKEY_KEM: i32 = 970;
 pub const PKCS5_SALT_LEN: i32 = 8;
 pub const EVP_PKEY_RSA2: i32 = 19;
 pub const EVP_PKEY_X448: i32 = 961;
 pub const EVP_PKEY_ED448: i32 = 960;
 pub const EVP_PKEY_DSA: i32 = 116;
-pub const EVP_PKEY_DH: i32 = 28;
 pub const HKDF_R_OUTPUT_TOO_LARGE: i32 = 100;
 pub const MD5_CBLOCK: i32 = 64;
 pub const MD5_DIGEST_LENGTH: i32 = 16;
@@ -3334,6 +3345,10 @@ pub const PKCS7_R_BAD_PKCS7_VERSION: i32 = 100;
 pub const PKCS7_R_NOT_PKCS7_SIGNED_DATA: i32 = 101;
 pub const PKCS7_R_NO_CERTIFICATES_INCLUDED: i32 = 102;
 pub const PKCS7_R_NO_CRLS_INCLUDED: i32 = 103;
+pub const PKCS7_R_UNSUPPORTED_CONTENT_TYPE: i32 = 104;
+pub const PKCS7_R_WRONG_CONTENT_TYPE: i32 = 105;
+pub const PKCS7_R_CIPHER_HAS_NO_OBJECT_IDENTIFIER: i32 = 106;
+pub const PKCS7_R_SIGNING_NOT_SUPPORTED_FOR_THIS_KEY_TYPE: i32 = 107;
 pub const RSA_PKCS1_PADDING: i32 = 1;
 pub const RSA_NO_PADDING: i32 = 3;
 pub const RSA_PKCS1_OAEP_PADDING: i32 = 4;
@@ -3752,6 +3767,7 @@ pub const PEM_STRING_DSAPARAMS: &[u8; 15] = b"DSA PARAMETERS\0";
 pub const PEM_STRING_ECDSA_PUBLIC: &[u8; 17] = b"ECDSA PUBLIC KEY\0";
 pub const PEM_STRING_ECPARAMETERS: &[u8; 14] = b"EC PARAMETERS\0";
 pub const PEM_STRING_ECPRIVATEKEY: &[u8; 15] = b"EC PRIVATE KEY\0";
+pub const PEM_STRING_PARAMETERS: &[u8; 11] = b"PARAMETERS\0";
 pub const PEM_STRING_CMS: &[u8; 4] = b"CMS\0";
 pub const PEM_TYPE_ENCRYPTED: i32 = 10;
 pub const PEM_TYPE_MIC_ONLY: i32 = 20;
@@ -4042,7 +4058,12 @@ pub struct ec_point_st {
     _unused: [u8; 0],
 }
 pub type EC_POINT = ec_point_st;
-pub type ECDSA_METHOD = ecdsa_method_st;
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct ec_key_method_st {
+    _unused: [u8; 0],
+}
+pub type EC_KEY_METHOD = ec_key_method_st;
 pub type ECDSA_SIG = ecdsa_sig_st;
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
@@ -4112,6 +4133,12 @@ pub struct evp_pkey_ctx_st {
 pub type EVP_PKEY_CTX = evp_pkey_ctx_st;
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
+pub struct evp_pkey_asn1_method_st {
+    _unused: [u8; 0],
+}
+pub type EVP_PKEY_ASN1_METHOD = evp_pkey_asn1_method_st;
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
 pub struct evp_pkey_st {
     _unused: [u8; 0],
 }
@@ -4131,6 +4158,44 @@ pub struct ossl_init_settings_st {
     _unused: [u8; 0],
 }
 pub type OPENSSL_INIT_SETTINGS = ossl_init_settings_st;
+pub type PKCS7 = pkcs7_st;
+pub type PKCS7_SIGNED = pkcs7_signed_st;
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct pkcs7_envelope_st {
+    _unused: [u8; 0],
+}
+pub type PKCS7_ENVELOPE = pkcs7_envelope_st;
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct pkcs7_sign_envelope_st {
+    _unused: [u8; 0],
+}
+pub type PKCS7_SIGN_ENVELOPE = pkcs7_sign_envelope_st;
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct pkcs7_digest_st {
+    _unused: [u8; 0],
+}
+pub type PKCS7_DIGEST = pkcs7_digest_st;
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct pkcs7_encrypt_st {
+    _unused: [u8; 0],
+}
+pub type PKCS7_ENCRYPT = pkcs7_encrypt_st;
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct pkcs7_recip_info_st {
+    _unused: [u8; 0],
+}
+pub type PKCS7_RECIP_INFO = pkcs7_recip_info_st;
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct pkcs7_signer_info_st {
+    _unused: [u8; 0],
+}
+pub type PKCS7_SIGNER_INFO = pkcs7_signer_info_st;
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct pkcs12_st {
@@ -4146,6 +4211,11 @@ pub type PKCS8_PRIV_KEY_INFO = pkcs8_priv_key_info_st;
 pub type X509_PKEY = private_key_st;
 pub type RAND_METHOD = rand_meth_st;
 pub type RC4_KEY = rc4_key_st;
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct rsa_meth_st {
+    _unused: [u8; 0],
+}
 pub type RSA_METHOD = rsa_meth_st;
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
@@ -5620,6 +5690,10 @@ extern "C" {
     pub fn OPENSSL_fromxdigit(out: *mut u8, c: ::std::os::raw::c_int) -> ::std::os::raw::c_int;
 }
 extern "C" {
+    #[link_name = "\u{1}aws_lc_0_21_2_OPENSSL_hexstr2buf"]
+    pub fn OPENSSL_hexstr2buf(str_: *const ::std::os::raw::c_char, len: *mut usize) -> *mut u8;
+}
+extern "C" {
     #[link_name = "\u{1}aws_lc_0_21_2_OPENSSL_isalnum"]
     pub fn OPENSSL_isalnum(c: ::std::os::raw::c_int) -> ::std::os::raw::c_int;
 }
@@ -6828,11 +6902,11 @@ extern "C" {
 }
 extern "C" {
     #[link_name = "\u{1}aws_lc_0_21_2_BIO_number_read"]
-    pub fn BIO_number_read(bio: *const BIO) -> usize;
+    pub fn BIO_number_read(bio: *const BIO) -> u64;
 }
 extern "C" {
     #[link_name = "\u{1}aws_lc_0_21_2_BIO_number_written"]
-    pub fn BIO_number_written(bio: *const BIO) -> usize;
+    pub fn BIO_number_written(bio: *const BIO) -> u64;
 }
 extern "C" {
     #[link_name = "\u{1}aws_lc_0_21_2_BIO_set_callback_ex"]
@@ -7523,8 +7597,8 @@ pub struct bio_st {
     pub references: CRYPTO_refcount_t,
     pub ptr: *mut ::std::os::raw::c_void,
     pub next_bio: *mut BIO,
-    pub num_read: usize,
-    pub num_write: usize,
+    pub num_read: u64,
+    pub num_write: u64,
 }
 #[test]
 fn bindgen_test_layout_bio_st() {
@@ -7532,7 +7606,7 @@ fn bindgen_test_layout_bio_st() {
     let ptr = UNINIT.as_ptr();
     assert_eq!(
         ::std::mem::size_of::<bio_st>(),
-        56usize,
+        64usize,
         concat!("Size of: ", stringify!(bio_st))
     );
     assert_eq!(
@@ -7672,7 +7746,7 @@ fn bindgen_test_layout_bio_st() {
     );
     assert_eq!(
         unsafe { ::std::ptr::addr_of!((*ptr).num_write) as usize - ptr as usize },
-        52usize,
+        56usize,
         concat!(
             "Offset of field: ",
             stringify!(bio_st),
@@ -8570,6 +8644,22 @@ extern "C" {
 extern "C" {
     #[link_name = "\u{1}aws_lc_0_21_2_BN_CTX_secure_new"]
     pub fn BN_CTX_secure_new() -> *mut BN_CTX;
+}
+extern "C" {
+    #[link_name = "\u{1}aws_lc_0_21_2_BN_mod_exp_mont_consttime_x2"]
+    pub fn BN_mod_exp_mont_consttime_x2(
+        rr1: *mut BIGNUM,
+        a1: *const BIGNUM,
+        p1: *const BIGNUM,
+        m1: *const BIGNUM,
+        in_mont1: *const BN_MONT_CTX,
+        rr2: *mut BIGNUM,
+        a2: *const BIGNUM,
+        p2: *const BIGNUM,
+        m2: *const BIGNUM,
+        in_mont2: *const BN_MONT_CTX,
+        ctx: *mut BN_CTX,
+    ) -> ::std::os::raw::c_int;
 }
 #[repr(C)]
 #[derive(Debug, Copy, Clone, PartialEq, Eq)]
@@ -14773,82 +14863,27 @@ extern "C" {
     pub fn ENGINE_free(engine: *mut ENGINE) -> ::std::os::raw::c_int;
 }
 extern "C" {
-    #[link_name = "\u{1}aws_lc_0_21_2_ENGINE_set_RSA_method"]
-    pub fn ENGINE_set_RSA_method(
+    #[link_name = "\u{1}aws_lc_0_21_2_ENGINE_set_RSA"]
+    pub fn ENGINE_set_RSA(engine: *mut ENGINE, method: *const RSA_METHOD) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    #[link_name = "\u{1}aws_lc_0_21_2_ENGINE_get_RSA"]
+    pub fn ENGINE_get_RSA(engine: *const ENGINE) -> *const RSA_METHOD;
+}
+extern "C" {
+    #[link_name = "\u{1}aws_lc_0_21_2_ENGINE_set_EC"]
+    pub fn ENGINE_set_EC(
         engine: *mut ENGINE,
-        method: *const RSA_METHOD,
-        method_size: usize,
+        method: *const EC_KEY_METHOD,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
-    #[link_name = "\u{1}aws_lc_0_21_2_ENGINE_get_RSA_method"]
-    pub fn ENGINE_get_RSA_method(engine: *const ENGINE) -> *mut RSA_METHOD;
-}
-extern "C" {
-    #[link_name = "\u{1}aws_lc_0_21_2_ENGINE_set_ECDSA_method"]
-    pub fn ENGINE_set_ECDSA_method(
-        engine: *mut ENGINE,
-        method: *const ECDSA_METHOD,
-        method_size: usize,
-    ) -> ::std::os::raw::c_int;
-}
-extern "C" {
-    #[link_name = "\u{1}aws_lc_0_21_2_ENGINE_get_ECDSA_method"]
-    pub fn ENGINE_get_ECDSA_method(engine: *const ENGINE) -> *mut ECDSA_METHOD;
-}
-extern "C" {
-    #[link_name = "\u{1}aws_lc_0_21_2_METHOD_ref"]
-    pub fn METHOD_ref(method: *mut ::std::os::raw::c_void);
-}
-extern "C" {
-    #[link_name = "\u{1}aws_lc_0_21_2_METHOD_unref"]
-    pub fn METHOD_unref(method: *mut ::std::os::raw::c_void);
+    #[link_name = "\u{1}aws_lc_0_21_2_ENGINE_get_EC"]
+    pub fn ENGINE_get_EC(engine: *const ENGINE) -> *const EC_KEY_METHOD;
 }
 extern "C" {
     #[link_name = "\u{1}aws_lc_0_21_2_ENGINE_cleanup"]
     pub fn ENGINE_cleanup();
-}
-#[repr(C)]
-#[derive(Debug, Default, Copy, Clone, PartialEq, Eq)]
-pub struct openssl_method_common_st {
-    pub references: ::std::os::raw::c_int,
-    pub is_static: ::std::os::raw::c_char,
-}
-#[test]
-fn bindgen_test_layout_openssl_method_common_st() {
-    const UNINIT: ::std::mem::MaybeUninit<openssl_method_common_st> =
-        ::std::mem::MaybeUninit::uninit();
-    let ptr = UNINIT.as_ptr();
-    assert_eq!(
-        ::std::mem::size_of::<openssl_method_common_st>(),
-        8usize,
-        concat!("Size of: ", stringify!(openssl_method_common_st))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<openssl_method_common_st>(),
-        4usize,
-        concat!("Alignment of ", stringify!(openssl_method_common_st))
-    );
-    assert_eq!(
-        unsafe { ::std::ptr::addr_of!((*ptr).references) as usize - ptr as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(openssl_method_common_st),
-            "::",
-            stringify!(references)
-        )
-    );
-    assert_eq!(
-        unsafe { ::std::ptr::addr_of!((*ptr).is_static) as usize - ptr as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(openssl_method_common_st),
-            "::",
-            stringify!(is_static)
-        )
-    );
 }
 extern "C" {
     #[link_name = "\u{1}aws_lc_0_21_2_EC_KEY_new"]
@@ -15011,121 +15046,6 @@ extern "C" {
         idx: ::std::os::raw::c_int,
     ) -> *mut ::std::os::raw::c_void;
 }
-#[repr(C)]
-#[derive(Debug, Copy, Clone, PartialEq, Eq)]
-pub struct ecdsa_method_st {
-    pub common: openssl_method_common_st,
-    pub app_data: *mut ::std::os::raw::c_void,
-    pub init:
-        ::std::option::Option<unsafe extern "C" fn(key: *mut EC_KEY) -> ::std::os::raw::c_int>,
-    pub finish:
-        ::std::option::Option<unsafe extern "C" fn(key: *mut EC_KEY) -> ::std::os::raw::c_int>,
-    pub group_order_size: ::std::option::Option<unsafe extern "C" fn(key: *const EC_KEY) -> usize>,
-    pub sign: ::std::option::Option<
-        unsafe extern "C" fn(
-            digest: *const u8,
-            digest_len: usize,
-            sig: *mut u8,
-            sig_len: *mut ::std::os::raw::c_uint,
-            eckey: *mut EC_KEY,
-        ) -> ::std::os::raw::c_int,
-    >,
-    pub flags: ::std::os::raw::c_int,
-}
-#[test]
-fn bindgen_test_layout_ecdsa_method_st() {
-    const UNINIT: ::std::mem::MaybeUninit<ecdsa_method_st> = ::std::mem::MaybeUninit::uninit();
-    let ptr = UNINIT.as_ptr();
-    assert_eq!(
-        ::std::mem::size_of::<ecdsa_method_st>(),
-        32usize,
-        concat!("Size of: ", stringify!(ecdsa_method_st))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<ecdsa_method_st>(),
-        4usize,
-        concat!("Alignment of ", stringify!(ecdsa_method_st))
-    );
-    assert_eq!(
-        unsafe { ::std::ptr::addr_of!((*ptr).common) as usize - ptr as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(ecdsa_method_st),
-            "::",
-            stringify!(common)
-        )
-    );
-    assert_eq!(
-        unsafe { ::std::ptr::addr_of!((*ptr).app_data) as usize - ptr as usize },
-        8usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(ecdsa_method_st),
-            "::",
-            stringify!(app_data)
-        )
-    );
-    assert_eq!(
-        unsafe { ::std::ptr::addr_of!((*ptr).init) as usize - ptr as usize },
-        12usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(ecdsa_method_st),
-            "::",
-            stringify!(init)
-        )
-    );
-    assert_eq!(
-        unsafe { ::std::ptr::addr_of!((*ptr).finish) as usize - ptr as usize },
-        16usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(ecdsa_method_st),
-            "::",
-            stringify!(finish)
-        )
-    );
-    assert_eq!(
-        unsafe { ::std::ptr::addr_of!((*ptr).group_order_size) as usize - ptr as usize },
-        20usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(ecdsa_method_st),
-            "::",
-            stringify!(group_order_size)
-        )
-    );
-    assert_eq!(
-        unsafe { ::std::ptr::addr_of!((*ptr).sign) as usize - ptr as usize },
-        24usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(ecdsa_method_st),
-            "::",
-            stringify!(sign)
-        )
-    );
-    assert_eq!(
-        unsafe { ::std::ptr::addr_of!((*ptr).flags) as usize - ptr as usize },
-        28usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(ecdsa_method_st),
-            "::",
-            stringify!(flags)
-        )
-    );
-}
-impl Default for ecdsa_method_st {
-    fn default() -> Self {
-        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
-        unsafe {
-            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
-            s.assume_init()
-        }
-    }
-}
 extern "C" {
     #[link_name = "\u{1}aws_lc_0_21_2_d2i_ECPrivateKey"]
     pub fn d2i_ECPrivateKey(
@@ -15151,6 +15071,14 @@ extern "C" {
     pub fn i2d_ECParameters(key: *const EC_KEY, outp: *mut *mut u8) -> ::std::os::raw::c_int;
 }
 extern "C" {
+    #[link_name = "\u{1}aws_lc_0_21_2_d2i_ECPKParameters_bio"]
+    pub fn d2i_ECPKParameters_bio(bio: *mut BIO, out_group: *mut *mut EC_GROUP) -> *mut EC_GROUP;
+}
+extern "C" {
+    #[link_name = "\u{1}aws_lc_0_21_2_i2d_ECPKParameters_bio"]
+    pub fn i2d_ECPKParameters_bio(bio: *mut BIO, group: *const EC_GROUP) -> ::std::os::raw::c_int;
+}
+extern "C" {
     #[link_name = "\u{1}aws_lc_0_21_2_o2i_ECPublicKey"]
     pub fn o2i_ECPublicKey(
         out_key: *mut *mut EC_KEY,
@@ -15163,6 +15091,74 @@ extern "C" {
     pub fn i2o_ECPublicKey(
         key: *const EC_KEY,
         outp: *mut *mut ::std::os::raw::c_uchar,
+    ) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    #[link_name = "\u{1}aws_lc_0_21_2_EC_KEY_get_default_method"]
+    pub fn EC_KEY_get_default_method() -> *const EC_KEY_METHOD;
+}
+extern "C" {
+    #[link_name = "\u{1}aws_lc_0_21_2_EC_KEY_OpenSSL"]
+    pub fn EC_KEY_OpenSSL() -> *const EC_KEY_METHOD;
+}
+extern "C" {
+    #[link_name = "\u{1}aws_lc_0_21_2_EC_KEY_METHOD_new"]
+    pub fn EC_KEY_METHOD_new(eckey_meth: *const EC_KEY_METHOD) -> *mut EC_KEY_METHOD;
+}
+extern "C" {
+    #[link_name = "\u{1}aws_lc_0_21_2_EC_KEY_METHOD_free"]
+    pub fn EC_KEY_METHOD_free(eckey_meth: *mut EC_KEY_METHOD);
+}
+extern "C" {
+    #[link_name = "\u{1}aws_lc_0_21_2_EC_KEY_set_method"]
+    pub fn EC_KEY_set_method(ec: *mut EC_KEY, meth: *const EC_KEY_METHOD) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    #[link_name = "\u{1}aws_lc_0_21_2_EC_KEY_get_method"]
+    pub fn EC_KEY_get_method(ec: *const EC_KEY) -> *const EC_KEY_METHOD;
+}
+extern "C" {
+    #[link_name = "\u{1}aws_lc_0_21_2_EC_KEY_METHOD_set_sign_awslc"]
+    pub fn EC_KEY_METHOD_set_sign_awslc(
+        meth: *mut EC_KEY_METHOD,
+        sign: ::std::option::Option<
+            unsafe extern "C" fn(
+                type_: ::std::os::raw::c_int,
+                digest: *const u8,
+                digest_len: ::std::os::raw::c_int,
+                sig: *mut u8,
+                siglen: *mut ::std::os::raw::c_uint,
+                k_inv: *const BIGNUM,
+                r: *const BIGNUM,
+                eckey: *mut EC_KEY,
+            ) -> ::std::os::raw::c_int,
+        >,
+        sign_sig: ::std::option::Option<
+            unsafe extern "C" fn(
+                digest: *const u8,
+                digest_len: ::std::os::raw::c_int,
+                in_kinv: *const BIGNUM,
+                in_r: *const BIGNUM,
+                eckey: *mut EC_KEY,
+            ) -> *mut ECDSA_SIG,
+        >,
+    );
+}
+extern "C" {
+    #[link_name = "\u{1}aws_lc_0_21_2_EC_KEY_METHOD_set_init_awslc"]
+    pub fn EC_KEY_METHOD_set_init_awslc(
+        meth: *mut EC_KEY_METHOD,
+        init: ::std::option::Option<
+            unsafe extern "C" fn(key: *mut EC_KEY) -> ::std::os::raw::c_int,
+        >,
+        finish: ::std::option::Option<unsafe extern "C" fn(key: *mut EC_KEY)>,
+    );
+}
+extern "C" {
+    #[link_name = "\u{1}aws_lc_0_21_2_EC_KEY_METHOD_set_flags"]
+    pub fn EC_KEY_METHOD_set_flags(
+        meth: *mut EC_KEY_METHOD,
+        flags: ::std::os::raw::c_int,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
@@ -16057,6 +16053,22 @@ extern "C" {
     pub fn EVP_PKEY_get1_EC_KEY(pkey: *const EVP_PKEY) -> *mut EC_KEY;
 }
 extern "C" {
+    #[link_name = "\u{1}aws_lc_0_21_2_EVP_PKEY_set1_DH"]
+    pub fn EVP_PKEY_set1_DH(pkey: *mut EVP_PKEY, key: *mut DH) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    #[link_name = "\u{1}aws_lc_0_21_2_EVP_PKEY_assign_DH"]
+    pub fn EVP_PKEY_assign_DH(pkey: *mut EVP_PKEY, key: *mut DH) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    #[link_name = "\u{1}aws_lc_0_21_2_EVP_PKEY_get0_DH"]
+    pub fn EVP_PKEY_get0_DH(pkey: *const EVP_PKEY) -> *mut DH;
+}
+extern "C" {
+    #[link_name = "\u{1}aws_lc_0_21_2_EVP_PKEY_get1_DH"]
+    pub fn EVP_PKEY_get1_DH(pkey: *const EVP_PKEY) -> *mut DH;
+}
+extern "C" {
     #[link_name = "\u{1}aws_lc_0_21_2_EVP_PKEY_set_type"]
     pub fn EVP_PKEY_set_type(
         pkey: *mut EVP_PKEY,
@@ -16615,6 +16627,47 @@ extern "C" {
     pub fn EVP_PKEY_kem_check_key(key: *mut EVP_PKEY) -> ::std::os::raw::c_int;
 }
 extern "C" {
+    #[link_name = "\u{1}aws_lc_0_21_2_EVP_PKEY_CTX_set_dh_pad"]
+    pub fn EVP_PKEY_CTX_set_dh_pad(
+        ctx: *mut EVP_PKEY_CTX,
+        pad: ::std::os::raw::c_int,
+    ) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    #[link_name = "\u{1}aws_lc_0_21_2_EVP_PKEY_asn1_get_count"]
+    pub fn EVP_PKEY_asn1_get_count() -> ::std::os::raw::c_int;
+}
+extern "C" {
+    #[link_name = "\u{1}aws_lc_0_21_2_EVP_PKEY_asn1_get0"]
+    pub fn EVP_PKEY_asn1_get0(idx: ::std::os::raw::c_int) -> *const EVP_PKEY_ASN1_METHOD;
+}
+extern "C" {
+    #[link_name = "\u{1}aws_lc_0_21_2_EVP_PKEY_asn1_find"]
+    pub fn EVP_PKEY_asn1_find(
+        _pe: *mut *mut ENGINE,
+        type_: ::std::os::raw::c_int,
+    ) -> *const EVP_PKEY_ASN1_METHOD;
+}
+extern "C" {
+    #[link_name = "\u{1}aws_lc_0_21_2_EVP_PKEY_asn1_find_str"]
+    pub fn EVP_PKEY_asn1_find_str(
+        _pe: *mut *mut ENGINE,
+        name: *const ::std::os::raw::c_char,
+        len: ::std::os::raw::c_int,
+    ) -> *const EVP_PKEY_ASN1_METHOD;
+}
+extern "C" {
+    #[link_name = "\u{1}aws_lc_0_21_2_EVP_PKEY_asn1_get0_info"]
+    pub fn EVP_PKEY_asn1_get0_info(
+        ppkey_id: *mut ::std::os::raw::c_int,
+        pkey_base_id: *mut ::std::os::raw::c_int,
+        ppkey_flags: *mut ::std::os::raw::c_int,
+        pinfo: *mut *const ::std::os::raw::c_char,
+        ppem_str: *mut *const ::std::os::raw::c_char,
+        ameth: *const EVP_PKEY_ASN1_METHOD,
+    ) -> ::std::os::raw::c_int;
+}
+extern "C" {
     #[link_name = "\u{1}aws_lc_0_21_2_EVP_MD_get_pkey_type"]
     pub fn EVP_MD_get_pkey_type(md: *const EVP_MD) -> ::std::os::raw::c_int;
 }
@@ -16846,12 +16899,33 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
-    #[link_name = "\u{1}aws_lc_0_21_2_EVP_PKEY_get0_DH"]
-    pub fn EVP_PKEY_get0_DH(pkey: *const EVP_PKEY) -> *mut DH;
+    #[link_name = "\u{1}aws_lc_0_21_2_EVP_PKEY_CTX_ctrl_str"]
+    pub fn EVP_PKEY_CTX_ctrl_str(
+        ctx: *mut EVP_PKEY_CTX,
+        type_: *const ::std::os::raw::c_char,
+        value: *const ::std::os::raw::c_char,
+    ) -> ::std::os::raw::c_int;
+}
+pub type EVP_PKEY_gen_cb =
+    ::std::option::Option<unsafe extern "C" fn(ctx: *mut EVP_PKEY_CTX) -> ::std::os::raw::c_int>;
+extern "C" {
+    #[link_name = "\u{1}aws_lc_0_21_2_EVP_PKEY_CTX_set_cb"]
+    pub fn EVP_PKEY_CTX_set_cb(ctx: *mut EVP_PKEY_CTX, cb: EVP_PKEY_gen_cb);
 }
 extern "C" {
-    #[link_name = "\u{1}aws_lc_0_21_2_EVP_PKEY_get1_DH"]
-    pub fn EVP_PKEY_get1_DH(pkey: *const EVP_PKEY) -> *mut DH;
+    #[link_name = "\u{1}aws_lc_0_21_2_EVP_PKEY_CTX_set_app_data"]
+    pub fn EVP_PKEY_CTX_set_app_data(ctx: *mut EVP_PKEY_CTX, data: *mut ::std::os::raw::c_void);
+}
+extern "C" {
+    #[link_name = "\u{1}aws_lc_0_21_2_EVP_PKEY_CTX_get_app_data"]
+    pub fn EVP_PKEY_CTX_get_app_data(ctx: *mut EVP_PKEY_CTX) -> *mut ::std::os::raw::c_void;
+}
+extern "C" {
+    #[link_name = "\u{1}aws_lc_0_21_2_EVP_PKEY_CTX_get_keygen_info"]
+    pub fn EVP_PKEY_CTX_get_keygen_info(
+        ctx: *mut EVP_PKEY_CTX,
+        idx: ::std::os::raw::c_int,
+    ) -> ::std::os::raw::c_int;
 }
 extern "C" {
     #[link_name = "\u{1}aws_lc_0_21_2_HKDF"]
@@ -18121,120 +18195,14 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone, PartialEq, Eq)]
-pub struct PKCS7_SIGNED {
-    pub cert: *mut stack_st_X509,
-    pub crl: *mut stack_st_X509_CRL,
-}
-#[test]
-fn bindgen_test_layout_PKCS7_SIGNED() {
-    const UNINIT: ::std::mem::MaybeUninit<PKCS7_SIGNED> = ::std::mem::MaybeUninit::uninit();
-    let ptr = UNINIT.as_ptr();
-    assert_eq!(
-        ::std::mem::size_of::<PKCS7_SIGNED>(),
-        8usize,
-        concat!("Size of: ", stringify!(PKCS7_SIGNED))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<PKCS7_SIGNED>(),
-        4usize,
-        concat!("Alignment of ", stringify!(PKCS7_SIGNED))
-    );
-    assert_eq!(
-        unsafe { ::std::ptr::addr_of!((*ptr).cert) as usize - ptr as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(PKCS7_SIGNED),
-            "::",
-            stringify!(cert)
-        )
-    );
-    assert_eq!(
-        unsafe { ::std::ptr::addr_of!((*ptr).crl) as usize - ptr as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(PKCS7_SIGNED),
-            "::",
-            stringify!(crl)
-        )
-    );
-}
-impl Default for PKCS7_SIGNED {
-    fn default() -> Self {
-        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
-        unsafe {
-            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
-            s.assume_init()
-        }
-    }
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone, PartialEq, Eq)]
-pub struct PKCS7_SIGN_ENVELOPE {
-    pub cert: *mut stack_st_X509,
-    pub crl: *mut stack_st_X509_CRL,
-}
-#[test]
-fn bindgen_test_layout_PKCS7_SIGN_ENVELOPE() {
-    const UNINIT: ::std::mem::MaybeUninit<PKCS7_SIGN_ENVELOPE> = ::std::mem::MaybeUninit::uninit();
-    let ptr = UNINIT.as_ptr();
-    assert_eq!(
-        ::std::mem::size_of::<PKCS7_SIGN_ENVELOPE>(),
-        8usize,
-        concat!("Size of: ", stringify!(PKCS7_SIGN_ENVELOPE))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<PKCS7_SIGN_ENVELOPE>(),
-        4usize,
-        concat!("Alignment of ", stringify!(PKCS7_SIGN_ENVELOPE))
-    );
-    assert_eq!(
-        unsafe { ::std::ptr::addr_of!((*ptr).cert) as usize - ptr as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(PKCS7_SIGN_ENVELOPE),
-            "::",
-            stringify!(cert)
-        )
-    );
-    assert_eq!(
-        unsafe { ::std::ptr::addr_of!((*ptr).crl) as usize - ptr as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(PKCS7_SIGN_ENVELOPE),
-            "::",
-            stringify!(crl)
-        )
-    );
-}
-impl Default for PKCS7_SIGN_ENVELOPE {
-    fn default() -> Self {
-        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
-        unsafe {
-            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
-            s.assume_init()
-        }
-    }
-}
-pub type PKCS7_ENVELOPE = ::std::os::raw::c_void;
-pub type PKCS7_DIGEST = ::std::os::raw::c_void;
-pub type PKCS7_ENCRYPT = ::std::os::raw::c_void;
-pub type PKCS7_SIGNER_INFO = ::std::os::raw::c_void;
-#[repr(C)]
 #[derive(Copy, Clone)]
-pub struct PKCS7 {
-    pub ber_bytes: *mut u8,
-    pub ber_len: usize,
+pub struct pkcs7_st {
     pub type_: *mut ASN1_OBJECT,
-    pub d: PKCS7__bindgen_ty_1,
+    pub d: pkcs7_st__bindgen_ty_1,
 }
 #[repr(C)]
 #[derive(Copy, Clone)]
-pub union PKCS7__bindgen_ty_1 {
+pub union pkcs7_st__bindgen_ty_1 {
     pub ptr: *mut ::std::os::raw::c_char,
     pub data: *mut ASN1_OCTET_STRING,
     pub sign: *mut PKCS7_SIGNED,
@@ -18245,25 +18213,26 @@ pub union PKCS7__bindgen_ty_1 {
     pub other: *mut ASN1_TYPE,
 }
 #[test]
-fn bindgen_test_layout_PKCS7__bindgen_ty_1() {
-    const UNINIT: ::std::mem::MaybeUninit<PKCS7__bindgen_ty_1> = ::std::mem::MaybeUninit::uninit();
+fn bindgen_test_layout_pkcs7_st__bindgen_ty_1() {
+    const UNINIT: ::std::mem::MaybeUninit<pkcs7_st__bindgen_ty_1> =
+        ::std::mem::MaybeUninit::uninit();
     let ptr = UNINIT.as_ptr();
     assert_eq!(
-        ::std::mem::size_of::<PKCS7__bindgen_ty_1>(),
+        ::std::mem::size_of::<pkcs7_st__bindgen_ty_1>(),
         4usize,
-        concat!("Size of: ", stringify!(PKCS7__bindgen_ty_1))
+        concat!("Size of: ", stringify!(pkcs7_st__bindgen_ty_1))
     );
     assert_eq!(
-        ::std::mem::align_of::<PKCS7__bindgen_ty_1>(),
+        ::std::mem::align_of::<pkcs7_st__bindgen_ty_1>(),
         4usize,
-        concat!("Alignment of ", stringify!(PKCS7__bindgen_ty_1))
+        concat!("Alignment of ", stringify!(pkcs7_st__bindgen_ty_1))
     );
     assert_eq!(
         unsafe { ::std::ptr::addr_of!((*ptr).ptr) as usize - ptr as usize },
         0usize,
         concat!(
             "Offset of field: ",
-            stringify!(PKCS7__bindgen_ty_1),
+            stringify!(pkcs7_st__bindgen_ty_1),
             "::",
             stringify!(ptr)
         )
@@ -18273,7 +18242,7 @@ fn bindgen_test_layout_PKCS7__bindgen_ty_1() {
         0usize,
         concat!(
             "Offset of field: ",
-            stringify!(PKCS7__bindgen_ty_1),
+            stringify!(pkcs7_st__bindgen_ty_1),
             "::",
             stringify!(data)
         )
@@ -18283,7 +18252,7 @@ fn bindgen_test_layout_PKCS7__bindgen_ty_1() {
         0usize,
         concat!(
             "Offset of field: ",
-            stringify!(PKCS7__bindgen_ty_1),
+            stringify!(pkcs7_st__bindgen_ty_1),
             "::",
             stringify!(sign)
         )
@@ -18293,7 +18262,7 @@ fn bindgen_test_layout_PKCS7__bindgen_ty_1() {
         0usize,
         concat!(
             "Offset of field: ",
-            stringify!(PKCS7__bindgen_ty_1),
+            stringify!(pkcs7_st__bindgen_ty_1),
             "::",
             stringify!(enveloped)
         )
@@ -18303,7 +18272,7 @@ fn bindgen_test_layout_PKCS7__bindgen_ty_1() {
         0usize,
         concat!(
             "Offset of field: ",
-            stringify!(PKCS7__bindgen_ty_1),
+            stringify!(pkcs7_st__bindgen_ty_1),
             "::",
             stringify!(signed_and_enveloped)
         )
@@ -18313,7 +18282,7 @@ fn bindgen_test_layout_PKCS7__bindgen_ty_1() {
         0usize,
         concat!(
             "Offset of field: ",
-            stringify!(PKCS7__bindgen_ty_1),
+            stringify!(pkcs7_st__bindgen_ty_1),
             "::",
             stringify!(digest)
         )
@@ -18323,7 +18292,7 @@ fn bindgen_test_layout_PKCS7__bindgen_ty_1() {
         0usize,
         concat!(
             "Offset of field: ",
-            stringify!(PKCS7__bindgen_ty_1),
+            stringify!(pkcs7_st__bindgen_ty_1),
             "::",
             stringify!(encrypted)
         )
@@ -18333,13 +18302,13 @@ fn bindgen_test_layout_PKCS7__bindgen_ty_1() {
         0usize,
         concat!(
             "Offset of field: ",
-            stringify!(PKCS7__bindgen_ty_1),
+            stringify!(pkcs7_st__bindgen_ty_1),
             "::",
             stringify!(other)
         )
     );
 }
-impl Default for PKCS7__bindgen_ty_1 {
+impl Default for pkcs7_st__bindgen_ty_1 {
     fn default() -> Self {
         let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
         unsafe {
@@ -18349,56 +18318,135 @@ impl Default for PKCS7__bindgen_ty_1 {
     }
 }
 #[test]
-fn bindgen_test_layout_PKCS7() {
-    const UNINIT: ::std::mem::MaybeUninit<PKCS7> = ::std::mem::MaybeUninit::uninit();
+fn bindgen_test_layout_pkcs7_st() {
+    const UNINIT: ::std::mem::MaybeUninit<pkcs7_st> = ::std::mem::MaybeUninit::uninit();
     let ptr = UNINIT.as_ptr();
     assert_eq!(
-        ::std::mem::size_of::<PKCS7>(),
-        16usize,
-        concat!("Size of: ", stringify!(PKCS7))
+        ::std::mem::size_of::<pkcs7_st>(),
+        8usize,
+        concat!("Size of: ", stringify!(pkcs7_st))
     );
     assert_eq!(
-        ::std::mem::align_of::<PKCS7>(),
+        ::std::mem::align_of::<pkcs7_st>(),
         4usize,
-        concat!("Alignment of ", stringify!(PKCS7))
-    );
-    assert_eq!(
-        unsafe { ::std::ptr::addr_of!((*ptr).ber_bytes) as usize - ptr as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(PKCS7),
-            "::",
-            stringify!(ber_bytes)
-        )
-    );
-    assert_eq!(
-        unsafe { ::std::ptr::addr_of!((*ptr).ber_len) as usize - ptr as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(PKCS7),
-            "::",
-            stringify!(ber_len)
-        )
+        concat!("Alignment of ", stringify!(pkcs7_st))
     );
     assert_eq!(
         unsafe { ::std::ptr::addr_of!((*ptr).type_) as usize - ptr as usize },
-        8usize,
+        0usize,
         concat!(
             "Offset of field: ",
-            stringify!(PKCS7),
+            stringify!(pkcs7_st),
             "::",
             stringify!(type_)
         )
     );
     assert_eq!(
         unsafe { ::std::ptr::addr_of!((*ptr).d) as usize - ptr as usize },
-        12usize,
-        concat!("Offset of field: ", stringify!(PKCS7), "::", stringify!(d))
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(pkcs7_st),
+            "::",
+            stringify!(d)
+        )
     );
 }
-impl Default for PKCS7 {
+impl Default for pkcs7_st {
+    fn default() -> Self {
+        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
+        unsafe {
+            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
+            s.assume_init()
+        }
+    }
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone, PartialEq, Eq)]
+pub struct pkcs7_signed_st {
+    pub version: *mut ASN1_INTEGER,
+    pub md_algs: *mut stack_st_X509_ALGOR,
+    pub contents: *mut PKCS7,
+    pub cert: *mut stack_st_X509,
+    pub crl: *mut stack_st_X509_CRL,
+    pub signer_info: *mut stack_st_PKCS7_SIGNER_INFO,
+}
+#[test]
+fn bindgen_test_layout_pkcs7_signed_st() {
+    const UNINIT: ::std::mem::MaybeUninit<pkcs7_signed_st> = ::std::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::std::mem::size_of::<pkcs7_signed_st>(),
+        24usize,
+        concat!("Size of: ", stringify!(pkcs7_signed_st))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<pkcs7_signed_st>(),
+        4usize,
+        concat!("Alignment of ", stringify!(pkcs7_signed_st))
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).version) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(pkcs7_signed_st),
+            "::",
+            stringify!(version)
+        )
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).md_algs) as usize - ptr as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(pkcs7_signed_st),
+            "::",
+            stringify!(md_algs)
+        )
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).contents) as usize - ptr as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(pkcs7_signed_st),
+            "::",
+            stringify!(contents)
+        )
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).cert) as usize - ptr as usize },
+        12usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(pkcs7_signed_st),
+            "::",
+            stringify!(cert)
+        )
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).crl) as usize - ptr as usize },
+        16usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(pkcs7_signed_st),
+            "::",
+            stringify!(crl)
+        )
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).signer_info) as usize - ptr as usize },
+        20usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(pkcs7_signed_st),
+            "::",
+            stringify!(signer_info)
+        )
+    );
+}
+impl Default for pkcs7_signed_st {
     fn default() -> Self {
         let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
         unsafe {
@@ -18408,24 +18456,216 @@ impl Default for PKCS7 {
     }
 }
 extern "C" {
+    #[link_name = "\u{1}aws_lc_0_21_2_PKCS7_new"]
+    pub fn PKCS7_new() -> *mut PKCS7;
+}
+extern "C" {
+    #[link_name = "\u{1}aws_lc_0_21_2_PKCS7_free"]
+    pub fn PKCS7_free(a: *mut PKCS7);
+}
+extern "C" {
     #[link_name = "\u{1}aws_lc_0_21_2_d2i_PKCS7"]
-    pub fn d2i_PKCS7(out: *mut *mut PKCS7, inp: *mut *const u8, len: usize) -> *mut PKCS7;
+    pub fn d2i_PKCS7(
+        a: *mut *mut PKCS7,
+        in_: *mut *const ::std::os::raw::c_uchar,
+        len: ::std::os::raw::c_long,
+    ) -> *mut PKCS7;
+}
+extern "C" {
+    #[link_name = "\u{1}aws_lc_0_21_2_i2d_PKCS7"]
+    pub fn i2d_PKCS7(
+        a: *mut PKCS7,
+        out: *mut *mut ::std::os::raw::c_uchar,
+    ) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    #[link_name = "\u{1}aws_lc_0_21_2_PKCS7_it"]
+    pub static PKCS7_it: ASN1_ITEM;
+}
+extern "C" {
+    #[link_name = "\u{1}aws_lc_0_21_2_PKCS7_RECIP_INFO_new"]
+    pub fn PKCS7_RECIP_INFO_new() -> *mut PKCS7_RECIP_INFO;
+}
+extern "C" {
+    #[link_name = "\u{1}aws_lc_0_21_2_PKCS7_RECIP_INFO_free"]
+    pub fn PKCS7_RECIP_INFO_free(a: *mut PKCS7_RECIP_INFO);
+}
+extern "C" {
+    #[link_name = "\u{1}aws_lc_0_21_2_d2i_PKCS7_RECIP_INFO"]
+    pub fn d2i_PKCS7_RECIP_INFO(
+        a: *mut *mut PKCS7_RECIP_INFO,
+        in_: *mut *const ::std::os::raw::c_uchar,
+        len: ::std::os::raw::c_long,
+    ) -> *mut PKCS7_RECIP_INFO;
+}
+extern "C" {
+    #[link_name = "\u{1}aws_lc_0_21_2_i2d_PKCS7_RECIP_INFO"]
+    pub fn i2d_PKCS7_RECIP_INFO(
+        a: *mut PKCS7_RECIP_INFO,
+        out: *mut *mut ::std::os::raw::c_uchar,
+    ) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    #[link_name = "\u{1}aws_lc_0_21_2_PKCS7_RECIP_INFO_it"]
+    pub static PKCS7_RECIP_INFO_it: ASN1_ITEM;
+}
+extern "C" {
+    #[link_name = "\u{1}aws_lc_0_21_2_PKCS7_SIGNER_INFO_new"]
+    pub fn PKCS7_SIGNER_INFO_new() -> *mut PKCS7_SIGNER_INFO;
+}
+extern "C" {
+    #[link_name = "\u{1}aws_lc_0_21_2_PKCS7_SIGNER_INFO_free"]
+    pub fn PKCS7_SIGNER_INFO_free(a: *mut PKCS7_SIGNER_INFO);
+}
+extern "C" {
+    #[link_name = "\u{1}aws_lc_0_21_2_d2i_PKCS7_SIGNER_INFO"]
+    pub fn d2i_PKCS7_SIGNER_INFO(
+        a: *mut *mut PKCS7_SIGNER_INFO,
+        in_: *mut *const ::std::os::raw::c_uchar,
+        len: ::std::os::raw::c_long,
+    ) -> *mut PKCS7_SIGNER_INFO;
+}
+extern "C" {
+    #[link_name = "\u{1}aws_lc_0_21_2_i2d_PKCS7_SIGNER_INFO"]
+    pub fn i2d_PKCS7_SIGNER_INFO(
+        a: *mut PKCS7_SIGNER_INFO,
+        out: *mut *mut ::std::os::raw::c_uchar,
+    ) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    #[link_name = "\u{1}aws_lc_0_21_2_PKCS7_SIGNER_INFO_it"]
+    pub static PKCS7_SIGNER_INFO_it: ASN1_ITEM;
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct stack_st_PKCS7_RECIP_INFO {
+    _unused: [u8; 0],
+}
+pub type sk_PKCS7_RECIP_INFO_free_func =
+    ::std::option::Option<unsafe extern "C" fn(arg1: *mut PKCS7_RECIP_INFO)>;
+pub type sk_PKCS7_RECIP_INFO_copy_func = ::std::option::Option<
+    unsafe extern "C" fn(arg1: *const PKCS7_RECIP_INFO) -> *mut PKCS7_RECIP_INFO,
+>;
+pub type sk_PKCS7_RECIP_INFO_cmp_func = ::std::option::Option<
+    unsafe extern "C" fn(
+        arg1: *const *const PKCS7_RECIP_INFO,
+        arg2: *const *const PKCS7_RECIP_INFO,
+    ) -> ::std::os::raw::c_int,
+>;
+pub type sk_PKCS7_RECIP_INFO_delete_if_func = ::std::option::Option<
+    unsafe extern "C" fn(
+        arg1: *mut PKCS7_RECIP_INFO,
+        arg2: *mut ::std::os::raw::c_void,
+    ) -> ::std::os::raw::c_int,
+>;
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct stack_st_PKCS7_SIGNER_INFO {
+    _unused: [u8; 0],
+}
+pub type sk_PKCS7_SIGNER_INFO_free_func =
+    ::std::option::Option<unsafe extern "C" fn(arg1: *mut PKCS7_SIGNER_INFO)>;
+pub type sk_PKCS7_SIGNER_INFO_copy_func = ::std::option::Option<
+    unsafe extern "C" fn(arg1: *const PKCS7_SIGNER_INFO) -> *mut PKCS7_SIGNER_INFO,
+>;
+pub type sk_PKCS7_SIGNER_INFO_cmp_func = ::std::option::Option<
+    unsafe extern "C" fn(
+        arg1: *const *const PKCS7_SIGNER_INFO,
+        arg2: *const *const PKCS7_SIGNER_INFO,
+    ) -> ::std::os::raw::c_int,
+>;
+pub type sk_PKCS7_SIGNER_INFO_delete_if_func = ::std::option::Option<
+    unsafe extern "C" fn(
+        arg1: *mut PKCS7_SIGNER_INFO,
+        arg2: *mut ::std::os::raw::c_void,
+    ) -> ::std::os::raw::c_int,
+>;
+extern "C" {
+    #[link_name = "\u{1}aws_lc_0_21_2_PKCS7_dup"]
+    pub fn PKCS7_dup(p7: *mut PKCS7) -> *mut PKCS7;
 }
 extern "C" {
     #[link_name = "\u{1}aws_lc_0_21_2_d2i_PKCS7_bio"]
     pub fn d2i_PKCS7_bio(bio: *mut BIO, out: *mut *mut PKCS7) -> *mut PKCS7;
 }
 extern "C" {
-    #[link_name = "\u{1}aws_lc_0_21_2_i2d_PKCS7"]
-    pub fn i2d_PKCS7(p7: *const PKCS7, out: *mut *mut u8) -> ::std::os::raw::c_int;
-}
-extern "C" {
     #[link_name = "\u{1}aws_lc_0_21_2_i2d_PKCS7_bio"]
     pub fn i2d_PKCS7_bio(bio: *mut BIO, p7: *const PKCS7) -> ::std::os::raw::c_int;
 }
 extern "C" {
-    #[link_name = "\u{1}aws_lc_0_21_2_PKCS7_free"]
-    pub fn PKCS7_free(p7: *mut PKCS7);
+    #[link_name = "\u{1}aws_lc_0_21_2_PKCS7_get_signed_attribute"]
+    pub fn PKCS7_get_signed_attribute(
+        si: *const PKCS7_SIGNER_INFO,
+        nid: ::std::os::raw::c_int,
+    ) -> *mut ASN1_TYPE;
+}
+extern "C" {
+    #[link_name = "\u{1}aws_lc_0_21_2_PKCS7_get_signer_info"]
+    pub fn PKCS7_get_signer_info(p7: *mut PKCS7) -> *mut stack_st_PKCS7_SIGNER_INFO;
+}
+extern "C" {
+    #[link_name = "\u{1}aws_lc_0_21_2_PKCS7_RECIP_INFO_set"]
+    pub fn PKCS7_RECIP_INFO_set(
+        p7i: *mut PKCS7_RECIP_INFO,
+        x509: *mut X509,
+    ) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    #[link_name = "\u{1}aws_lc_0_21_2_PKCS7_SIGNER_INFO_set"]
+    pub fn PKCS7_SIGNER_INFO_set(
+        p7i: *mut PKCS7_SIGNER_INFO,
+        x509: *mut X509,
+        pkey: *mut EVP_PKEY,
+        dgst: *const EVP_MD,
+    ) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    #[link_name = "\u{1}aws_lc_0_21_2_PKCS7_add_certificate"]
+    pub fn PKCS7_add_certificate(p7: *mut PKCS7, x509: *mut X509) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    #[link_name = "\u{1}aws_lc_0_21_2_PKCS7_add_crl"]
+    pub fn PKCS7_add_crl(p7: *mut PKCS7, x509: *mut X509_CRL) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    #[link_name = "\u{1}aws_lc_0_21_2_PKCS7_add_recipient_info"]
+    pub fn PKCS7_add_recipient_info(
+        p7: *mut PKCS7,
+        ri: *mut PKCS7_RECIP_INFO,
+    ) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    #[link_name = "\u{1}aws_lc_0_21_2_PKCS7_add_signer"]
+    pub fn PKCS7_add_signer(p7: *mut PKCS7, p7i: *mut PKCS7_SIGNER_INFO) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    #[link_name = "\u{1}aws_lc_0_21_2_PKCS7_content_new"]
+    pub fn PKCS7_content_new(p7: *mut PKCS7, nid: ::std::os::raw::c_int) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    #[link_name = "\u{1}aws_lc_0_21_2_PKCS7_set_cipher"]
+    pub fn PKCS7_set_cipher(p7: *mut PKCS7, cipher: *const EVP_CIPHER) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    #[link_name = "\u{1}aws_lc_0_21_2_PKCS7_set_content"]
+    pub fn PKCS7_set_content(p7: *mut PKCS7, p7_data: *mut PKCS7) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    #[link_name = "\u{1}aws_lc_0_21_2_PKCS7_set_type"]
+    pub fn PKCS7_set_type(p7: *mut PKCS7, type_: ::std::os::raw::c_int) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    #[link_name = "\u{1}aws_lc_0_21_2_PKCS7_RECIP_INFO_get0_alg"]
+    pub fn PKCS7_RECIP_INFO_get0_alg(ri: *mut PKCS7_RECIP_INFO, penc: *mut *mut X509_ALGOR);
+}
+extern "C" {
+    #[link_name = "\u{1}aws_lc_0_21_2_PKCS7_SIGNER_INFO_get0_algs"]
+    pub fn PKCS7_SIGNER_INFO_get0_algs(
+        si: *mut PKCS7_SIGNER_INFO,
+        pk: *mut *mut EVP_PKEY,
+        pdig: *mut *mut X509_ALGOR,
+        psig: *mut *mut X509_ALGOR,
+    );
 }
 extern "C" {
     #[link_name = "\u{1}aws_lc_0_21_2_PKCS7_type_is_data"]
@@ -18644,6 +18884,126 @@ extern "C" {
         dmp1: *mut BIGNUM,
         dmq1: *mut BIGNUM,
         iqmp: *mut BIGNUM,
+    ) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    #[link_name = "\u{1}aws_lc_0_21_2_RSA_get_default_method"]
+    pub fn RSA_get_default_method() -> *const RSA_METHOD;
+}
+extern "C" {
+    #[link_name = "\u{1}aws_lc_0_21_2_RSA_meth_new"]
+    pub fn RSA_meth_new(
+        name: *const ::std::os::raw::c_char,
+        flags: ::std::os::raw::c_int,
+    ) -> *mut RSA_METHOD;
+}
+extern "C" {
+    #[link_name = "\u{1}aws_lc_0_21_2_RSA_set_method"]
+    pub fn RSA_set_method(rsa: *mut RSA, meth: *const RSA_METHOD) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    #[link_name = "\u{1}aws_lc_0_21_2_RSA_get_method"]
+    pub fn RSA_get_method(rsa: *const RSA) -> *const RSA_METHOD;
+}
+extern "C" {
+    #[link_name = "\u{1}aws_lc_0_21_2_RSA_meth_free"]
+    pub fn RSA_meth_free(meth: *mut RSA_METHOD);
+}
+extern "C" {
+    #[link_name = "\u{1}aws_lc_0_21_2_RSA_meth_set_init"]
+    pub fn RSA_meth_set_init(
+        meth: *mut RSA_METHOD,
+        init: ::std::option::Option<unsafe extern "C" fn(rsa: *mut RSA) -> ::std::os::raw::c_int>,
+    ) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    #[link_name = "\u{1}aws_lc_0_21_2_RSA_meth_set_finish"]
+    pub fn RSA_meth_set_finish(
+        meth: *mut RSA_METHOD,
+        finish: ::std::option::Option<unsafe extern "C" fn(rsa: *mut RSA) -> ::std::os::raw::c_int>,
+    ) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    #[link_name = "\u{1}aws_lc_0_21_2_RSA_meth_set_priv_dec"]
+    pub fn RSA_meth_set_priv_dec(
+        meth: *mut RSA_METHOD,
+        priv_dec: ::std::option::Option<
+            unsafe extern "C" fn(
+                max_out: ::std::os::raw::c_int,
+                from: *const u8,
+                to: *mut u8,
+                rsa: *mut RSA,
+                padding: ::std::os::raw::c_int,
+            ) -> ::std::os::raw::c_int,
+        >,
+    ) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    #[link_name = "\u{1}aws_lc_0_21_2_RSA_meth_set_priv_enc"]
+    pub fn RSA_meth_set_priv_enc(
+        meth: *mut RSA_METHOD,
+        priv_enc: ::std::option::Option<
+            unsafe extern "C" fn(
+                max_out: ::std::os::raw::c_int,
+                from: *const u8,
+                to: *mut u8,
+                rsa: *mut RSA,
+                padding: ::std::os::raw::c_int,
+            ) -> ::std::os::raw::c_int,
+        >,
+    ) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    #[link_name = "\u{1}aws_lc_0_21_2_RSA_meth_set_pub_dec"]
+    pub fn RSA_meth_set_pub_dec(
+        meth: *mut RSA_METHOD,
+        pub_dec: ::std::option::Option<
+            unsafe extern "C" fn(
+                max_out: ::std::os::raw::c_int,
+                from: *const u8,
+                to: *mut u8,
+                rsa: *mut RSA,
+                padding: ::std::os::raw::c_int,
+            ) -> ::std::os::raw::c_int,
+        >,
+    ) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    #[link_name = "\u{1}aws_lc_0_21_2_RSA_meth_set_pub_enc"]
+    pub fn RSA_meth_set_pub_enc(
+        meth: *mut RSA_METHOD,
+        pub_enc: ::std::option::Option<
+            unsafe extern "C" fn(
+                max_out: ::std::os::raw::c_int,
+                from: *const u8,
+                to: *mut u8,
+                rsa: *mut RSA,
+                padding: ::std::os::raw::c_int,
+            ) -> ::std::os::raw::c_int,
+        >,
+    ) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    #[link_name = "\u{1}aws_lc_0_21_2_RSA_meth_set0_app_data"]
+    pub fn RSA_meth_set0_app_data(
+        meth: *mut RSA_METHOD,
+        app_data: *mut ::std::os::raw::c_void,
+    ) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    #[link_name = "\u{1}aws_lc_0_21_2_RSA_meth_set_sign"]
+    pub fn RSA_meth_set_sign(
+        meth: *mut RSA_METHOD,
+        sign: ::std::option::Option<
+            unsafe extern "C" fn(
+                type_: ::std::os::raw::c_int,
+                m: *const ::std::os::raw::c_uchar,
+                m_length: ::std::os::raw::c_uint,
+                sigret: *mut ::std::os::raw::c_uchar,
+                siglen: *mut ::std::os::raw::c_uint,
+                rsa: *const RSA,
+            ) -> ::std::os::raw::c_int,
+        >,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
@@ -18979,6 +19339,10 @@ extern "C" {
     pub fn RSA_flags(rsa: *const RSA) -> ::std::os::raw::c_int;
 }
 extern "C" {
+    #[link_name = "\u{1}aws_lc_0_21_2_RSA_set_flags"]
+    pub fn RSA_set_flags(rsa: *mut RSA, flags: ::std::os::raw::c_int);
+}
+extern "C" {
     #[link_name = "\u{1}aws_lc_0_21_2_RSA_test_flags"]
     pub fn RSA_test_flags(rsa: *const RSA, flags: ::std::os::raw::c_int) -> ::std::os::raw::c_int;
 }
@@ -19087,180 +19451,6 @@ extern "C" {
 extern "C" {
     #[link_name = "\u{1}aws_lc_0_21_2_RSA_new_method_no_e"]
     pub fn RSA_new_method_no_e(engine: *const ENGINE, n: *const BIGNUM) -> *mut RSA;
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone, PartialEq, Eq)]
-pub struct rsa_meth_st {
-    pub common: openssl_method_common_st,
-    pub app_data: *mut ::std::os::raw::c_void,
-    pub init: ::std::option::Option<unsafe extern "C" fn(rsa: *mut RSA) -> ::std::os::raw::c_int>,
-    pub finish: ::std::option::Option<unsafe extern "C" fn(rsa: *mut RSA) -> ::std::os::raw::c_int>,
-    pub size: ::std::option::Option<unsafe extern "C" fn(rsa: *const RSA) -> usize>,
-    pub sign: ::std::option::Option<
-        unsafe extern "C" fn(
-            type_: ::std::os::raw::c_int,
-            m: *const u8,
-            m_length: ::std::os::raw::c_uint,
-            sigret: *mut u8,
-            siglen: *mut ::std::os::raw::c_uint,
-            rsa: *const RSA,
-        ) -> ::std::os::raw::c_int,
-    >,
-    pub sign_raw: ::std::option::Option<
-        unsafe extern "C" fn(
-            rsa: *mut RSA,
-            out_len: *mut usize,
-            out: *mut u8,
-            max_out: usize,
-            in_: *const u8,
-            in_len: usize,
-            padding: ::std::os::raw::c_int,
-        ) -> ::std::os::raw::c_int,
-    >,
-    pub decrypt: ::std::option::Option<
-        unsafe extern "C" fn(
-            rsa: *mut RSA,
-            out_len: *mut usize,
-            out: *mut u8,
-            max_out: usize,
-            in_: *const u8,
-            in_len: usize,
-            padding: ::std::os::raw::c_int,
-        ) -> ::std::os::raw::c_int,
-    >,
-    pub private_transform: ::std::option::Option<
-        unsafe extern "C" fn(
-            rsa: *mut RSA,
-            out: *mut u8,
-            in_: *const u8,
-            len: usize,
-        ) -> ::std::os::raw::c_int,
-    >,
-    pub flags: ::std::os::raw::c_int,
-}
-#[test]
-fn bindgen_test_layout_rsa_meth_st() {
-    const UNINIT: ::std::mem::MaybeUninit<rsa_meth_st> = ::std::mem::MaybeUninit::uninit();
-    let ptr = UNINIT.as_ptr();
-    assert_eq!(
-        ::std::mem::size_of::<rsa_meth_st>(),
-        44usize,
-        concat!("Size of: ", stringify!(rsa_meth_st))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<rsa_meth_st>(),
-        4usize,
-        concat!("Alignment of ", stringify!(rsa_meth_st))
-    );
-    assert_eq!(
-        unsafe { ::std::ptr::addr_of!((*ptr).common) as usize - ptr as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(rsa_meth_st),
-            "::",
-            stringify!(common)
-        )
-    );
-    assert_eq!(
-        unsafe { ::std::ptr::addr_of!((*ptr).app_data) as usize - ptr as usize },
-        8usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(rsa_meth_st),
-            "::",
-            stringify!(app_data)
-        )
-    );
-    assert_eq!(
-        unsafe { ::std::ptr::addr_of!((*ptr).init) as usize - ptr as usize },
-        12usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(rsa_meth_st),
-            "::",
-            stringify!(init)
-        )
-    );
-    assert_eq!(
-        unsafe { ::std::ptr::addr_of!((*ptr).finish) as usize - ptr as usize },
-        16usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(rsa_meth_st),
-            "::",
-            stringify!(finish)
-        )
-    );
-    assert_eq!(
-        unsafe { ::std::ptr::addr_of!((*ptr).size) as usize - ptr as usize },
-        20usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(rsa_meth_st),
-            "::",
-            stringify!(size)
-        )
-    );
-    assert_eq!(
-        unsafe { ::std::ptr::addr_of!((*ptr).sign) as usize - ptr as usize },
-        24usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(rsa_meth_st),
-            "::",
-            stringify!(sign)
-        )
-    );
-    assert_eq!(
-        unsafe { ::std::ptr::addr_of!((*ptr).sign_raw) as usize - ptr as usize },
-        28usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(rsa_meth_st),
-            "::",
-            stringify!(sign_raw)
-        )
-    );
-    assert_eq!(
-        unsafe { ::std::ptr::addr_of!((*ptr).decrypt) as usize - ptr as usize },
-        32usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(rsa_meth_st),
-            "::",
-            stringify!(decrypt)
-        )
-    );
-    assert_eq!(
-        unsafe { ::std::ptr::addr_of!((*ptr).private_transform) as usize - ptr as usize },
-        36usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(rsa_meth_st),
-            "::",
-            stringify!(private_transform)
-        )
-    );
-    assert_eq!(
-        unsafe { ::std::ptr::addr_of!((*ptr).flags) as usize - ptr as usize },
-        40usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(rsa_meth_st),
-            "::",
-            stringify!(flags)
-        )
-    );
-}
-impl Default for rsa_meth_st {
-    fn default() -> Self {
-        let mut s = ::std::mem::MaybeUninit::<Self>::uninit();
-        unsafe {
-            ::std::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
-            s.assume_init()
-        }
-    }
 }
 pub type sk_X509_free_func = ::std::option::Option<unsafe extern "C" fn(arg1: *mut X509)>;
 pub type sk_X509_copy_func =
@@ -26560,6 +26750,14 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
+    #[link_name = "\u{1}aws_lc_0_21_2_PEM_read_bio_Parameters"]
+    pub fn PEM_read_bio_Parameters(bio: *mut BIO, pkey: *mut *mut EVP_PKEY) -> *mut EVP_PKEY;
+}
+extern "C" {
+    #[link_name = "\u{1}aws_lc_0_21_2_PEM_write_bio_Parameters"]
+    pub fn PEM_write_bio_Parameters(bio: *mut BIO, pkey: *mut EVP_PKEY) -> ::std::os::raw::c_int;
+}
+extern "C" {
     #[link_name = "\u{1}aws_lc_0_21_2_PEM_read_bio_ECPKParameters"]
     pub fn PEM_read_bio_ECPKParameters(
         bio: *mut BIO,
@@ -26573,6 +26771,18 @@ extern "C" {
     pub fn PEM_write_bio_ECPKParameters(
         out: *mut BIO,
         group: *const EC_GROUP,
+    ) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    #[link_name = "\u{1}aws_lc_0_21_2_PEM_write_bio_PrivateKey_traditional"]
+    pub fn PEM_write_bio_PrivateKey_traditional(
+        bp: *mut BIO,
+        x: *mut EVP_PKEY,
+        enc: *const EVP_CIPHER,
+        kstr: *mut ::std::os::raw::c_uchar,
+        klen: ::std::os::raw::c_int,
+        cb: pem_password_cb,
+        u: *mut ::std::os::raw::c_void,
     ) -> ::std::os::raw::c_int;
 }
 extern "C" {
@@ -26762,6 +26972,13 @@ extern "C" {
 extern "C" {
     #[link_name = "\u{1}aws_lc_0_21_2_RAND_egd"]
     pub fn RAND_egd(arg1: *const ::std::os::raw::c_char) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    #[link_name = "\u{1}aws_lc_0_21_2_RAND_egd_bytes"]
+    pub fn RAND_egd_bytes(
+        arg1: *const ::std::os::raw::c_char,
+        bytes: ::std::os::raw::c_int,
+    ) -> ::std::os::raw::c_int;
 }
 extern "C" {
     #[link_name = "\u{1}aws_lc_0_21_2_RAND_poll"]

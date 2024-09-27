@@ -41,10 +41,10 @@ if [[ -z "${GOPROXY:+x}" ]]; then
 fi
 
 cargo clean --target-dir "${TEMP_TARGET_DIR}"
-# Sets AWS_LC_SYS_INTERNAL_BINDGEN=1 which will cause the generation bindings for a specific platform. This feature
+# Sets AWS_LC_SYS_PREGENERATING_BINDINGS=1 which will cause the generation bindings for a specific platform. This feature
 # is only intended for internal use thus is not a cargo feature. Requires bindgen to be enabled. The internal_bindgen
 # config is enabled so that the final crates doesn't expect to find the dynamically generated bindings.rs
-env AWS_LC_SYS_INTERNAL_BINDGEN=1 AWS_LC_FIPS_SYS_INTERNAL_BINDGEN=1 cargo build --target-dir "${TEMP_TARGET_DIR}" --features bindgen
+env AWS_LC_SYS_PREGENERATING_BINDINGS=1 AWS_LC_FIPS_SYS_PREGENERATING_BINDINGS=1 cargo build --target-dir "${TEMP_TARGET_DIR}" --features bindgen
 cargo clean --target-dir "${TEMP_TARGET_DIR}"
 
 popd &>/dev/null # ${CRATE_DIR}

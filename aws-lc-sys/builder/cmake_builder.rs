@@ -383,4 +383,8 @@ impl crate::Builder for CmakeBuilder {
 
         Ok(())
     }
+
+    fn name(&self) -> &str {
+        "CMake"
+    }
 }

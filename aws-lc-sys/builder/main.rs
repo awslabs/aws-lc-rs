@@ -320,6 +320,7 @@ fn get_builder(prefix: &Option<String>, manifest_dir: &Path, out_dir: &Path) -> 
 trait Builder {
     fn check_dependencies(&self) -> Result<(), String>;
     fn build(&self) -> Result<(), String>;
+    fn name(&self) -> &str;
 }
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
@@ -348,7 +349,7 @@ impl CStdRequested {
 
 static mut PREGENERATED: bool = false;
 static mut AWS_LC_SYS_NO_PREFIX: bool = false;
-static mut AWS_LC_SYS_INTERNAL_BINDGEN: bool = false;
+static mut AWS_LC_SYS_PREGENERATING_BINDINGS: bool = false;
 static mut AWS_LC_SYS_EXTERNAL_BINDGEN: bool = false;
 static mut AWS_LC_SYS_NO_ASM: bool = false;
 static mut AWS_LC_SYS_CFLAGS: String = String::new();
@@ -359,8 +360,8 @@ static mut AWS_LC_SYS_C_STD: CStdRequested = CStdRequested::None;
 fn initialize() {
     unsafe {
         AWS_LC_SYS_NO_PREFIX = env_var_to_bool("AWS_LC_SYS_NO_PREFIX").unwrap_or(false);
-        AWS_LC_SYS_INTERNAL_BINDGEN =
-            env_var_to_bool("AWS_LC_SYS_INTERNAL_BINDGEN").unwrap_or(false);
+        AWS_LC_SYS_PREGENERATING_BINDINGS =
+            env_var_to_bool("AWS_LC_SYS_PREGENERATING_BINDINGS").unwrap_or(false);
         AWS_LC_SYS_EXTERNAL_BINDGEN =
             env_var_to_bool("AWS_LC_SYS_EXTERNAL_BINDGEN").unwrap_or(false);
         AWS_LC_SYS_NO_ASM = env_var_to_bool("AWS_LC_SYS_NO_ASM").unwrap_or(false);
@@ -369,7 +370,7 @@ fn initialize() {
         AWS_LC_SYS_C_STD = CStdRequested::from_env();
     }
 
-    if !is_external_bindgen() && (is_internal_bindgen() || !has_bindgen_feature()) {
+    if !is_external_bindgen() && (is_pregenerating_bindings() || !has_bindgen_feature()) {
         let target = target();
         let supported_platform = match target.as_str() {
             "aarch64-apple-darwin"
@@ -396,7 +397,7 @@ fn initialize() {
 
 fn is_bindgen_required() -> bool {
     is_no_prefix()
-        || is_internal_bindgen()
+        || is_pregenerating_bindings()
         || is_external_bindgen()
         || has_bindgen_feature()
         || !has_pregenerated()
@@ -413,8 +414,8 @@ fn is_no_prefix() -> bool {
     unsafe { AWS_LC_SYS_NO_PREFIX }
 }
 
-fn is_internal_bindgen() -> bool {
-    unsafe { AWS_LC_SYS_INTERNAL_BINDGEN }
+fn is_pregenerating_bindings() -> bool {
+    unsafe { AWS_LC_SYS_PREGENERATING_BINDINGS }
 }
 
 fn is_external_bindgen() -> bool {
@@ -497,12 +498,14 @@ fn main() {
     };
 
     let builder = get_builder(&prefix, &manifest_dir, &out_dir());
+    emit_warning(&format!("Building with: {}", builder.name()));
+    emit_warning(&format!("Symbol Prefix: {:?}", &prefix));
 
     builder.check_dependencies().unwrap();
 
     #[allow(unused_assignments)]
     let mut bindings_available = false;
-    if is_internal_bindgen() {
+    if is_pregenerating_bindings() {
         #[cfg(feature = "bindgen")]
         {
             emit_warning(&format!("Generating src bindings. Platform: {}", target()));

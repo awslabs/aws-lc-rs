@@ -109,11 +109,6 @@ impl CcBuilder {
             }
         }
 
-        if let Some(prefix) = &self.build_prefix {
-            cc_build
-                .define("BORINGSSL_IMPLEMENTATION", "1")
-                .define("BORINGSSL_PREFIX", prefix.as_str());
-        }
         self.add_includes(&mut cc_build);
 
         cc_build
@@ -131,7 +126,7 @@ impl CcBuilder {
             CStdRequested::None => {
                 if target_env() == "msvc" && target_arch() == "aarch64" {
                     // clang-cl (not "clang") will be used.
-                } else if self.compiler_check(&mut cc_build, "c11", "") {
+                } else if self.compiler_check("c11", "") {
                     cc_build.std("c11");
                 } else {
                     cc_build.std("c99");
@@ -191,9 +186,15 @@ impl CcBuilder {
     }
 
     fn add_includes(&self, cc_build: &mut cc::Build) {
+        // The order of includes matters
+        if let Some(prefix) = &self.build_prefix {
+            cc_build
+                .define("BORINGSSL_IMPLEMENTATION", "1")
+                .define("BORINGSSL_PREFIX", prefix.as_str());
+            cc_build.include(self.manifest_dir.join("generated-include"));
+        }
         cc_build
             .include(self.manifest_dir.join("include"))
-            .include(self.manifest_dir.join("generated-include"))
             .include(self.manifest_dir.join("aws-lc").join("include"))
             .include(
                 self.manifest_dir
@@ -236,7 +237,7 @@ impl CcBuilder {
         for flag in lib.flags {
             cc_build.flag(flag);
         }
-        self.compiler_checks(&mut cc_build);
+        self.run_compiler_checks();
 
         if let Some(prefix) = &self.build_prefix {
             cc_build.compile(format!("{}_crypto", prefix.as_str()).as_str());
@@ -248,10 +249,11 @@ impl CcBuilder {
     // This performs basic checks of compiler capabilities and sets an appropriate flag on success.
     // This should be kept in alignment with the checks performed by AWS-LC's CMake build.
     // See: https://github.com/search?q=repo%3Aaws%2Faws-lc%20check_compiler&type=code
-    fn compiler_check(&self, cc_build: &mut cc::Build, basename: &str, flag: &str) -> bool {
+    fn compiler_check(&self, basename: &str, flag: &str) -> bool {
         let mut ret_val = false;
-        let output_path = format!("{basename}.o");
-        let result = cc::Build::default()
+        let output_dir = self.out_dir.join(&format!("out-{basename}"));
+        let mut cc_build = self.create_builder();
+        let result = cc_build
             .file(
                 self.manifest_dir
                     .join("aws-lc")
@@ -261,15 +263,18 @@ impl CcBuilder {
             )
             .flag("-Wno-unused-parameter")
             .warnings_into_errors(true)
-            .try_compile(output_path.as_str());
+            .out_dir(&output_dir)
+            .try_compile_intermediates();
 
-        if let Ok(()) = result {
+        if let Ok(_) = result {
             if !flag.is_empty() {
                 cc_build.define(flag, "1");
             }
             ret_val = true;
         }
-        let _ = fs::remove_file(output_path);
+        if fs::remove_dir_all(&output_dir).is_err() {
+            emit_warning(&format!("Failed to remove {:?}", &output_dir));
+        }
         emit_warning(&format!(
             "Compilation of '{basename}.c' {} - {:?}.",
             if ret_val { "succeeded" } else { "failed" },
@@ -342,13 +347,9 @@ impl CcBuilder {
         }
         let _ = fs::remove_file(exec_path);
     }
-    fn compiler_checks(&self, cc_build: &mut cc::Build) {
-        self.compiler_check(cc_build, "stdalign_check", "AWS_LC_STDALIGN_AVAILABLE");
-        self.compiler_check(
-            cc_build,
-            "builtin_swap_check",
-            "AWS_LC_BUILTIN_SWAP_SUPPORTED",
-        );
+    fn run_compiler_checks(&self) {
+        self.compiler_check("stdalign_check", "AWS_LC_STDALIGN_AVAILABLE");
+        self.compiler_check("builtin_swap_check", "AWS_LC_BUILTIN_SWAP_SUPPORTED");
         self.memcmp_check();
     }
 }
@@ -377,5 +378,9 @@ impl crate::Builder for CcBuilder {
         let libcrypto = platform_config.libcrypto();
         self.build_library(&libcrypto);
         Ok(())
+    }
+
+    fn name(&self) -> &str {
+        "CC"
     }
 }

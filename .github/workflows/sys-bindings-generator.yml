@@ -168,7 +168,7 @@ jobs:
         run: brew install bash coreutils
       - name: Generate bindings for ${{ matrix.os }}
         env:
-          AWS_LC_SYS_INTERNAL_BINDGEN: "1"
+          AWS_LC_SYS_PREGENERATING_BINDINGS: "1"
         run: |
           cargo test -p aws-lc-sys --features bindgen
       - name: Commit & Push changes
@@ -202,7 +202,7 @@ jobs:
           go-version: '>=1.20'
       - name: Generate bindings for ${{ matrix.target }}
         env:
-          AWS_LC_SYS_INTERNAL_BINDGEN: "1"
+          AWS_LC_SYS_PREGENERATING_BINDINGS: "1"
         run: |
           cargo ${{ (matrix.target == 'aarch64-pc-windows-msvc' && 'build') || 'test' }} -p aws-lc-sys --features bindgen --target ${{ matrix.target }}
       - name: Commit & Push changes
@@ -226,7 +226,7 @@ jobs:
         run: cargo install cross --locked --git https://github.com/cross-rs/cross
       - name: Generate bindings for ${{ matrix.target }}
         env:
-          AWS_LC_SYS_INTERNAL_BINDGEN: "1"
+          AWS_LC_SYS_PREGENERATING_BINDINGS: "1"
         run: |
           cross test -p aws-lc-sys --features bindgen --target ${{ matrix.target }}
       - name: Commit & Push changes

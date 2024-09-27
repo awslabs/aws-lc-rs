@@ -20,8 +20,9 @@ env:
   RUST_SCRIPT_NIGHTLY_TOOLCHAIN: nightly-2024-05-22
   GOPROXY: https://proxy.golang.org,direct
   AWS_LC_SYS_CMAKE_BUILDER: 1
+  AWS_LC_FIPS_SYS_CMAKE_BUILDER: 1
 jobs:
-  bindings:
+  sys-bindings:
     if: github.repository_owner == 'aws'
     runs-on: ubuntu-latest
     steps:
@@ -69,3 +70,51 @@ jobs:
         working-directory: ./aws-lc-rs
         run: |
           cargo test
+  fips-sys-bindings:
+    if: github.repository_owner == 'aws'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+      - uses: dtolnay/rust-toolchain@master
+        with:
+          # Our aws-lc-fips-sys generation scripts require nightly.
+          toolchain: ${{ env.RUST_SCRIPT_NIGHTLY_TOOLCHAIN }}
+      - run: rustup override set $RUST_NIGHTLY_TOOLCHAIN
+      - uses: actions-rs/cargo@v1
+        with:
+          command: install
+          args: rust-script
+      - name: Install OS Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get -y --no-install-recommends install cmake gcc clang ninja-build golang
+      - name: Regenerate aws-lc-sys crate
+        working-directory: ./aws-lc-sys
+        run: |
+          rm -rf symbols/*
+          rm -rf generated-include/openssl/*
+          ../scripts/generate/_collect_symbols_build.sh -c aws-lc-fips-sys
+          ../scripts/generate/_generate_prefix_headers.sh -c aws-lc-fips-sys
+          ../scripts/generate/_generate_bindings.sh -c aws-lc-fips-sys
+      - name: aws-lc-sys build
+        working-directory: ./aws-lc-fips-sys
+        run: |
+          cargo build
+      - name: aws-lc-sys test
+        working-directory: ./aws-lc-fips-sys
+        run: |
+          cargo test
+      - name: aws-lc-sys packaging
+        working-directory: ./aws-lc-fips-sys
+        run: |
+          cargo package --allow-dirty
+      - name: aws-lc-rs build
+        working-directory: ./aws-lc-rs
+        run: |
+          cargo build --no-default-features --features=fips
+      - name: aws-lc-rs test
+        working-directory: ./aws-lc-rs
+        run: |
+          cargo test --no-default-features --features=fips

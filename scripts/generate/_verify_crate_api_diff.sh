@@ -55,7 +55,7 @@ if [[ -z "${GOPROXY:+x}" ]]; then
   export GOPROXY=direct
 fi
 
-env AWS_LC_SYS_INTERNAL_BINDGEN=1 AWS_LC_FIPS_SYS_INTERNAL_BINDGEN=1 cargo build --target-dir "${TEMP_TARGET_DIR}" --features bindgen
+env AWS_LC_SYS_PREGENERATING_BINDINGS=1 AWS_LC_FIPS_SYS_PREGENERATING_BINDINGS=1 cargo build --target-dir "${TEMP_TARGET_DIR}" --features bindgen
 if ! cargo +stable public-api --target-dir "${TEMP_TARGET_DIR}" diff --deny changed --deny removed "${PUBLISHED_CRATE_VERSION}"; then
   echo
   echo "Version changing from: ${PUBLISHED_CRATE_VERSION} to ${CRATE_VERSION}"

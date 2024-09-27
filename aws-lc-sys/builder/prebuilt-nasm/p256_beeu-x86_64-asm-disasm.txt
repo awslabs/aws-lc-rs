@@ -217,5 +217,4 @@ L$beeu_finish:
 
   Summary
 
-          1C .debug$T
          324 .text

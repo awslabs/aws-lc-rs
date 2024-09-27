@@ -816,7 +816,6 @@ L$in_prologue:
 
   Summary
 
-          1C .debug$T
            C .pdata
          A1A .text
            8 .xdata

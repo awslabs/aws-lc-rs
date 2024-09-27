@@ -10183,6 +10183,5 @@ L$seal_avx2_exit:
 
   Summary
 
-          1C .debug$T
          1C0 .rdata
         A39D .text

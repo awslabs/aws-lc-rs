@@ -2163,7 +2163,6 @@ full_handler:
 
   Summary
 
-          1C .debug$T
           30 .pdata
          1F7 .rdata
         1F08 .text

@@ -294,7 +294,6 @@ L$oop_row_6:
 
   Summary
 
-          1C .debug$T
           18 .pdata
           20 .rdata
          46E .text

@@ -1,0 +1,1936 @@
+Copyright (C) Microsoft Corporation.  All rights reserved.
+
+
+Dump of file rsaz-4k-avx512.obj
+
+File Type: COFF OBJECT
+
+aws_lc_0_21_2_rsaz_amm52x40_x1_ifma256:
+  0000000000000000: 48 89 7C 24 08     mov         qword ptr [rsp+8],rdi
+  0000000000000005: 48 89 74 24 10     mov         qword ptr [rsp+10h],rsi
+  000000000000000A: 48 89 E0           mov         rax,rsp
+L$SEH_begin_rsaz_amm52x40_x1_ifma256:
+  000000000000000D: 48 89 CF           mov         rdi,rcx
+  0000000000000010: 48 89 D6           mov         rsi,rdx
+  0000000000000013: 4C 89 C2           mov         rdx,r8
+  0000000000000016: 4C 89 C9           mov         rcx,r9
+  0000000000000019: 4C 8B 44 24 28     mov         r8,qword ptr [rsp+28h]
+  000000000000001E: F3 0F 1E FA        endbr64
+  0000000000000022: 53                 push        rbx
+  0000000000000023: 55                 push        rbp
+  0000000000000024: 41 54              push        r12
+  0000000000000026: 41 55              push        r13
+  0000000000000028: 41 56              push        r14
+  000000000000002A: 41 57              push        r15
+  000000000000002C: 48 8D A4 24 58 FF  lea         rsp,[rsp-0A8h]
+                    FF FF
+  0000000000000034: 62 F1 FD 08 7F 34  vmovdqa64   xmmword ptr [rsp],xmm6
+                    24
+  000000000000003B: 62 F1 FD 08 7F 7C  vmovdqa64   xmmword ptr [rsp+10h],xmm7
+                    24 01
+  0000000000000043: 62 71 FD 08 7F 44  vmovdqa64   xmmword ptr [rsp+20h],xmm8
+                    24 02
+  000000000000004B: 62 71 FD 08 7F 4C  vmovdqa64   xmmword ptr [rsp+30h],xmm9
+                    24 03
+  0000000000000053: 62 71 FD 08 7F 54  vmovdqa64   xmmword ptr [rsp+40h],xmm10
+                    24 04
+  000000000000005B: 62 71 FD 08 7F 5C  vmovdqa64   xmmword ptr [rsp+50h],xmm11
+                    24 05
+  0000000000000063: 62 71 FD 08 7F 64  vmovdqa64   xmmword ptr [rsp+60h],xmm12
+                    24 06
+  000000000000006B: 62 71 FD 08 7F 6C  vmovdqa64   xmmword ptr [rsp+70h],xmm13
+                    24 07
+  0000000000000073: 62 71 FD 08 7F 74  vmovdqa64   xmmword ptr [rsp+80h],xmm14
+                    24 08
+  000000000000007B: 62 71 FD 08 7F 7C  vmovdqa64   xmmword ptr [rsp+90h],xmm15
+                    24 09
+L$rsaz_amm52x40_x1_ifma256_body:
+  0000000000000083: 62 F1 7D 28 EF C0  vpxord      ymm0,ymm0,ymm0
+  0000000000000089: 62 F1 FD 28 6F D8  vmovdqa64   ymm3,ymm0
+  000000000000008F: 62 F1 FD 28 6F E0  vmovdqa64   ymm4,ymm0
+  0000000000000095: 62 F1 FD 28 6F E8  vmovdqa64   ymm5,ymm0
+  000000000000009B: 62 F1 FD 28 6F F0  vmovdqa64   ymm6,ymm0
+  00000000000000A1: 62 F1 FD 28 6F F8  vmovdqa64   ymm7,ymm0
+  00000000000000A7: 62 71 FD 28 6F C0  vmovdqa64   ymm8,ymm0
+  00000000000000AD: 62 71 FD 28 6F C8  vmovdqa64   ymm9,ymm0
+  00000000000000B3: 62 71 FD 28 6F D0  vmovdqa64   ymm10,ymm0
+  00000000000000B9: 62 71 FD 28 6F D8  vmovdqa64   ymm11,ymm0
+  00000000000000BF: 62 71 FD 28 6F E0  vmovdqa64   ymm12,ymm0
+  00000000000000C5: 45 31 C9           xor         r9d,r9d
+  00000000000000C8: 4D 89 C3           mov         r11,r8
+  00000000000000CB: 48 B8 FF FF FF FF  mov         rax,0FFFFFFFFFFFFFh
+                    FF FF 0F 00
+  00000000000000D5: BB 0A 00 00 00     mov         ebx,0Ah
+  00000000000000DA: 90                 nop
+  00000000000000DB: 90                 nop
+  00000000000000DC: 90                 nop
+  00000000000000DD: 90                 nop
+  00000000000000DE: 90                 nop
+  00000000000000DF: 90                 nop
+L$loop10:
+  00000000000000E0: 4D 8B 2B           mov         r13,qword ptr [r11]
+  00000000000000E3: 62 D2 FD 28 7C CD  vpbroadcastq ymm1,r13
+  00000000000000E9: 48 8B 12           mov         rdx,qword ptr [rdx]
+  00000000000000EC: C4 42 93 F6 E5     mulx        r12,r13,r13
+  00000000000000F1: 4D 01 E9           add         r9,r13
+  00000000000000F4: 4D 89 E2           mov         r10,r12
+  00000000000000F7: 49 83 D2 00        adc         r10,0
+  00000000000000FB: 4D 89 D5           mov         r13,r10
+  00000000000000FE: 4D 0F AF E9        imul        r13,r9
+  0000000000000102: 49 21 C5           and         r13,rax
+  0000000000000105: 62 D2 FD 28 7C D5  vpbroadcastq ymm2,r13
+  000000000000010B: 49 8B 11           mov         rdx,qword ptr [r9]
+  000000000000010E: C4 42 93 F6 E5     mulx        r12,r13,r13
+  0000000000000113: 4D 01 E9           add         r9,r13
+  0000000000000116: 4D 11 E2           adc         r10,r12
+  0000000000000119: 49 C1 E9 34        shr         r9,34h
+  000000000000011D: 49 C1 E2 0C        shl         r10,0Ch
+  0000000000000121: 4D 09 D1           or          r9,r10
+  0000000000000124: 62 F2 F5 28 B4 1A  vpmadd52luq ymm3,ymm1,ymmword ptr [rdx]
+  000000000000012A: 62 F2 F5 28 B4 62  vpmadd52luq ymm4,ymm1,ymmword ptr [rdx+20h]
+                    01
+  0000000000000131: 62 F2 F5 28 B4 6A  vpmadd52luq ymm5,ymm1,ymmword ptr [rdx+40h]
+                    02
+  0000000000000138: 62 F2 F5 28 B4 72  vpmadd52luq ymm6,ymm1,ymmword ptr [rdx+60h]
+                    03
+  000000000000013F: 62 F2 F5 28 B4 7A  vpmadd52luq ymm7,ymm1,ymmword ptr [rdx+80h]
+                    04
+  0000000000000146: 62 72 F5 28 B4 42  vpmadd52luq ymm8,ymm1,ymmword ptr [rdx+0A0h]
+                    05
+  000000000000014D: 62 72 F5 28 B4 4A  vpmadd52luq ymm9,ymm1,ymmword ptr [rdx+0C0h]
+                    06
+  0000000000000154: 62 72 F5 28 B4 52  vpmadd52luq ymm10,ymm1,ymmword ptr [rdx+0E0h]
+                    07
+  000000000000015B: 62 72 F5 28 B4 5A  vpmadd52luq ymm11,ymm1,ymmword ptr [rdx+100h]
+                    08
+  0000000000000162: 62 72 F5 28 B4 62  vpmadd52luq ymm12,ymm1,ymmword ptr [rdx+120h]
+                    09
+  0000000000000169: 62 D2 ED 28 B4 19  vpmadd52luq ymm3,ymm2,ymmword ptr [r9]
+  000000000000016F: 62 D2 ED 28 B4 61  vpmadd52luq ymm4,ymm2,ymmword ptr [r9+20h]
+                    01
+  0000000000000176: 62 D2 ED 28 B4 69  vpmadd52luq ymm5,ymm2,ymmword ptr [r9+40h]
+                    02
+  000000000000017D: 62 D2 ED 28 B4 71  vpmadd52luq ymm6,ymm2,ymmword ptr [r9+60h]
+                    03
+  0000000000000184: 62 D2 ED 28 B4 79  vpmadd52luq ymm7,ymm2,ymmword ptr [r9+80h]
+                    04
+  000000000000018B: 62 52 ED 28 B4 41  vpmadd52luq ymm8,ymm2,ymmword ptr [r9+0A0h]
+                    05
+  0000000000000192: 62 52 ED 28 B4 49  vpmadd52luq ymm9,ymm2,ymmword ptr [r9+0C0h]
+                    06
+  0000000000000199: 62 52 ED 28 B4 51  vpmadd52luq ymm10,ymm2,ymmword ptr [r9+0E0h]
+                    07
+  00000000000001A0: 62 52 ED 28 B4 59  vpmadd52luq ymm11,ymm2,ymmword ptr [r9+100h]
+                    08
+  00000000000001A7: 62 52 ED 28 B4 61  vpmadd52luq ymm12,ymm2,ymmword ptr [r9+120h]
+                    09
+  00000000000001AE: 62 F3 DD 28 03 DB  valignq     ymm3,ymm4,ymm3,1
+                    01
+  00000000000001B5: 62 F3 D5 28 03 E4  valignq     ymm4,ymm5,ymm4,1
+                    01
+  00000000000001BC: 62 F3 CD 28 03 ED  valignq     ymm5,ymm6,ymm5,1
+                    01
+  00000000000001C3: 62 F3 C5 28 03 F6  valignq     ymm6,ymm7,ymm6,1
+                    01
+  00000000000001CA: 62 F3 BD 28 03 FF  valignq     ymm7,ymm8,ymm7,1
+                    01
+  00000000000001D1: 62 53 B5 28 03 C0  valignq     ymm8,ymm9,ymm8,1
+                    01
+  00000000000001D8: 62 53 AD 28 03 C9  valignq     ymm9,ymm10,ymm9,1
+                    01
+  00000000000001DF: 62 53 A5 28 03 D2  valignq     ymm10,ymm11,ymm10,1
+                    01
+  00000000000001E6: 62 53 9D 28 03 DB  valignq     ymm11,ymm12,ymm11,1
+                    01
+  00000000000001ED: 62 53 FD 28 03 E4  valignq     ymm12,ymm0,ymm12,1
+                    01
+  00000000000001F4: C4 C1 F9 7E DD     vmovq       r13,xmm3
+  00000000000001F9: 4D 01 E9           add         r9,r13
+  00000000000001FC: 62 F2 F5 28 B5 1A  vpmadd52huq ymm3,ymm1,ymmword ptr [rdx]
+  0000000000000202: 62 F2 F5 28 B5 62  vpmadd52huq ymm4,ymm1,ymmword ptr [rdx+20h]
+                    01
+  0000000000000209: 62 F2 F5 28 B5 6A  vpmadd52huq ymm5,ymm1,ymmword ptr [rdx+40h]
+                    02
+  0000000000000210: 62 F2 F5 28 B5 72  vpmadd52huq ymm6,ymm1,ymmword ptr [rdx+60h]
+                    03
+  0000000000000217: 62 F2 F5 28 B5 7A  vpmadd52huq ymm7,ymm1,ymmword ptr [rdx+80h]
+                    04
+  000000000000021E: 62 72 F5 28 B5 42  vpmadd52huq ymm8,ymm1,ymmword ptr [rdx+0A0h]
+                    05
+  0000000000000225: 62 72 F5 28 B5 4A  vpmadd52huq ymm9,ymm1,ymmword ptr [rdx+0C0h]
+                    06
+  000000000000022C: 62 72 F5 28 B5 52  vpmadd52huq ymm10,ymm1,ymmword ptr [rdx+0E0h]
+                    07
+  0000000000000233: 62 72 F5 28 B5 5A  vpmadd52huq ymm11,ymm1,ymmword ptr [rdx+100h]
+                    08
+  000000000000023A: 62 72 F5 28 B5 62  vpmadd52huq ymm12,ymm1,ymmword ptr [rdx+120h]
+                    09
+  0000000000000241: 62 D2 ED 28 B5 19  vpmadd52huq ymm3,ymm2,ymmword ptr [r9]
+  0000000000000247: 62 D2 ED 28 B5 61  vpmadd52huq ymm4,ymm2,ymmword ptr [r9+20h]
+                    01
+  000000000000024E: 62 D2 ED 28 B5 69  vpmadd52huq ymm5,ymm2,ymmword ptr [r9+40h]
+                    02
+  0000000000000255: 62 D2 ED 28 B5 71  vpmadd52huq ymm6,ymm2,ymmword ptr [r9+60h]
+                    03
+  000000000000025C: 62 D2 ED 28 B5 79  vpmadd52huq ymm7,ymm2,ymmword ptr [r9+80h]
+                    04
+  0000000000000263: 62 52 ED 28 B5 41  vpmadd52huq ymm8,ymm2,ymmword ptr [r9+0A0h]
+                    05
+  000000000000026A: 62 52 ED 28 B5 49  vpmadd52huq ymm9,ymm2,ymmword ptr [r9+0C0h]
+                    06
+  0000000000000271: 62 52 ED 28 B5 51  vpmadd52huq ymm10,ymm2,ymmword ptr [r9+0E0h]
+                    07
+  0000000000000278: 62 52 ED 28 B5 59  vpmadd52huq ymm11,ymm2,ymmword ptr [r9+100h]
+                    08
+  000000000000027F: 62 52 ED 28 B5 61  vpmadd52huq ymm12,ymm2,ymmword ptr [r9+120h]
+                    09
+  0000000000000286: 4D 8B 6B 08        mov         r13,qword ptr [r11+8]
+  000000000000028A: 62 D2 FD 28 7C CD  vpbroadcastq ymm1,r13
+  0000000000000290: 48 8B 12           mov         rdx,qword ptr [rdx]
+  0000000000000293: C4 42 93 F6 E5     mulx        r12,r13,r13
+  0000000000000298: 4D 01 E9           add         r9,r13
+  000000000000029B: 4D 89 E2           mov         r10,r12
+  000000000000029E: 49 83 D2 00        adc         r10,0
+  00000000000002A2: 4D 89 D5           mov         r13,r10
+  00000000000002A5: 4D 0F AF E9        imul        r13,r9
+  00000000000002A9: 49 21 C5           and         r13,rax
+  00000000000002AC: 62 D2 FD 28 7C D5  vpbroadcastq ymm2,r13
+  00000000000002B2: 49 8B 11           mov         rdx,qword ptr [r9]
+  00000000000002B5: C4 42 93 F6 E5     mulx        r12,r13,r13
+  00000000000002BA: 4D 01 E9           add         r9,r13
+  00000000000002BD: 4D 11 E2           adc         r10,r12
+  00000000000002C0: 49 C1 E9 34        shr         r9,34h
+  00000000000002C4: 49 C1 E2 0C        shl         r10,0Ch
+  00000000000002C8: 4D 09 D1           or          r9,r10
+  00000000000002CB: 62 F2 F5 28 B4 1A  vpmadd52luq ymm3,ymm1,ymmword ptr [rdx]
+  00000000000002D1: 62 F2 F5 28 B4 62  vpmadd52luq ymm4,ymm1,ymmword ptr [rdx+20h]
+                    01
+  00000000000002D8: 62 F2 F5 28 B4 6A  vpmadd52luq ymm5,ymm1,ymmword ptr [rdx+40h]
+                    02
+  00000000000002DF: 62 F2 F5 28 B4 72  vpmadd52luq ymm6,ymm1,ymmword ptr [rdx+60h]
+                    03
+  00000000000002E6: 62 F2 F5 28 B4 7A  vpmadd52luq ymm7,ymm1,ymmword ptr [rdx+80h]
+                    04
+  00000000000002ED: 62 72 F5 28 B4 42  vpmadd52luq ymm8,ymm1,ymmword ptr [rdx+0A0h]
+                    05
+  00000000000002F4: 62 72 F5 28 B4 4A  vpmadd52luq ymm9,ymm1,ymmword ptr [rdx+0C0h]
+                    06
+  00000000000002FB: 62 72 F5 28 B4 52  vpmadd52luq ymm10,ymm1,ymmword ptr [rdx+0E0h]
+                    07
+  0000000000000302: 62 72 F5 28 B4 5A  vpmadd52luq ymm11,ymm1,ymmword ptr [rdx+100h]
+                    08
+  0000000000000309: 62 72 F5 28 B4 62  vpmadd52luq ymm12,ymm1,ymmword ptr [rdx+120h]
+                    09
+  0000000000000310: 62 D2 ED 28 B4 19  vpmadd52luq ymm3,ymm2,ymmword ptr [r9]
+  0000000000000316: 62 D2 ED 28 B4 61  vpmadd52luq ymm4,ymm2,ymmword ptr [r9+20h]
+                    01
+  000000000000031D: 62 D2 ED 28 B4 69  vpmadd52luq ymm5,ymm2,ymmword ptr [r9+40h]
+                    02
+  0000000000000324: 62 D2 ED 28 B4 71  vpmadd52luq ymm6,ymm2,ymmword ptr [r9+60h]
+                    03
+  000000000000032B: 62 D2 ED 28 B4 79  vpmadd52luq ymm7,ymm2,ymmword ptr [r9+80h]
+                    04
+  0000000000000332: 62 52 ED 28 B4 41  vpmadd52luq ymm8,ymm2,ymmword ptr [r9+0A0h]
+                    05
+  0000000000000339: 62 52 ED 28 B4 49  vpmadd52luq ymm9,ymm2,ymmword ptr [r9+0C0h]
+                    06
+  0000000000000340: 62 52 ED 28 B4 51  vpmadd52luq ymm10,ymm2,ymmword ptr [r9+0E0h]
+                    07
+  0000000000000347: 62 52 ED 28 B4 59  vpmadd52luq ymm11,ymm2,ymmword ptr [r9+100h]
+                    08
+  000000000000034E: 62 52 ED 28 B4 61  vpmadd52luq ymm12,ymm2,ymmword ptr [r9+120h]
+                    09
+  0000000000000355: 62 F3 DD 28 03 DB  valignq     ymm3,ymm4,ymm3,1
+                    01
+  000000000000035C: 62 F3 D5 28 03 E4  valignq     ymm4,ymm5,ymm4,1
+                    01
+  0000000000000363: 62 F3 CD 28 03 ED  valignq     ymm5,ymm6,ymm5,1
+                    01
+  000000000000036A: 62 F3 C5 28 03 F6  valignq     ymm6,ymm7,ymm6,1
+                    01
+  0000000000000371: 62 F3 BD 28 03 FF  valignq     ymm7,ymm8,ymm7,1
+                    01
+  0000000000000378: 62 53 B5 28 03 C0  valignq     ymm8,ymm9,ymm8,1
+                    01
+  000000000000037F: 62 53 AD 28 03 C9  valignq     ymm9,ymm10,ymm9,1
+                    01
+  0000000000000386: 62 53 A5 28 03 D2  valignq     ymm10,ymm11,ymm10,1
+                    01
+  000000000000038D: 62 53 9D 28 03 DB  valignq     ymm11,ymm12,ymm11,1
+                    01
+  0000000000000394: 62 53 FD 28 03 E4  valignq     ymm12,ymm0,ymm12,1
+                    01
+  000000000000039B: C4 C1 F9 7E DD     vmovq       r13,xmm3
+  00000000000003A0: 4D 01 E9           add         r9,r13
+  00000000000003A3: 62 F2 F5 28 B5 1A  vpmadd52huq ymm3,ymm1,ymmword ptr [rdx]
+  00000000000003A9: 62 F2 F5 28 B5 62  vpmadd52huq ymm4,ymm1,ymmword ptr [rdx+20h]
+                    01
+  00000000000003B0: 62 F2 F5 28 B5 6A  vpmadd52huq ymm5,ymm1,ymmword ptr [rdx+40h]
+                    02
+  00000000000003B7: 62 F2 F5 28 B5 72  vpmadd52huq ymm6,ymm1,ymmword ptr [rdx+60h]
+                    03
+  00000000000003BE: 62 F2 F5 28 B5 7A  vpmadd52huq ymm7,ymm1,ymmword ptr [rdx+80h]
+                    04
+  00000000000003C5: 62 72 F5 28 B5 42  vpmadd52huq ymm8,ymm1,ymmword ptr [rdx+0A0h]
+                    05
+  00000000000003CC: 62 72 F5 28 B5 4A  vpmadd52huq ymm9,ymm1,ymmword ptr [rdx+0C0h]
+                    06
+  00000000000003D3: 62 72 F5 28 B5 52  vpmadd52huq ymm10,ymm1,ymmword ptr [rdx+0E0h]
+                    07
+  00000000000003DA: 62 72 F5 28 B5 5A  vpmadd52huq ymm11,ymm1,ymmword ptr [rdx+100h]
+                    08
+  00000000000003E1: 62 72 F5 28 B5 62  vpmadd52huq ymm12,ymm1,ymmword ptr [rdx+120h]
+                    09
+  00000000000003E8: 62 D2 ED 28 B5 19  vpmadd52huq ymm3,ymm2,ymmword ptr [r9]
+  00000000000003EE: 62 D2 ED 28 B5 61  vpmadd52huq ymm4,ymm2,ymmword ptr [r9+20h]
+                    01
+  00000000000003F5: 62 D2 ED 28 B5 69  vpmadd52huq ymm5,ymm2,ymmword ptr [r9+40h]
+                    02
+  00000000000003FC: 62 D2 ED 28 B5 71  vpmadd52huq ymm6,ymm2,ymmword ptr [r9+60h]
+                    03
+  0000000000000403: 62 D2 ED 28 B5 79  vpmadd52huq ymm7,ymm2,ymmword ptr [r9+80h]
+                    04
+  000000000000040A: 62 52 ED 28 B5 41  vpmadd52huq ymm8,ymm2,ymmword ptr [r9+0A0h]
+                    05
+  0000000000000411: 62 52 ED 28 B5 49  vpmadd52huq ymm9,ymm2,ymmword ptr [r9+0C0h]
+                    06
+  0000000000000418: 62 52 ED 28 B5 51  vpmadd52huq ymm10,ymm2,ymmword ptr [r9+0E0h]
+                    07
+  000000000000041F: 62 52 ED 28 B5 59  vpmadd52huq ymm11,ymm2,ymmword ptr [r9+100h]
+                    08
+  0000000000000426: 62 52 ED 28 B5 61  vpmadd52huq ymm12,ymm2,ymmword ptr [r9+120h]
+                    09
+  000000000000042D: 4D 8B 6B 10        mov         r13,qword ptr [r11+10h]
+  0000000000000431: 62 D2 FD 28 7C CD  vpbroadcastq ymm1,r13
+  0000000000000437: 48 8B 12           mov         rdx,qword ptr [rdx]
+  000000000000043A: C4 42 93 F6 E5     mulx        r12,r13,r13
+  000000000000043F: 4D 01 E9           add         r9,r13
+  0000000000000442: 4D 89 E2           mov         r10,r12
+  0000000000000445: 49 83 D2 00        adc         r10,0
+  0000000000000449: 4D 89 D5           mov         r13,r10
+  000000000000044C: 4D 0F AF E9        imul        r13,r9
+  0000000000000450: 49 21 C5           and         r13,rax
+  0000000000000453: 62 D2 FD 28 7C D5  vpbroadcastq ymm2,r13
+  0000000000000459: 49 8B 11           mov         rdx,qword ptr [r9]
+  000000000000045C: C4 42 93 F6 E5     mulx        r12,r13,r13
+  0000000000000461: 4D 01 E9           add         r9,r13
+  0000000000000464: 4D 11 E2           adc         r10,r12
+  0000000000000467: 49 C1 E9 34        shr         r9,34h
+  000000000000046B: 49 C1 E2 0C        shl         r10,0Ch
+  000000000000046F: 4D 09 D1           or          r9,r10
+  0000000000000472: 62 F2 F5 28 B4 1A  vpmadd52luq ymm3,ymm1,ymmword ptr [rdx]
+  0000000000000478: 62 F2 F5 28 B4 62  vpmadd52luq ymm4,ymm1,ymmword ptr [rdx+20h]
+                    01
+  000000000000047F: 62 F2 F5 28 B4 6A  vpmadd52luq ymm5,ymm1,ymmword ptr [rdx+40h]
+                    02
+  0000000000000486: 62 F2 F5 28 B4 72  vpmadd52luq ymm6,ymm1,ymmword ptr [rdx+60h]
+                    03
+  000000000000048D: 62 F2 F5 28 B4 7A  vpmadd52luq ymm7,ymm1,ymmword ptr [rdx+80h]
+                    04
+  0000000000000494: 62 72 F5 28 B4 42  vpmadd52luq ymm8,ymm1,ymmword ptr [rdx+0A0h]
+                    05
+  000000000000049B: 62 72 F5 28 B4 4A  vpmadd52luq ymm9,ymm1,ymmword ptr [rdx+0C0h]
+                    06
+  00000000000004A2: 62 72 F5 28 B4 52  vpmadd52luq ymm10,ymm1,ymmword ptr [rdx+0E0h]
+                    07
+  00000000000004A9: 62 72 F5 28 B4 5A  vpmadd52luq ymm11,ymm1,ymmword ptr [rdx+100h]
+                    08
+  00000000000004B0: 62 72 F5 28 B4 62  vpmadd52luq ymm12,ymm1,ymmword ptr [rdx+120h]
+                    09
+  00000000000004B7: 62 D2 ED 28 B4 19  vpmadd52luq ymm3,ymm2,ymmword ptr [r9]
+  00000000000004BD: 62 D2 ED 28 B4 61  vpmadd52luq ymm4,ymm2,ymmword ptr [r9+20h]
+                    01
+  00000000000004C4: 62 D2 ED 28 B4 69  vpmadd52luq ymm5,ymm2,ymmword ptr [r9+40h]
+                    02
+  00000000000004CB: 62 D2 ED 28 B4 71  vpmadd52luq ymm6,ymm2,ymmword ptr [r9+60h]
+                    03
+  00000000000004D2: 62 D2 ED 28 B4 79  vpmadd52luq ymm7,ymm2,ymmword ptr [r9+80h]
+                    04
+  00000000000004D9: 62 52 ED 28 B4 41  vpmadd52luq ymm8,ymm2,ymmword ptr [r9+0A0h]
+                    05
+  00000000000004E0: 62 52 ED 28 B4 49  vpmadd52luq ymm9,ymm2,ymmword ptr [r9+0C0h]
+                    06
+  00000000000004E7: 62 52 ED 28 B4 51  vpmadd52luq ymm10,ymm2,ymmword ptr [r9+0E0h]
+                    07
+  00000000000004EE: 62 52 ED 28 B4 59  vpmadd52luq ymm11,ymm2,ymmword ptr [r9+100h]
+                    08
+  00000000000004F5: 62 52 ED 28 B4 61  vpmadd52luq ymm12,ymm2,ymmword ptr [r9+120h]
+                    09
+  00000000000004FC: 62 F3 DD 28 03 DB  valignq     ymm3,ymm4,ymm3,1
+                    01
+  0000000000000503: 62 F3 D5 28 03 E4  valignq     ymm4,ymm5,ymm4,1
+                    01
+  000000000000050A: 62 F3 CD 28 03 ED  valignq     ymm5,ymm6,ymm5,1
+                    01
+  0000000000000511: 62 F3 C5 28 03 F6  valignq     ymm6,ymm7,ymm6,1
+                    01
+  0000000000000518: 62 F3 BD 28 03 FF  valignq     ymm7,ymm8,ymm7,1
+                    01
+  000000000000051F: 62 53 B5 28 03 C0  valignq     ymm8,ymm9,ymm8,1
+                    01
+  0000000000000526: 62 53 AD 28 03 C9  valignq     ymm9,ymm10,ymm9,1
+                    01
+  000000000000052D: 62 53 A5 28 03 D2  valignq     ymm10,ymm11,ymm10,1
+                    01
+  0000000000000534: 62 53 9D 28 03 DB  valignq     ymm11,ymm12,ymm11,1
+                    01
+  000000000000053B: 62 53 FD 28 03 E4  valignq     ymm12,ymm0,ymm12,1
+                    01
+  0000000000000542: C4 C1 F9 7E DD     vmovq       r13,xmm3
+  0000000000000547: 4D 01 E9           add         r9,r13
+  000000000000054A: 62 F2 F5 28 B5 1A  vpmadd52huq ymm3,ymm1,ymmword ptr [rdx]
+  0000000000000550: 62 F2 F5 28 B5 62  vpmadd52huq ymm4,ymm1,ymmword ptr [rdx+20h]
+                    01
+  0000000000000557: 62 F2 F5 28 B5 6A  vpmadd52huq ymm5,ymm1,ymmword ptr [rdx+40h]
+                    02
+  000000000000055E: 62 F2 F5 28 B5 72  vpmadd52huq ymm6,ymm1,ymmword ptr [rdx+60h]
+                    03
+  0000000000000565: 62 F2 F5 28 B5 7A  vpmadd52huq ymm7,ymm1,ymmword ptr [rdx+80h]
+                    04
+  000000000000056C: 62 72 F5 28 B5 42  vpmadd52huq ymm8,ymm1,ymmword ptr [rdx+0A0h]
+                    05
+  0000000000000573: 62 72 F5 28 B5 4A  vpmadd52huq ymm9,ymm1,ymmword ptr [rdx+0C0h]
+                    06
+  000000000000057A: 62 72 F5 28 B5 52  vpmadd52huq ymm10,ymm1,ymmword ptr [rdx+0E0h]
+                    07
+  0000000000000581: 62 72 F5 28 B5 5A  vpmadd52huq ymm11,ymm1,ymmword ptr [rdx+100h]
+                    08
+  0000000000000588: 62 72 F5 28 B5 62  vpmadd52huq ymm12,ymm1,ymmword ptr [rdx+120h]
+                    09
+  000000000000058F: 62 D2 ED 28 B5 19  vpmadd52huq ymm3,ymm2,ymmword ptr [r9]
+  0000000000000595: 62 D2 ED 28 B5 61  vpmadd52huq ymm4,ymm2,ymmword ptr [r9+20h]
+                    01
+  000000000000059C: 62 D2 ED 28 B5 69  vpmadd52huq ymm5,ymm2,ymmword ptr [r9+40h]
+                    02
+  00000000000005A3: 62 D2 ED 28 B5 71  vpmadd52huq ymm6,ymm2,ymmword ptr [r9+60h]
+                    03
+  00000000000005AA: 62 D2 ED 28 B5 79  vpmadd52huq ymm7,ymm2,ymmword ptr [r9+80h]
+                    04
+  00000000000005B1: 62 52 ED 28 B5 41  vpmadd52huq ymm8,ymm2,ymmword ptr [r9+0A0h]
+                    05
+  00000000000005B8: 62 52 ED 28 B5 49  vpmadd52huq ymm9,ymm2,ymmword ptr [r9+0C0h]
+                    06
+  00000000000005BF: 62 52 ED 28 B5 51  vpmadd52huq ymm10,ymm2,ymmword ptr [r9+0E0h]
+                    07
+  00000000000005C6: 62 52 ED 28 B5 59  vpmadd52huq ymm11,ymm2,ymmword ptr [r9+100h]
+                    08
+  00000000000005CD: 62 52 ED 28 B5 61  vpmadd52huq ymm12,ymm2,ymmword ptr [r9+120h]
+                    09
+  00000000000005D4: 4D 8B 6B 18        mov         r13,qword ptr [r11+18h]
+  00000000000005D8: 62 D2 FD 28 7C CD  vpbroadcastq ymm1,r13
+  00000000000005DE: 48 8B 12           mov         rdx,qword ptr [rdx]
+  00000000000005E1: C4 42 93 F6 E5     mulx        r12,r13,r13
+  00000000000005E6: 4D 01 E9           add         r9,r13
+  00000000000005E9: 4D 89 E2           mov         r10,r12
+  00000000000005EC: 49 83 D2 00        adc         r10,0
+  00000000000005F0: 4D 89 D5           mov         r13,r10
+  00000000000005F3: 4D 0F AF E9        imul        r13,r9
+  00000000000005F7: 49 21 C5           and         r13,rax
+  00000000000005FA: 62 D2 FD 28 7C D5  vpbroadcastq ymm2,r13
+  0000000000000600: 49 8B 11           mov         rdx,qword ptr [r9]
+  0000000000000603: C4 42 93 F6 E5     mulx        r12,r13,r13
+  0000000000000608: 4D 01 E9           add         r9,r13
+  000000000000060B: 4D 11 E2           adc         r10,r12
+  000000000000060E: 49 C1 E9 34        shr         r9,34h
+  0000000000000612: 49 C1 E2 0C        shl         r10,0Ch
+  0000000000000616: 4D 09 D1           or          r9,r10
+  0000000000000619: 62 F2 F5 28 B4 1A  vpmadd52luq ymm3,ymm1,ymmword ptr [rdx]
+  000000000000061F: 62 F2 F5 28 B4 62  vpmadd52luq ymm4,ymm1,ymmword ptr [rdx+20h]
+                    01
+  0000000000000626: 62 F2 F5 28 B4 6A  vpmadd52luq ymm5,ymm1,ymmword ptr [rdx+40h]
+                    02
+  000000000000062D: 62 F2 F5 28 B4 72  vpmadd52luq ymm6,ymm1,ymmword ptr [rdx+60h]
+                    03
+  0000000000000634: 62 F2 F5 28 B4 7A  vpmadd52luq ymm7,ymm1,ymmword ptr [rdx+80h]
+                    04
+  000000000000063B: 62 72 F5 28 B4 42  vpmadd52luq ymm8,ymm1,ymmword ptr [rdx+0A0h]
+                    05
+  0000000000000642: 62 72 F5 28 B4 4A  vpmadd52luq ymm9,ymm1,ymmword ptr [rdx+0C0h]
+                    06
+  0000000000000649: 62 72 F5 28 B4 52  vpmadd52luq ymm10,ymm1,ymmword ptr [rdx+0E0h]
+                    07
+  0000000000000650: 62 72 F5 28 B4 5A  vpmadd52luq ymm11,ymm1,ymmword ptr [rdx+100h]
+                    08
+  0000000000000657: 62 72 F5 28 B4 62  vpmadd52luq ymm12,ymm1,ymmword ptr [rdx+120h]
+                    09
+  000000000000065E: 62 D2 ED 28 B4 19  vpmadd52luq ymm3,ymm2,ymmword ptr [r9]
+  0000000000000664: 62 D2 ED 28 B4 61  vpmadd52luq ymm4,ymm2,ymmword ptr [r9+20h]
+                    01
+  000000000000066B: 62 D2 ED 28 B4 69  vpmadd52luq ymm5,ymm2,ymmword ptr [r9+40h]
+                    02
+  0000000000000672: 62 D2 ED 28 B4 71  vpmadd52luq ymm6,ymm2,ymmword ptr [r9+60h]
+                    03
+  0000000000000679: 62 D2 ED 28 B4 79  vpmadd52luq ymm7,ymm2,ymmword ptr [r9+80h]
+                    04
+  0000000000000680: 62 52 ED 28 B4 41  vpmadd52luq ymm8,ymm2,ymmword ptr [r9+0A0h]
+                    05
+  0000000000000687: 62 52 ED 28 B4 49  vpmadd52luq ymm9,ymm2,ymmword ptr [r9+0C0h]
+                    06
+  000000000000068E: 62 52 ED 28 B4 51  vpmadd52luq ymm10,ymm2,ymmword ptr [r9+0E0h]
+                    07
+  0000000000000695: 62 52 ED 28 B4 59  vpmadd52luq ymm11,ymm2,ymmword ptr [r9+100h]
+                    08
+  000000000000069C: 62 52 ED 28 B4 61  vpmadd52luq ymm12,ymm2,ymmword ptr [r9+120h]
+                    09
+  00000000000006A3: 62 F3 DD 28 03 DB  valignq     ymm3,ymm4,ymm3,1
+                    01
+  00000000000006AA: 62 F3 D5 28 03 E4  valignq     ymm4,ymm5,ymm4,1
+                    01
+  00000000000006B1: 62 F3 CD 28 03 ED  valignq     ymm5,ymm6,ymm5,1
+                    01
+  00000000000006B8: 62 F3 C5 28 03 F6  valignq     ymm6,ymm7,ymm6,1
+                    01
+  00000000000006BF: 62 F3 BD 28 03 FF  valignq     ymm7,ymm8,ymm7,1
+                    01
+  00000000000006C6: 62 53 B5 28 03 C0  valignq     ymm8,ymm9,ymm8,1
+                    01
+  00000000000006CD: 62 53 AD 28 03 C9  valignq     ymm9,ymm10,ymm9,1
+                    01
+  00000000000006D4: 62 53 A5 28 03 D2  valignq     ymm10,ymm11,ymm10,1
+                    01
+  00000000000006DB: 62 53 9D 28 03 DB  valignq     ymm11,ymm12,ymm11,1
+                    01
+  00000000000006E2: 62 53 FD 28 03 E4  valignq     ymm12,ymm0,ymm12,1
+                    01
+  00000000000006E9: C4 C1 F9 7E DD     vmovq       r13,xmm3
+  00000000000006EE: 4D 01 E9           add         r9,r13
+  00000000000006F1: 62 F2 F5 28 B5 1A  vpmadd52huq ymm3,ymm1,ymmword ptr [rdx]
+  00000000000006F7: 62 F2 F5 28 B5 62  vpmadd52huq ymm4,ymm1,ymmword ptr [rdx+20h]
+                    01
+  00000000000006FE: 62 F2 F5 28 B5 6A  vpmadd52huq ymm5,ymm1,ymmword ptr [rdx+40h]
+                    02
+  0000000000000705: 62 F2 F5 28 B5 72  vpmadd52huq ymm6,ymm1,ymmword ptr [rdx+60h]
+                    03
+  000000000000070C: 62 F2 F5 28 B5 7A  vpmadd52huq ymm7,ymm1,ymmword ptr [rdx+80h]
+                    04
+  0000000000000713: 62 72 F5 28 B5 42  vpmadd52huq ymm8,ymm1,ymmword ptr [rdx+0A0h]
+                    05
+  000000000000071A: 62 72 F5 28 B5 4A  vpmadd52huq ymm9,ymm1,ymmword ptr [rdx+0C0h]
+                    06
+  0000000000000721: 62 72 F5 28 B5 52  vpmadd52huq ymm10,ymm1,ymmword ptr [rdx+0E0h]
+                    07
+  0000000000000728: 62 72 F5 28 B5 5A  vpmadd52huq ymm11,ymm1,ymmword ptr [rdx+100h]
+                    08
+  000000000000072F: 62 72 F5 28 B5 62  vpmadd52huq ymm12,ymm1,ymmword ptr [rdx+120h]
+                    09
+  0000000000000736: 62 D2 ED 28 B5 19  vpmadd52huq ymm3,ymm2,ymmword ptr [r9]
+  000000000000073C: 62 D2 ED 28 B5 61  vpmadd52huq ymm4,ymm2,ymmword ptr [r9+20h]
+                    01
+  0000000000000743: 62 D2 ED 28 B5 69  vpmadd52huq ymm5,ymm2,ymmword ptr [r9+40h]
+                    02
+  000000000000074A: 62 D2 ED 28 B5 71  vpmadd52huq ymm6,ymm2,ymmword ptr [r9+60h]
+                    03
+  0000000000000751: 62 D2 ED 28 B5 79  vpmadd52huq ymm7,ymm2,ymmword ptr [r9+80h]
+                    04
+  0000000000000758: 62 52 ED 28 B5 41  vpmadd52huq ymm8,ymm2,ymmword ptr [r9+0A0h]
+                    05
+  000000000000075F: 62 52 ED 28 B5 49  vpmadd52huq ymm9,ymm2,ymmword ptr [r9+0C0h]
+                    06
+  0000000000000766: 62 52 ED 28 B5 51  vpmadd52huq ymm10,ymm2,ymmword ptr [r9+0E0h]
+                    07
+  000000000000076D: 62 52 ED 28 B5 59  vpmadd52huq ymm11,ymm2,ymmword ptr [r9+100h]
+                    08
+  0000000000000774: 62 52 ED 28 B5 61  vpmadd52huq ymm12,ymm2,ymmword ptr [r9+120h]
+                    09
+  000000000000077B: 4D 8D 5B 20        lea         r11,[r11+20h]
+  000000000000077F: FF CB              dec         ebx
+  0000000000000781: 0F 85 59 F9 FF FF  jne         L$loop10
+  0000000000000787: 62 D2 FD 28 7C C1  vpbroadcastq ymm0,r9
+  000000000000078D: C4 E3 65 02 D8 03  vpblendd    ymm3,ymm3,ymm0,3
+  0000000000000793: C5 FD 73 D3 34     vpsrlq      ymm0,ymm3,34h
+  0000000000000798: C5 F5 73 D4 34     vpsrlq      ymm1,ymm4,34h
+  000000000000079D: C5 ED 73 D5 34     vpsrlq      ymm2,ymm5,34h
+  00000000000007A2: 62 F1 C5 20 73 D6  vpsrlq      ymm23,ymm6,34h
+                    34
+  00000000000007A9: 62 F1 BD 20 73 D7  vpsrlq      ymm24,ymm7,34h
+                    34
+  00000000000007B0: 62 D1 B5 20 73 D0  vpsrlq      ymm25,ymm8,34h
+                    34
+  00000000000007B7: 62 D1 AD 20 73 D1  vpsrlq      ymm26,ymm9,34h
+                    34
+  00000000000007BE: 62 D1 A5 20 73 D2  vpsrlq      ymm27,ymm10,34h
+                    34
+  00000000000007C5: 62 D1 9D 20 73 D3  vpsrlq      ymm28,ymm11,34h
+                    34
+  00000000000007CC: 62 D1 95 20 73 D4  vpsrlq      ymm29,ymm12,34h
+                    34
+  00000000000007D3: 62 03 95 20 03 EC  valignq     ymm29,ymm29,ymm28,3
+                    03
+  00000000000007DA: 62 03 9D 20 03 E3  valignq     ymm28,ymm28,ymm27,3
+                    03
+  00000000000007E1: 62 03 A5 20 03 DA  valignq     ymm27,ymm27,ymm26,3
+                    03
+  00000000000007E8: 62 03 AD 20 03 D1  valignq     ymm26,ymm26,ymm25,3
+                    03
+  00000000000007EF: 62 03 B5 20 03 C8  valignq     ymm25,ymm25,ymm24,3
+                    03
+  00000000000007F6: 62 23 BD 20 03 C7  valignq     ymm24,ymm24,ymm23,3
+                    03
+  00000000000007FD: 62 E3 C5 20 03 FA  valignq     ymm23,ymm23,ymm2,3
+                    03
+  0000000000000804: 62 F3 ED 28 03 D1  valignq     ymm2,ymm2,ymm1,3
+                    03
+  000000000000080B: 62 F3 F5 28 03 C8  valignq     ymm1,ymm1,ymm0,3
+                    03
+  0000000000000812: 62 F3 FD 28 03 05  valignq     ymm0,ymm0,ymmword ptr [.rdata+3Fh],3
+                    3F 00 00 00 03
+  000000000000081D: 62 F1 E5 28 DB 1D  vpandq      ymm3,ymm3,ymmword ptr [.rdata]
+                    00 00 00 00
+  0000000000000827: 62 F1 DD 28 DB 25  vpandq      ymm4,ymm4,ymmword ptr [.rdata]
+                    00 00 00 00
+  0000000000000831: 62 F1 D5 28 DB 2D  vpandq      ymm5,ymm5,ymmword ptr [.rdata]
+                    00 00 00 00
+  000000000000083B: 62 F1 CD 28 DB 35  vpandq      ymm6,ymm6,ymmword ptr [.rdata]
+                    00 00 00 00
+  0000000000000845: 62 F1 C5 28 DB 3D  vpandq      ymm7,ymm7,ymmword ptr [.rdata]
+                    00 00 00 00
+  000000000000084F: 62 71 BD 28 DB 05  vpandq      ymm8,ymm8,ymmword ptr [.rdata]
+                    00 00 00 00
+  0000000000000859: 62 71 B5 28 DB 0D  vpandq      ymm9,ymm9,ymmword ptr [.rdata]
+                    00 00 00 00
+  0000000000000863: 62 71 AD 28 DB 15  vpandq      ymm10,ymm10,ymmword ptr [.rdata]
+                    00 00 00 00
+  000000000000086D: 62 71 A5 28 DB 1D  vpandq      ymm11,ymm11,ymmword ptr [.rdata]
+                    00 00 00 00
+  0000000000000877: 62 71 9D 28 DB 25  vpandq      ymm12,ymm12,ymmword ptr [.rdata]
+                    00 00 00 00
+  0000000000000881: C5 E5 D4 D8        vpaddq      ymm3,ymm3,ymm0
+  0000000000000885: C5 DD D4 E1        vpaddq      ymm4,ymm4,ymm1
+  0000000000000889: C5 D5 D4 EA        vpaddq      ymm5,ymm5,ymm2
+  000000000000088D: 62 B1 CD 28 D4 F7  vpaddq      ymm6,ymm6,ymm23
+  0000000000000893: 62 91 C5 28 D4 F8  vpaddq      ymm7,ymm7,ymm24
+  0000000000000899: 62 11 BD 28 D4 C1  vpaddq      ymm8,ymm8,ymm25
+  000000000000089F: 62 11 B5 28 D4 CA  vpaddq      ymm9,ymm9,ymm26
+  00000000000008A5: 62 11 AD 28 D4 D3  vpaddq      ymm10,ymm10,ymm27
+  00000000000008AB: 62 11 A5 28 D4 DC  vpaddq      ymm11,ymm11,ymm28
+  00000000000008B1: 62 11 9D 28 D4 E5  vpaddq      ymm12,ymm12,ymm29
+  00000000000008B7: 62 F3 E5 28 1E 0D  vpcmpuq     k1,ymm3,ymmword ptr [.rdata+0FFFFFFFFh],6
+                    FF FF FF FF 06
+  00000000000008C2: 62 F3 DD 28 1E 15  vpcmpuq     k2,ymm4,ymmword ptr [.rdata+0FFFFFFFFh],6
+                    FF FF FF FF 06
+  00000000000008CD: C5 79 93 F1        kmovb       r14d,k1
+  00000000000008D1: C5 79 93 EA        kmovb       r13d,k2
+  00000000000008D5: 41 C0 E5 04        shl         r13b,4
+  00000000000008D9: 45 08 EE           or          r14b,r13b
+  00000000000008DC: 62 F3 D5 28 1E 0D  vpcmpuq     k1,ymm5,ymmword ptr [.rdata+0FFFFFFFFh],6
+                    FF FF FF FF 06
+  00000000000008E7: 62 F3 CD 28 1E 15  vpcmpuq     k2,ymm6,ymmword ptr [.rdata+0FFFFFFFFh],6
+                    FF FF FF FF 06
+  00000000000008F2: C5 79 93 E9        kmovb       r13d,k1
+  00000000000008F6: C5 79 93 E2        kmovb       r12d,k2
+  00000000000008FA: 41 C0 E4 04        shl         r12b,4
+  00000000000008FE: 45 08 E5           or          r13b,r12b
+  0000000000000901: 62 F3 C5 28 1E 0D  vpcmpuq     k1,ymm7,ymmword ptr [.rdata+0FFFFFFFFh],6
+                    FF FF FF FF 06
+  000000000000090C: 62 F3 BD 28 1E 15  vpcmpuq     k2,ymm8,ymmword ptr [.rdata+0FFFFFFFFh],6
+                    FF FF FF FF 06
+  0000000000000917: C5 79 93 E1        kmovb       r12d,k1
+  000000000000091B: C5 79 93 DA        kmovb       r11d,k2
+  000000000000091F: 41 C0 E3 04        shl         r11b,4
+  0000000000000923: 45 08 DC           or          r12b,r11b
+  0000000000000926: 62 F3 B5 28 1E 0D  vpcmpuq     k1,ymm9,ymmword ptr [.rdata+0FFFFFFFFh],6
+                    FF FF FF FF 06
+  0000000000000931: 62 F3 AD 28 1E 15  vpcmpuq     k2,ymm10,ymmword ptr [.rdata+0FFFFFFFFh],6
+                    FF FF FF FF 06
+  000000000000093C: C5 79 93 D9        kmovb       r11d,k1
+  0000000000000940: C5 79 93 D2        kmovb       r10d,k2
+  0000000000000944: 41 C0 E2 04        shl         r10b,4
+  0000000000000948: 45 08 D3           or          r11b,r10b
+  000000000000094B: 62 F3 A5 28 1E 0D  vpcmpuq     k1,ymm11,ymmword ptr [.rdata+0FFFFFFFFh],6
+                    FF FF FF FF 06
+  0000000000000956: 62 F3 9D 28 1E 15  vpcmpuq     k2,ymm12,ymmword ptr [.rdata+0FFFFFFFFh],6
+                    FF FF FF FF 06
+  0000000000000961: C5 79 93 D1        kmovb       r10d,k1
+  0000000000000965: C5 79 93 CA        kmovb       r9d,k2
+  0000000000000969: 41 C0 E1 04        shl         r9b,4
+  000000000000096D: 45 08 CA           or          r10b,r9b
+  0000000000000970: 45 00 F6           add         r14b,r14b
+  0000000000000973: 45 10 ED           adc         r13b,r13b
+  0000000000000976: 45 10 E4           adc         r12b,r12b
+  0000000000000979: 45 10 DB           adc         r11b,r11b
+  000000000000097C: 45 10 D2           adc         r10b,r10b
+  000000000000097F: 62 F3 E5 28 1E 0D  vpcmpuq     k1,ymm3,ymmword ptr [.rdata+0FFFFFFFFh],0
+                    FF FF FF FF 00
+  000000000000098A: 62 F3 DD 28 1E 15  vpcmpuq     k2,ymm4,ymmword ptr [.rdata+0FFFFFFFFh],0
+                    FF FF FF FF 00
+  0000000000000995: C5 79 93 C9        kmovb       r9d,k1
+  0000000000000999: C5 79 93 C2        kmovb       r8d,k2
+  000000000000099D: 41 C0 E0 04        shl         r8b,4
+  00000000000009A1: 45 08 C1           or          r9b,r8b
+  00000000000009A4: 62 F3 D5 28 1E 0D  vpcmpuq     k1,ymm5,ymmword ptr [.rdata+0FFFFFFFFh],0
+                    FF FF FF FF 00
+  00000000000009AF: 62 F3 CD 28 1E 15  vpcmpuq     k2,ymm6,ymmword ptr [.rdata+0FFFFFFFFh],0
+                    FF FF FF FF 00
+  00000000000009BA: C5 79 93 C1        kmovb       r8d,k1
+  00000000000009BE: C5 F9 93 D2        kmovb       edx,k2
+  00000000000009C2: C0 E2 04           shl         dl,4
+  00000000000009C5: 41 08 D0           or          r8b,dl
+  00000000000009C8: 62 F3 C5 28 1E 0D  vpcmpuq     k1,ymm7,ymmword ptr [.rdata+0FFFFFFFFh],0
+                    FF FF FF FF 00
+  00000000000009D3: 62 F3 BD 28 1E 15  vpcmpuq     k2,ymm8,ymmword ptr [.rdata+0FFFFFFFFh],0
+                    FF FF FF FF 00
+  00000000000009DE: C5 F9 93 D1        kmovb       edx,k1
+  00000000000009E2: C5 F9 93 CA        kmovb       ecx,k2
+  00000000000009E6: C0 E1 04           shl         cl,4
+  00000000000009E9: 08 CA              or          dl,cl
+  00000000000009EB: 62 F3 B5 28 1E 0D  vpcmpuq     k1,ymm9,ymmword ptr [.rdata+0FFFFFFFFh],0
+                    FF FF FF FF 00
+  00000000000009F6: 62 F3 AD 28 1E 15  vpcmpuq     k2,ymm10,ymmword ptr [.rdata+0FFFFFFFFh],0
+                    FF FF FF FF 00
+  0000000000000A01: C5 F9 93 C9        kmovb       ecx,k1
+  0000000000000A05: C5 F9 93 DA        kmovb       ebx,k2
+  0000000000000A09: C0 E3 04           shl         bl,4
+  0000000000000A0C: 08 D9              or          cl,bl
+  0000000000000A0E: 62 F3 A5 28 1E 0D  vpcmpuq     k1,ymm11,ymmword ptr [.rdata+0FFFFFFFFh],0
+                    FF FF FF FF 00
+  0000000000000A19: 62 F3 9D 28 1E 15  vpcmpuq     k2,ymm12,ymmword ptr [.rdata+0FFFFFFFFh],0
+                    FF FF FF FF 00
+  0000000000000A24: C5 F9 93 D9        kmovb       ebx,k1
+  0000000000000A28: C5 F9 93 C2        kmovb       eax,k2
+  0000000000000A2C: C0 E0 04           shl         al,4
+  0000000000000A2F: 08 C3              or          bl,al
+  0000000000000A31: 45 00 CE           add         r14b,r9b
+  0000000000000A34: 45 10 C5           adc         r13b,r8b
+  0000000000000A37: 41 10 D4           adc         r12b,dl
+  0000000000000A3A: 41 10 CB           adc         r11b,cl
+  0000000000000A3D: 41 10 DA           adc         r10b,bl
+  0000000000000A40: 45 30 CE           xor         r14b,r9b
+  0000000000000A43: 45 30 C5           xor         r13b,r8b
+  0000000000000A46: 41 30 D4           xor         r12b,dl
+  0000000000000A49: 41 30 CB           xor         r11b,cl
+  0000000000000A4C: 41 30 DA           xor         r10b,bl
+  0000000000000A4F: C4 C1 79 92 CE     kmovb       k1,r14d
+  0000000000000A54: 41 C0 EE 04        shr         r14b,4
+  0000000000000A58: C4 C1 79 92 D6     kmovb       k2,r14d
+  0000000000000A5D: C4 C1 79 92 DD     kmovb       k3,r13d
+  0000000000000A62: 41 C0 ED 04        shr         r13b,4
+  0000000000000A66: C4 C1 79 92 E5     kmovb       k4,r13d
+  0000000000000A6B: C4 C1 79 92 EC     kmovb       k5,r12d
+  0000000000000A70: 41 C0 EC 04        shr         r12b,4
+  0000000000000A74: C4 C1 79 92 F4     kmovb       k6,r12d
+  0000000000000A79: C4 C1 79 92 FB     kmovb       k7,r11d
+  0000000000000A7E: 62 F1 E5 29 FB 1D  vpsubq      ymm3{k1},ymm3,ymmword ptr [.rdata]
+                    00 00 00 00
+  0000000000000A88: 62 F1 DD 2A FB 25  vpsubq      ymm4{k2},ymm4,ymmword ptr [.rdata]
+                    00 00 00 00
+  0000000000000A92: 62 F1 D5 2B FB 2D  vpsubq      ymm5{k3},ymm5,ymmword ptr [.rdata]
+                    00 00 00 00
+  0000000000000A9C: 62 F1 CD 2C FB 35  vpsubq      ymm6{k4},ymm6,ymmword ptr [.rdata]
+                    00 00 00 00
+  0000000000000AA6: 62 F1 C5 2D FB 3D  vpsubq      ymm7{k5},ymm7,ymmword ptr [.rdata]
+                    00 00 00 00
+  0000000000000AB0: 62 71 BD 2E FB 05  vpsubq      ymm8{k6},ymm8,ymmword ptr [.rdata]
+                    00 00 00 00
+  0000000000000ABA: 62 71 B5 2F FB 0D  vpsubq      ymm9{k7},ymm9,ymmword ptr [.rdata]
+                    00 00 00 00
+  0000000000000AC4: 62 F1 E5 28 DB 1D  vpandq      ymm3,ymm3,ymmword ptr [.rdata]
+                    00 00 00 00
+  0000000000000ACE: 62 F1 DD 28 DB 25  vpandq      ymm4,ymm4,ymmword ptr [.rdata]
+                    00 00 00 00
+  0000000000000AD8: 62 F1 D5 28 DB 2D  vpandq      ymm5,ymm5,ymmword ptr [.rdata]
+                    00 00 00 00
+  0000000000000AE2: 62 F1 CD 28 DB 35  vpandq      ymm6,ymm6,ymmword ptr [.rdata]
+                    00 00 00 00
+  0000000000000AEC: 62 F1 C5 28 DB 3D  vpandq      ymm7,ymm7,ymmword ptr [.rdata]
+                    00 00 00 00
+  0000000000000AF6: 62 71 BD 28 DB 05  vpandq      ymm8,ymm8,ymmword ptr [.rdata]
+                    00 00 00 00
+  0000000000000B00: 62 71 B5 28 DB 0D  vpandq      ymm9,ymm9,ymmword ptr [.rdata]
+                    00 00 00 00
+  0000000000000B0A: 41 C0 EB 04        shr         r11b,4
+  0000000000000B0E: C4 C1 79 92 CB     kmovb       k1,r11d
+  0000000000000B13: C4 C1 79 92 D2     kmovb       k2,r10d
+  0000000000000B18: 41 C0 EA 04        shr         r10b,4
+  0000000000000B1C: C4 C1 79 92 DA     kmovb       k3,r10d
+  0000000000000B21: 62 71 AD 29 FB 15  vpsubq      ymm10{k1},ymm10,ymmword ptr [.rdata]
+                    00 00 00 00
+  0000000000000B2B: 62 71 A5 2A FB 1D  vpsubq      ymm11{k2},ymm11,ymmword ptr [.rdata]
+                    00 00 00 00
+  0000000000000B35: 62 71 9D 2B FB 25  vpsubq      ymm12{k3},ymm12,ymmword ptr [.rdata]
+                    00 00 00 00
+  0000000000000B3F: 62 71 AD 28 DB 15  vpandq      ymm10,ymm10,ymmword ptr [.rdata]
+                    00 00 00 00
+  0000000000000B49: 62 71 A5 28 DB 1D  vpandq      ymm11,ymm11,ymmword ptr [.rdata]
+                    00 00 00 00
+  0000000000000B53: 62 71 9D 28 DB 25  vpandq      ymm12,ymm12,ymmword ptr [.rdata]
+                    00 00 00 00
+  0000000000000B5D: 62 F1 FE 28 7F 19  vmovdqu64   ymmword ptr [rcx],ymm3
+  0000000000000B63: 62 F1 FE 28 7F 61  vmovdqu64   ymmword ptr [rcx+20h],ymm4
+                    01
+  0000000000000B6A: 62 F1 FE 28 7F 69  vmovdqu64   ymmword ptr [rcx+40h],ymm5
+                    02
+  0000000000000B71: 62 F1 FE 28 7F 71  vmovdqu64   ymmword ptr [rcx+60h],ymm6
+                    03
+  0000000000000B78: 62 F1 FE 28 7F 79  vmovdqu64   ymmword ptr [rcx+80h],ymm7
+                    04
+  0000000000000B7F: 62 71 FE 28 7F 41  vmovdqu64   ymmword ptr [rcx+0A0h],ymm8
+                    05
+  0000000000000B86: 62 71 FE 28 7F 49  vmovdqu64   ymmword ptr [rcx+0C0h],ymm9
+                    06
+  0000000000000B8D: 62 71 FE 28 7F 51  vmovdqu64   ymmword ptr [rcx+0E0h],ymm10
+                    07
+  0000000000000B94: 62 71 FE 28 7F 59  vmovdqu64   ymmword ptr [rcx+100h],ymm11
+                    08
+  0000000000000B9B: 62 71 FE 28 7F 61  vmovdqu64   ymmword ptr [rcx+120h],ymm12
+                    09
+  0000000000000BA2: C5 F8 77           vzeroupper
+  0000000000000BA5: 48 8D 04 24        lea         rax,[rsp]
+  0000000000000BA9: 62 F1 FD 08 6F 30  vmovdqa64   xmm6,xmmword ptr [rax]
+  0000000000000BAF: 62 F1 FD 08 6F 78  vmovdqa64   xmm7,xmmword ptr [rax+10h]
+                    01
+  0000000000000BB6: 62 71 FD 08 6F 40  vmovdqa64   xmm8,xmmword ptr [rax+20h]
+                    02
+  0000000000000BBD: 62 71 FD 08 6F 48  vmovdqa64   xmm9,xmmword ptr [rax+30h]
+                    03
+  0000000000000BC4: 62 71 FD 08 6F 50  vmovdqa64   xmm10,xmmword ptr [rax+40h]
+                    04
+  0000000000000BCB: 62 71 FD 08 6F 58  vmovdqa64   xmm11,xmmword ptr [rax+50h]
+                    05
+  0000000000000BD2: 62 71 FD 08 6F 60  vmovdqa64   xmm12,xmmword ptr [rax+60h]
+                    06
+  0000000000000BD9: 62 71 FD 08 6F 68  vmovdqa64   xmm13,xmmword ptr [rax+70h]
+                    07
+  0000000000000BE0: 62 71 FD 08 6F 70  vmovdqa64   xmm14,xmmword ptr [rax+80h]
+                    08
+  0000000000000BE7: 62 71 FD 08 6F 78  vmovdqa64   xmm15,xmmword ptr [rax+90h]
+                    09
+  0000000000000BEE: 48 8D 84 24 A8 00  lea         rax,[rsp+0A8h]
+                    00 00
+  0000000000000BF6: 4C 8B 38           mov         r15,qword ptr [rax]
+  0000000000000BF9: 4C 8B 70 08        mov         r14,qword ptr [rax+8]
+  0000000000000BFD: 4C 8B 68 10        mov         r13,qword ptr [rax+10h]
+  0000000000000C01: 4C 8B 60 18        mov         r12,qword ptr [rax+18h]
+  0000000000000C05: 48 8B 68 20        mov         rbp,qword ptr [rax+20h]
+  0000000000000C09: 48 8B 58 28        mov         rbx,qword ptr [rax+28h]
+  0000000000000C0D: 48 8D 60 30        lea         rsp,[rax+30h]
+L$rsaz_amm52x40_x1_ifma256_epilogue:
+  0000000000000C11: 48 8B 7C 24 08     mov         rdi,qword ptr [rsp+8]
+  0000000000000C16: 48 8B 74 24 10     mov         rsi,qword ptr [rsp+10h]
+  0000000000000C1B: F3 C3              rep ret
+L$SEH_end_rsaz_amm52x40_x1_ifma256:
+  0000000000000C1D: 90                 nop
+  0000000000000C1E: 90                 nop
+  0000000000000C1F: 90                 nop
+aws_lc_0_21_2_rsaz_amm52x40_x2_ifma256:
+  0000000000000C20: 48 89 7C 24 08     mov         qword ptr [rsp+8],rdi
+  0000000000000C25: 48 89 74 24 10     mov         qword ptr [rsp+10h],rsi
+  0000000000000C2A: 48 89 E0           mov         rax,rsp
+L$SEH_begin_rsaz_amm52x40_x2_ifma256:
+  0000000000000C2D: 48 89 CF           mov         rdi,rcx
+  0000000000000C30: 48 89 D6           mov         rsi,rdx
+  0000000000000C33: 4C 89 C2           mov         rdx,r8
+  0000000000000C36: 4C 89 C9           mov         rcx,r9
+  0000000000000C39: 4C 8B 44 24 28     mov         r8,qword ptr [rsp+28h]
+  0000000000000C3E: F3 0F 1E FA        endbr64
+  0000000000000C42: 53                 push        rbx
+  0000000000000C43: 55                 push        rbp
+  0000000000000C44: 41 54              push        r12
+  0000000000000C46: 41 55              push        r13
+  0000000000000C48: 41 56              push        r14
+  0000000000000C4A: 41 57              push        r15
+  0000000000000C4C: 48 8D A4 24 58 FF  lea         rsp,[rsp-0A8h]
+                    FF FF
+  0000000000000C54: 62 F1 FD 08 7F 34  vmovdqa64   xmmword ptr [rsp],xmm6
+                    24
+  0000000000000C5B: 62 F1 FD 08 7F 7C  vmovdqa64   xmmword ptr [rsp+10h],xmm7
+                    24 01
+  0000000000000C63: 62 71 FD 08 7F 44  vmovdqa64   xmmword ptr [rsp+20h],xmm8
+                    24 02
+  0000000000000C6B: 62 71 FD 08 7F 4C  vmovdqa64   xmmword ptr [rsp+30h],xmm9
+                    24 03
+  0000000000000C73: 62 71 FD 08 7F 54  vmovdqa64   xmmword ptr [rsp+40h],xmm10
+                    24 04
+  0000000000000C7B: 62 71 FD 08 7F 5C  vmovdqa64   xmmword ptr [rsp+50h],xmm11
+                    24 05
+  0000000000000C83: 62 71 FD 08 7F 64  vmovdqa64   xmmword ptr [rsp+60h],xmm12
+                    24 06
+  0000000000000C8B: 62 71 FD 08 7F 6C  vmovdqa64   xmmword ptr [rsp+70h],xmm13
+                    24 07
+  0000000000000C93: 62 71 FD 08 7F 74  vmovdqa64   xmmword ptr [rsp+80h],xmm14
+                    24 08
+  0000000000000C9B: 62 71 FD 08 7F 7C  vmovdqa64   xmmword ptr [rsp+90h],xmm15
+                    24 09
+L$rsaz_amm52x40_x2_ifma256_body:
+  0000000000000CA3: 62 F1 7D 28 EF C0  vpxord      ymm0,ymm0,ymm0
+  0000000000000CA9: 62 F1 FD 28 6F D8  vmovdqa64   ymm3,ymm0
+  0000000000000CAF: 62 F1 FD 28 6F E0  vmovdqa64   ymm4,ymm0
+  0000000000000CB5: 62 F1 FD 28 6F E8  vmovdqa64   ymm5,ymm0
+  0000000000000CBB: 62 F1 FD 28 6F F0  vmovdqa64   ymm6,ymm0
+  0000000000000CC1: 62 F1 FD 28 6F F8  vmovdqa64   ymm7,ymm0
+  0000000000000CC7: 62 71 FD 28 6F C0  vmovdqa64   ymm8,ymm0
+  0000000000000CCD: 62 71 FD 28 6F C8  vmovdqa64   ymm9,ymm0
+  0000000000000CD3: 62 71 FD 28 6F D0  vmovdqa64   ymm10,ymm0
+  0000000000000CD9: 62 71 FD 28 6F D8  vmovdqa64   ymm11,ymm0
+  0000000000000CDF: 62 71 FD 28 6F E0  vmovdqa64   ymm12,ymm0
+  0000000000000CE5: 62 71 FD 28 6F E8  vmovdqa64   ymm13,ymm0
+  0000000000000CEB: 62 71 FD 28 6F F0  vmovdqa64   ymm14,ymm0
+  0000000000000CF1: 62 71 FD 28 6F F8  vmovdqa64   ymm15,ymm0
+  0000000000000CF7: 62 E1 FD 28 6F C0  vmovdqa64   ymm16,ymm0
+  0000000000000CFD: 62 E1 FD 28 6F C8  vmovdqa64   ymm17,ymm0
+  0000000000000D03: 62 E1 FD 28 6F D0  vmovdqa64   ymm18,ymm0
+  0000000000000D09: 62 E1 FD 28 6F D8  vmovdqa64   ymm19,ymm0
+  0000000000000D0F: 62 E1 FD 28 6F E0  vmovdqa64   ymm20,ymm0
+  0000000000000D15: 62 E1 FD 28 6F E8  vmovdqa64   ymm21,ymm0
+  0000000000000D1B: 62 E1 FD 28 6F F0  vmovdqa64   ymm22,ymm0
+  0000000000000D21: 45 31 C9           xor         r9d,r9d
+  0000000000000D24: 45 31 FF           xor         r15d,r15d
+  0000000000000D27: 4D 89 C3           mov         r11,r8
+  0000000000000D2A: 48 B8 FF FF FF FF  mov         rax,0FFFFFFFFFFFFFh
+                    FF FF 0F 00
+  0000000000000D34: BB 28 00 00 00     mov         ebx,28h
+  0000000000000D39: 90                 nop
+  0000000000000D3A: 90                 nop
+  0000000000000D3B: 90                 nop
+  0000000000000D3C: 90                 nop
+  0000000000000D3D: 90                 nop
+  0000000000000D3E: 90                 nop
+  0000000000000D3F: 90                 nop
+L$loop40:
+  0000000000000D40: 4D 8B 2B           mov         r13,qword ptr [r11]
+  0000000000000D43: 62 D2 FD 28 7C CD  vpbroadcastq ymm1,r13
+  0000000000000D49: 48 8B 12           mov         rdx,qword ptr [rdx]
+  0000000000000D4C: C4 42 93 F6 E5     mulx        r12,r13,r13
+  0000000000000D51: 4D 01 E9           add         r9,r13
+  0000000000000D54: 4D 89 E2           mov         r10,r12
+  0000000000000D57: 49 83 D2 00        adc         r10,0
+  0000000000000D5B: 4D 8B 2A           mov         r13,qword ptr [r10]
+  0000000000000D5E: 4D 0F AF E9        imul        r13,r9
+  0000000000000D62: 49 21 C5           and         r13,rax
+  0000000000000D65: 62 D2 FD 28 7C D5  vpbroadcastq ymm2,r13
+  0000000000000D6B: 49 8B 11           mov         rdx,qword ptr [r9]
+  0000000000000D6E: C4 42 93 F6 E5     mulx        r12,r13,r13
+  0000000000000D73: 4D 01 E9           add         r9,r13
+  0000000000000D76: 4D 11 E2           adc         r10,r12
+  0000000000000D79: 49 C1 E9 34        shr         r9,34h
+  0000000000000D7D: 49 C1 E2 0C        shl         r10,0Ch
+  0000000000000D81: 4D 09 D1           or          r9,r10
+  0000000000000D84: 62 F2 F5 28 B4 1A  vpmadd52luq ymm3,ymm1,ymmword ptr [rdx]
+  0000000000000D8A: 62 F2 F5 28 B4 62  vpmadd52luq ymm4,ymm1,ymmword ptr [rdx+20h]
+                    01
+  0000000000000D91: 62 F2 F5 28 B4 6A  vpmadd52luq ymm5,ymm1,ymmword ptr [rdx+40h]
+                    02
+  0000000000000D98: 62 F2 F5 28 B4 72  vpmadd52luq ymm6,ymm1,ymmword ptr [rdx+60h]
+                    03
+  0000000000000D9F: 62 F2 F5 28 B4 7A  vpmadd52luq ymm7,ymm1,ymmword ptr [rdx+80h]
+                    04
+  0000000000000DA6: 62 72 F5 28 B4 42  vpmadd52luq ymm8,ymm1,ymmword ptr [rdx+0A0h]
+                    05
+  0000000000000DAD: 62 72 F5 28 B4 4A  vpmadd52luq ymm9,ymm1,ymmword ptr [rdx+0C0h]
+                    06
+  0000000000000DB4: 62 72 F5 28 B4 52  vpmadd52luq ymm10,ymm1,ymmword ptr [rdx+0E0h]
+                    07
+  0000000000000DBB: 62 72 F5 28 B4 5A  vpmadd52luq ymm11,ymm1,ymmword ptr [rdx+100h]
+                    08
+  0000000000000DC2: 62 72 F5 28 B4 62  vpmadd52luq ymm12,ymm1,ymmword ptr [rdx+120h]
+                    09
+  0000000000000DC9: 62 D2 ED 28 B4 19  vpmadd52luq ymm3,ymm2,ymmword ptr [r9]
+  0000000000000DCF: 62 D2 ED 28 B4 61  vpmadd52luq ymm4,ymm2,ymmword ptr [r9+20h]
+                    01
+  0000000000000DD6: 62 D2 ED 28 B4 69  vpmadd52luq ymm5,ymm2,ymmword ptr [r9+40h]
+                    02
+  0000000000000DDD: 62 D2 ED 28 B4 71  vpmadd52luq ymm6,ymm2,ymmword ptr [r9+60h]
+                    03
+  0000000000000DE4: 62 D2 ED 28 B4 79  vpmadd52luq ymm7,ymm2,ymmword ptr [r9+80h]
+                    04
+  0000000000000DEB: 62 52 ED 28 B4 41  vpmadd52luq ymm8,ymm2,ymmword ptr [r9+0A0h]
+                    05
+  0000000000000DF2: 62 52 ED 28 B4 49  vpmadd52luq ymm9,ymm2,ymmword ptr [r9+0C0h]
+                    06
+  0000000000000DF9: 62 52 ED 28 B4 51  vpmadd52luq ymm10,ymm2,ymmword ptr [r9+0E0h]
+                    07
+  0000000000000E00: 62 52 ED 28 B4 59  vpmadd52luq ymm11,ymm2,ymmword ptr [r9+100h]
+                    08
+  0000000000000E07: 62 52 ED 28 B4 61  vpmadd52luq ymm12,ymm2,ymmword ptr [r9+120h]
+                    09
+  0000000000000E0E: 62 F3 DD 28 03 DB  valignq     ymm3,ymm4,ymm3,1
+                    01
+  0000000000000E15: 62 F3 D5 28 03 E4  valignq     ymm4,ymm5,ymm4,1
+                    01
+  0000000000000E1C: 62 F3 CD 28 03 ED  valignq     ymm5,ymm6,ymm5,1
+                    01
+  0000000000000E23: 62 F3 C5 28 03 F6  valignq     ymm6,ymm7,ymm6,1
+                    01
+  0000000000000E2A: 62 F3 BD 28 03 FF  valignq     ymm7,ymm8,ymm7,1
+                    01
+  0000000000000E31: 62 53 B5 28 03 C0  valignq     ymm8,ymm9,ymm8,1
+                    01
+  0000000000000E38: 62 53 AD 28 03 C9  valignq     ymm9,ymm10,ymm9,1
+                    01
+  0000000000000E3F: 62 53 A5 28 03 D2  valignq     ymm10,ymm11,ymm10,1
+                    01
+  0000000000000E46: 62 53 9D 28 03 DB  valignq     ymm11,ymm12,ymm11,1
+                    01
+  0000000000000E4D: 62 53 FD 28 03 E4  valignq     ymm12,ymm0,ymm12,1
+                    01
+  0000000000000E54: C4 C1 F9 7E DD     vmovq       r13,xmm3
+  0000000000000E59: 4D 01 E9           add         r9,r13
+  0000000000000E5C: 62 F2 F5 28 B5 1A  vpmadd52huq ymm3,ymm1,ymmword ptr [rdx]
+  0000000000000E62: 62 F2 F5 28 B5 62  vpmadd52huq ymm4,ymm1,ymmword ptr [rdx+20h]
+                    01
+  0000000000000E69: 62 F2 F5 28 B5 6A  vpmadd52huq ymm5,ymm1,ymmword ptr [rdx+40h]
+                    02
+  0000000000000E70: 62 F2 F5 28 B5 72  vpmadd52huq ymm6,ymm1,ymmword ptr [rdx+60h]
+                    03
+  0000000000000E77: 62 F2 F5 28 B5 7A  vpmadd52huq ymm7,ymm1,ymmword ptr [rdx+80h]
+                    04
+  0000000000000E7E: 62 72 F5 28 B5 42  vpmadd52huq ymm8,ymm1,ymmword ptr [rdx+0A0h]
+                    05
+  0000000000000E85: 62 72 F5 28 B5 4A  vpmadd52huq ymm9,ymm1,ymmword ptr [rdx+0C0h]
+                    06
+  0000000000000E8C: 62 72 F5 28 B5 52  vpmadd52huq ymm10,ymm1,ymmword ptr [rdx+0E0h]
+                    07
+  0000000000000E93: 62 72 F5 28 B5 5A  vpmadd52huq ymm11,ymm1,ymmword ptr [rdx+100h]
+                    08
+  0000000000000E9A: 62 72 F5 28 B5 62  vpmadd52huq ymm12,ymm1,ymmword ptr [rdx+120h]
+                    09
+  0000000000000EA1: 62 D2 ED 28 B5 19  vpmadd52huq ymm3,ymm2,ymmword ptr [r9]
+  0000000000000EA7: 62 D2 ED 28 B5 61  vpmadd52huq ymm4,ymm2,ymmword ptr [r9+20h]
+                    01
+  0000000000000EAE: 62 D2 ED 28 B5 69  vpmadd52huq ymm5,ymm2,ymmword ptr [r9+40h]
+                    02
+  0000000000000EB5: 62 D2 ED 28 B5 71  vpmadd52huq ymm6,ymm2,ymmword ptr [r9+60h]
+                    03
+  0000000000000EBC: 62 D2 ED 28 B5 79  vpmadd52huq ymm7,ymm2,ymmword ptr [r9+80h]
+                    04
+  0000000000000EC3: 62 52 ED 28 B5 41  vpmadd52huq ymm8,ymm2,ymmword ptr [r9+0A0h]
+                    05
+  0000000000000ECA: 62 52 ED 28 B5 49  vpmadd52huq ymm9,ymm2,ymmword ptr [r9+0C0h]
+                    06
+  0000000000000ED1: 62 52 ED 28 B5 51  vpmadd52huq ymm10,ymm2,ymmword ptr [r9+0E0h]
+                    07
+  0000000000000ED8: 62 52 ED 28 B5 59  vpmadd52huq ymm11,ymm2,ymmword ptr [r9+100h]
+                    08
+  0000000000000EDF: 62 52 ED 28 B5 61  vpmadd52huq ymm12,ymm2,ymmword ptr [r9+120h]
+                    09
+  0000000000000EE6: 4D 8B AB 40 01 00  mov         r13,qword ptr [r11+140h]
+                    00
+  0000000000000EED: 62 D2 FD 28 7C CD  vpbroadcastq ymm1,r13
+  0000000000000EF3: 48 8B 92 40 01 00  mov         rdx,qword ptr [rdx+140h]
+                    00
+  0000000000000EFA: C4 42 93 F6 E5     mulx        r12,r13,r13
+  0000000000000EFF: 4D 01 EF           add         r15,r13
+  0000000000000F02: 4D 89 E2           mov         r10,r12
+  0000000000000F05: 49 83 D2 00        adc         r10,0
+  0000000000000F09: 4D 8B 6A 08        mov         r13,qword ptr [r10+8]
+  0000000000000F0D: 4D 0F AF EF        imul        r13,r15
+  0000000000000F11: 49 21 C5           and         r13,rax
+  0000000000000F14: 62 D2 FD 28 7C D5  vpbroadcastq ymm2,r13
+  0000000000000F1A: 49 8B 91 40 01 00  mov         rdx,qword ptr [r9+140h]
+                    00
+  0000000000000F21: C4 42 93 F6 E5     mulx        r12,r13,r13
+  0000000000000F26: 4D 01 EF           add         r15,r13
+  0000000000000F29: 4D 11 E2           adc         r10,r12
+  0000000000000F2C: 49 C1 EF 34        shr         r15,34h
+  0000000000000F30: 49 C1 E2 0C        shl         r10,0Ch
+  0000000000000F34: 4D 09 D7           or          r15,r10
+  0000000000000F37: 62 72 F5 28 B4 6A  vpmadd52luq ymm13,ymm1,ymmword ptr [rdx+140h]
+                    0A
+  0000000000000F3E: 62 72 F5 28 B4 72  vpmadd52luq ymm14,ymm1,ymmword ptr [rdx+160h]
+                    0B
+  0000000000000F45: 62 72 F5 28 B4 7A  vpmadd52luq ymm15,ymm1,ymmword ptr [rdx+180h]
+                    0C
+  0000000000000F4C: 62 E2 F5 28 B4 42  vpmadd52luq ymm16,ymm1,ymmword ptr [rdx+1A0h]
+                    0D
+  0000000000000F53: 62 E2 F5 28 B4 4A  vpmadd52luq ymm17,ymm1,ymmword ptr [rdx+1C0h]
+                    0E
+  0000000000000F5A: 62 E2 F5 28 B4 52  vpmadd52luq ymm18,ymm1,ymmword ptr [rdx+1E0h]
+                    0F
+  0000000000000F61: 62 E2 F5 28 B4 5A  vpmadd52luq ymm19,ymm1,ymmword ptr [rdx+200h]
+                    10
+  0000000000000F68: 62 E2 F5 28 B4 62  vpmadd52luq ymm20,ymm1,ymmword ptr [rdx+220h]
+                    11
+  0000000000000F6F: 62 E2 F5 28 B4 6A  vpmadd52luq ymm21,ymm1,ymmword ptr [rdx+240h]
+                    12
+  0000000000000F76: 62 E2 F5 28 B4 72  vpmadd52luq ymm22,ymm1,ymmword ptr [rdx+260h]
+                    13
+  0000000000000F7D: 62 52 ED 28 B4 69  vpmadd52luq ymm13,ymm2,ymmword ptr [r9+140h]
+                    0A
+  0000000000000F84: 62 52 ED 28 B4 71  vpmadd52luq ymm14,ymm2,ymmword ptr [r9+160h]
+                    0B
+  0000000000000F8B: 62 52 ED 28 B4 79  vpmadd52luq ymm15,ymm2,ymmword ptr [r9+180h]
+                    0C
+  0000000000000F92: 62 C2 ED 28 B4 41  vpmadd52luq ymm16,ymm2,ymmword ptr [r9+1A0h]
+                    0D
+  0000000000000F99: 62 C2 ED 28 B4 49  vpmadd52luq ymm17,ymm2,ymmword ptr [r9+1C0h]
+                    0E
+  0000000000000FA0: 62 C2 ED 28 B4 51  vpmadd52luq ymm18,ymm2,ymmword ptr [r9+1E0h]
+                    0F
+  0000000000000FA7: 62 C2 ED 28 B4 59  vpmadd52luq ymm19,ymm2,ymmword ptr [r9+200h]
+                    10
+  0000000000000FAE: 62 C2 ED 28 B4 61  vpmadd52luq ymm20,ymm2,ymmword ptr [r9+220h]
+                    11
+  0000000000000FB5: 62 C2 ED 28 B4 69  vpmadd52luq ymm21,ymm2,ymmword ptr [r9+240h]
+                    12
+  0000000000000FBC: 62 C2 ED 28 B4 71  vpmadd52luq ymm22,ymm2,ymmword ptr [r9+260h]
+                    13
+  0000000000000FC3: 62 53 8D 28 03 ED  valignq     ymm13,ymm14,ymm13,1
+                    01
+  0000000000000FCA: 62 53 85 28 03 F6  valignq     ymm14,ymm15,ymm14,1
+                    01
+  0000000000000FD1: 62 53 FD 20 03 FF  valignq     ymm15,ymm16,ymm15,1
+                    01
+  0000000000000FD8: 62 A3 F5 20 03 C0  valignq     ymm16,ymm17,ymm16,1
+                    01
+  0000000000000FDF: 62 A3 ED 20 03 C9  valignq     ymm17,ymm18,ymm17,1
+                    01
+  0000000000000FE6: 62 A3 E5 20 03 D2  valignq     ymm18,ymm19,ymm18,1
+                    01
+  0000000000000FED: 62 A3 DD 20 03 DB  valignq     ymm19,ymm20,ymm19,1
+                    01
+  0000000000000FF4: 62 A3 D5 20 03 E4  valignq     ymm20,ymm21,ymm20,1
+                    01
+  0000000000000FFB: 62 A3 CD 20 03 ED  valignq     ymm21,ymm22,ymm21,1
+                    01
+  0000000000001002: 62 A3 FD 28 03 F6  valignq     ymm22,ymm0,ymm22,1
+                    01
+  0000000000001009: C4 41 F9 7E ED     vmovq       r13,xmm13
+  000000000000100E: 4D 01 EF           add         r15,r13
+  0000000000001011: 62 72 F5 28 B5 6A  vpmadd52huq ymm13,ymm1,ymmword ptr [rdx+140h]
+                    0A
+  0000000000001018: 62 72 F5 28 B5 72  vpmadd52huq ymm14,ymm1,ymmword ptr [rdx+160h]
+                    0B
+  000000000000101F: 62 72 F5 28 B5 7A  vpmadd52huq ymm15,ymm1,ymmword ptr [rdx+180h]
+                    0C
+  0000000000001026: 62 E2 F5 28 B5 42  vpmadd52huq ymm16,ymm1,ymmword ptr [rdx+1A0h]
+                    0D
+  000000000000102D: 62 E2 F5 28 B5 4A  vpmadd52huq ymm17,ymm1,ymmword ptr [rdx+1C0h]
+                    0E
+  0000000000001034: 62 E2 F5 28 B5 52  vpmadd52huq ymm18,ymm1,ymmword ptr [rdx+1E0h]
+                    0F
+  000000000000103B: 62 E2 F5 28 B5 5A  vpmadd52huq ymm19,ymm1,ymmword ptr [rdx+200h]
+                    10
+  0000000000001042: 62 E2 F5 28 B5 62  vpmadd52huq ymm20,ymm1,ymmword ptr [rdx+220h]
+                    11
+  0000000000001049: 62 E2 F5 28 B5 6A  vpmadd52huq ymm21,ymm1,ymmword ptr [rdx+240h]
+                    12
+  0000000000001050: 62 E2 F5 28 B5 72  vpmadd52huq ymm22,ymm1,ymmword ptr [rdx+260h]
+                    13
+  0000000000001057: 62 52 ED 28 B5 69  vpmadd52huq ymm13,ymm2,ymmword ptr [r9+140h]
+                    0A
+  000000000000105E: 62 52 ED 28 B5 71  vpmadd52huq ymm14,ymm2,ymmword ptr [r9+160h]
+                    0B
+  0000000000001065: 62 52 ED 28 B5 79  vpmadd52huq ymm15,ymm2,ymmword ptr [r9+180h]
+                    0C
+  000000000000106C: 62 C2 ED 28 B5 41  vpmadd52huq ymm16,ymm2,ymmword ptr [r9+1A0h]
+                    0D
+  0000000000001073: 62 C2 ED 28 B5 49  vpmadd52huq ymm17,ymm2,ymmword ptr [r9+1C0h]
+                    0E
+  000000000000107A: 62 C2 ED 28 B5 51  vpmadd52huq ymm18,ymm2,ymmword ptr [r9+1E0h]
+                    0F
+  0000000000001081: 62 C2 ED 28 B5 59  vpmadd52huq ymm19,ymm2,ymmword ptr [r9+200h]
+                    10
+  0000000000001088: 62 C2 ED 28 B5 61  vpmadd52huq ymm20,ymm2,ymmword ptr [r9+220h]
+                    11
+  000000000000108F: 62 C2 ED 28 B5 69  vpmadd52huq ymm21,ymm2,ymmword ptr [r9+240h]
+                    12
+  0000000000001096: 62 C2 ED 28 B5 71  vpmadd52huq ymm22,ymm2,ymmword ptr [r9+260h]
+                    13
+  000000000000109D: 4D 8D 5B 08        lea         r11,[r11+8]
+  00000000000010A1: FF CB              dec         ebx
+  00000000000010A3: 0F 85 97 FC FF FF  jne         L$loop40
+  00000000000010A9: 62 D2 FD 28 7C C1  vpbroadcastq ymm0,r9
+  00000000000010AF: C4 E3 65 02 D8 03  vpblendd    ymm3,ymm3,ymm0,3
+  00000000000010B5: C5 FD 73 D3 34     vpsrlq      ymm0,ymm3,34h
+  00000000000010BA: C5 F5 73 D4 34     vpsrlq      ymm1,ymm4,34h
+  00000000000010BF: C5 ED 73 D5 34     vpsrlq      ymm2,ymm5,34h
+  00000000000010C4: 62 F1 C5 20 73 D6  vpsrlq      ymm23,ymm6,34h
+                    34
+  00000000000010CB: 62 F1 BD 20 73 D7  vpsrlq      ymm24,ymm7,34h
+                    34
+  00000000000010D2: 62 D1 B5 20 73 D0  vpsrlq      ymm25,ymm8,34h
+                    34
+  00000000000010D9: 62 D1 AD 20 73 D1  vpsrlq      ymm26,ymm9,34h
+                    34
+  00000000000010E0: 62 D1 A5 20 73 D2  vpsrlq      ymm27,ymm10,34h
+                    34
+  00000000000010E7: 62 D1 9D 20 73 D3  vpsrlq      ymm28,ymm11,34h
+                    34
+  00000000000010EE: 62 D1 95 20 73 D4  vpsrlq      ymm29,ymm12,34h
+                    34
+  00000000000010F5: 62 03 95 20 03 EC  valignq     ymm29,ymm29,ymm28,3
+                    03
+  00000000000010FC: 62 03 9D 20 03 E3  valignq     ymm28,ymm28,ymm27,3
+                    03
+  0000000000001103: 62 03 A5 20 03 DA  valignq     ymm27,ymm27,ymm26,3
+                    03
+  000000000000110A: 62 03 AD 20 03 D1  valignq     ymm26,ymm26,ymm25,3
+                    03
+  0000000000001111: 62 03 B5 20 03 C8  valignq     ymm25,ymm25,ymm24,3
+                    03
+  0000000000001118: 62 23 BD 20 03 C7  valignq     ymm24,ymm24,ymm23,3
+                    03
+  000000000000111F: 62 E3 C5 20 03 FA  valignq     ymm23,ymm23,ymm2,3
+                    03
+  0000000000001126: 62 F3 ED 28 03 D1  valignq     ymm2,ymm2,ymm1,3
+                    03
+  000000000000112D: 62 F3 F5 28 03 C8  valignq     ymm1,ymm1,ymm0,3
+                    03
+  0000000000001134: 62 F3 FD 28 03 05  valignq     ymm0,ymm0,ymmword ptr [.rdata+3Fh],3
+                    3F 00 00 00 03
+  000000000000113F: 62 F1 E5 28 DB 1D  vpandq      ymm3,ymm3,ymmword ptr [.rdata]
+                    00 00 00 00
+  0000000000001149: 62 F1 DD 28 DB 25  vpandq      ymm4,ymm4,ymmword ptr [.rdata]
+                    00 00 00 00
+  0000000000001153: 62 F1 D5 28 DB 2D  vpandq      ymm5,ymm5,ymmword ptr [.rdata]
+                    00 00 00 00
+  000000000000115D: 62 F1 CD 28 DB 35  vpandq      ymm6,ymm6,ymmword ptr [.rdata]
+                    00 00 00 00
+  0000000000001167: 62 F1 C5 28 DB 3D  vpandq      ymm7,ymm7,ymmword ptr [.rdata]
+                    00 00 00 00
+  0000000000001171: 62 71 BD 28 DB 05  vpandq      ymm8,ymm8,ymmword ptr [.rdata]
+                    00 00 00 00
+  000000000000117B: 62 71 B5 28 DB 0D  vpandq      ymm9,ymm9,ymmword ptr [.rdata]
+                    00 00 00 00
+  0000000000001185: 62 71 AD 28 DB 15  vpandq      ymm10,ymm10,ymmword ptr [.rdata]
+                    00 00 00 00
+  000000000000118F: 62 71 A5 28 DB 1D  vpandq      ymm11,ymm11,ymmword ptr [.rdata]
+                    00 00 00 00
+  0000000000001199: 62 71 9D 28 DB 25  vpandq      ymm12,ymm12,ymmword ptr [.rdata]
+                    00 00 00 00
+  00000000000011A3: C5 E5 D4 D8        vpaddq      ymm3,ymm3,ymm0
+  00000000000011A7: C5 DD D4 E1        vpaddq      ymm4,ymm4,ymm1
+  00000000000011AB: C5 D5 D4 EA        vpaddq      ymm5,ymm5,ymm2
+  00000000000011AF: 62 B1 CD 28 D4 F7  vpaddq      ymm6,ymm6,ymm23
+  00000000000011B5: 62 91 C5 28 D4 F8  vpaddq      ymm7,ymm7,ymm24
+  00000000000011BB: 62 11 BD 28 D4 C1  vpaddq      ymm8,ymm8,ymm25
+  00000000000011C1: 62 11 B5 28 D4 CA  vpaddq      ymm9,ymm9,ymm26
+  00000000000011C7: 62 11 AD 28 D4 D3  vpaddq      ymm10,ymm10,ymm27
+  00000000000011CD: 62 11 A5 28 D4 DC  vpaddq      ymm11,ymm11,ymm28
+  00000000000011D3: 62 11 9D 28 D4 E5  vpaddq      ymm12,ymm12,ymm29
+  00000000000011D9: 62 F3 E5 28 1E 0D  vpcmpuq     k1,ymm3,ymmword ptr [.rdata+0FFFFFFFFh],6
+                    FF FF FF FF 06
+  00000000000011E4: 62 F3 DD 28 1E 15  vpcmpuq     k2,ymm4,ymmword ptr [.rdata+0FFFFFFFFh],6
+                    FF FF FF FF 06
+  00000000000011EF: C5 79 93 F1        kmovb       r14d,k1
+  00000000000011F3: C5 79 93 EA        kmovb       r13d,k2
+  00000000000011F7: 41 C0 E5 04        shl         r13b,4
+  00000000000011FB: 45 08 EE           or          r14b,r13b
+  00000000000011FE: 62 F3 D5 28 1E 0D  vpcmpuq     k1,ymm5,ymmword ptr [.rdata+0FFFFFFFFh],6
+                    FF FF FF FF 06
+  0000000000001209: 62 F3 CD 28 1E 15  vpcmpuq     k2,ymm6,ymmword ptr [.rdata+0FFFFFFFFh],6
+                    FF FF FF FF 06
+  0000000000001214: C5 79 93 E9        kmovb       r13d,k1
+  0000000000001218: C5 79 93 E2        kmovb       r12d,k2
+  000000000000121C: 41 C0 E4 04        shl         r12b,4
+  0000000000001220: 45 08 E5           or          r13b,r12b
+  0000000000001223: 62 F3 C5 28 1E 0D  vpcmpuq     k1,ymm7,ymmword ptr [.rdata+0FFFFFFFFh],6
+                    FF FF FF FF 06
+  000000000000122E: 62 F3 BD 28 1E 15  vpcmpuq     k2,ymm8,ymmword ptr [.rdata+0FFFFFFFFh],6
+                    FF FF FF FF 06
+  0000000000001239: C5 79 93 E1        kmovb       r12d,k1
+  000000000000123D: C5 79 93 DA        kmovb       r11d,k2
+  0000000000001241: 41 C0 E3 04        shl         r11b,4
+  0000000000001245: 45 08 DC           or          r12b,r11b
+  0000000000001248: 62 F3 B5 28 1E 0D  vpcmpuq     k1,ymm9,ymmword ptr [.rdata+0FFFFFFFFh],6
+                    FF FF FF FF 06
+  0000000000001253: 62 F3 AD 28 1E 15  vpcmpuq     k2,ymm10,ymmword ptr [.rdata+0FFFFFFFFh],6
+                    FF FF FF FF 06
+  000000000000125E: C5 79 93 D9        kmovb       r11d,k1
+  0000000000001262: C5 79 93 D2        kmovb       r10d,k2
+  0000000000001266: 41 C0 E2 04        shl         r10b,4
+  000000000000126A: 45 08 D3           or          r11b,r10b
+  000000000000126D: 62 F3 A5 28 1E 0D  vpcmpuq     k1,ymm11,ymmword ptr [.rdata+0FFFFFFFFh],6
+                    FF FF FF FF 06
+  0000000000001278: 62 F3 9D 28 1E 15  vpcmpuq     k2,ymm12,ymmword ptr [.rdata+0FFFFFFFFh],6
+                    FF FF FF FF 06
+  0000000000001283: C5 79 93 D1        kmovb       r10d,k1
+  0000000000001287: C5 79 93 CA        kmovb       r9d,k2
+  000000000000128B: 41 C0 E1 04        shl         r9b,4
+  000000000000128F: 45 08 CA           or          r10b,r9b
+  0000000000001292: 45 00 F6           add         r14b,r14b
+  0000000000001295: 45 10 ED           adc         r13b,r13b
+  0000000000001298: 45 10 E4           adc         r12b,r12b
+  000000000000129B: 45 10 DB           adc         r11b,r11b
+  000000000000129E: 45 10 D2           adc         r10b,r10b
+  00000000000012A1: 62 F3 E5 28 1E 0D  vpcmpuq     k1,ymm3,ymmword ptr [.rdata+0FFFFFFFFh],0
+                    FF FF FF FF 00
+  00000000000012AC: 62 F3 DD 28 1E 15  vpcmpuq     k2,ymm4,ymmword ptr [.rdata+0FFFFFFFFh],0
+                    FF FF FF FF 00
+  00000000000012B7: C5 79 93 C9        kmovb       r9d,k1
+  00000000000012BB: C5 79 93 C2        kmovb       r8d,k2
+  00000000000012BF: 41 C0 E0 04        shl         r8b,4
+  00000000000012C3: 45 08 C1           or          r9b,r8b
+  00000000000012C6: 62 F3 D5 28 1E 0D  vpcmpuq     k1,ymm5,ymmword ptr [.rdata+0FFFFFFFFh],0
+                    FF FF FF FF 00
+  00000000000012D1: 62 F3 CD 28 1E 15  vpcmpuq     k2,ymm6,ymmword ptr [.rdata+0FFFFFFFFh],0
+                    FF FF FF FF 00
+  00000000000012DC: C5 79 93 C1        kmovb       r8d,k1
+  00000000000012E0: C5 F9 93 D2        kmovb       edx,k2
+  00000000000012E4: C0 E2 04           shl         dl,4
+  00000000000012E7: 41 08 D0           or          r8b,dl
+  00000000000012EA: 62 F3 C5 28 1E 0D  vpcmpuq     k1,ymm7,ymmword ptr [.rdata+0FFFFFFFFh],0
+                    FF FF FF FF 00
+  00000000000012F5: 62 F3 BD 28 1E 15  vpcmpuq     k2,ymm8,ymmword ptr [.rdata+0FFFFFFFFh],0
+                    FF FF FF FF 00
+  0000000000001300: C5 F9 93 D1        kmovb       edx,k1
+  0000000000001304: C5 F9 93 CA        kmovb       ecx,k2
+  0000000000001308: C0 E1 04           shl         cl,4
+  000000000000130B: 08 CA              or          dl,cl
+  000000000000130D: 62 F3 B5 28 1E 0D  vpcmpuq     k1,ymm9,ymmword ptr [.rdata+0FFFFFFFFh],0
+                    FF FF FF FF 00
+  0000000000001318: 62 F3 AD 28 1E 15  vpcmpuq     k2,ymm10,ymmword ptr [.rdata+0FFFFFFFFh],0
+                    FF FF FF FF 00
+  0000000000001323: C5 F9 93 C9        kmovb       ecx,k1
+  0000000000001327: C5 F9 93 DA        kmovb       ebx,k2
+  000000000000132B: C0 E3 04           shl         bl,4
+  000000000000132E: 08 D9              or          cl,bl
+  0000000000001330: 62 F3 A5 28 1E 0D  vpcmpuq     k1,ymm11,ymmword ptr [.rdata+0FFFFFFFFh],0
+                    FF FF FF FF 00
+  000000000000133B: 62 F3 9D 28 1E 15  vpcmpuq     k2,ymm12,ymmword ptr [.rdata+0FFFFFFFFh],0
+                    FF FF FF FF 00
+  0000000000001346: C5 F9 93 D9        kmovb       ebx,k1
+  000000000000134A: C5 F9 93 C2        kmovb       eax,k2
+  000000000000134E: C0 E0 04           shl         al,4
+  0000000000001351: 08 C3              or          bl,al
+  0000000000001353: 45 00 CE           add         r14b,r9b
+  0000000000001356: 45 10 C5           adc         r13b,r8b
+  0000000000001359: 41 10 D4           adc         r12b,dl
+  000000000000135C: 41 10 CB           adc         r11b,cl
+  000000000000135F: 41 10 DA           adc         r10b,bl
+  0000000000001362: 45 30 CE           xor         r14b,r9b
+  0000000000001365: 45 30 C5           xor         r13b,r8b
+  0000000000001368: 41 30 D4           xor         r12b,dl
+  000000000000136B: 41 30 CB           xor         r11b,cl
+  000000000000136E: 41 30 DA           xor         r10b,bl
+  0000000000001371: C4 C1 79 92 CE     kmovb       k1,r14d
+  0000000000001376: 41 C0 EE 04        shr         r14b,4
+  000000000000137A: C4 C1 79 92 D6     kmovb       k2,r14d
+  000000000000137F: C4 C1 79 92 DD     kmovb       k3,r13d
+  0000000000001384: 41 C0 ED 04        shr         r13b,4
+  0000000000001388: C4 C1 79 92 E5     kmovb       k4,r13d
+  000000000000138D: C4 C1 79 92 EC     kmovb       k5,r12d
+  0000000000001392: 41 C0 EC 04        shr         r12b,4
+  0000000000001396: C4 C1 79 92 F4     kmovb       k6,r12d
+  000000000000139B: C4 C1 79 92 FB     kmovb       k7,r11d
+  00000000000013A0: 62 F1 E5 29 FB 1D  vpsubq      ymm3{k1},ymm3,ymmword ptr [.rdata]
+                    00 00 00 00
+  00000000000013AA: 62 F1 DD 2A FB 25  vpsubq      ymm4{k2},ymm4,ymmword ptr [.rdata]
+                    00 00 00 00
+  00000000000013B4: 62 F1 D5 2B FB 2D  vpsubq      ymm5{k3},ymm5,ymmword ptr [.rdata]
+                    00 00 00 00
+  00000000000013BE: 62 F1 CD 2C FB 35  vpsubq      ymm6{k4},ymm6,ymmword ptr [.rdata]
+                    00 00 00 00
+  00000000000013C8: 62 F1 C5 2D FB 3D  vpsubq      ymm7{k5},ymm7,ymmword ptr [.rdata]
+                    00 00 00 00
+  00000000000013D2: 62 71 BD 2E FB 05  vpsubq      ymm8{k6},ymm8,ymmword ptr [.rdata]
+                    00 00 00 00
+  00000000000013DC: 62 71 B5 2F FB 0D  vpsubq      ymm9{k7},ymm9,ymmword ptr [.rdata]
+                    00 00 00 00
+  00000000000013E6: 62 F1 E5 28 DB 1D  vpandq      ymm3,ymm3,ymmword ptr [.rdata]
+                    00 00 00 00
+  00000000000013F0: 62 F1 DD 28 DB 25  vpandq      ymm4,ymm4,ymmword ptr [.rdata]
+                    00 00 00 00
+  00000000000013FA: 62 F1 D5 28 DB 2D  vpandq      ymm5,ymm5,ymmword ptr [.rdata]
+                    00 00 00 00
+  0000000000001404: 62 F1 CD 28 DB 35  vpandq      ymm6,ymm6,ymmword ptr [.rdata]
+                    00 00 00 00
+  000000000000140E: 62 F1 C5 28 DB 3D  vpandq      ymm7,ymm7,ymmword ptr [.rdata]
+                    00 00 00 00
+  0000000000001418: 62 71 BD 28 DB 05  vpandq      ymm8,ymm8,ymmword ptr [.rdata]
+                    00 00 00 00
+  0000000000001422: 62 71 B5 28 DB 0D  vpandq      ymm9,ymm9,ymmword ptr [.rdata]
+                    00 00 00 00
+  000000000000142C: 41 C0 EB 04        shr         r11b,4
+  0000000000001430: C4 C1 79 92 CB     kmovb       k1,r11d
+  0000000000001435: C4 C1 79 92 D2     kmovb       k2,r10d
+  000000000000143A: 41 C0 EA 04        shr         r10b,4
+  000000000000143E: C4 C1 79 92 DA     kmovb       k3,r10d
+  0000000000001443: 62 71 AD 29 FB 15  vpsubq      ymm10{k1},ymm10,ymmword ptr [.rdata]
+                    00 00 00 00
+  000000000000144D: 62 71 A5 2A FB 1D  vpsubq      ymm11{k2},ymm11,ymmword ptr [.rdata]
+                    00 00 00 00
+  0000000000001457: 62 71 9D 2B FB 25  vpsubq      ymm12{k3},ymm12,ymmword ptr [.rdata]
+                    00 00 00 00
+  0000000000001461: 62 71 AD 28 DB 15  vpandq      ymm10,ymm10,ymmword ptr [.rdata]
+                    00 00 00 00
+  000000000000146B: 62 71 A5 28 DB 1D  vpandq      ymm11,ymm11,ymmword ptr [.rdata]
+                    00 00 00 00
+  0000000000001475: 62 71 9D 28 DB 25  vpandq      ymm12,ymm12,ymmword ptr [.rdata]
+                    00 00 00 00
+  000000000000147F: 62 D2 FD 28 7C C7  vpbroadcastq ymm0,r15
+  0000000000001485: C4 63 15 02 E8 03  vpblendd    ymm13,ymm13,ymm0,3
+  000000000000148B: C4 C1 7D 73 D5 34  vpsrlq      ymm0,ymm13,34h
+  0000000000001491: C4 C1 75 73 D6 34  vpsrlq      ymm1,ymm14,34h
+  0000000000001497: C4 C1 6D 73 D7 34  vpsrlq      ymm2,ymm15,34h
+  000000000000149D: 62 B1 C5 20 73 D0  vpsrlq      ymm23,ymm16,34h
+                    34
+  00000000000014A4: 62 B1 BD 20 73 D1  vpsrlq      ymm24,ymm17,34h
+                    34
+  00000000000014AB: 62 B1 B5 20 73 D2  vpsrlq      ymm25,ymm18,34h
+                    34
+  00000000000014B2: 62 B1 AD 20 73 D3  vpsrlq      ymm26,ymm19,34h
+                    34
+  00000000000014B9: 62 B1 A5 20 73 D4  vpsrlq      ymm27,ymm20,34h
+                    34
+  00000000000014C0: 62 B1 9D 20 73 D5  vpsrlq      ymm28,ymm21,34h
+                    34
+  00000000000014C7: 62 B1 95 20 73 D6  vpsrlq      ymm29,ymm22,34h
+                    34
+  00000000000014CE: 62 03 95 20 03 EC  valignq     ymm29,ymm29,ymm28,3
+                    03
+  00000000000014D5: 62 03 9D 20 03 E3  valignq     ymm28,ymm28,ymm27,3
+                    03
+  00000000000014DC: 62 03 A5 20 03 DA  valignq     ymm27,ymm27,ymm26,3
+                    03
+  00000000000014E3: 62 03 AD 20 03 D1  valignq     ymm26,ymm26,ymm25,3
+                    03
+  00000000000014EA: 62 03 B5 20 03 C8  valignq     ymm25,ymm25,ymm24,3
+                    03
+  00000000000014F1: 62 23 BD 20 03 C7  valignq     ymm24,ymm24,ymm23,3
+                    03
+  00000000000014F8: 62 E3 C5 20 03 FA  valignq     ymm23,ymm23,ymm2,3
+                    03
+  00000000000014FF: 62 F3 ED 28 03 D1  valignq     ymm2,ymm2,ymm1,3
+                    03
+  0000000000001506: 62 F3 F5 28 03 C8  valignq     ymm1,ymm1,ymm0,3
+                    03
+  000000000000150D: 62 F3 FD 28 03 05  valignq     ymm0,ymm0,ymmword ptr [.rdata+3Fh],3
+                    3F 00 00 00 03
+  0000000000001518: 62 71 95 28 DB 2D  vpandq      ymm13,ymm13,ymmword ptr [.rdata]
+                    00 00 00 00
+  0000000000001522: 62 71 8D 28 DB 35  vpandq      ymm14,ymm14,ymmword ptr [.rdata]
+                    00 00 00 00
+  000000000000152C: 62 71 85 28 DB 3D  vpandq      ymm15,ymm15,ymmword ptr [.rdata]
+                    00 00 00 00
+  0000000000001536: 62 E1 FD 20 DB 05  vpandq      ymm16,ymm16,ymmword ptr [.rdata]
+                    00 00 00 00
+  0000000000001540: 62 E1 F5 20 DB 0D  vpandq      ymm17,ymm17,ymmword ptr [.rdata]
+                    00 00 00 00
+  000000000000154A: 62 E1 ED 20 DB 15  vpandq      ymm18,ymm18,ymmword ptr [.rdata]
+                    00 00 00 00
+  0000000000001554: 62 E1 E5 20 DB 1D  vpandq      ymm19,ymm19,ymmword ptr [.rdata]
+                    00 00 00 00
+  000000000000155E: 62 E1 DD 20 DB 25  vpandq      ymm20,ymm20,ymmword ptr [.rdata]
+                    00 00 00 00
+  0000000000001568: 62 E1 D5 20 DB 2D  vpandq      ymm21,ymm21,ymmword ptr [.rdata]
+                    00 00 00 00
+  0000000000001572: 62 E1 CD 20 DB 35  vpandq      ymm22,ymm22,ymmword ptr [.rdata]
+                    00 00 00 00
+  000000000000157C: C5 15 D4 E8        vpaddq      ymm13,ymm13,ymm0
+  0000000000001580: C5 0D D4 F1        vpaddq      ymm14,ymm14,ymm1
+  0000000000001584: C5 05 D4 FA        vpaddq      ymm15,ymm15,ymm2
+  0000000000001588: 62 A1 FD 20 D4 C7  vpaddq      ymm16,ymm16,ymm23
+  000000000000158E: 62 81 F5 20 D4 C8  vpaddq      ymm17,ymm17,ymm24
+  0000000000001594: 62 81 ED 20 D4 D1  vpaddq      ymm18,ymm18,ymm25
+  000000000000159A: 62 81 E5 20 D4 DA  vpaddq      ymm19,ymm19,ymm26
+  00000000000015A0: 62 81 DD 20 D4 E3  vpaddq      ymm20,ymm20,ymm27
+  00000000000015A6: 62 81 D5 20 D4 EC  vpaddq      ymm21,ymm21,ymm28
+  00000000000015AC: 62 81 CD 20 D4 F5  vpaddq      ymm22,ymm22,ymm29
+  00000000000015B2: 62 F3 95 28 1E 0D  vpcmpuq     k1,ymm13,ymmword ptr [.rdata+0FFFFFFFFh],6
+                    FF FF FF FF 06
+  00000000000015BD: 62 F3 8D 28 1E 15  vpcmpuq     k2,ymm14,ymmword ptr [.rdata+0FFFFFFFFh],6
+                    FF FF FF FF 06
+  00000000000015C8: C5 79 93 F1        kmovb       r14d,k1
+  00000000000015CC: C5 79 93 EA        kmovb       r13d,k2
+  00000000000015D0: 41 C0 E5 04        shl         r13b,4
+  00000000000015D4: 45 08 EE           or          r14b,r13b
+  00000000000015D7: 62 F3 85 28 1E 0D  vpcmpuq     k1,ymm15,ymmword ptr [.rdata+0FFFFFFFFh],6
+                    FF FF FF FF 06
+  00000000000015E2: 62 F3 FD 20 1E 15  vpcmpuq     k2,ymm16,ymmword ptr [.rdata+0FFFFFFFFh],6
+                    FF FF FF FF 06
+  00000000000015ED: C5 79 93 E9        kmovb       r13d,k1
+  00000000000015F1: C5 79 93 E2        kmovb       r12d,k2
+  00000000000015F5: 41 C0 E4 04        shl         r12b,4
+  00000000000015F9: 45 08 E5           or          r13b,r12b
+  00000000000015FC: 62 F3 F5 20 1E 0D  vpcmpuq     k1,ymm17,ymmword ptr [.rdata+0FFFFFFFFh],6
+                    FF FF FF FF 06
+  0000000000001607: 62 F3 ED 20 1E 15  vpcmpuq     k2,ymm18,ymmword ptr [.rdata+0FFFFFFFFh],6
+                    FF FF FF FF 06
+  0000000000001612: C5 79 93 E1        kmovb       r12d,k1
+  0000000000001616: C5 79 93 DA        kmovb       r11d,k2
+  000000000000161A: 41 C0 E3 04        shl         r11b,4
+  000000000000161E: 45 08 DC           or          r12b,r11b
+  0000000000001621: 62 F3 E5 20 1E 0D  vpcmpuq     k1,ymm19,ymmword ptr [.rdata+0FFFFFFFFh],6
+                    FF FF FF FF 06
+  000000000000162C: 62 F3 DD 20 1E 15  vpcmpuq     k2,ymm20,ymmword ptr [.rdata+0FFFFFFFFh],6
+                    FF FF FF FF 06
+  0000000000001637: C5 79 93 D9        kmovb       r11d,k1
+  000000000000163B: C5 79 93 D2        kmovb       r10d,k2
+  000000000000163F: 41 C0 E2 04        shl         r10b,4
+  0000000000001643: 45 08 D3           or          r11b,r10b
+  0000000000001646: 62 F3 D5 20 1E 0D  vpcmpuq     k1,ymm21,ymmword ptr [.rdata+0FFFFFFFFh],6
+                    FF FF FF FF 06
+  0000000000001651: 62 F3 CD 20 1E 15  vpcmpuq     k2,ymm22,ymmword ptr [.rdata+0FFFFFFFFh],6
+                    FF FF FF FF 06
+  000000000000165C: C5 79 93 D1        kmovb       r10d,k1
+  0000000000001660: C5 79 93 CA        kmovb       r9d,k2
+  0000000000001664: 41 C0 E1 04        shl         r9b,4
+  0000000000001668: 45 08 CA           or          r10b,r9b
+  000000000000166B: 45 00 F6           add         r14b,r14b
+  000000000000166E: 45 10 ED           adc         r13b,r13b
+  0000000000001671: 45 10 E4           adc         r12b,r12b
+  0000000000001674: 45 10 DB           adc         r11b,r11b
+  0000000000001677: 45 10 D2           adc         r10b,r10b
+  000000000000167A: 62 F3 95 28 1E 0D  vpcmpuq     k1,ymm13,ymmword ptr [.rdata+0FFFFFFFFh],0
+                    FF FF FF FF 00
+  0000000000001685: 62 F3 8D 28 1E 15  vpcmpuq     k2,ymm14,ymmword ptr [.rdata+0FFFFFFFFh],0
+                    FF FF FF FF 00
+  0000000000001690: C5 79 93 C9        kmovb       r9d,k1
+  0000000000001694: C5 79 93 C2        kmovb       r8d,k2
+  0000000000001698: 41 C0 E0 04        shl         r8b,4
+  000000000000169C: 45 08 C1           or          r9b,r8b
+  000000000000169F: 62 F3 85 28 1E 0D  vpcmpuq     k1,ymm15,ymmword ptr [.rdata+0FFFFFFFFh],0
+                    FF FF FF FF 00
+  00000000000016AA: 62 F3 FD 20 1E 15  vpcmpuq     k2,ymm16,ymmword ptr [.rdata+0FFFFFFFFh],0
+                    FF FF FF FF 00
+  00000000000016B5: C5 79 93 C1        kmovb       r8d,k1
+  00000000000016B9: C5 F9 93 D2        kmovb       edx,k2
+  00000000000016BD: C0 E2 04           shl         dl,4
+  00000000000016C0: 41 08 D0           or          r8b,dl
+  00000000000016C3: 62 F3 F5 20 1E 0D  vpcmpuq     k1,ymm17,ymmword ptr [.rdata+0FFFFFFFFh],0
+                    FF FF FF FF 00
+  00000000000016CE: 62 F3 ED 20 1E 15  vpcmpuq     k2,ymm18,ymmword ptr [.rdata+0FFFFFFFFh],0
+                    FF FF FF FF 00
+  00000000000016D9: C5 F9 93 D1        kmovb       edx,k1
+  00000000000016DD: C5 F9 93 CA        kmovb       ecx,k2
+  00000000000016E1: C0 E1 04           shl         cl,4
+  00000000000016E4: 08 CA              or          dl,cl
+  00000000000016E6: 62 F3 E5 20 1E 0D  vpcmpuq     k1,ymm19,ymmword ptr [.rdata+0FFFFFFFFh],0
+                    FF FF FF FF 00
+  00000000000016F1: 62 F3 DD 20 1E 15  vpcmpuq     k2,ymm20,ymmword ptr [.rdata+0FFFFFFFFh],0
+                    FF FF FF FF 00
+  00000000000016FC: C5 F9 93 C9        kmovb       ecx,k1
+  0000000000001700: C5 F9 93 DA        kmovb       ebx,k2
+  0000000000001704: C0 E3 04           shl         bl,4
+  0000000000001707: 08 D9              or          cl,bl
+  0000000000001709: 62 F3 D5 20 1E 0D  vpcmpuq     k1,ymm21,ymmword ptr [.rdata+0FFFFFFFFh],0
+                    FF FF FF FF 00
+  0000000000001714: 62 F3 CD 20 1E 15  vpcmpuq     k2,ymm22,ymmword ptr [.rdata+0FFFFFFFFh],0
+                    FF FF FF FF 00
+  000000000000171F: C5 F9 93 D9        kmovb       ebx,k1
+  0000000000001723: C5 F9 93 C2        kmovb       eax,k2
+  0000000000001727: C0 E0 04           shl         al,4
+  000000000000172A: 08 C3              or          bl,al
+  000000000000172C: 45 00 CE           add         r14b,r9b
+  000000000000172F: 45 10 C5           adc         r13b,r8b
+  0000000000001732: 41 10 D4           adc         r12b,dl
+  0000000000001735: 41 10 CB           adc         r11b,cl
+  0000000000001738: 41 10 DA           adc         r10b,bl
+  000000000000173B: 45 30 CE           xor         r14b,r9b
+  000000000000173E: 45 30 C5           xor         r13b,r8b
+  0000000000001741: 41 30 D4           xor         r12b,dl
+  0000000000001744: 41 30 CB           xor         r11b,cl
+  0000000000001747: 41 30 DA           xor         r10b,bl
+  000000000000174A: C4 C1 79 92 CE     kmovb       k1,r14d
+  000000000000174F: 41 C0 EE 04        shr         r14b,4
+  0000000000001753: C4 C1 79 92 D6     kmovb       k2,r14d
+  0000000000001758: C4 C1 79 92 DD     kmovb       k3,r13d
+  000000000000175D: 41 C0 ED 04        shr         r13b,4
+  0000000000001761: C4 C1 79 92 E5     kmovb       k4,r13d
+  0000000000001766: C4 C1 79 92 EC     kmovb       k5,r12d
+  000000000000176B: 41 C0 EC 04        shr         r12b,4
+  000000000000176F: C4 C1 79 92 F4     kmovb       k6,r12d
+  0000000000001774: C4 C1 79 92 FB     kmovb       k7,r11d
+  0000000000001779: 62 71 95 29 FB 2D  vpsubq      ymm13{k1},ymm13,ymmword ptr [.rdata]
+                    00 00 00 00
+  0000000000001783: 62 71 8D 2A FB 35  vpsubq      ymm14{k2},ymm14,ymmword ptr [.rdata]
+                    00 00 00 00
+  000000000000178D: 62 71 85 2B FB 3D  vpsubq      ymm15{k3},ymm15,ymmword ptr [.rdata]
+                    00 00 00 00
+  0000000000001797: 62 E1 FD 24 FB 05  vpsubq      ymm16{k4},ymm16,ymmword ptr [.rdata]
+                    00 00 00 00
+  00000000000017A1: 62 E1 F5 25 FB 0D  vpsubq      ymm17{k5},ymm17,ymmword ptr [.rdata]
+                    00 00 00 00
+  00000000000017AB: 62 E1 ED 26 FB 15  vpsubq      ymm18{k6},ymm18,ymmword ptr [.rdata]
+                    00 00 00 00
+  00000000000017B5: 62 E1 E5 27 FB 1D  vpsubq      ymm19{k7},ymm19,ymmword ptr [.rdata]
+                    00 00 00 00
+  00000000000017BF: 62 71 95 28 DB 2D  vpandq      ymm13,ymm13,ymmword ptr [.rdata]
+                    00 00 00 00
+  00000000000017C9: 62 71 8D 28 DB 35  vpandq      ymm14,ymm14,ymmword ptr [.rdata]
+                    00 00 00 00
+  00000000000017D3: 62 71 85 28 DB 3D  vpandq      ymm15,ymm15,ymmword ptr [.rdata]
+                    00 00 00 00
+  00000000000017DD: 62 E1 FD 20 DB 05  vpandq      ymm16,ymm16,ymmword ptr [.rdata]
+                    00 00 00 00
+  00000000000017E7: 62 E1 F5 20 DB 0D  vpandq      ymm17,ymm17,ymmword ptr [.rdata]
+                    00 00 00 00
+  00000000000017F1: 62 E1 ED 20 DB 15  vpandq      ymm18,ymm18,ymmword ptr [.rdata]
+                    00 00 00 00
+  00000000000017FB: 62 E1 E5 20 DB 1D  vpandq      ymm19,ymm19,ymmword ptr [.rdata]
+                    00 00 00 00
+  0000000000001805: 41 C0 EB 04        shr         r11b,4
+  0000000000001809: C4 C1 79 92 CB     kmovb       k1,r11d
+  000000000000180E: C4 C1 79 92 D2     kmovb       k2,r10d
+  0000000000001813: 41 C0 EA 04        shr         r10b,4
+  0000000000001817: C4 C1 79 92 DA     kmovb       k3,r10d
+  000000000000181C: 62 E1 DD 21 FB 25  vpsubq      ymm20{k1},ymm20,ymmword ptr [.rdata]
+                    00 00 00 00
+  0000000000001826: 62 E1 D5 22 FB 2D  vpsubq      ymm21{k2},ymm21,ymmword ptr [.rdata]
+                    00 00 00 00
+  0000000000001830: 62 E1 CD 23 FB 35  vpsubq      ymm22{k3},ymm22,ymmword ptr [.rdata]
+                    00 00 00 00
+  000000000000183A: 62 E1 DD 20 DB 25  vpandq      ymm20,ymm20,ymmword ptr [.rdata]
+                    00 00 00 00
+  0000000000001844: 62 E1 D5 20 DB 2D  vpandq      ymm21,ymm21,ymmword ptr [.rdata]
+                    00 00 00 00
+  000000000000184E: 62 E1 CD 20 DB 35  vpandq      ymm22,ymm22,ymmword ptr [.rdata]
+                    00 00 00 00
+  0000000000001858: 62 F1 FE 28 7F 19  vmovdqu64   ymmword ptr [rcx],ymm3
+  000000000000185E: 62 F1 FE 28 7F 61  vmovdqu64   ymmword ptr [rcx+20h],ymm4
+                    01
+  0000000000001865: 62 F1 FE 28 7F 69  vmovdqu64   ymmword ptr [rcx+40h],ymm5
+                    02
+  000000000000186C: 62 F1 FE 28 7F 71  vmovdqu64   ymmword ptr [rcx+60h],ymm6
+                    03
+  0000000000001873: 62 F1 FE 28 7F 79  vmovdqu64   ymmword ptr [rcx+80h],ymm7
+                    04
+  000000000000187A: 62 71 FE 28 7F 41  vmovdqu64   ymmword ptr [rcx+0A0h],ymm8
+                    05
+  0000000000001881: 62 71 FE 28 7F 49  vmovdqu64   ymmword ptr [rcx+0C0h],ymm9
+                    06
+  0000000000001888: 62 71 FE 28 7F 51  vmovdqu64   ymmword ptr [rcx+0E0h],ymm10
+                    07
+  000000000000188F: 62 71 FE 28 7F 59  vmovdqu64   ymmword ptr [rcx+100h],ymm11
+                    08
+  0000000000001896: 62 71 FE 28 7F 61  vmovdqu64   ymmword ptr [rcx+120h],ymm12
+                    09
+  000000000000189D: 62 71 FE 28 7F 69  vmovdqu64   ymmword ptr [rcx+140h],ymm13
+                    0A
+  00000000000018A4: 62 71 FE 28 7F 71  vmovdqu64   ymmword ptr [rcx+160h],ymm14
+                    0B
+  00000000000018AB: 62 71 FE 28 7F 79  vmovdqu64   ymmword ptr [rcx+180h],ymm15
+                    0C
+  00000000000018B2: 62 E1 FE 28 7F 41  vmovdqu64   ymmword ptr [rcx+1A0h],ymm16
+                    0D
+  00000000000018B9: 62 E1 FE 28 7F 49  vmovdqu64   ymmword ptr [rcx+1C0h],ymm17
+                    0E
+  00000000000018C0: 62 E1 FE 28 7F 51  vmovdqu64   ymmword ptr [rcx+1E0h],ymm18
+                    0F
+  00000000000018C7: 62 E1 FE 28 7F 59  vmovdqu64   ymmword ptr [rcx+200h],ymm19
+                    10
+  00000000000018CE: 62 E1 FE 28 7F 61  vmovdqu64   ymmword ptr [rcx+220h],ymm20
+                    11
+  00000000000018D5: 62 E1 FE 28 7F 69  vmovdqu64   ymmword ptr [rcx+240h],ymm21
+                    12
+  00000000000018DC: 62 E1 FE 28 7F 71  vmovdqu64   ymmword ptr [rcx+260h],ymm22
+                    13
+  00000000000018E3: C5 F8 77           vzeroupper
+  00000000000018E6: 48 8D 04 24        lea         rax,[rsp]
+  00000000000018EA: 62 F1 FD 08 6F 30  vmovdqa64   xmm6,xmmword ptr [rax]
+  00000000000018F0: 62 F1 FD 08 6F 78  vmovdqa64   xmm7,xmmword ptr [rax+10h]
+                    01
+  00000000000018F7: 62 71 FD 08 6F 40  vmovdqa64   xmm8,xmmword ptr [rax+20h]
+                    02
+  00000000000018FE: 62 71 FD 08 6F 48  vmovdqa64   xmm9,xmmword ptr [rax+30h]
+                    03
+  0000000000001905: 62 71 FD 08 6F 50  vmovdqa64   xmm10,xmmword ptr [rax+40h]
+                    04
+  000000000000190C: 62 71 FD 08 6F 58  vmovdqa64   xmm11,xmmword ptr [rax+50h]
+                    05
+  0000000000001913: 62 71 FD 08 6F 60  vmovdqa64   xmm12,xmmword ptr [rax+60h]
+                    06
+  000000000000191A: 62 71 FD 08 6F 68  vmovdqa64   xmm13,xmmword ptr [rax+70h]
+                    07
+  0000000000001921: 62 71 FD 08 6F 70  vmovdqa64   xmm14,xmmword ptr [rax+80h]
+                    08
+  0000000000001928: 62 71 FD 08 6F 78  vmovdqa64   xmm15,xmmword ptr [rax+90h]
+                    09
+  000000000000192F: 48 8D 84 24 A8 00  lea         rax,[rsp+0A8h]
+                    00 00
+  0000000000001937: 4C 8B 38           mov         r15,qword ptr [rax]
+  000000000000193A: 4C 8B 70 08        mov         r14,qword ptr [rax+8]
+  000000000000193E: 4C 8B 68 10        mov         r13,qword ptr [rax+10h]
+  0000000000001942: 4C 8B 60 18        mov         r12,qword ptr [rax+18h]
+  0000000000001946: 48 8B 68 20        mov         rbp,qword ptr [rax+20h]
+  000000000000194A: 48 8B 58 28        mov         rbx,qword ptr [rax+28h]
+  000000000000194E: 48 8D 60 30        lea         rsp,[rax+30h]
+L$rsaz_amm52x40_x2_ifma256_epilogue:
+  0000000000001952: 48 8B 7C 24 08     mov         rdi,qword ptr [rsp+8]
+  0000000000001957: 48 8B 74 24 10     mov         rsi,qword ptr [rsp+10h]
+  000000000000195C: F3 C3              rep ret
+L$SEH_end_rsaz_amm52x40_x2_ifma256:
+  000000000000195E: 90                 nop
+  000000000000195F: 90                 nop
+aws_lc_0_21_2_extract_multiplier_2x40_win5:
+  0000000000001960: F3 0F 1E FA        endbr64
+  0000000000001964: 62 61 FD 28 6F 05  vmovdqa64   ymm24,ymmword ptr [.rdata+20h]
+                    20 00 00 00
+  000000000000196E: 62 C2 FD 28 7C F0  vpbroadcastq ymm22,r8
+  0000000000001974: 62 C2 FD 28 7C F9  vpbroadcastq ymm23,r9
+  000000000000197A: 48 8D 82 00 50 00  lea         rax,[rdx+5000h]
+                    00
+  0000000000001981: 49 89 D2           mov         r10,rdx
+  0000000000001984: C5 F9 EF C0        vpxor       xmm0,xmm0,xmm0
+  0000000000001988: 62 F1 FD 28 6F C8  vmovdqa64   ymm1,ymm0
+  000000000000198E: 62 F1 FD 28 6F D0  vmovdqa64   ymm2,ymm0
+  0000000000001994: 62 F1 FD 28 6F D8  vmovdqa64   ymm3,ymm0
+  000000000000199A: 62 F1 FD 28 6F E0  vmovdqa64   ymm4,ymm0
+  00000000000019A0: 62 F1 FD 28 6F E8  vmovdqa64   ymm5,ymm0
+  00000000000019A6: 62 E1 FD 28 6F C0  vmovdqa64   ymm16,ymm0
+  00000000000019AC: 62 E1 FD 28 6F C8  vmovdqa64   ymm17,ymm0
+  00000000000019B2: 62 E1 FD 28 6F D0  vmovdqa64   ymm18,ymm0
+  00000000000019B8: 62 E1 FD 28 6F D8  vmovdqa64   ymm19,ymm0
+  00000000000019BE: 62 A1 D5 20 EF ED  vpxorq      ymm21,ymm21,ymm21
+  00000000000019C4: 90                 nop
+  00000000000019C5: 90                 nop
+  00000000000019C6: 90                 nop
+  00000000000019C7: 90                 nop
+  00000000000019C8: 90                 nop
+  00000000000019C9: 90                 nop
+  00000000000019CA: 90                 nop
+  00000000000019CB: 90                 nop
+  00000000000019CC: 90                 nop
+  00000000000019CD: 90                 nop
+  00000000000019CE: 90                 nop
+  00000000000019CF: 90                 nop
+  00000000000019D0: 90                 nop
+  00000000000019D1: 90                 nop
+  00000000000019D2: 90                 nop
+  00000000000019D3: 90                 nop
+  00000000000019D4: 90                 nop
+  00000000000019D5: 90                 nop
+  00000000000019D6: 90                 nop
+  00000000000019D7: 90                 nop
+  00000000000019D8: 90                 nop
+  00000000000019D9: 90                 nop
+  00000000000019DA: 90                 nop
+  00000000000019DB: 90                 nop
+  00000000000019DC: 90                 nop
+  00000000000019DD: 90                 nop
+  00000000000019DE: 90                 nop
+  00000000000019DF: 90                 nop
+L$loop_0:
+  00000000000019E0: 62 B3 CD 20 1F CD  vpcmpq      k1,ymm22,ymm21,0
+                    00
+  00000000000019E7: 62 E1 FE 28 6F 22  vmovdqu64   ymm20,ymmword ptr [rdx]
+  00000000000019ED: 62 B2 FD 29 64 C4  vpblendmq   ymm0{k1},ymm0,ymm20
+  00000000000019F3: 62 E1 FE 28 6F 62  vmovdqu64   ymm20,ymmword ptr [rdx+20h]
+                    01
+  00000000000019FA: 62 B2 F5 29 64 CC  vpblendmq   ymm1{k1},ymm1,ymm20
+  0000000000001A00: 62 E1 FE 28 6F 62  vmovdqu64   ymm20,ymmword ptr [rdx+40h]
+                    02
+  0000000000001A07: 62 B2 ED 29 64 D4  vpblendmq   ymm2{k1},ymm2,ymm20
+  0000000000001A0D: 62 E1 FE 28 6F 62  vmovdqu64   ymm20,ymmword ptr [rdx+60h]
+                    03
+  0000000000001A14: 62 B2 E5 29 64 DC  vpblendmq   ymm3{k1},ymm3,ymm20
+  0000000000001A1A: 62 E1 FE 28 6F 62  vmovdqu64   ymm20,ymmword ptr [rdx+80h]
+                    04
+  0000000000001A21: 62 B2 DD 29 64 E4  vpblendmq   ymm4{k1},ymm4,ymm20
+  0000000000001A27: 62 E1 FE 28 6F 62  vmovdqu64   ymm20,ymmword ptr [rdx+0A0h]
+                    05
+  0000000000001A2E: 62 B2 D5 29 64 EC  vpblendmq   ymm5{k1},ymm5,ymm20
+  0000000000001A34: 62 E1 FE 28 6F 62  vmovdqu64   ymm20,ymmword ptr [rdx+0C0h]
+                    06
+  0000000000001A3B: 62 A2 FD 21 64 C4  vpblendmq   ymm16{k1},ymm16,ymm20
+  0000000000001A41: 62 E1 FE 28 6F 62  vmovdqu64   ymm20,ymmword ptr [rdx+0E0h]
+                    07
+  0000000000001A48: 62 A2 F5 21 64 CC  vpblendmq   ymm17{k1},ymm17,ymm20
+  0000000000001A4E: 62 E1 FE 28 6F 62  vmovdqu64   ymm20,ymmword ptr [rdx+100h]
+                    08
+  0000000000001A55: 62 A2 ED 21 64 D4  vpblendmq   ymm18{k1},ymm18,ymm20
+  0000000000001A5B: 62 E1 FE 28 6F 62  vmovdqu64   ymm20,ymmword ptr [rdx+120h]
+                    09
+  0000000000001A62: 62 A2 E5 21 64 DC  vpblendmq   ymm19{k1},ymm19,ymm20
+  0000000000001A68: 62 81 D5 20 D4 E8  vpaddq      ymm21,ymm21,ymm24
+  0000000000001A6E: 48 81 C2 80 02 00  add         rdx,280h
+                    00
+  0000000000001A75: 48 39 D0           cmp         rax,rdx
+  0000000000001A78: 0F 85 62 FF FF FF  jne         L$loop_0
+  0000000000001A7E: 62 F1 FE 28 7F 01  vmovdqu64   ymmword ptr [rcx],ymm0
+  0000000000001A84: 62 F1 FE 28 7F 49  vmovdqu64   ymmword ptr [rcx+20h],ymm1
+                    01
+  0000000000001A8B: 62 F1 FE 28 7F 51  vmovdqu64   ymmword ptr [rcx+40h],ymm2
+                    02
+  0000000000001A92: 62 F1 FE 28 7F 59  vmovdqu64   ymmword ptr [rcx+60h],ymm3
+                    03
+  0000000000001A99: 62 F1 FE 28 7F 61  vmovdqu64   ymmword ptr [rcx+80h],ymm4
+                    04
+  0000000000001AA0: 62 F1 FE 28 7F 69  vmovdqu64   ymmword ptr [rcx+0A0h],ymm5
+                    05
+  0000000000001AA7: 62 E1 FE 28 7F 41  vmovdqu64   ymmword ptr [rcx+0C0h],ymm16
+                    06
+  0000000000001AAE: 62 E1 FE 28 7F 49  vmovdqu64   ymmword ptr [rcx+0E0h],ymm17
+                    07
+  0000000000001AB5: 62 E1 FE 28 7F 51  vmovdqu64   ymmword ptr [rcx+100h],ymm18
+                    08
+  0000000000001ABC: 62 E1 FE 28 7F 59  vmovdqu64   ymmword ptr [rcx+120h],ymm19
+                    09
+  0000000000001AC3: 4C 89 D2           mov         rdx,r10
+  0000000000001AC6: 62 A1 D5 20 EF ED  vpxorq      ymm21,ymm21,ymm21
+  0000000000001ACC: 90                 nop
+  0000000000001ACD: 90                 nop
+  0000000000001ACE: 90                 nop
+  0000000000001ACF: 90                 nop
+  0000000000001AD0: 90                 nop
+  0000000000001AD1: 90                 nop
+  0000000000001AD2: 90                 nop
+  0000000000001AD3: 90                 nop
+  0000000000001AD4: 90                 nop
+  0000000000001AD5: 90                 nop
+  0000000000001AD6: 90                 nop
+  0000000000001AD7: 90                 nop
+  0000000000001AD8: 90                 nop
+  0000000000001AD9: 90                 nop
+  0000000000001ADA: 90                 nop
+  0000000000001ADB: 90                 nop
+  0000000000001ADC: 90                 nop
+  0000000000001ADD: 90                 nop
+  0000000000001ADE: 90                 nop
+  0000000000001ADF: 90                 nop
+L$loop_320:
+  0000000000001AE0: 62 B3 C5 20 1F CD  vpcmpq      k1,ymm23,ymm21,0
+                    00
+  0000000000001AE7: 62 E1 FE 28 6F 62  vmovdqu64   ymm20,ymmword ptr [rdx+140h]
+                    0A
+  0000000000001AEE: 62 B2 FD 29 64 C4  vpblendmq   ymm0{k1},ymm0,ymm20
+  0000000000001AF4: 62 E1 FE 28 6F 62  vmovdqu64   ymm20,ymmword ptr [rdx+160h]
+                    0B
+  0000000000001AFB: 62 B2 F5 29 64 CC  vpblendmq   ymm1{k1},ymm1,ymm20
+  0000000000001B01: 62 E1 FE 28 6F 62  vmovdqu64   ymm20,ymmword ptr [rdx+180h]
+                    0C
+  0000000000001B08: 62 B2 ED 29 64 D4  vpblendmq   ymm2{k1},ymm2,ymm20
+  0000000000001B0E: 62 E1 FE 28 6F 62  vmovdqu64   ymm20,ymmword ptr [rdx+1A0h]
+                    0D
+  0000000000001B15: 62 B2 E5 29 64 DC  vpblendmq   ymm3{k1},ymm3,ymm20
+  0000000000001B1B: 62 E1 FE 28 6F 62  vmovdqu64   ymm20,ymmword ptr [rdx+1C0h]
+                    0E
+  0000000000001B22: 62 B2 DD 29 64 E4  vpblendmq   ymm4{k1},ymm4,ymm20
+  0000000000001B28: 62 E1 FE 28 6F 62  vmovdqu64   ymm20,ymmword ptr [rdx+1E0h]
+                    0F
+  0000000000001B2F: 62 B2 D5 29 64 EC  vpblendmq   ymm5{k1},ymm5,ymm20
+  0000000000001B35: 62 E1 FE 28 6F 62  vmovdqu64   ymm20,ymmword ptr [rdx+200h]
+                    10
+  0000000000001B3C: 62 A2 FD 21 64 C4  vpblendmq   ymm16{k1},ymm16,ymm20
+  0000000000001B42: 62 E1 FE 28 6F 62  vmovdqu64   ymm20,ymmword ptr [rdx+220h]
+                    11
+  0000000000001B49: 62 A2 F5 21 64 CC  vpblendmq   ymm17{k1},ymm17,ymm20
+  0000000000001B4F: 62 E1 FE 28 6F 62  vmovdqu64   ymm20,ymmword ptr [rdx+240h]
+                    12
+  0000000000001B56: 62 A2 ED 21 64 D4  vpblendmq   ymm18{k1},ymm18,ymm20
+  0000000000001B5C: 62 E1 FE 28 6F 62  vmovdqu64   ymm20,ymmword ptr [rdx+260h]
+                    13
+  0000000000001B63: 62 A2 E5 21 64 DC  vpblendmq   ymm19{k1},ymm19,ymm20
+  0000000000001B69: 62 81 D5 20 D4 E8  vpaddq      ymm21,ymm21,ymm24
+  0000000000001B6F: 48 81 C2 80 02 00  add         rdx,280h
+                    00
+  0000000000001B76: 48 39 D0           cmp         rax,rdx
+  0000000000001B79: 0F 85 61 FF FF FF  jne         L$loop_320
+  0000000000001B7F: 62 F1 FE 28 7F 41  vmovdqu64   ymmword ptr [rcx+140h],ymm0
+                    0A
+  0000000000001B86: 62 F1 FE 28 7F 49  vmovdqu64   ymmword ptr [rcx+160h],ymm1
+                    0B
+  0000000000001B8D: 62 F1 FE 28 7F 51  vmovdqu64   ymmword ptr [rcx+180h],ymm2
+                    0C
+  0000000000001B94: 62 F1 FE 28 7F 59  vmovdqu64   ymmword ptr [rcx+1A0h],ymm3
+                    0D
+  0000000000001B9B: 62 F1 FE 28 7F 61  vmovdqu64   ymmword ptr [rcx+1C0h],ymm4
+                    0E
+  0000000000001BA2: 62 F1 FE 28 7F 69  vmovdqu64   ymmword ptr [rcx+1E0h],ymm5
+                    0F
+  0000000000001BA9: 62 E1 FE 28 7F 41  vmovdqu64   ymmword ptr [rcx+200h],ymm16
+                    10
+  0000000000001BB0: 62 E1 FE 28 7F 49  vmovdqu64   ymmword ptr [rcx+220h],ymm17
+                    11
+  0000000000001BB7: 62 E1 FE 28 7F 51  vmovdqu64   ymmword ptr [rcx+240h],ymm18
+                    12
+  0000000000001BBE: 62 E1 FE 28 7F 59  vmovdqu64   ymmword ptr [rcx+260h],ymm19
+                    13
+  0000000000001BC5: F3 C3              rep ret
+  0000000000001BC7: 90                 nop
+  0000000000001BC8: 90                 nop
+  0000000000001BC9: 90                 nop
+  0000000000001BCA: 90                 nop
+  0000000000001BCB: 90                 nop
+  0000000000001BCC: 90                 nop
+  0000000000001BCD: 90                 nop
+  0000000000001BCE: 90                 nop
+  0000000000001BCF: 90                 nop
+rsaz_avx_handler:
+  0000000000001BD0: 56                 push        rsi
+  0000000000001BD1: 57                 push        rdi
+  0000000000001BD2: 53                 push        rbx
+  0000000000001BD3: 55                 push        rbp
+  0000000000001BD4: 41 54              push        r12
+  0000000000001BD6: 41 55              push        r13
+  0000000000001BD8: 41 56              push        r14
+  0000000000001BDA: 41 57              push        r15
+  0000000000001BDC: 9C                 pushfq
+  0000000000001BDD: 48 83 EC 40        sub         rsp,40h
+  0000000000001BE1: 49 8B 40 78        mov         rax,qword ptr [r8+78h]
+  0000000000001BE5: 49 8B 98 F8 00 00  mov         rbx,qword ptr [r8+0F8h]
+                    00
+  0000000000001BEC: 49 8B 71 08        mov         rsi,qword ptr [r9+8]
+  0000000000001BF0: 4D 8B 59 38        mov         r11,qword ptr [r9+38h]
+  0000000000001BF4: 45 8B 13           mov         r10d,dword ptr [r11]
+  0000000000001BF7: 4E 8D 14 16        lea         r10,[rsi+r10]
+  0000000000001BFB: 4C 39 D3           cmp         rbx,r10
+  0000000000001BFE: 0F 82 74 00 00 00  jb          L$common_seh_tail
+  0000000000001C04: 45 8B 53 04        mov         r10d,dword ptr [r11+4]
+  0000000000001C08: 4E 8D 14 16        lea         r10,[rsi+r10]
+  0000000000001C0C: 4C 39 D3           cmp         rbx,r10
+  0000000000001C0F: 0F 83 63 00 00 00  jae         L$common_seh_tail
+  0000000000001C15: 49 8B 80 98 00 00  mov         rax,qword ptr [r8+98h]
+                    00
+  0000000000001C1C: 48 8D 30           lea         rsi,[rax]
+  0000000000001C1F: 49 8D B8 00 02 00  lea         rdi,[r8+200h]
+                    00
+  0000000000001C26: B9 14 00 00 00     mov         ecx,14h
+  0000000000001C2B: FC                 cld
+  0000000000001C2C: F3 48 A5           rep movs    qword ptr [rdi],qword ptr [rsi]
+  0000000000001C2F: 48 8D 80 D8 00 00  lea         rax,[rax+0D8h]
+                    00
+  0000000000001C36: 48 8B 58 F8        mov         rbx,qword ptr [rax-8]
+  0000000000001C3A: 48 8B 68 F0        mov         rbp,qword ptr [rax-10h]
+  0000000000001C3E: 4C 8B 60 E8        mov         r12,qword ptr [rax-18h]
+  0000000000001C42: 4C 8B 68 E0        mov         r13,qword ptr [rax-20h]
+  0000000000001C46: 4C 8B 70 D8        mov         r14,qword ptr [rax-28h]
+  0000000000001C4A: 4C 8B 78 D0        mov         r15,qword ptr [rax-30h]
+  0000000000001C4E: 49 89 98 90 00 00  mov         qword ptr [r8+90h],rbx
+                    00
+  0000000000001C55: 49 89 A8 A0 00 00  mov         qword ptr [r8+0A0h],rbp
+                    00
+  0000000000001C5C: 4D 89 A0 D8 00 00  mov         qword ptr [r8+0D8h],r12
+                    00
+  0000000000001C63: 4D 89 A8 E0 00 00  mov         qword ptr [r8+0E0h],r13
+                    00
+  0000000000001C6A: 4D 89 B0 E8 00 00  mov         qword ptr [r8+0E8h],r14
+                    00
+  0000000000001C71: 4D 89 B8 F0 00 00  mov         qword ptr [r8+0F0h],r15
+                    00
+L$common_seh_tail:
+  0000000000001C78: 48 8B 78 08        mov         rdi,qword ptr [rax+8]
+  0000000000001C7C: 48 8B 70 10        mov         rsi,qword ptr [rax+10h]
+  0000000000001C80: 49 89 80 98 00 00  mov         qword ptr [r8+98h],rax
+                    00
+  0000000000001C87: 49 89 B0 A8 00 00  mov         qword ptr [r8+0A8h],rsi
+                    00
+  0000000000001C8E: 49 89 B8 B0 00 00  mov         qword ptr [r8+0B0h],rdi
+                    00
+  0000000000001C95: 49 8B 79 28        mov         rdi,qword ptr [r9+28h]
+  0000000000001C99: 4C 89 C6           mov         rsi,r8
+  0000000000001C9C: B9 9A 00 00 00     mov         ecx,9Ah
+  0000000000001CA1: FC                 cld
+  0000000000001CA2: F3 48 A5           rep movs    qword ptr [rdi],qword ptr [rsi]
+  0000000000001CA5: 4C 89 CE           mov         rsi,r9
+  0000000000001CA8: 48 31 C9           xor         rcx,rcx
+  0000000000001CAB: 48 8B 56 08        mov         rdx,qword ptr [rsi+8]
+  0000000000001CAF: 4C 8B 06           mov         r8,qword ptr [rsi]
+  0000000000001CB2: 4C 8B 4E 10        mov         r9,qword ptr [rsi+10h]
+  0000000000001CB6: 4C 8B 56 28        mov         r10,qword ptr [rsi+28h]
+  0000000000001CBA: 4C 8D 5E 38        lea         r11,[rsi+38h]
+  0000000000001CBE: 4C 8D 66 18        lea         r12,[rsi+18h]
+  0000000000001CC2: 4C 89 54 24 20     mov         qword ptr [rsp+20h],r10
+  0000000000001CC7: 4C 89 5C 24 28     mov         qword ptr [rsp+28h],r11
+  0000000000001CCC: 4C 89 64 24 30     mov         qword ptr [rsp+30h],r12
+  0000000000001CD1: 48 89 4C 24 38     mov         qword ptr [rsp+38h],rcx
+  0000000000001CD6: FF 15 00 00 00 00  call        qword ptr [__imp_RtlVirtualUnwind]
+  0000000000001CDC: B8 01 00 00 00     mov         eax,1
+  0000000000001CE1: 48 83 C4 40        add         rsp,40h
+  0000000000001CE5: 9D                 popfq
+  0000000000001CE6: 41 5F              pop         r15
+  0000000000001CE8: 41 5E              pop         r14
+  0000000000001CEA: 41 5D              pop         r13
+  0000000000001CEC: 41 5C              pop         r12
+  0000000000001CEE: 5D                 pop         rbp
+  0000000000001CEF: 5B                 pop         rbx
+  0000000000001CF0: 5F                 pop         rdi
+  0000000000001CF1: 5E                 pop         rsi
+  0000000000001CF2: F3 C3              rep ret
+
+  Summary
+
+          18 .pdata
+          60 .rdata
+        1CF4 .text
+          20 .xdata

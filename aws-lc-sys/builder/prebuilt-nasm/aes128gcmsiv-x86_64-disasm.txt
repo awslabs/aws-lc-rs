@@ -3115,6 +3115,5 @@ L$SEH_begin_aes256gcmsiv_kdf:
 
   Summary
 
-          1C .debug$T
           F0 .rdata
         3231 .text

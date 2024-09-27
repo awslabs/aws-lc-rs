@@ -868,7 +868,6 @@ L$gcm_enc_abort:
 
   Summary
 
-          1C .debug$T
           18 .pdata
           C0 .rdata
          DBD .text

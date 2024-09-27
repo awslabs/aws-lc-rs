@@ -2056,7 +2056,6 @@ L$common_seh_tail:
 
   Summary
 
-          1C .debug$T
           24 .pdata
           C0 .rdata
         1FB0 .text

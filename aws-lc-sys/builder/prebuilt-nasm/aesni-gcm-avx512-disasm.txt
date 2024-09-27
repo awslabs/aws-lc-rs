@@ -11,5 +11,4 @@ aws_lc_0_21_2_gcm_ghash_avx512:
 
   Summary
 
-          1C .debug$T
            4 .text

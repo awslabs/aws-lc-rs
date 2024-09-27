@@ -2718,7 +2718,6 @@ L$in_prologue:
 
   Summary
 
-          1C .debug$T
           18 .pdata
          565 .rdata
         259B .text

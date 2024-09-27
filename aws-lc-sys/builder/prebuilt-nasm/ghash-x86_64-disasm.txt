@@ -1254,7 +1254,6 @@ L$tail_no_xor_avx:
 
   Summary
 
-          1C .debug$T
           30 .pdata
           80 .rdata
         1341 .text

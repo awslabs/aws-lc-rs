@@ -4024,7 +4024,6 @@ shaext_handler:
 
   Summary
 
-          1C .debug$T
           30 .pdata
          2A5 .rdata
         35A5 .text

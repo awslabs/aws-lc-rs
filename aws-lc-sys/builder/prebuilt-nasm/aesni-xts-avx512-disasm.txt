@@ -5691,6 +5691,5 @@ L$_done_1_amivrujEyduiFoi:
 
   Summary
 
-          1C .debug$T
          140 .rdata
         6D5B .text

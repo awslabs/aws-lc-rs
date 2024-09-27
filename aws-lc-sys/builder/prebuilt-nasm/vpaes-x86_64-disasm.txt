@@ -1174,7 +1174,6 @@ L$in_prologue:
 
   Summary
 
-          1C .debug$T
           48 .pdata
          3C0 .rdata
         10D3 .text

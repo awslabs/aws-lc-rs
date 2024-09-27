@@ -3302,7 +3302,6 @@ L$common_seh_tail:
 
   Summary
 
-          1C .debug$T
           24 .pdata
           A4 .rdata
         2C47 .text

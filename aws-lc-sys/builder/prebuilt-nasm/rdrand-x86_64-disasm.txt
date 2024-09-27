@@ -51,5 +51,4 @@ L$err_multiple:
 
   Summary
 
-          1C .debug$T
           77 .text

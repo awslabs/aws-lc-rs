@@ -681,7 +681,6 @@ L$SEH_prolog_abi_test_bad_unwind_epilog_2:
 
   Summary
 
-          1C .debug$T
           30 .pdata
          518 .text
           62 .xdata

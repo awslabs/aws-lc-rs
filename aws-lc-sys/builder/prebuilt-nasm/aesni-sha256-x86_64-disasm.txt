@@ -4799,7 +4799,6 @@ L$in_prologue:
 
   Summary
 
-          1C .debug$T
           30 .pdata
          2B6 .rdata
         4753 .text

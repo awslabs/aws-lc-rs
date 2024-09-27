@@ -1,6 +1,6 @@
 // Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 // SPDX-License-Identifier: Apache-2.0 OR ISC
-// Wed Sep 18 20:36:25 UTC 2024
+// Fri Sep 27 16:23:57 UTC 2024
 
 use crate::cc_builder::Library;
 
@@ -74,10 +74,6 @@ pub(super) const CRYPTO_LIBRARY: Library = Library {
         "crypto/cipher_extra/tls_cbc.c",
         "crypto/conf/conf.c",
         "crypto/crypto.c",
-        "crypto/curve25519/curve25519.c",
-        "crypto/curve25519/curve25519_nohw.c",
-        "crypto/curve25519/curve25519_s2n_bignum_asm.c",
-        "crypto/curve25519/spake25519.c",
         "crypto/decrepit/bio/base64_bio.c",
         "crypto/decrepit/blowfish/blowfish.c",
         "crypto/decrepit/cast/cast.c",
@@ -103,12 +99,12 @@ pub(super) const CRYPTO_LIBRARY: Library = Library {
         "crypto/engine/engine.c",
         "crypto/err/err.c",
         "crypto/evp_extra/evp_asn1.c",
+        "crypto/evp_extra/p_dh.c",
+        "crypto/evp_extra/p_dh_asn1.c",
         "crypto/evp_extra/p_dsa_asn1.c",
         "crypto/evp_extra/p_ec_asn1.c",
-        "crypto/evp_extra/p_ed25519.c",
         "crypto/evp_extra/p_ed25519_asn1.c",
         "crypto/evp_extra/p_hmac_asn1.c",
-        "crypto/evp_extra/p_kem.c",
         "crypto/evp_extra/p_kem_asn1.c",
         "crypto/evp_extra/p_methods.c",
         "crypto/evp_extra/p_rsa_asn1.c",
@@ -122,8 +118,6 @@ pub(super) const CRYPTO_LIBRARY: Library = Library {
         "crypto/fipsmodule/cpucap/cpucap.c",
         "crypto/hpke/hpke.c",
         "crypto/hrss/hrss.c",
-        "crypto/kem/kem.c",
-        "crypto/kem/kem_methods.c",
         "crypto/kyber/kem_kyber.c",
         "crypto/kyber/kyber1024r3_ref.c",
         "crypto/kyber/kyber512r3_ref.c",
@@ -131,10 +125,6 @@ pub(super) const CRYPTO_LIBRARY: Library = Library {
         "crypto/kyber/pqcrystals_kyber_ref_common/fips202.c",
         "crypto/lhash/lhash.c",
         "crypto/mem.c",
-        "crypto/ml_kem/ml_kem.c",
-        "crypto/ml_kem/ml_kem_1024_ipd.c",
-        "crypto/ml_kem/ml_kem_512_ipd.c",
-        "crypto/ml_kem/ml_kem_768_ipd.c",
         "crypto/obj/obj.c",
         "crypto/obj/obj_xref.c",
         "crypto/ocsp/ocsp_asn.c",
@@ -154,6 +144,7 @@ pub(super) const CRYPTO_LIBRARY: Library = Library {
         "crypto/pem/pem_x509.c",
         "crypto/pem/pem_xaux.c",
         "crypto/pkcs7/pkcs7.c",
+        "crypto/pkcs7/pkcs7_asn1.c",
         "crypto/pkcs7/pkcs7_x509.c",
         "crypto/pkcs8/p5_pbev2.c",
         "crypto/pkcs8/pkcs8.c",
@@ -171,6 +162,7 @@ pub(super) const CRYPTO_LIBRARY: Library = Library {
         "crypto/rsa_extra/rsa_print.c",
         "crypto/rsa_extra/rsassa_pss_asn1.c",
         "crypto/siphash/siphash.c",
+        "crypto/spake25519/spake25519.c",
         "crypto/stack/stack.c",
         "crypto/thread.c",
         "crypto/thread_pthread.c",

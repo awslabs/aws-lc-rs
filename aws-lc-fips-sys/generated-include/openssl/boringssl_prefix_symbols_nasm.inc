@@ -242,7 +242,6 @@
 %xdefine _BIO_do_connect _ %+ BORINGSSL_PREFIX %+ _BIO_do_connect
 %xdefine _BIO_eof _ %+ BORINGSSL_PREFIX %+ _BIO_eof
 %xdefine _BIO_f_base64 _ %+ BORINGSSL_PREFIX %+ _BIO_f_base64
-%xdefine _BIO_f_ssl _ %+ BORINGSSL_PREFIX %+ _BIO_f_ssl
 %xdefine _BIO_find_type _ %+ BORINGSSL_PREFIX %+ _BIO_find_type
 %xdefine _BIO_flush _ %+ BORINGSSL_PREFIX %+ _BIO_flush
 %xdefine _BIO_free _ %+ BORINGSSL_PREFIX %+ _BIO_free
@@ -329,7 +328,6 @@
 %xdefine _BIO_set_retry_special _ %+ BORINGSSL_PREFIX %+ _BIO_set_retry_special
 %xdefine _BIO_set_retry_write _ %+ BORINGSSL_PREFIX %+ _BIO_set_retry_write
 %xdefine _BIO_set_shutdown _ %+ BORINGSSL_PREFIX %+ _BIO_set_shutdown
-%xdefine _BIO_set_ssl _ %+ BORINGSSL_PREFIX %+ _BIO_set_ssl
 %xdefine _BIO_set_write_buffer_size _ %+ BORINGSSL_PREFIX %+ _BIO_set_write_buffer_size
 %xdefine _BIO_should_io_special _ %+ BORINGSSL_PREFIX %+ _BIO_should_io_special
 %xdefine _BIO_should_read _ %+ BORINGSSL_PREFIX %+ _BIO_should_read
@@ -812,19 +810,6 @@
 %xdefine _DSA_up_ref _ %+ BORINGSSL_PREFIX %+ _DSA_up_ref
 %xdefine _DSA_verify _ %+ BORINGSSL_PREFIX %+ _DSA_verify
 %xdefine _DSAparams_dup _ %+ BORINGSSL_PREFIX %+ _DSAparams_dup
-%xdefine _DTLS_client_method _ %+ BORINGSSL_PREFIX %+ _DTLS_client_method
-%xdefine _DTLS_method _ %+ BORINGSSL_PREFIX %+ _DTLS_method
-%xdefine _DTLS_server_method _ %+ BORINGSSL_PREFIX %+ _DTLS_server_method
-%xdefine _DTLS_with_buffers_method _ %+ BORINGSSL_PREFIX %+ _DTLS_with_buffers_method
-%xdefine _DTLSv1_2_client_method _ %+ BORINGSSL_PREFIX %+ _DTLSv1_2_client_method
-%xdefine _DTLSv1_2_method _ %+ BORINGSSL_PREFIX %+ _DTLSv1_2_method
-%xdefine _DTLSv1_2_server_method _ %+ BORINGSSL_PREFIX %+ _DTLSv1_2_server_method
-%xdefine _DTLSv1_client_method _ %+ BORINGSSL_PREFIX %+ _DTLSv1_client_method
-%xdefine _DTLSv1_get_timeout _ %+ BORINGSSL_PREFIX %+ _DTLSv1_get_timeout
-%xdefine _DTLSv1_handle_timeout _ %+ BORINGSSL_PREFIX %+ _DTLSv1_handle_timeout
-%xdefine _DTLSv1_method _ %+ BORINGSSL_PREFIX %+ _DTLSv1_method
-%xdefine _DTLSv1_server_method _ %+ BORINGSSL_PREFIX %+ _DTLSv1_server_method
-%xdefine _DTLSv1_set_initial_timeout_duration _ %+ BORINGSSL_PREFIX %+ _DTLSv1_set_initial_timeout_duration
 %xdefine _ECDH_compute_key _ %+ BORINGSSL_PREFIX %+ _ECDH_compute_key
 %xdefine _ECDH_compute_key_fips _ %+ BORINGSSL_PREFIX %+ _ECDH_compute_key_fips
 %xdefine _ECDH_compute_shared_secret _ %+ BORINGSSL_PREFIX %+ _ECDH_compute_shared_secret
@@ -961,7 +946,6 @@
 %xdefine _ERR_load_BIO_strings _ %+ BORINGSSL_PREFIX %+ _ERR_load_BIO_strings
 %xdefine _ERR_load_ERR_strings _ %+ BORINGSSL_PREFIX %+ _ERR_load_ERR_strings
 %xdefine _ERR_load_RAND_strings _ %+ BORINGSSL_PREFIX %+ _ERR_load_RAND_strings
-%xdefine _ERR_load_SSL_strings _ %+ BORINGSSL_PREFIX %+ _ERR_load_SSL_strings
 %xdefine _ERR_load_crypto_strings _ %+ BORINGSSL_PREFIX %+ _ERR_load_crypto_strings
 %xdefine _ERR_peek_error _ %+ BORINGSSL_PREFIX %+ _ERR_peek_error
 %xdefine _ERR_peek_error_line _ %+ BORINGSSL_PREFIX %+ _ERR_peek_error_line
@@ -1544,7 +1528,6 @@
 %xdefine _OPENSSL_ia32cap_P _ %+ BORINGSSL_PREFIX %+ _OPENSSL_ia32cap_P
 %xdefine _OPENSSL_ia32cap_get _ %+ BORINGSSL_PREFIX %+ _OPENSSL_ia32cap_get
 %xdefine _OPENSSL_init_crypto _ %+ BORINGSSL_PREFIX %+ _OPENSSL_init_crypto
-%xdefine _OPENSSL_init_ssl _ %+ BORINGSSL_PREFIX %+ _OPENSSL_init_ssl
 %xdefine _OPENSSL_lh_delete _ %+ BORINGSSL_PREFIX %+ _OPENSSL_lh_delete
 %xdefine _OPENSSL_lh_doall_arg _ %+ BORINGSSL_PREFIX %+ _OPENSSL_lh_doall_arg
 %xdefine _OPENSSL_lh_free _ %+ BORINGSSL_PREFIX %+ _OPENSSL_lh_free
@@ -1612,7 +1595,6 @@
 %xdefine _PEM_read_RSAPrivateKey _ %+ BORINGSSL_PREFIX %+ _PEM_read_RSAPrivateKey
 %xdefine _PEM_read_RSAPublicKey _ %+ BORINGSSL_PREFIX %+ _PEM_read_RSAPublicKey
 %xdefine _PEM_read_RSA_PUBKEY _ %+ BORINGSSL_PREFIX %+ _PEM_read_RSA_PUBKEY
-%xdefine _PEM_read_SSL_SESSION _ %+ BORINGSSL_PREFIX %+ _PEM_read_SSL_SESSION
 %xdefine _PEM_read_X509 _ %+ BORINGSSL_PREFIX %+ _PEM_read_X509
 %xdefine _PEM_read_X509_AUX _ %+ BORINGSSL_PREFIX %+ _PEM_read_X509_AUX
 %xdefine _PEM_read_X509_CRL _ %+ BORINGSSL_PREFIX %+ _PEM_read_X509_CRL
@@ -1632,7 +1614,6 @@
 %xdefine _PEM_read_bio_RSAPrivateKey _ %+ BORINGSSL_PREFIX %+ _PEM_read_bio_RSAPrivateKey
 %xdefine _PEM_read_bio_RSAPublicKey _ %+ BORINGSSL_PREFIX %+ _PEM_read_bio_RSAPublicKey
 %xdefine _PEM_read_bio_RSA_PUBKEY _ %+ BORINGSSL_PREFIX %+ _PEM_read_bio_RSA_PUBKEY
-%xdefine _PEM_read_bio_SSL_SESSION _ %+ BORINGSSL_PREFIX %+ _PEM_read_bio_SSL_SESSION
 %xdefine _PEM_read_bio_X509 _ %+ BORINGSSL_PREFIX %+ _PEM_read_bio_X509
 %xdefine _PEM_read_bio_X509_AUX _ %+ BORINGSSL_PREFIX %+ _PEM_read_bio_X509_AUX
 %xdefine _PEM_read_bio_X509_CRL _ %+ BORINGSSL_PREFIX %+ _PEM_read_bio_X509_CRL
@@ -1654,7 +1635,6 @@
 %xdefine _PEM_write_RSAPrivateKey _ %+ BORINGSSL_PREFIX %+ _PEM_write_RSAPrivateKey
 %xdefine _PEM_write_RSAPublicKey _ %+ BORINGSSL_PREFIX %+ _PEM_write_RSAPublicKey
 %xdefine _PEM_write_RSA_PUBKEY _ %+ BORINGSSL_PREFIX %+ _PEM_write_RSA_PUBKEY
-%xdefine _PEM_write_SSL_SESSION _ %+ BORINGSSL_PREFIX %+ _PEM_write_SSL_SESSION
 %xdefine _PEM_write_X509 _ %+ BORINGSSL_PREFIX %+ _PEM_write_X509
 %xdefine _PEM_write_X509_AUX _ %+ BORINGSSL_PREFIX %+ _PEM_write_X509_AUX
 %xdefine _PEM_write_X509_CRL _ %+ BORINGSSL_PREFIX %+ _PEM_write_X509_CRL
@@ -1677,7 +1657,6 @@
 %xdefine _PEM_write_bio_RSAPrivateKey _ %+ BORINGSSL_PREFIX %+ _PEM_write_bio_RSAPrivateKey
 %xdefine _PEM_write_bio_RSAPublicKey _ %+ BORINGSSL_PREFIX %+ _PEM_write_bio_RSAPublicKey
 %xdefine _PEM_write_bio_RSA_PUBKEY _ %+ BORINGSSL_PREFIX %+ _PEM_write_bio_RSA_PUBKEY
-%xdefine _PEM_write_bio_SSL_SESSION _ %+ BORINGSSL_PREFIX %+ _PEM_write_bio_SSL_SESSION
 %xdefine _PEM_write_bio_X509 _ %+ BORINGSSL_PREFIX %+ _PEM_write_bio_X509
 %xdefine _PEM_write_bio_X509_AUX _ %+ BORINGSSL_PREFIX %+ _PEM_write_bio_X509_AUX
 %xdefine _PEM_write_bio_X509_CRL _ %+ BORINGSSL_PREFIX %+ _PEM_write_bio_X509_CRL
@@ -1898,533 +1877,9 @@
 %xdefine _SPAKE2_process_msg _ %+ BORINGSSL_PREFIX %+ _SPAKE2_process_msg
 %xdefine _SSHKDF _ %+ BORINGSSL_PREFIX %+ _SSHKDF
 %xdefine _SSHKDF_verify_service_indicator _ %+ BORINGSSL_PREFIX %+ _SSHKDF_verify_service_indicator
-%xdefine _SSL_CIPHER_description _ %+ BORINGSSL_PREFIX %+ _SSL_CIPHER_description
-%xdefine _SSL_CIPHER_get_auth_nid _ %+ BORINGSSL_PREFIX %+ _SSL_CIPHER_get_auth_nid
-%xdefine _SSL_CIPHER_get_bits _ %+ BORINGSSL_PREFIX %+ _SSL_CIPHER_get_bits
-%xdefine _SSL_CIPHER_get_cipher_nid _ %+ BORINGSSL_PREFIX %+ _SSL_CIPHER_get_cipher_nid
-%xdefine _SSL_CIPHER_get_digest_nid _ %+ BORINGSSL_PREFIX %+ _SSL_CIPHER_get_digest_nid
-%xdefine _SSL_CIPHER_get_id _ %+ BORINGSSL_PREFIX %+ _SSL_CIPHER_get_id
-%xdefine _SSL_CIPHER_get_kx_name _ %+ BORINGSSL_PREFIX %+ _SSL_CIPHER_get_kx_name
-%xdefine _SSL_CIPHER_get_kx_nid _ %+ BORINGSSL_PREFIX %+ _SSL_CIPHER_get_kx_nid
-%xdefine _SSL_CIPHER_get_max_version _ %+ BORINGSSL_PREFIX %+ _SSL_CIPHER_get_max_version
-%xdefine _SSL_CIPHER_get_min_version _ %+ BORINGSSL_PREFIX %+ _SSL_CIPHER_get_min_version
-%xdefine _SSL_CIPHER_get_name _ %+ BORINGSSL_PREFIX %+ _SSL_CIPHER_get_name
-%xdefine _SSL_CIPHER_get_prf_nid _ %+ BORINGSSL_PREFIX %+ _SSL_CIPHER_get_prf_nid
-%xdefine _SSL_CIPHER_get_protocol_id _ %+ BORINGSSL_PREFIX %+ _SSL_CIPHER_get_protocol_id
-%xdefine _SSL_CIPHER_get_rfc_name _ %+ BORINGSSL_PREFIX %+ _SSL_CIPHER_get_rfc_name
-%xdefine _SSL_CIPHER_get_value _ %+ BORINGSSL_PREFIX %+ _SSL_CIPHER_get_value
-%xdefine _SSL_CIPHER_get_version _ %+ BORINGSSL_PREFIX %+ _SSL_CIPHER_get_version
-%xdefine _SSL_CIPHER_is_aead _ %+ BORINGSSL_PREFIX %+ _SSL_CIPHER_is_aead
-%xdefine _SSL_CIPHER_is_block_cipher _ %+ BORINGSSL_PREFIX %+ _SSL_CIPHER_is_block_cipher
-%xdefine _SSL_CIPHER_standard_name _ %+ BORINGSSL_PREFIX %+ _SSL_CIPHER_standard_name
-%xdefine _SSL_COMP_add_compression_method _ %+ BORINGSSL_PREFIX %+ _SSL_COMP_add_compression_method
-%xdefine _SSL_COMP_free_compression_methods _ %+ BORINGSSL_PREFIX %+ _SSL_COMP_free_compression_methods
-%xdefine _SSL_COMP_get0_name _ %+ BORINGSSL_PREFIX %+ _SSL_COMP_get0_name
-%xdefine _SSL_COMP_get_compression_methods _ %+ BORINGSSL_PREFIX %+ _SSL_COMP_get_compression_methods
-%xdefine _SSL_COMP_get_id _ %+ BORINGSSL_PREFIX %+ _SSL_COMP_get_id
-%xdefine _SSL_COMP_get_name _ %+ BORINGSSL_PREFIX %+ _SSL_COMP_get_name
-%xdefine _SSL_CTX_add0_chain_cert _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_add0_chain_cert
-%xdefine _SSL_CTX_add1_chain_cert _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_add1_chain_cert
-%xdefine _SSL_CTX_add_cert_compression_alg _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_add_cert_compression_alg
-%xdefine _SSL_CTX_add_client_CA _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_add_client_CA
-%xdefine _SSL_CTX_add_extra_chain_cert _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_add_extra_chain_cert
-%xdefine _SSL_CTX_add_session _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_add_session
-%xdefine _SSL_CTX_check_private_key _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_check_private_key
-%xdefine _SSL_CTX_cipher_in_group _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_cipher_in_group
-%xdefine _SSL_CTX_clear_chain_certs _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_clear_chain_certs
-%xdefine _SSL_CTX_clear_extra_chain_certs _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_clear_extra_chain_certs
-%xdefine _SSL_CTX_clear_mode _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_clear_mode
-%xdefine _SSL_CTX_clear_options _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_clear_options
-%xdefine _SSL_CTX_enable_ocsp_stapling _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_enable_ocsp_stapling
-%xdefine _SSL_CTX_enable_signed_cert_timestamps _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_enable_signed_cert_timestamps
-%xdefine _SSL_CTX_enable_tls_channel_id _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_enable_tls_channel_id
-%xdefine _SSL_CTX_flush_sessions _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_flush_sessions
-%xdefine _SSL_CTX_free _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_free
-%xdefine _SSL_CTX_get0_certificate _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_get0_certificate
-%xdefine _SSL_CTX_get0_chain _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_get0_chain
-%xdefine _SSL_CTX_get0_chain_certs _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_get0_chain_certs
-%xdefine _SSL_CTX_get0_param _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_get0_param
-%xdefine _SSL_CTX_get0_privatekey _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_get0_privatekey
-%xdefine _SSL_CTX_get_cert_store _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_get_cert_store
-%xdefine _SSL_CTX_get_ciphers _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_get_ciphers
-%xdefine _SSL_CTX_get_client_CA_list _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_get_client_CA_list
-%xdefine _SSL_CTX_get_default_passwd_cb _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_get_default_passwd_cb
-%xdefine _SSL_CTX_get_default_passwd_cb_userdata _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_get_default_passwd_cb_userdata
-%xdefine _SSL_CTX_get_ex_data _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_get_ex_data
-%xdefine _SSL_CTX_get_ex_new_index _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_get_ex_new_index
-%xdefine _SSL_CTX_get_extra_chain_certs _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_get_extra_chain_certs
-%xdefine _SSL_CTX_get_info_callback _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_get_info_callback
-%xdefine _SSL_CTX_get_keylog_callback _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_get_keylog_callback
-%xdefine _SSL_CTX_get_max_cert_list _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_get_max_cert_list
-%xdefine _SSL_CTX_get_max_proto_version _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_get_max_proto_version
-%xdefine _SSL_CTX_get_min_proto_version _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_get_min_proto_version
-%xdefine _SSL_CTX_get_mode _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_get_mode
-%xdefine _SSL_CTX_get_num_tickets _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_get_num_tickets
-%xdefine _SSL_CTX_get_options _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_get_options
-%xdefine _SSL_CTX_get_quiet_shutdown _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_get_quiet_shutdown
-%xdefine _SSL_CTX_get_read_ahead _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_get_read_ahead
-%xdefine _SSL_CTX_get_security_level _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_get_security_level
-%xdefine _SSL_CTX_get_session_cache_mode _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_get_session_cache_mode
-%xdefine _SSL_CTX_get_timeout _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_get_timeout
-%xdefine _SSL_CTX_get_tlsext_ticket_keys _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_get_tlsext_ticket_keys
-%xdefine _SSL_CTX_get_verify_callback _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_get_verify_callback
-%xdefine _SSL_CTX_get_verify_depth _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_get_verify_depth
-%xdefine _SSL_CTX_get_verify_mode _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_get_verify_mode
-%xdefine _SSL_CTX_load_verify_locations _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_load_verify_locations
-%xdefine _SSL_CTX_need_tmp_RSA _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_need_tmp_RSA
-%xdefine _SSL_CTX_new _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_new
-%xdefine _SSL_CTX_remove_session _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_remove_session
-%xdefine _SSL_CTX_sess_accept _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_sess_accept
-%xdefine _SSL_CTX_sess_accept_good _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_sess_accept_good
-%xdefine _SSL_CTX_sess_accept_renegotiate _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_sess_accept_renegotiate
-%xdefine _SSL_CTX_sess_cache_full _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_sess_cache_full
-%xdefine _SSL_CTX_sess_cb_hits _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_sess_cb_hits
-%xdefine _SSL_CTX_sess_connect _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_sess_connect
-%xdefine _SSL_CTX_sess_connect_good _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_sess_connect_good
-%xdefine _SSL_CTX_sess_connect_renegotiate _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_sess_connect_renegotiate
-%xdefine _SSL_CTX_sess_get_cache_size _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_sess_get_cache_size
-%xdefine _SSL_CTX_sess_get_get_cb _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_sess_get_get_cb
-%xdefine _SSL_CTX_sess_get_new_cb _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_sess_get_new_cb
-%xdefine _SSL_CTX_sess_get_remove_cb _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_sess_get_remove_cb
-%xdefine _SSL_CTX_sess_hits _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_sess_hits
-%xdefine _SSL_CTX_sess_misses _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_sess_misses
-%xdefine _SSL_CTX_sess_number _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_sess_number
-%xdefine _SSL_CTX_sess_set_cache_size _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_sess_set_cache_size
-%xdefine _SSL_CTX_sess_set_get_cb _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_sess_set_get_cb
-%xdefine _SSL_CTX_sess_set_new_cb _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_sess_set_new_cb
-%xdefine _SSL_CTX_sess_set_remove_cb _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_sess_set_remove_cb
-%xdefine _SSL_CTX_sess_timeouts _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_sess_timeouts
-%xdefine _SSL_CTX_set0_buffer_pool _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_set0_buffer_pool
-%xdefine _SSL_CTX_set0_chain _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_set0_chain
-%xdefine _SSL_CTX_set0_client_CAs _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_set0_client_CAs
-%xdefine _SSL_CTX_set0_verify_cert_store _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_set0_verify_cert_store
-%xdefine _SSL_CTX_set1_chain _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_set1_chain
-%xdefine _SSL_CTX_set1_curves _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_set1_curves
-%xdefine _SSL_CTX_set1_curves_list _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_set1_curves_list
-%xdefine _SSL_CTX_set1_ech_keys _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_set1_ech_keys
-%xdefine _SSL_CTX_set1_groups _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_set1_groups
-%xdefine _SSL_CTX_set1_groups_list _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_set1_groups_list
-%xdefine _SSL_CTX_set1_param _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_set1_param
-%xdefine _SSL_CTX_set1_sigalgs _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_set1_sigalgs
-%xdefine _SSL_CTX_set1_sigalgs_list _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_set1_sigalgs_list
-%xdefine _SSL_CTX_set1_tls_channel_id _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_set1_tls_channel_id
-%xdefine _SSL_CTX_set1_verify_cert_store _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_set1_verify_cert_store
-%xdefine _SSL_CTX_set_allow_unknown_alpn_protos _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_set_allow_unknown_alpn_protos
-%xdefine _SSL_CTX_set_alpn_protos _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_set_alpn_protos
-%xdefine _SSL_CTX_set_alpn_select_cb _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_set_alpn_select_cb
-%xdefine _SSL_CTX_set_cert_cb _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_set_cert_cb
-%xdefine _SSL_CTX_set_cert_store _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_set_cert_store
-%xdefine _SSL_CTX_set_cert_verify_callback _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_set_cert_verify_callback
-%xdefine _SSL_CTX_set_chain_and_key _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_set_chain_and_key
-%xdefine _SSL_CTX_set_cipher_list _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_set_cipher_list
-%xdefine _SSL_CTX_set_ciphersuites _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_set_ciphersuites
-%xdefine _SSL_CTX_set_client_CA_list _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_set_client_CA_list
-%xdefine _SSL_CTX_set_client_cert_cb _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_set_client_cert_cb
-%xdefine _SSL_CTX_set_current_time_cb _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_set_current_time_cb
-%xdefine _SSL_CTX_set_custom_verify _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_set_custom_verify
-%xdefine _SSL_CTX_set_default_passwd_cb _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_set_default_passwd_cb
-%xdefine _SSL_CTX_set_default_passwd_cb_userdata _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_set_default_passwd_cb_userdata
-%xdefine _SSL_CTX_set_default_verify_paths _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_set_default_verify_paths
-%xdefine _SSL_CTX_set_dos_protection_cb _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_set_dos_protection_cb
-%xdefine _SSL_CTX_set_early_data_enabled _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_set_early_data_enabled
-%xdefine _SSL_CTX_set_ex_data _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_set_ex_data
-%xdefine _SSL_CTX_set_false_start_allowed_without_alpn _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_set_false_start_allowed_without_alpn
-%xdefine _SSL_CTX_set_grease_enabled _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_set_grease_enabled
-%xdefine _SSL_CTX_set_info_callback _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_set_info_callback
-%xdefine _SSL_CTX_set_keylog_callback _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_set_keylog_callback
-%xdefine _SSL_CTX_set_max_cert_list _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_set_max_cert_list
-%xdefine _SSL_CTX_set_max_proto_version _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_set_max_proto_version
-%xdefine _SSL_CTX_set_max_send_fragment _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_set_max_send_fragment
-%xdefine _SSL_CTX_set_min_proto_version _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_set_min_proto_version
-%xdefine _SSL_CTX_set_mode _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_set_mode
-%xdefine _SSL_CTX_set_msg_callback _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_set_msg_callback
-%xdefine _SSL_CTX_set_msg_callback_arg _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_set_msg_callback_arg
-%xdefine _SSL_CTX_set_next_proto_select_cb _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_set_next_proto_select_cb
-%xdefine _SSL_CTX_set_next_protos_advertised_cb _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_set_next_protos_advertised_cb
-%xdefine _SSL_CTX_set_num_tickets _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_set_num_tickets
-%xdefine _SSL_CTX_set_ocsp_response _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_set_ocsp_response
-%xdefine _SSL_CTX_set_options _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_set_options
-%xdefine _SSL_CTX_set_permute_extensions _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_set_permute_extensions
-%xdefine _SSL_CTX_set_private_key_method _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_set_private_key_method
-%xdefine _SSL_CTX_set_psk_client_callback _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_set_psk_client_callback
-%xdefine _SSL_CTX_set_psk_server_callback _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_set_psk_server_callback
-%xdefine _SSL_CTX_set_purpose _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_set_purpose
-%xdefine _SSL_CTX_set_quic_method _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_set_quic_method
-%xdefine _SSL_CTX_set_quiet_shutdown _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_set_quiet_shutdown
-%xdefine _SSL_CTX_set_read_ahead _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_set_read_ahead
-%xdefine _SSL_CTX_set_record_protocol_version _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_set_record_protocol_version
-%xdefine _SSL_CTX_set_retain_only_sha256_of_client_certs _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_set_retain_only_sha256_of_client_certs
-%xdefine _SSL_CTX_set_reverify_on_resume _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_set_reverify_on_resume
-%xdefine _SSL_CTX_set_security_level _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_set_security_level
-%xdefine _SSL_CTX_set_select_certificate_cb _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_set_select_certificate_cb
-%xdefine _SSL_CTX_set_session_cache_mode _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_set_session_cache_mode
-%xdefine _SSL_CTX_set_session_id_context _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_set_session_id_context
-%xdefine _SSL_CTX_set_session_psk_dhe_timeout _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_set_session_psk_dhe_timeout
-%xdefine _SSL_CTX_set_signed_cert_timestamp_list _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_set_signed_cert_timestamp_list
-%xdefine _SSL_CTX_set_signing_algorithm_prefs _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_set_signing_algorithm_prefs
-%xdefine _SSL_CTX_set_srtp_profiles _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_set_srtp_profiles
-%xdefine _SSL_CTX_set_strict_cipher_list _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_set_strict_cipher_list
-%xdefine _SSL_CTX_set_ticket_aead_method _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_set_ticket_aead_method
-%xdefine _SSL_CTX_set_timeout _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_set_timeout
-%xdefine _SSL_CTX_set_tls_channel_id_enabled _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_set_tls_channel_id_enabled
-%xdefine _SSL_CTX_set_tlsext_servername_arg _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_set_tlsext_servername_arg
-%xdefine _SSL_CTX_set_tlsext_servername_callback _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_set_tlsext_servername_callback
-%xdefine _SSL_CTX_set_tlsext_status_arg _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_set_tlsext_status_arg
-%xdefine _SSL_CTX_set_tlsext_status_cb _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_set_tlsext_status_cb
-%xdefine _SSL_CTX_set_tlsext_ticket_key_cb _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_set_tlsext_ticket_key_cb
-%xdefine _SSL_CTX_set_tlsext_ticket_keys _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_set_tlsext_ticket_keys
-%xdefine _SSL_CTX_set_tlsext_use_srtp _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_set_tlsext_use_srtp
-%xdefine _SSL_CTX_set_tmp_dh _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_set_tmp_dh
-%xdefine _SSL_CTX_set_tmp_dh_callback _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_set_tmp_dh_callback
-%xdefine _SSL_CTX_set_tmp_ecdh _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_set_tmp_ecdh
-%xdefine _SSL_CTX_set_tmp_rsa _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_set_tmp_rsa
-%xdefine _SSL_CTX_set_tmp_rsa_callback _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_set_tmp_rsa_callback
-%xdefine _SSL_CTX_set_trust _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_set_trust
-%xdefine _SSL_CTX_set_verify _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_set_verify
-%xdefine _SSL_CTX_set_verify_algorithm_prefs _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_set_verify_algorithm_prefs
-%xdefine _SSL_CTX_set_verify_depth _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_set_verify_depth
-%xdefine _SSL_CTX_up_ref _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_up_ref
-%xdefine _SSL_CTX_use_PrivateKey _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_use_PrivateKey
-%xdefine _SSL_CTX_use_PrivateKey_ASN1 _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_use_PrivateKey_ASN1
-%xdefine _SSL_CTX_use_PrivateKey_file _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_use_PrivateKey_file
-%xdefine _SSL_CTX_use_RSAPrivateKey _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_use_RSAPrivateKey
-%xdefine _SSL_CTX_use_RSAPrivateKey_ASN1 _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_use_RSAPrivateKey_ASN1
-%xdefine _SSL_CTX_use_RSAPrivateKey_file _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_use_RSAPrivateKey_file
-%xdefine _SSL_CTX_use_certificate _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_use_certificate
-%xdefine _SSL_CTX_use_certificate_ASN1 _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_use_certificate_ASN1
-%xdefine _SSL_CTX_use_certificate_chain_file _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_use_certificate_chain_file
-%xdefine _SSL_CTX_use_certificate_file _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_use_certificate_file
-%xdefine _SSL_CTX_use_psk_identity_hint _ %+ BORINGSSL_PREFIX %+ _SSL_CTX_use_psk_identity_hint
-%xdefine _SSL_ECH_KEYS_add _ %+ BORINGSSL_PREFIX %+ _SSL_ECH_KEYS_add
-%xdefine _SSL_ECH_KEYS_free _ %+ BORINGSSL_PREFIX %+ _SSL_ECH_KEYS_free
-%xdefine _SSL_ECH_KEYS_has_duplicate_config_id _ %+ BORINGSSL_PREFIX %+ _SSL_ECH_KEYS_has_duplicate_config_id
-%xdefine _SSL_ECH_KEYS_marshal_retry_configs _ %+ BORINGSSL_PREFIX %+ _SSL_ECH_KEYS_marshal_retry_configs
-%xdefine _SSL_ECH_KEYS_new _ %+ BORINGSSL_PREFIX %+ _SSL_ECH_KEYS_new
-%xdefine _SSL_ECH_KEYS_up_ref _ %+ BORINGSSL_PREFIX %+ _SSL_ECH_KEYS_up_ref
-%xdefine _SSL_SESSION_copy_without_early_data _ %+ BORINGSSL_PREFIX %+ _SSL_SESSION_copy_without_early_data
-%xdefine _SSL_SESSION_early_data_capable _ %+ BORINGSSL_PREFIX %+ _SSL_SESSION_early_data_capable
-%xdefine _SSL_SESSION_free _ %+ BORINGSSL_PREFIX %+ _SSL_SESSION_free
-%xdefine _SSL_SESSION_from_bytes _ %+ BORINGSSL_PREFIX %+ _SSL_SESSION_from_bytes
-%xdefine _SSL_SESSION_get0_cipher _ %+ BORINGSSL_PREFIX %+ _SSL_SESSION_get0_cipher
-%xdefine _SSL_SESSION_get0_id_context _ %+ BORINGSSL_PREFIX %+ _SSL_SESSION_get0_id_context
-%xdefine _SSL_SESSION_get0_ocsp_response _ %+ BORINGSSL_PREFIX %+ _SSL_SESSION_get0_ocsp_response
-%xdefine _SSL_SESSION_get0_peer _ %+ BORINGSSL_PREFIX %+ _SSL_SESSION_get0_peer
-%xdefine _SSL_SESSION_get0_peer_certificates _ %+ BORINGSSL_PREFIX %+ _SSL_SESSION_get0_peer_certificates
-%xdefine _SSL_SESSION_get0_peer_sha256 _ %+ BORINGSSL_PREFIX %+ _SSL_SESSION_get0_peer_sha256
-%xdefine _SSL_SESSION_get0_signed_cert_timestamp_list _ %+ BORINGSSL_PREFIX %+ _SSL_SESSION_get0_signed_cert_timestamp_list
-%xdefine _SSL_SESSION_get0_ticket _ %+ BORINGSSL_PREFIX %+ _SSL_SESSION_get0_ticket
-%xdefine _SSL_SESSION_get_ex_data _ %+ BORINGSSL_PREFIX %+ _SSL_SESSION_get_ex_data
-%xdefine _SSL_SESSION_get_ex_new_index _ %+ BORINGSSL_PREFIX %+ _SSL_SESSION_get_ex_new_index
-%xdefine _SSL_SESSION_get_id _ %+ BORINGSSL_PREFIX %+ _SSL_SESSION_get_id
-%xdefine _SSL_SESSION_get_master_key _ %+ BORINGSSL_PREFIX %+ _SSL_SESSION_get_master_key
-%xdefine _SSL_SESSION_get_protocol_version _ %+ BORINGSSL_PREFIX %+ _SSL_SESSION_get_protocol_version
-%xdefine _SSL_SESSION_get_ticket_lifetime_hint _ %+ BORINGSSL_PREFIX %+ _SSL_SESSION_get_ticket_lifetime_hint
-%xdefine _SSL_SESSION_get_time _ %+ BORINGSSL_PREFIX %+ _SSL_SESSION_get_time
-%xdefine _SSL_SESSION_get_timeout _ %+ BORINGSSL_PREFIX %+ _SSL_SESSION_get_timeout
-%xdefine _SSL_SESSION_get_version _ %+ BORINGSSL_PREFIX %+ _SSL_SESSION_get_version
-%xdefine _SSL_SESSION_has_peer_sha256 _ %+ BORINGSSL_PREFIX %+ _SSL_SESSION_has_peer_sha256
-%xdefine _SSL_SESSION_has_ticket _ %+ BORINGSSL_PREFIX %+ _SSL_SESSION_has_ticket
-%xdefine _SSL_SESSION_is_resumable _ %+ BORINGSSL_PREFIX %+ _SSL_SESSION_is_resumable
-%xdefine _SSL_SESSION_new _ %+ BORINGSSL_PREFIX %+ _SSL_SESSION_new
-%xdefine _SSL_SESSION_set1_id _ %+ BORINGSSL_PREFIX %+ _SSL_SESSION_set1_id
-%xdefine _SSL_SESSION_set1_id_context _ %+ BORINGSSL_PREFIX %+ _SSL_SESSION_set1_id_context
-%xdefine _SSL_SESSION_set_ex_data _ %+ BORINGSSL_PREFIX %+ _SSL_SESSION_set_ex_data
-%xdefine _SSL_SESSION_set_protocol_version _ %+ BORINGSSL_PREFIX %+ _SSL_SESSION_set_protocol_version
-%xdefine _SSL_SESSION_set_ticket _ %+ BORINGSSL_PREFIX %+ _SSL_SESSION_set_ticket
-%xdefine _SSL_SESSION_set_time _ %+ BORINGSSL_PREFIX %+ _SSL_SESSION_set_time
-%xdefine _SSL_SESSION_set_timeout _ %+ BORINGSSL_PREFIX %+ _SSL_SESSION_set_timeout
-%xdefine _SSL_SESSION_should_be_single_use _ %+ BORINGSSL_PREFIX %+ _SSL_SESSION_should_be_single_use
-%xdefine _SSL_SESSION_to_bytes _ %+ BORINGSSL_PREFIX %+ _SSL_SESSION_to_bytes
-%xdefine _SSL_SESSION_to_bytes_for_ticket _ %+ BORINGSSL_PREFIX %+ _SSL_SESSION_to_bytes_for_ticket
-%xdefine _SSL_SESSION_up_ref _ %+ BORINGSSL_PREFIX %+ _SSL_SESSION_up_ref
-%xdefine _SSL_accept _ %+ BORINGSSL_PREFIX %+ _SSL_accept
-%xdefine _SSL_add0_chain_cert _ %+ BORINGSSL_PREFIX %+ _SSL_add0_chain_cert
-%xdefine _SSL_add1_chain_cert _ %+ BORINGSSL_PREFIX %+ _SSL_add1_chain_cert
-%xdefine _SSL_add_application_settings _ %+ BORINGSSL_PREFIX %+ _SSL_add_application_settings
-%xdefine _SSL_add_bio_cert_subjects_to_stack _ %+ BORINGSSL_PREFIX %+ _SSL_add_bio_cert_subjects_to_stack
-%xdefine _SSL_add_client_CA _ %+ BORINGSSL_PREFIX %+ _SSL_add_client_CA
-%xdefine _SSL_add_dir_cert_subjects_to_stack _ %+ BORINGSSL_PREFIX %+ _SSL_add_dir_cert_subjects_to_stack
-%xdefine _SSL_add_file_cert_subjects_to_stack _ %+ BORINGSSL_PREFIX %+ _SSL_add_file_cert_subjects_to_stack
-%xdefine _SSL_alert_desc_string _ %+ BORINGSSL_PREFIX %+ _SSL_alert_desc_string
-%xdefine _SSL_alert_desc_string_long _ %+ BORINGSSL_PREFIX %+ _SSL_alert_desc_string_long
-%xdefine _SSL_alert_from_verify_result _ %+ BORINGSSL_PREFIX %+ _SSL_alert_from_verify_result
-%xdefine _SSL_alert_type_string _ %+ BORINGSSL_PREFIX %+ _SSL_alert_type_string
-%xdefine _SSL_alert_type_string_long _ %+ BORINGSSL_PREFIX %+ _SSL_alert_type_string_long
-%xdefine _SSL_cache_hit _ %+ BORINGSSL_PREFIX %+ _SSL_cache_hit
-%xdefine _SSL_can_release_private_key _ %+ BORINGSSL_PREFIX %+ _SSL_can_release_private_key
-%xdefine _SSL_certs_clear _ %+ BORINGSSL_PREFIX %+ _SSL_certs_clear
-%xdefine _SSL_check_private_key _ %+ BORINGSSL_PREFIX %+ _SSL_check_private_key
-%xdefine _SSL_clear _ %+ BORINGSSL_PREFIX %+ _SSL_clear
-%xdefine _SSL_clear_chain_certs _ %+ BORINGSSL_PREFIX %+ _SSL_clear_chain_certs
-%xdefine _SSL_clear_mode _ %+ BORINGSSL_PREFIX %+ _SSL_clear_mode
-%xdefine _SSL_clear_options _ %+ BORINGSSL_PREFIX %+ _SSL_clear_options
-%xdefine _SSL_connect _ %+ BORINGSSL_PREFIX %+ _SSL_connect
-%xdefine _SSL_cutthrough_complete _ %+ BORINGSSL_PREFIX %+ _SSL_cutthrough_complete
-%xdefine _SSL_delegated_credential_used _ %+ BORINGSSL_PREFIX %+ _SSL_delegated_credential_used
-%xdefine _SSL_do_handshake _ %+ BORINGSSL_PREFIX %+ _SSL_do_handshake
-%xdefine _SSL_dup_CA_list _ %+ BORINGSSL_PREFIX %+ _SSL_dup_CA_list
-%xdefine _SSL_early_callback_ctx_extension_get _ %+ BORINGSSL_PREFIX %+ _SSL_early_callback_ctx_extension_get
-%xdefine _SSL_early_data_accepted _ %+ BORINGSSL_PREFIX %+ _SSL_early_data_accepted
-%xdefine _SSL_early_data_reason_string _ %+ BORINGSSL_PREFIX %+ _SSL_early_data_reason_string
-%xdefine _SSL_ech_accepted _ %+ BORINGSSL_PREFIX %+ _SSL_ech_accepted
-%xdefine _SSL_enable_ocsp_stapling _ %+ BORINGSSL_PREFIX %+ _SSL_enable_ocsp_stapling
-%xdefine _SSL_enable_signed_cert_timestamps _ %+ BORINGSSL_PREFIX %+ _SSL_enable_signed_cert_timestamps
-%xdefine _SSL_enable_tls_channel_id _ %+ BORINGSSL_PREFIX %+ _SSL_enable_tls_channel_id
-%xdefine _SSL_error_description _ %+ BORINGSSL_PREFIX %+ _SSL_error_description
-%xdefine _SSL_export_keying_material _ %+ BORINGSSL_PREFIX %+ _SSL_export_keying_material
-%xdefine _SSL_free _ %+ BORINGSSL_PREFIX %+ _SSL_free
-%xdefine _SSL_from_bytes _ %+ BORINGSSL_PREFIX %+ _SSL_from_bytes
-%xdefine _SSL_generate_key_block _ %+ BORINGSSL_PREFIX %+ _SSL_generate_key_block
-%xdefine _SSL_get0_alpn_selected _ %+ BORINGSSL_PREFIX %+ _SSL_get0_alpn_selected
-%xdefine _SSL_get0_certificate_types _ %+ BORINGSSL_PREFIX %+ _SSL_get0_certificate_types
-%xdefine _SSL_get0_chain_certs _ %+ BORINGSSL_PREFIX %+ _SSL_get0_chain_certs
-%xdefine _SSL_get0_ech_name_override _ %+ BORINGSSL_PREFIX %+ _SSL_get0_ech_name_override
-%xdefine _SSL_get0_ech_retry_configs _ %+ BORINGSSL_PREFIX %+ _SSL_get0_ech_retry_configs
-%xdefine _SSL_get0_next_proto_negotiated _ %+ BORINGSSL_PREFIX %+ _SSL_get0_next_proto_negotiated
-%xdefine _SSL_get0_ocsp_response _ %+ BORINGSSL_PREFIX %+ _SSL_get0_ocsp_response
-%xdefine _SSL_get0_param _ %+ BORINGSSL_PREFIX %+ _SSL_get0_param
-%xdefine _SSL_get0_peer_application_settings _ %+ BORINGSSL_PREFIX %+ _SSL_get0_peer_application_settings
-%xdefine _SSL_get0_peer_certificates _ %+ BORINGSSL_PREFIX %+ _SSL_get0_peer_certificates
-%xdefine _SSL_get0_peer_delegation_algorithms _ %+ BORINGSSL_PREFIX %+ _SSL_get0_peer_delegation_algorithms
-%xdefine _SSL_get0_peer_verify_algorithms _ %+ BORINGSSL_PREFIX %+ _SSL_get0_peer_verify_algorithms
-%xdefine _SSL_get0_server_requested_CAs _ %+ BORINGSSL_PREFIX %+ _SSL_get0_server_requested_CAs
-%xdefine _SSL_get0_session_id_context _ %+ BORINGSSL_PREFIX %+ _SSL_get0_session_id_context
-%xdefine _SSL_get0_signed_cert_timestamp_list _ %+ BORINGSSL_PREFIX %+ _SSL_get0_signed_cert_timestamp_list
-%xdefine _SSL_get1_session _ %+ BORINGSSL_PREFIX %+ _SSL_get1_session
-%xdefine _SSL_get_SSL_CTX _ %+ BORINGSSL_PREFIX %+ _SSL_get_SSL_CTX
-%xdefine _SSL_get_certificate _ %+ BORINGSSL_PREFIX %+ _SSL_get_certificate
-%xdefine _SSL_get_cipher_by_value _ %+ BORINGSSL_PREFIX %+ _SSL_get_cipher_by_value
-%xdefine _SSL_get_cipher_list _ %+ BORINGSSL_PREFIX %+ _SSL_get_cipher_list
-%xdefine _SSL_get_ciphers _ %+ BORINGSSL_PREFIX %+ _SSL_get_ciphers
-%xdefine _SSL_get_client_CA_list _ %+ BORINGSSL_PREFIX %+ _SSL_get_client_CA_list
-%xdefine _SSL_get_client_random _ %+ BORINGSSL_PREFIX %+ _SSL_get_client_random
-%xdefine _SSL_get_current_cipher _ %+ BORINGSSL_PREFIX %+ _SSL_get_current_cipher
-%xdefine _SSL_get_current_compression _ %+ BORINGSSL_PREFIX %+ _SSL_get_current_compression
-%xdefine _SSL_get_current_expansion _ %+ BORINGSSL_PREFIX %+ _SSL_get_current_expansion
-%xdefine _SSL_get_curve_id _ %+ BORINGSSL_PREFIX %+ _SSL_get_curve_id
-%xdefine _SSL_get_curve_name _ %+ BORINGSSL_PREFIX %+ _SSL_get_curve_name
-%xdefine _SSL_get_default_timeout _ %+ BORINGSSL_PREFIX %+ _SSL_get_default_timeout
-%xdefine _SSL_get_early_data_reason _ %+ BORINGSSL_PREFIX %+ _SSL_get_early_data_reason
-%xdefine _SSL_get_error _ %+ BORINGSSL_PREFIX %+ _SSL_get_error
-%xdefine _SSL_get_ex_data _ %+ BORINGSSL_PREFIX %+ _SSL_get_ex_data
-%xdefine _SSL_get_ex_data_X509_STORE_CTX_idx _ %+ BORINGSSL_PREFIX %+ _SSL_get_ex_data_X509_STORE_CTX_idx
-%xdefine _SSL_get_ex_new_index _ %+ BORINGSSL_PREFIX %+ _SSL_get_ex_new_index
-%xdefine _SSL_get_extms_support _ %+ BORINGSSL_PREFIX %+ _SSL_get_extms_support
-%xdefine _SSL_get_fd _ %+ BORINGSSL_PREFIX %+ _SSL_get_fd
-%xdefine _SSL_get_finished _ %+ BORINGSSL_PREFIX %+ _SSL_get_finished
-%xdefine _SSL_get_info_callback _ %+ BORINGSSL_PREFIX %+ _SSL_get_info_callback
-%xdefine _SSL_get_ivs _ %+ BORINGSSL_PREFIX %+ _SSL_get_ivs
-%xdefine _SSL_get_key_block_len _ %+ BORINGSSL_PREFIX %+ _SSL_get_key_block_len
-%xdefine _SSL_get_max_cert_list _ %+ BORINGSSL_PREFIX %+ _SSL_get_max_cert_list
-%xdefine _SSL_get_max_proto_version _ %+ BORINGSSL_PREFIX %+ _SSL_get_max_proto_version
-%xdefine _SSL_get_min_proto_version _ %+ BORINGSSL_PREFIX %+ _SSL_get_min_proto_version
-%xdefine _SSL_get_mode _ %+ BORINGSSL_PREFIX %+ _SSL_get_mode
-%xdefine _SSL_get_options _ %+ BORINGSSL_PREFIX %+ _SSL_get_options
-%xdefine _SSL_get_peer_cert_chain _ %+ BORINGSSL_PREFIX %+ _SSL_get_peer_cert_chain
-%xdefine _SSL_get_peer_certificate _ %+ BORINGSSL_PREFIX %+ _SSL_get_peer_certificate
-%xdefine _SSL_get_peer_finished _ %+ BORINGSSL_PREFIX %+ _SSL_get_peer_finished
-%xdefine _SSL_get_peer_full_cert_chain _ %+ BORINGSSL_PREFIX %+ _SSL_get_peer_full_cert_chain
-%xdefine _SSL_get_peer_quic_transport_params _ %+ BORINGSSL_PREFIX %+ _SSL_get_peer_quic_transport_params
-%xdefine _SSL_get_peer_signature_algorithm _ %+ BORINGSSL_PREFIX %+ _SSL_get_peer_signature_algorithm
-%xdefine _SSL_get_pending_cipher _ %+ BORINGSSL_PREFIX %+ _SSL_get_pending_cipher
-%xdefine _SSL_get_privatekey _ %+ BORINGSSL_PREFIX %+ _SSL_get_privatekey
-%xdefine _SSL_get_psk_identity _ %+ BORINGSSL_PREFIX %+ _SSL_get_psk_identity
-%xdefine _SSL_get_psk_identity_hint _ %+ BORINGSSL_PREFIX %+ _SSL_get_psk_identity_hint
-%xdefine _SSL_get_quiet_shutdown _ %+ BORINGSSL_PREFIX %+ _SSL_get_quiet_shutdown
-%xdefine _SSL_get_rbio _ %+ BORINGSSL_PREFIX %+ _SSL_get_rbio
-%xdefine _SSL_get_read_ahead _ %+ BORINGSSL_PREFIX %+ _SSL_get_read_ahead
-%xdefine _SSL_get_read_sequence _ %+ BORINGSSL_PREFIX %+ _SSL_get_read_sequence
-%xdefine _SSL_get_rfd _ %+ BORINGSSL_PREFIX %+ _SSL_get_rfd
-%xdefine _SSL_get_secure_renegotiation_support _ %+ BORINGSSL_PREFIX %+ _SSL_get_secure_renegotiation_support
-%xdefine _SSL_get_selected_srtp_profile _ %+ BORINGSSL_PREFIX %+ _SSL_get_selected_srtp_profile
-%xdefine _SSL_get_server_random _ %+ BORINGSSL_PREFIX %+ _SSL_get_server_random
-%xdefine _SSL_get_server_tmp_key _ %+ BORINGSSL_PREFIX %+ _SSL_get_server_tmp_key
-%xdefine _SSL_get_servername _ %+ BORINGSSL_PREFIX %+ _SSL_get_servername
-%xdefine _SSL_get_servername_type _ %+ BORINGSSL_PREFIX %+ _SSL_get_servername_type
-%xdefine _SSL_get_session _ %+ BORINGSSL_PREFIX %+ _SSL_get_session
-%xdefine _SSL_get_shared_ciphers _ %+ BORINGSSL_PREFIX %+ _SSL_get_shared_ciphers
-%xdefine _SSL_get_shared_sigalgs _ %+ BORINGSSL_PREFIX %+ _SSL_get_shared_sigalgs
-%xdefine _SSL_get_shutdown _ %+ BORINGSSL_PREFIX %+ _SSL_get_shutdown
-%xdefine _SSL_get_signature_algorithm_digest _ %+ BORINGSSL_PREFIX %+ _SSL_get_signature_algorithm_digest
-%xdefine _SSL_get_signature_algorithm_key_type _ %+ BORINGSSL_PREFIX %+ _SSL_get_signature_algorithm_key_type
-%xdefine _SSL_get_signature_algorithm_name _ %+ BORINGSSL_PREFIX %+ _SSL_get_signature_algorithm_name
-%xdefine _SSL_get_srtp_profiles _ %+ BORINGSSL_PREFIX %+ _SSL_get_srtp_profiles
-%xdefine _SSL_get_ticket_age_skew _ %+ BORINGSSL_PREFIX %+ _SSL_get_ticket_age_skew
-%xdefine _SSL_get_tls_channel_id _ %+ BORINGSSL_PREFIX %+ _SSL_get_tls_channel_id
-%xdefine _SSL_get_tls_unique _ %+ BORINGSSL_PREFIX %+ _SSL_get_tls_unique
-%xdefine _SSL_get_tlsext_status_ocsp_resp _ %+ BORINGSSL_PREFIX %+ _SSL_get_tlsext_status_ocsp_resp
-%xdefine _SSL_get_tlsext_status_type _ %+ BORINGSSL_PREFIX %+ _SSL_get_tlsext_status_type
-%xdefine _SSL_get_verify_callback _ %+ BORINGSSL_PREFIX %+ _SSL_get_verify_callback
-%xdefine _SSL_get_verify_depth _ %+ BORINGSSL_PREFIX %+ _SSL_get_verify_depth
-%xdefine _SSL_get_verify_mode _ %+ BORINGSSL_PREFIX %+ _SSL_get_verify_mode
-%xdefine _SSL_get_verify_result _ %+ BORINGSSL_PREFIX %+ _SSL_get_verify_result
-%xdefine _SSL_get_version _ %+ BORINGSSL_PREFIX %+ _SSL_get_version
-%xdefine _SSL_get_wbio _ %+ BORINGSSL_PREFIX %+ _SSL_get_wbio
-%xdefine _SSL_get_wfd _ %+ BORINGSSL_PREFIX %+ _SSL_get_wfd
-%xdefine _SSL_get_write_sequence _ %+ BORINGSSL_PREFIX %+ _SSL_get_write_sequence
-%xdefine _SSL_has_application_settings _ %+ BORINGSSL_PREFIX %+ _SSL_has_application_settings
-%xdefine _SSL_has_pending _ %+ BORINGSSL_PREFIX %+ _SSL_has_pending
-%xdefine _SSL_in_early_data _ %+ BORINGSSL_PREFIX %+ _SSL_in_early_data
-%xdefine _SSL_in_false_start _ %+ BORINGSSL_PREFIX %+ _SSL_in_false_start
-%xdefine _SSL_in_init _ %+ BORINGSSL_PREFIX %+ _SSL_in_init
-%xdefine _SSL_is_dtls _ %+ BORINGSSL_PREFIX %+ _SSL_is_dtls
-%xdefine _SSL_is_init_finished _ %+ BORINGSSL_PREFIX %+ _SSL_is_init_finished
-%xdefine _SSL_is_server _ %+ BORINGSSL_PREFIX %+ _SSL_is_server
-%xdefine _SSL_is_signature_algorithm_rsa_pss _ %+ BORINGSSL_PREFIX %+ _SSL_is_signature_algorithm_rsa_pss
-%xdefine _SSL_key_update _ %+ BORINGSSL_PREFIX %+ _SSL_key_update
-%xdefine _SSL_library_init _ %+ BORINGSSL_PREFIX %+ _SSL_library_init
-%xdefine _SSL_load_client_CA_file _ %+ BORINGSSL_PREFIX %+ _SSL_load_client_CA_file
-%xdefine _SSL_load_error_strings _ %+ BORINGSSL_PREFIX %+ _SSL_load_error_strings
-%xdefine _SSL_magic_pending_session_ptr _ %+ BORINGSSL_PREFIX %+ _SSL_magic_pending_session_ptr
-%xdefine _SSL_marshal_ech_config _ %+ BORINGSSL_PREFIX %+ _SSL_marshal_ech_config
-%xdefine _SSL_max_seal_overhead _ %+ BORINGSSL_PREFIX %+ _SSL_max_seal_overhead
-%xdefine _SSL_need_tmp_RSA _ %+ BORINGSSL_PREFIX %+ _SSL_need_tmp_RSA
-%xdefine _SSL_new _ %+ BORINGSSL_PREFIX %+ _SSL_new
-%xdefine _SSL_num_renegotiations _ %+ BORINGSSL_PREFIX %+ _SSL_num_renegotiations
-%xdefine _SSL_peek _ %+ BORINGSSL_PREFIX %+ _SSL_peek
-%xdefine _SSL_pending _ %+ BORINGSSL_PREFIX %+ _SSL_pending
-%xdefine _SSL_process_quic_post_handshake _ %+ BORINGSSL_PREFIX %+ _SSL_process_quic_post_handshake
-%xdefine _SSL_process_tls13_new_session_ticket _ %+ BORINGSSL_PREFIX %+ _SSL_process_tls13_new_session_ticket
-%xdefine _SSL_provide_quic_data _ %+ BORINGSSL_PREFIX %+ _SSL_provide_quic_data
-%xdefine _SSL_quic_max_handshake_flight_len _ %+ BORINGSSL_PREFIX %+ _SSL_quic_max_handshake_flight_len
-%xdefine _SSL_quic_read_level _ %+ BORINGSSL_PREFIX %+ _SSL_quic_read_level
-%xdefine _SSL_quic_write_level _ %+ BORINGSSL_PREFIX %+ _SSL_quic_write_level
-%xdefine _SSL_read _ %+ BORINGSSL_PREFIX %+ _SSL_read
-%xdefine _SSL_renegotiate _ %+ BORINGSSL_PREFIX %+ _SSL_renegotiate
-%xdefine _SSL_renegotiate_pending _ %+ BORINGSSL_PREFIX %+ _SSL_renegotiate_pending
-%xdefine _SSL_request_handshake_hints _ %+ BORINGSSL_PREFIX %+ _SSL_request_handshake_hints
-%xdefine _SSL_reset_early_data_reject _ %+ BORINGSSL_PREFIX %+ _SSL_reset_early_data_reject
-%xdefine _SSL_select_next_proto _ %+ BORINGSSL_PREFIX %+ _SSL_select_next_proto
-%xdefine _SSL_send_fatal_alert _ %+ BORINGSSL_PREFIX %+ _SSL_send_fatal_alert
-%xdefine _SSL_serialize_capabilities _ %+ BORINGSSL_PREFIX %+ _SSL_serialize_capabilities
-%xdefine _SSL_serialize_handshake_hints _ %+ BORINGSSL_PREFIX %+ _SSL_serialize_handshake_hints
-%xdefine _SSL_session_reused _ %+ BORINGSSL_PREFIX %+ _SSL_session_reused
-%xdefine _SSL_set0_chain _ %+ BORINGSSL_PREFIX %+ _SSL_set0_chain
-%xdefine _SSL_set0_client_CAs _ %+ BORINGSSL_PREFIX %+ _SSL_set0_client_CAs
-%xdefine _SSL_set0_rbio _ %+ BORINGSSL_PREFIX %+ _SSL_set0_rbio
-%xdefine _SSL_set0_verify_cert_store _ %+ BORINGSSL_PREFIX %+ _SSL_set0_verify_cert_store
-%xdefine _SSL_set0_wbio _ %+ BORINGSSL_PREFIX %+ _SSL_set0_wbio
-%xdefine _SSL_set1_chain _ %+ BORINGSSL_PREFIX %+ _SSL_set1_chain
-%xdefine _SSL_set1_curves _ %+ BORINGSSL_PREFIX %+ _SSL_set1_curves
-%xdefine _SSL_set1_curves_list _ %+ BORINGSSL_PREFIX %+ _SSL_set1_curves_list
-%xdefine _SSL_set1_delegated_credential _ %+ BORINGSSL_PREFIX %+ _SSL_set1_delegated_credential
-%xdefine _SSL_set1_ech_config_list _ %+ BORINGSSL_PREFIX %+ _SSL_set1_ech_config_list
-%xdefine _SSL_set1_groups _ %+ BORINGSSL_PREFIX %+ _SSL_set1_groups
-%xdefine _SSL_set1_groups_list _ %+ BORINGSSL_PREFIX %+ _SSL_set1_groups_list
-%xdefine _SSL_set1_host _ %+ BORINGSSL_PREFIX %+ _SSL_set1_host
-%xdefine _SSL_set1_param _ %+ BORINGSSL_PREFIX %+ _SSL_set1_param
-%xdefine _SSL_set1_sigalgs _ %+ BORINGSSL_PREFIX %+ _SSL_set1_sigalgs
-%xdefine _SSL_set1_sigalgs_list _ %+ BORINGSSL_PREFIX %+ _SSL_set1_sigalgs_list
-%xdefine _SSL_set1_tls_channel_id _ %+ BORINGSSL_PREFIX %+ _SSL_set1_tls_channel_id
-%xdefine _SSL_set1_verify_cert_store _ %+ BORINGSSL_PREFIX %+ _SSL_set1_verify_cert_store
-%xdefine _SSL_set_SSL_CTX _ %+ BORINGSSL_PREFIX %+ _SSL_set_SSL_CTX
-%xdefine _SSL_set_accept_state _ %+ BORINGSSL_PREFIX %+ _SSL_set_accept_state
-%xdefine _SSL_set_alpn_protos _ %+ BORINGSSL_PREFIX %+ _SSL_set_alpn_protos
-%xdefine _SSL_set_bio _ %+ BORINGSSL_PREFIX %+ _SSL_set_bio
-%xdefine _SSL_set_cert_cb _ %+ BORINGSSL_PREFIX %+ _SSL_set_cert_cb
-%xdefine _SSL_set_chain_and_key _ %+ BORINGSSL_PREFIX %+ _SSL_set_chain_and_key
-%xdefine _SSL_set_cipher_list _ %+ BORINGSSL_PREFIX %+ _SSL_set_cipher_list
-%xdefine _SSL_set_ciphersuites _ %+ BORINGSSL_PREFIX %+ _SSL_set_ciphersuites
-%xdefine _SSL_set_client_CA_list _ %+ BORINGSSL_PREFIX %+ _SSL_set_client_CA_list
-%xdefine _SSL_set_connect_state _ %+ BORINGSSL_PREFIX %+ _SSL_set_connect_state
-%xdefine _SSL_set_custom_verify _ %+ BORINGSSL_PREFIX %+ _SSL_set_custom_verify
-%xdefine _SSL_set_early_data_enabled _ %+ BORINGSSL_PREFIX %+ _SSL_set_early_data_enabled
-%xdefine _SSL_set_enable_ech_grease _ %+ BORINGSSL_PREFIX %+ _SSL_set_enable_ech_grease
-%xdefine _SSL_set_enforce_rsa_key_usage _ %+ BORINGSSL_PREFIX %+ _SSL_set_enforce_rsa_key_usage
-%xdefine _SSL_set_ex_data _ %+ BORINGSSL_PREFIX %+ _SSL_set_ex_data
-%xdefine _SSL_set_fd _ %+ BORINGSSL_PREFIX %+ _SSL_set_fd
-%xdefine _SSL_set_handshake_hints _ %+ BORINGSSL_PREFIX %+ _SSL_set_handshake_hints
-%xdefine _SSL_set_hostflags _ %+ BORINGSSL_PREFIX %+ _SSL_set_hostflags
-%xdefine _SSL_set_info_callback _ %+ BORINGSSL_PREFIX %+ _SSL_set_info_callback
-%xdefine _SSL_set_jdk11_workaround _ %+ BORINGSSL_PREFIX %+ _SSL_set_jdk11_workaround
-%xdefine _SSL_set_max_cert_list _ %+ BORINGSSL_PREFIX %+ _SSL_set_max_cert_list
-%xdefine _SSL_set_max_proto_version _ %+ BORINGSSL_PREFIX %+ _SSL_set_max_proto_version
-%xdefine _SSL_set_max_send_fragment _ %+ BORINGSSL_PREFIX %+ _SSL_set_max_send_fragment
-%xdefine _SSL_set_min_proto_version _ %+ BORINGSSL_PREFIX %+ _SSL_set_min_proto_version
-%xdefine _SSL_set_mode _ %+ BORINGSSL_PREFIX %+ _SSL_set_mode
-%xdefine _SSL_set_msg_callback _ %+ BORINGSSL_PREFIX %+ _SSL_set_msg_callback
-%xdefine _SSL_set_msg_callback_arg _ %+ BORINGSSL_PREFIX %+ _SSL_set_msg_callback_arg
-%xdefine _SSL_set_mtu _ %+ BORINGSSL_PREFIX %+ _SSL_set_mtu
-%xdefine _SSL_set_ocsp_response _ %+ BORINGSSL_PREFIX %+ _SSL_set_ocsp_response
-%xdefine _SSL_set_options _ %+ BORINGSSL_PREFIX %+ _SSL_set_options
-%xdefine _SSL_set_permute_extensions _ %+ BORINGSSL_PREFIX %+ _SSL_set_permute_extensions
-%xdefine _SSL_set_private_key_method _ %+ BORINGSSL_PREFIX %+ _SSL_set_private_key_method
-%xdefine _SSL_set_psk_client_callback _ %+ BORINGSSL_PREFIX %+ _SSL_set_psk_client_callback
-%xdefine _SSL_set_psk_server_callback _ %+ BORINGSSL_PREFIX %+ _SSL_set_psk_server_callback
-%xdefine _SSL_set_purpose _ %+ BORINGSSL_PREFIX %+ _SSL_set_purpose
-%xdefine _SSL_set_quic_early_data_context _ %+ BORINGSSL_PREFIX %+ _SSL_set_quic_early_data_context
-%xdefine _SSL_set_quic_method _ %+ BORINGSSL_PREFIX %+ _SSL_set_quic_method
-%xdefine _SSL_set_quic_transport_params _ %+ BORINGSSL_PREFIX %+ _SSL_set_quic_transport_params
-%xdefine _SSL_set_quic_use_legacy_codepoint _ %+ BORINGSSL_PREFIX %+ _SSL_set_quic_use_legacy_codepoint
-%xdefine _SSL_set_quiet_shutdown _ %+ BORINGSSL_PREFIX %+ _SSL_set_quiet_shutdown
-%xdefine _SSL_set_read_ahead _ %+ BORINGSSL_PREFIX %+ _SSL_set_read_ahead
-%xdefine _SSL_set_renegotiate_mode _ %+ BORINGSSL_PREFIX %+ _SSL_set_renegotiate_mode
-%xdefine _SSL_set_retain_only_sha256_of_client_certs _ %+ BORINGSSL_PREFIX %+ _SSL_set_retain_only_sha256_of_client_certs
-%xdefine _SSL_set_rfd _ %+ BORINGSSL_PREFIX %+ _SSL_set_rfd
-%xdefine _SSL_set_session _ %+ BORINGSSL_PREFIX %+ _SSL_set_session
-%xdefine _SSL_set_session_id_context _ %+ BORINGSSL_PREFIX %+ _SSL_set_session_id_context
-%xdefine _SSL_set_shed_handshake_config _ %+ BORINGSSL_PREFIX %+ _SSL_set_shed_handshake_config
-%xdefine _SSL_set_shutdown _ %+ BORINGSSL_PREFIX %+ _SSL_set_shutdown
-%xdefine _SSL_set_signed_cert_timestamp_list _ %+ BORINGSSL_PREFIX %+ _SSL_set_signed_cert_timestamp_list
-%xdefine _SSL_set_signing_algorithm_prefs _ %+ BORINGSSL_PREFIX %+ _SSL_set_signing_algorithm_prefs
-%xdefine _SSL_set_srtp_profiles _ %+ BORINGSSL_PREFIX %+ _SSL_set_srtp_profiles
-%xdefine _SSL_set_state _ %+ BORINGSSL_PREFIX %+ _SSL_set_state
-%xdefine _SSL_set_strict_cipher_list _ %+ BORINGSSL_PREFIX %+ _SSL_set_strict_cipher_list
-%xdefine _SSL_set_tls_channel_id_enabled _ %+ BORINGSSL_PREFIX %+ _SSL_set_tls_channel_id_enabled
-%xdefine _SSL_set_tlsext_host_name _ %+ BORINGSSL_PREFIX %+ _SSL_set_tlsext_host_name
-%xdefine _SSL_set_tlsext_status_ocsp_resp _ %+ BORINGSSL_PREFIX %+ _SSL_set_tlsext_status_ocsp_resp
-%xdefine _SSL_set_tlsext_status_type _ %+ BORINGSSL_PREFIX %+ _SSL_set_tlsext_status_type
-%xdefine _SSL_set_tlsext_use_srtp _ %+ BORINGSSL_PREFIX %+ _SSL_set_tlsext_use_srtp
-%xdefine _SSL_set_tmp_dh _ %+ BORINGSSL_PREFIX %+ _SSL_set_tmp_dh
-%xdefine _SSL_set_tmp_dh_callback _ %+ BORINGSSL_PREFIX %+ _SSL_set_tmp_dh_callback
-%xdefine _SSL_set_tmp_ecdh _ %+ BORINGSSL_PREFIX %+ _SSL_set_tmp_ecdh
-%xdefine _SSL_set_tmp_rsa _ %+ BORINGSSL_PREFIX %+ _SSL_set_tmp_rsa
-%xdefine _SSL_set_tmp_rsa_callback _ %+ BORINGSSL_PREFIX %+ _SSL_set_tmp_rsa_callback
-%xdefine _SSL_set_trust _ %+ BORINGSSL_PREFIX %+ _SSL_set_trust
-%xdefine _SSL_set_verify _ %+ BORINGSSL_PREFIX %+ _SSL_set_verify
-%xdefine _SSL_set_verify_algorithm_prefs _ %+ BORINGSSL_PREFIX %+ _SSL_set_verify_algorithm_prefs
-%xdefine _SSL_set_verify_depth _ %+ BORINGSSL_PREFIX %+ _SSL_set_verify_depth
-%xdefine _SSL_set_wfd _ %+ BORINGSSL_PREFIX %+ _SSL_set_wfd
-%xdefine _SSL_shutdown _ %+ BORINGSSL_PREFIX %+ _SSL_shutdown
-%xdefine _SSL_state _ %+ BORINGSSL_PREFIX %+ _SSL_state
-%xdefine _SSL_state_string _ %+ BORINGSSL_PREFIX %+ _SSL_state_string
-%xdefine _SSL_state_string_long _ %+ BORINGSSL_PREFIX %+ _SSL_state_string_long
-%xdefine _SSL_to_bytes _ %+ BORINGSSL_PREFIX %+ _SSL_to_bytes
-%xdefine _SSL_total_renegotiations _ %+ BORINGSSL_PREFIX %+ _SSL_total_renegotiations
-%xdefine _SSL_use_PrivateKey _ %+ BORINGSSL_PREFIX %+ _SSL_use_PrivateKey
-%xdefine _SSL_use_PrivateKey_ASN1 _ %+ BORINGSSL_PREFIX %+ _SSL_use_PrivateKey_ASN1
-%xdefine _SSL_use_PrivateKey_file _ %+ BORINGSSL_PREFIX %+ _SSL_use_PrivateKey_file
-%xdefine _SSL_use_RSAPrivateKey _ %+ BORINGSSL_PREFIX %+ _SSL_use_RSAPrivateKey
-%xdefine _SSL_use_RSAPrivateKey_ASN1 _ %+ BORINGSSL_PREFIX %+ _SSL_use_RSAPrivateKey_ASN1
-%xdefine _SSL_use_RSAPrivateKey_file _ %+ BORINGSSL_PREFIX %+ _SSL_use_RSAPrivateKey_file
-%xdefine _SSL_use_certificate _ %+ BORINGSSL_PREFIX %+ _SSL_use_certificate
-%xdefine _SSL_use_certificate_ASN1 _ %+ BORINGSSL_PREFIX %+ _SSL_use_certificate_ASN1
-%xdefine _SSL_use_certificate_file _ %+ BORINGSSL_PREFIX %+ _SSL_use_certificate_file
-%xdefine _SSL_use_psk_identity_hint _ %+ BORINGSSL_PREFIX %+ _SSL_use_psk_identity_hint
-%xdefine _SSL_used_hello_retry_request _ %+ BORINGSSL_PREFIX %+ _SSL_used_hello_retry_request
-%xdefine _SSL_version _ %+ BORINGSSL_PREFIX %+ _SSL_version
-%xdefine _SSL_want _ %+ BORINGSSL_PREFIX %+ _SSL_want
-%xdefine _SSL_was_key_usage_invalid _ %+ BORINGSSL_PREFIX %+ _SSL_was_key_usage_invalid
-%xdefine _SSL_write _ %+ BORINGSSL_PREFIX %+ _SSL_write
 %xdefine _SSLeay _ %+ BORINGSSL_PREFIX %+ _SSLeay
 %xdefine _SSLeay_version _ %+ BORINGSSL_PREFIX %+ _SSLeay_version
-%xdefine _SSLv23_client_method _ %+ BORINGSSL_PREFIX %+ _SSLv23_client_method
-%xdefine _SSLv23_method _ %+ BORINGSSL_PREFIX %+ _SSLv23_method
-%xdefine _SSLv23_server_method _ %+ BORINGSSL_PREFIX %+ _SSLv23_server_method
 %xdefine _TLSKDF_verify_service_indicator _ %+ BORINGSSL_PREFIX %+ _TLSKDF_verify_service_indicator
-%xdefine _TLS_client_method _ %+ BORINGSSL_PREFIX %+ _TLS_client_method
-%xdefine _TLS_method _ %+ BORINGSSL_PREFIX %+ _TLS_method
-%xdefine _TLS_server_method _ %+ BORINGSSL_PREFIX %+ _TLS_server_method
-%xdefine _TLS_with_buffers_method _ %+ BORINGSSL_PREFIX %+ _TLS_with_buffers_method
-%xdefine _TLSv1_1_client_method _ %+ BORINGSSL_PREFIX %+ _TLSv1_1_client_method
-%xdefine _TLSv1_1_method _ %+ BORINGSSL_PREFIX %+ _TLSv1_1_method
-%xdefine _TLSv1_1_server_method _ %+ BORINGSSL_PREFIX %+ _TLSv1_1_server_method
-%xdefine _TLSv1_2_client_method _ %+ BORINGSSL_PREFIX %+ _TLSv1_2_client_method
-%xdefine _TLSv1_2_method _ %+ BORINGSSL_PREFIX %+ _TLSv1_2_method
-%xdefine _TLSv1_2_server_method _ %+ BORINGSSL_PREFIX %+ _TLSv1_2_server_method
-%xdefine _TLSv1_client_method _ %+ BORINGSSL_PREFIX %+ _TLSv1_client_method
-%xdefine _TLSv1_method _ %+ BORINGSSL_PREFIX %+ _TLSv1_method
-%xdefine _TLSv1_server_method _ %+ BORINGSSL_PREFIX %+ _TLSv1_server_method
 %xdefine _TRUST_TOKEN_CLIENT_add_key _ %+ BORINGSSL_PREFIX %+ _TRUST_TOKEN_CLIENT_add_key
 %xdefine _TRUST_TOKEN_CLIENT_begin_issuance _ %+ BORINGSSL_PREFIX %+ _TRUST_TOKEN_CLIENT_begin_issuance
 %xdefine _TRUST_TOKEN_CLIENT_begin_issuance_over_message _ %+ BORINGSSL_PREFIX %+ _TRUST_TOKEN_CLIENT_begin_issuance_over_message
@@ -3353,8 +2808,6 @@
 %xdefine _d2i_RSA_PUBKEY _ %+ BORINGSSL_PREFIX %+ _d2i_RSA_PUBKEY
 %xdefine _d2i_RSA_PUBKEY_bio _ %+ BORINGSSL_PREFIX %+ _d2i_RSA_PUBKEY_bio
 %xdefine _d2i_RSA_PUBKEY_fp _ %+ BORINGSSL_PREFIX %+ _d2i_RSA_PUBKEY_fp
-%xdefine _d2i_SSL_SESSION _ %+ BORINGSSL_PREFIX %+ _d2i_SSL_SESSION
-%xdefine _d2i_SSL_SESSION_bio _ %+ BORINGSSL_PREFIX %+ _d2i_SSL_SESSION_bio
 %xdefine _d2i_USERNOTICE _ %+ BORINGSSL_PREFIX %+ _d2i_USERNOTICE
 %xdefine _d2i_X509 _ %+ BORINGSSL_PREFIX %+ _d2i_X509
 %xdefine _d2i_X509_ALGOR _ %+ BORINGSSL_PREFIX %+ _d2i_X509_ALGOR
@@ -3625,8 +3078,6 @@
 %xdefine _i2d_RSA_PUBKEY _ %+ BORINGSSL_PREFIX %+ _i2d_RSA_PUBKEY
 %xdefine _i2d_RSA_PUBKEY_bio _ %+ BORINGSSL_PREFIX %+ _i2d_RSA_PUBKEY_bio
 %xdefine _i2d_RSA_PUBKEY_fp _ %+ BORINGSSL_PREFIX %+ _i2d_RSA_PUBKEY_fp
-%xdefine _i2d_SSL_SESSION _ %+ BORINGSSL_PREFIX %+ _i2d_SSL_SESSION
-%xdefine _i2d_SSL_SESSION_bio _ %+ BORINGSSL_PREFIX %+ _i2d_SSL_SESSION_bio
 %xdefine _i2d_USERNOTICE _ %+ BORINGSSL_PREFIX %+ _i2d_USERNOTICE
 %xdefine _i2d_X509 _ %+ BORINGSSL_PREFIX %+ _i2d_X509
 %xdefine _i2d_X509_ALGOR _ %+ BORINGSSL_PREFIX %+ _i2d_X509_ALGOR
@@ -3919,44 +3370,6 @@
 %xdefine _sha3_update _ %+ BORINGSSL_PREFIX %+ _sha3_update
 %xdefine _sha512_block_data_order _ %+ BORINGSSL_PREFIX %+ _sha512_block_data_order
 %xdefine _sha512_func _ %+ BORINGSSL_PREFIX %+ _sha512_func
-%xdefine _sk_CRYPTO_BUFFER_call_copy_func _ %+ BORINGSSL_PREFIX %+ _sk_CRYPTO_BUFFER_call_copy_func
-%xdefine _sk_CRYPTO_BUFFER_call_free_func _ %+ BORINGSSL_PREFIX %+ _sk_CRYPTO_BUFFER_call_free_func
-%xdefine _sk_CRYPTO_BUFFER_deep_copy _ %+ BORINGSSL_PREFIX %+ _sk_CRYPTO_BUFFER_deep_copy
-%xdefine _sk_CRYPTO_BUFFER_new_null _ %+ BORINGSSL_PREFIX %+ _sk_CRYPTO_BUFFER_new_null
-%xdefine _sk_CRYPTO_BUFFER_num _ %+ BORINGSSL_PREFIX %+ _sk_CRYPTO_BUFFER_num
-%xdefine _sk_CRYPTO_BUFFER_push _ %+ BORINGSSL_PREFIX %+ _sk_CRYPTO_BUFFER_push
-%xdefine _sk_CRYPTO_BUFFER_set _ %+ BORINGSSL_PREFIX %+ _sk_CRYPTO_BUFFER_set
-%xdefine _sk_CRYPTO_BUFFER_value _ %+ BORINGSSL_PREFIX %+ _sk_CRYPTO_BUFFER_value
-%xdefine _sk_SRTP_PROTECTION_PROFILE_new_null _ %+ BORINGSSL_PREFIX %+ _sk_SRTP_PROTECTION_PROFILE_new_null
-%xdefine _sk_SRTP_PROTECTION_PROFILE_num _ %+ BORINGSSL_PREFIX %+ _sk_SRTP_PROTECTION_PROFILE_num
-%xdefine _sk_SRTP_PROTECTION_PROFILE_push _ %+ BORINGSSL_PREFIX %+ _sk_SRTP_PROTECTION_PROFILE_push
-%xdefine _sk_SSL_CIPHER_call_cmp_func _ %+ BORINGSSL_PREFIX %+ _sk_SSL_CIPHER_call_cmp_func
-%xdefine _sk_SSL_CIPHER_delete _ %+ BORINGSSL_PREFIX %+ _sk_SSL_CIPHER_delete
-%xdefine _sk_SSL_CIPHER_dup _ %+ BORINGSSL_PREFIX %+ _sk_SSL_CIPHER_dup
-%xdefine _sk_SSL_CIPHER_find _ %+ BORINGSSL_PREFIX %+ _sk_SSL_CIPHER_find
-%xdefine _sk_SSL_CIPHER_new_null _ %+ BORINGSSL_PREFIX %+ _sk_SSL_CIPHER_new_null
-%xdefine _sk_SSL_CIPHER_num _ %+ BORINGSSL_PREFIX %+ _sk_SSL_CIPHER_num
-%xdefine _sk_SSL_CIPHER_push _ %+ BORINGSSL_PREFIX %+ _sk_SSL_CIPHER_push
-%xdefine _sk_SSL_CIPHER_value _ %+ BORINGSSL_PREFIX %+ _sk_SSL_CIPHER_value
-%xdefine _sk_X509_NAME_call_cmp_func _ %+ BORINGSSL_PREFIX %+ _sk_X509_NAME_call_cmp_func
-%xdefine _sk_X509_NAME_call_copy_func _ %+ BORINGSSL_PREFIX %+ _sk_X509_NAME_call_copy_func
-%xdefine _sk_X509_NAME_call_free_func _ %+ BORINGSSL_PREFIX %+ _sk_X509_NAME_call_free_func
-%xdefine _sk_X509_NAME_deep_copy _ %+ BORINGSSL_PREFIX %+ _sk_X509_NAME_deep_copy
-%xdefine _sk_X509_NAME_find _ %+ BORINGSSL_PREFIX %+ _sk_X509_NAME_find
-%xdefine _sk_X509_NAME_new _ %+ BORINGSSL_PREFIX %+ _sk_X509_NAME_new
-%xdefine _sk_X509_NAME_new_null _ %+ BORINGSSL_PREFIX %+ _sk_X509_NAME_new_null
-%xdefine _sk_X509_NAME_num _ %+ BORINGSSL_PREFIX %+ _sk_X509_NAME_num
-%xdefine _sk_X509_NAME_pop_free _ %+ BORINGSSL_PREFIX %+ _sk_X509_NAME_pop_free
-%xdefine _sk_X509_NAME_set _ %+ BORINGSSL_PREFIX %+ _sk_X509_NAME_set
-%xdefine _sk_X509_NAME_set_cmp_func _ %+ BORINGSSL_PREFIX %+ _sk_X509_NAME_set_cmp_func
-%xdefine _sk_X509_NAME_sort _ %+ BORINGSSL_PREFIX %+ _sk_X509_NAME_sort
-%xdefine _sk_X509_NAME_value _ %+ BORINGSSL_PREFIX %+ _sk_X509_NAME_value
-%xdefine _sk_X509_call_free_func _ %+ BORINGSSL_PREFIX %+ _sk_X509_call_free_func
-%xdefine _sk_X509_new_null _ %+ BORINGSSL_PREFIX %+ _sk_X509_new_null
-%xdefine _sk_X509_num _ %+ BORINGSSL_PREFIX %+ _sk_X509_num
-%xdefine _sk_X509_pop_free _ %+ BORINGSSL_PREFIX %+ _sk_X509_pop_free
-%xdefine _sk_X509_shift _ %+ BORINGSSL_PREFIX %+ _sk_X509_shift
-%xdefine _sk_X509_value _ %+ BORINGSSL_PREFIX %+ _sk_X509_value
 %xdefine _sk_deep_copy _ %+ BORINGSSL_PREFIX %+ _sk_deep_copy
 %xdefine _sk_delete _ %+ BORINGSSL_PREFIX %+ _sk_delete
 %xdefine _sk_delete_if _ %+ BORINGSSL_PREFIX %+ _sk_delete_if
@@ -4268,7 +3681,6 @@
 %xdefine BIO_do_connect BORINGSSL_PREFIX %+ _BIO_do_connect
 %xdefine BIO_eof BORINGSSL_PREFIX %+ _BIO_eof
 %xdefine BIO_f_base64 BORINGSSL_PREFIX %+ _BIO_f_base64
-%xdefine BIO_f_ssl BORINGSSL_PREFIX %+ _BIO_f_ssl
 %xdefine BIO_find_type BORINGSSL_PREFIX %+ _BIO_find_type
 %xdefine BIO_flush BORINGSSL_PREFIX %+ _BIO_flush
 %xdefine BIO_free BORINGSSL_PREFIX %+ _BIO_free
@@ -4355,7 +3767,6 @@
 %xdefine BIO_set_retry_special BORINGSSL_PREFIX %+ _BIO_set_retry_special
 %xdefine BIO_set_retry_write BORINGSSL_PREFIX %+ _BIO_set_retry_write
 %xdefine BIO_set_shutdown BORINGSSL_PREFIX %+ _BIO_set_shutdown
-%xdefine BIO_set_ssl BORINGSSL_PREFIX %+ _BIO_set_ssl
 %xdefine BIO_set_write_buffer_size BORINGSSL_PREFIX %+ _BIO_set_write_buffer_size
 %xdefine BIO_should_io_special BORINGSSL_PREFIX %+ _BIO_should_io_special
 %xdefine BIO_should_read BORINGSSL_PREFIX %+ _BIO_should_read
@@ -4838,19 +4249,6 @@
 %xdefine DSA_up_ref BORINGSSL_PREFIX %+ _DSA_up_ref
 %xdefine DSA_verify BORINGSSL_PREFIX %+ _DSA_verify
 %xdefine DSAparams_dup BORINGSSL_PREFIX %+ _DSAparams_dup
-%xdefine DTLS_client_method BORINGSSL_PREFIX %+ _DTLS_client_method
-%xdefine DTLS_method BORINGSSL_PREFIX %+ _DTLS_method
-%xdefine DTLS_server_method BORINGSSL_PREFIX %+ _DTLS_server_method
-%xdefine DTLS_with_buffers_method BORINGSSL_PREFIX %+ _DTLS_with_buffers_method
-%xdefine DTLSv1_2_client_method BORINGSSL_PREFIX %+ _DTLSv1_2_client_method
-%xdefine DTLSv1_2_method BORINGSSL_PREFIX %+ _DTLSv1_2_method
-%xdefine DTLSv1_2_server_method BORINGSSL_PREFIX %+ _DTLSv1_2_server_method
-%xdefine DTLSv1_client_method BORINGSSL_PREFIX %+ _DTLSv1_client_method
-%xdefine DTLSv1_get_timeout BORINGSSL_PREFIX %+ _DTLSv1_get_timeout
-%xdefine DTLSv1_handle_timeout BORINGSSL_PREFIX %+ _DTLSv1_handle_timeout
-%xdefine DTLSv1_method BORINGSSL_PREFIX %+ _DTLSv1_method
-%xdefine DTLSv1_server_method BORINGSSL_PREFIX %+ _DTLSv1_server_method
-%xdefine DTLSv1_set_initial_timeout_duration BORINGSSL_PREFIX %+ _DTLSv1_set_initial_timeout_duration
 %xdefine ECDH_compute_key BORINGSSL_PREFIX %+ _ECDH_compute_key
 %xdefine ECDH_compute_key_fips BORINGSSL_PREFIX %+ _ECDH_compute_key_fips
 %xdefine ECDH_compute_shared_secret BORINGSSL_PREFIX %+ _ECDH_compute_shared_secret
@@ -4987,7 +4385,6 @@
 %xdefine ERR_load_BIO_strings BORINGSSL_PREFIX %+ _ERR_load_BIO_strings
 %xdefine ERR_load_ERR_strings BORINGSSL_PREFIX %+ _ERR_load_ERR_strings
 %xdefine ERR_load_RAND_strings BORINGSSL_PREFIX %+ _ERR_load_RAND_strings
-%xdefine ERR_load_SSL_strings BORINGSSL_PREFIX %+ _ERR_load_SSL_strings
 %xdefine ERR_load_crypto_strings BORINGSSL_PREFIX %+ _ERR_load_crypto_strings
 %xdefine ERR_peek_error BORINGSSL_PREFIX %+ _ERR_peek_error
 %xdefine ERR_peek_error_line BORINGSSL_PREFIX %+ _ERR_peek_error_line
@@ -5570,7 +4967,6 @@
 %xdefine OPENSSL_ia32cap_P BORINGSSL_PREFIX %+ _OPENSSL_ia32cap_P
 %xdefine OPENSSL_ia32cap_get BORINGSSL_PREFIX %+ _OPENSSL_ia32cap_get
 %xdefine OPENSSL_init_crypto BORINGSSL_PREFIX %+ _OPENSSL_init_crypto
-%xdefine OPENSSL_init_ssl BORINGSSL_PREFIX %+ _OPENSSL_init_ssl
 %xdefine OPENSSL_lh_delete BORINGSSL_PREFIX %+ _OPENSSL_lh_delete
 %xdefine OPENSSL_lh_doall_arg BORINGSSL_PREFIX %+ _OPENSSL_lh_doall_arg
 %xdefine OPENSSL_lh_free BORINGSSL_PREFIX %+ _OPENSSL_lh_free
@@ -5638,7 +5034,6 @@
 %xdefine PEM_read_RSAPrivateKey BORINGSSL_PREFIX %+ _PEM_read_RSAPrivateKey
 %xdefine PEM_read_RSAPublicKey BORINGSSL_PREFIX %+ _PEM_read_RSAPublicKey
 %xdefine PEM_read_RSA_PUBKEY BORINGSSL_PREFIX %+ _PEM_read_RSA_PUBKEY
-%xdefine PEM_read_SSL_SESSION BORINGSSL_PREFIX %+ _PEM_read_SSL_SESSION
 %xdefine PEM_read_X509 BORINGSSL_PREFIX %+ _PEM_read_X509
 %xdefine PEM_read_X509_AUX BORINGSSL_PREFIX %+ _PEM_read_X509_AUX
 %xdefine PEM_read_X509_CRL BORINGSSL_PREFIX %+ _PEM_read_X509_CRL
@@ -5658,7 +5053,6 @@
 %xdefine PEM_read_bio_RSAPrivateKey BORINGSSL_PREFIX %+ _PEM_read_bio_RSAPrivateKey
 %xdefine PEM_read_bio_RSAPublicKey BORINGSSL_PREFIX %+ _PEM_read_bio_RSAPublicKey
 %xdefine PEM_read_bio_RSA_PUBKEY BORINGSSL_PREFIX %+ _PEM_read_bio_RSA_PUBKEY
-%xdefine PEM_read_bio_SSL_SESSION BORINGSSL_PREFIX %+ _PEM_read_bio_SSL_SESSION
 %xdefine PEM_read_bio_X509 BORINGSSL_PREFIX %+ _PEM_read_bio_X509
 %xdefine PEM_read_bio_X509_AUX BORINGSSL_PREFIX %+ _PEM_read_bio_X509_AUX
 %xdefine PEM_read_bio_X509_CRL BORINGSSL_PREFIX %+ _PEM_read_bio_X509_CRL
@@ -5680,7 +5074,6 @@
 %xdefine PEM_write_RSAPrivateKey BORINGSSL_PREFIX %+ _PEM_write_RSAPrivateKey
 %xdefine PEM_write_RSAPublicKey BORINGSSL_PREFIX %+ _PEM_write_RSAPublicKey
 %xdefine PEM_write_RSA_PUBKEY BORINGSSL_PREFIX %+ _PEM_write_RSA_PUBKEY
-%xdefine PEM_write_SSL_SESSION BORINGSSL_PREFIX %+ _PEM_write_SSL_SESSION
 %xdefine PEM_write_X509 BORINGSSL_PREFIX %+ _PEM_write_X509
 %xdefine PEM_write_X509_AUX BORINGSSL_PREFIX %+ _PEM_write_X509_AUX
 %xdefine PEM_write_X509_CRL BORINGSSL_PREFIX %+ _PEM_write_X509_CRL
@@ -5703,7 +5096,6 @@
 %xdefine PEM_write_bio_RSAPrivateKey BORINGSSL_PREFIX %+ _PEM_write_bio_RSAPrivateKey
 %xdefine PEM_write_bio_RSAPublicKey BORINGSSL_PREFIX %+ _PEM_write_bio_RSAPublicKey
 %xdefine PEM_write_bio_RSA_PUBKEY BORINGSSL_PREFIX %+ _PEM_write_bio_RSA_PUBKEY
-%xdefine PEM_write_bio_SSL_SESSION BORINGSSL_PREFIX %+ _PEM_write_bio_SSL_SESSION
 %xdefine PEM_write_bio_X509 BORINGSSL_PREFIX %+ _PEM_write_bio_X509
 %xdefine PEM_write_bio_X509_AUX BORINGSSL_PREFIX %+ _PEM_write_bio_X509_AUX
 %xdefine PEM_write_bio_X509_CRL BORINGSSL_PREFIX %+ _PEM_write_bio_X509_CRL
@@ -5924,533 +5316,9 @@
 %xdefine SPAKE2_process_msg BORINGSSL_PREFIX %+ _SPAKE2_process_msg
 %xdefine SSHKDF BORINGSSL_PREFIX %+ _SSHKDF
 %xdefine SSHKDF_verify_service_indicator BORINGSSL_PREFIX %+ _SSHKDF_verify_service_indicator
-%xdefine SSL_CIPHER_description BORINGSSL_PREFIX %+ _SSL_CIPHER_description
-%xdefine SSL_CIPHER_get_auth_nid BORINGSSL_PREFIX %+ _SSL_CIPHER_get_auth_nid
-%xdefine SSL_CIPHER_get_bits BORINGSSL_PREFIX %+ _SSL_CIPHER_get_bits
-%xdefine SSL_CIPHER_get_cipher_nid BORINGSSL_PREFIX %+ _SSL_CIPHER_get_cipher_nid
-%xdefine SSL_CIPHER_get_digest_nid BORINGSSL_PREFIX %+ _SSL_CIPHER_get_digest_nid
-%xdefine SSL_CIPHER_get_id BORINGSSL_PREFIX %+ _SSL_CIPHER_get_id
-%xdefine SSL_CIPHER_get_kx_name BORINGSSL_PREFIX %+ _SSL_CIPHER_get_kx_name
-%xdefine SSL_CIPHER_get_kx_nid BORINGSSL_PREFIX %+ _SSL_CIPHER_get_kx_nid
-%xdefine SSL_CIPHER_get_max_version BORINGSSL_PREFIX %+ _SSL_CIPHER_get_max_version
-%xdefine SSL_CIPHER_get_min_version BORINGSSL_PREFIX %+ _SSL_CIPHER_get_min_version
-%xdefine SSL_CIPHER_get_name BORINGSSL_PREFIX %+ _SSL_CIPHER_get_name
-%xdefine SSL_CIPHER_get_prf_nid BORINGSSL_PREFIX %+ _SSL_CIPHER_get_prf_nid
-%xdefine SSL_CIPHER_get_protocol_id BORINGSSL_PREFIX %+ _SSL_CIPHER_get_protocol_id
-%xdefine SSL_CIPHER_get_rfc_name BORINGSSL_PREFIX %+ _SSL_CIPHER_get_rfc_name
-%xdefine SSL_CIPHER_get_value BORINGSSL_PREFIX %+ _SSL_CIPHER_get_value
-%xdefine SSL_CIPHER_get_version BORINGSSL_PREFIX %+ _SSL_CIPHER_get_version
-%xdefine SSL_CIPHER_is_aead BORINGSSL_PREFIX %+ _SSL_CIPHER_is_aead
-%xdefine SSL_CIPHER_is_block_cipher BORINGSSL_PREFIX %+ _SSL_CIPHER_is_block_cipher
-%xdefine SSL_CIPHER_standard_name BORINGSSL_PREFIX %+ _SSL_CIPHER_standard_name
-%xdefine SSL_COMP_add_compression_method BORINGSSL_PREFIX %+ _SSL_COMP_add_compression_method
-%xdefine SSL_COMP_free_compression_methods BORINGSSL_PREFIX %+ _SSL_COMP_free_compression_methods
-%xdefine SSL_COMP_get0_name BORINGSSL_PREFIX %+ _SSL_COMP_get0_name
-%xdefine SSL_COMP_get_compression_methods BORINGSSL_PREFIX %+ _SSL_COMP_get_compression_methods
-%xdefine SSL_COMP_get_id BORINGSSL_PREFIX %+ _SSL_COMP_get_id
-%xdefine SSL_COMP_get_name BORINGSSL_PREFIX %+ _SSL_COMP_get_name
-%xdefine SSL_CTX_add0_chain_cert BORINGSSL_PREFIX %+ _SSL_CTX_add0_chain_cert
-%xdefine SSL_CTX_add1_chain_cert BORINGSSL_PREFIX %+ _SSL_CTX_add1_chain_cert
-%xdefine SSL_CTX_add_cert_compression_alg BORINGSSL_PREFIX %+ _SSL_CTX_add_cert_compression_alg
-%xdefine SSL_CTX_add_client_CA BORINGSSL_PREFIX %+ _SSL_CTX_add_client_CA
-%xdefine SSL_CTX_add_extra_chain_cert BORINGSSL_PREFIX %+ _SSL_CTX_add_extra_chain_cert
-%xdefine SSL_CTX_add_session BORINGSSL_PREFIX %+ _SSL_CTX_add_session
-%xdefine SSL_CTX_check_private_key BORINGSSL_PREFIX %+ _SSL_CTX_check_private_key
-%xdefine SSL_CTX_cipher_in_group BORINGSSL_PREFIX %+ _SSL_CTX_cipher_in_group
-%xdefine SSL_CTX_clear_chain_certs BORINGSSL_PREFIX %+ _SSL_CTX_clear_chain_certs
-%xdefine SSL_CTX_clear_extra_chain_certs BORINGSSL_PREFIX %+ _SSL_CTX_clear_extra_chain_certs
-%xdefine SSL_CTX_clear_mode BORINGSSL_PREFIX %+ _SSL_CTX_clear_mode
-%xdefine SSL_CTX_clear_options BORINGSSL_PREFIX %+ _SSL_CTX_clear_options
-%xdefine SSL_CTX_enable_ocsp_stapling BORINGSSL_PREFIX %+ _SSL_CTX_enable_ocsp_stapling
-%xdefine SSL_CTX_enable_signed_cert_timestamps BORINGSSL_PREFIX %+ _SSL_CTX_enable_signed_cert_timestamps
-%xdefine SSL_CTX_enable_tls_channel_id BORINGSSL_PREFIX %+ _SSL_CTX_enable_tls_channel_id
-%xdefine SSL_CTX_flush_sessions BORINGSSL_PREFIX %+ _SSL_CTX_flush_sessions
-%xdefine SSL_CTX_free BORINGSSL_PREFIX %+ _SSL_CTX_free
-%xdefine SSL_CTX_get0_certificate BORINGSSL_PREFIX %+ _SSL_CTX_get0_certificate
-%xdefine SSL_CTX_get0_chain BORINGSSL_PREFIX %+ _SSL_CTX_get0_chain
-%xdefine SSL_CTX_get0_chain_certs BORINGSSL_PREFIX %+ _SSL_CTX_get0_chain_certs
-%xdefine SSL_CTX_get0_param BORINGSSL_PREFIX %+ _SSL_CTX_get0_param
-%xdefine SSL_CTX_get0_privatekey BORINGSSL_PREFIX %+ _SSL_CTX_get0_privatekey
-%xdefine SSL_CTX_get_cert_store BORINGSSL_PREFIX %+ _SSL_CTX_get_cert_store
-%xdefine SSL_CTX_get_ciphers BORINGSSL_PREFIX %+ _SSL_CTX_get_ciphers
-%xdefine SSL_CTX_get_client_CA_list BORINGSSL_PREFIX %+ _SSL_CTX_get_client_CA_list
-%xdefine SSL_CTX_get_default_passwd_cb BORINGSSL_PREFIX %+ _SSL_CTX_get_default_passwd_cb
-%xdefine SSL_CTX_get_default_passwd_cb_userdata BORINGSSL_PREFIX %+ _SSL_CTX_get_default_passwd_cb_userdata
-%xdefine SSL_CTX_get_ex_data BORINGSSL_PREFIX %+ _SSL_CTX_get_ex_data
-%xdefine SSL_CTX_get_ex_new_index BORINGSSL_PREFIX %+ _SSL_CTX_get_ex_new_index
-%xdefine SSL_CTX_get_extra_chain_certs BORINGSSL_PREFIX %+ _SSL_CTX_get_extra_chain_certs
-%xdefine SSL_CTX_get_info_callback BORINGSSL_PREFIX %+ _SSL_CTX_get_info_callback
-%xdefine SSL_CTX_get_keylog_callback BORINGSSL_PREFIX %+ _SSL_CTX_get_keylog_callback
-%xdefine SSL_CTX_get_max_cert_list BORINGSSL_PREFIX %+ _SSL_CTX_get_max_cert_list
-%xdefine SSL_CTX_get_max_proto_version BORINGSSL_PREFIX %+ _SSL_CTX_get_max_proto_version
-%xdefine SSL_CTX_get_min_proto_version BORINGSSL_PREFIX %+ _SSL_CTX_get_min_proto_version
-%xdefine SSL_CTX_get_mode BORINGSSL_PREFIX %+ _SSL_CTX_get_mode
-%xdefine SSL_CTX_get_num_tickets BORINGSSL_PREFIX %+ _SSL_CTX_get_num_tickets
-%xdefine SSL_CTX_get_options BORINGSSL_PREFIX %+ _SSL_CTX_get_options
-%xdefine SSL_CTX_get_quiet_shutdown BORINGSSL_PREFIX %+ _SSL_CTX_get_quiet_shutdown
-%xdefine SSL_CTX_get_read_ahead BORINGSSL_PREFIX %+ _SSL_CTX_get_read_ahead
-%xdefine SSL_CTX_get_security_level BORINGSSL_PREFIX %+ _SSL_CTX_get_security_level
-%xdefine SSL_CTX_get_session_cache_mode BORINGSSL_PREFIX %+ _SSL_CTX_get_session_cache_mode
-%xdefine SSL_CTX_get_timeout BORINGSSL_PREFIX %+ _SSL_CTX_get_timeout
-%xdefine SSL_CTX_get_tlsext_ticket_keys BORINGSSL_PREFIX %+ _SSL_CTX_get_tlsext_ticket_keys
-%xdefine SSL_CTX_get_verify_callback BORINGSSL_PREFIX %+ _SSL_CTX_get_verify_callback
-%xdefine SSL_CTX_get_verify_depth BORINGSSL_PREFIX %+ _SSL_CTX_get_verify_depth
-%xdefine SSL_CTX_get_verify_mode BORINGSSL_PREFIX %+ _SSL_CTX_get_verify_mode
-%xdefine SSL_CTX_load_verify_locations BORINGSSL_PREFIX %+ _SSL_CTX_load_verify_locations
-%xdefine SSL_CTX_need_tmp_RSA BORINGSSL_PREFIX %+ _SSL_CTX_need_tmp_RSA
-%xdefine SSL_CTX_new BORINGSSL_PREFIX %+ _SSL_CTX_new
-%xdefine SSL_CTX_remove_session BORINGSSL_PREFIX %+ _SSL_CTX_remove_session
-%xdefine SSL_CTX_sess_accept BORINGSSL_PREFIX %+ _SSL_CTX_sess_accept
-%xdefine SSL_CTX_sess_accept_good BORINGSSL_PREFIX %+ _SSL_CTX_sess_accept_good
-%xdefine SSL_CTX_sess_accept_renegotiate BORINGSSL_PREFIX %+ _SSL_CTX_sess_accept_renegotiate
-%xdefine SSL_CTX_sess_cache_full BORINGSSL_PREFIX %+ _SSL_CTX_sess_cache_full
-%xdefine SSL_CTX_sess_cb_hits BORINGSSL_PREFIX %+ _SSL_CTX_sess_cb_hits
-%xdefine SSL_CTX_sess_connect BORINGSSL_PREFIX %+ _SSL_CTX_sess_connect
-%xdefine SSL_CTX_sess_connect_good BORINGSSL_PREFIX %+ _SSL_CTX_sess_connect_good
-%xdefine SSL_CTX_sess_connect_renegotiate BORINGSSL_PREFIX %+ _SSL_CTX_sess_connect_renegotiate
-%xdefine SSL_CTX_sess_get_cache_size BORINGSSL_PREFIX %+ _SSL_CTX_sess_get_cache_size
-%xdefine SSL_CTX_sess_get_get_cb BORINGSSL_PREFIX %+ _SSL_CTX_sess_get_get_cb
-%xdefine SSL_CTX_sess_get_new_cb BORINGSSL_PREFIX %+ _SSL_CTX_sess_get_new_cb
-%xdefine SSL_CTX_sess_get_remove_cb BORINGSSL_PREFIX %+ _SSL_CTX_sess_get_remove_cb
-%xdefine SSL_CTX_sess_hits BORINGSSL_PREFIX %+ _SSL_CTX_sess_hits
-%xdefine SSL_CTX_sess_misses BORINGSSL_PREFIX %+ _SSL_CTX_sess_misses
-%xdefine SSL_CTX_sess_number BORINGSSL_PREFIX %+ _SSL_CTX_sess_number
-%xdefine SSL_CTX_sess_set_cache_size BORINGSSL_PREFIX %+ _SSL_CTX_sess_set_cache_size
-%xdefine SSL_CTX_sess_set_get_cb BORINGSSL_PREFIX %+ _SSL_CTX_sess_set_get_cb
-%xdefine SSL_CTX_sess_set_new_cb BORINGSSL_PREFIX %+ _SSL_CTX_sess_set_new_cb
-%xdefine SSL_CTX_sess_set_remove_cb BORINGSSL_PREFIX %+ _SSL_CTX_sess_set_remove_cb
-%xdefine SSL_CTX_sess_timeouts BORINGSSL_PREFIX %+ _SSL_CTX_sess_timeouts
-%xdefine SSL_CTX_set0_buffer_pool BORINGSSL_PREFIX %+ _SSL_CTX_set0_buffer_pool
-%xdefine SSL_CTX_set0_chain BORINGSSL_PREFIX %+ _SSL_CTX_set0_chain
-%xdefine SSL_CTX_set0_client_CAs BORINGSSL_PREFIX %+ _SSL_CTX_set0_client_CAs
-%xdefine SSL_CTX_set0_verify_cert_store BORINGSSL_PREFIX %+ _SSL_CTX_set0_verify_cert_store
-%xdefine SSL_CTX_set1_chain BORINGSSL_PREFIX %+ _SSL_CTX_set1_chain
-%xdefine SSL_CTX_set1_curves BORINGSSL_PREFIX %+ _SSL_CTX_set1_curves
-%xdefine SSL_CTX_set1_curves_list BORINGSSL_PREFIX %+ _SSL_CTX_set1_curves_list
-%xdefine SSL_CTX_set1_ech_keys BORINGSSL_PREFIX %+ _SSL_CTX_set1_ech_keys
-%xdefine SSL_CTX_set1_groups BORINGSSL_PREFIX %+ _SSL_CTX_set1_groups
-%xdefine SSL_CTX_set1_groups_list BORINGSSL_PREFIX %+ _SSL_CTX_set1_groups_list
-%xdefine SSL_CTX_set1_param BORINGSSL_PREFIX %+ _SSL_CTX_set1_param
-%xdefine SSL_CTX_set1_sigalgs BORINGSSL_PREFIX %+ _SSL_CTX_set1_sigalgs
-%xdefine SSL_CTX_set1_sigalgs_list BORINGSSL_PREFIX %+ _SSL_CTX_set1_sigalgs_list
-%xdefine SSL_CTX_set1_tls_channel_id BORINGSSL_PREFIX %+ _SSL_CTX_set1_tls_channel_id
-%xdefine SSL_CTX_set1_verify_cert_store BORINGSSL_PREFIX %+ _SSL_CTX_set1_verify_cert_store
-%xdefine SSL_CTX_set_allow_unknown_alpn_protos BORINGSSL_PREFIX %+ _SSL_CTX_set_allow_unknown_alpn_protos
-%xdefine SSL_CTX_set_alpn_protos BORINGSSL_PREFIX %+ _SSL_CTX_set_alpn_protos
-%xdefine SSL_CTX_set_alpn_select_cb BORINGSSL_PREFIX %+ _SSL_CTX_set_alpn_select_cb
-%xdefine SSL_CTX_set_cert_cb BORINGSSL_PREFIX %+ _SSL_CTX_set_cert_cb
-%xdefine SSL_CTX_set_cert_store BORINGSSL_PREFIX %+ _SSL_CTX_set_cert_store
-%xdefine SSL_CTX_set_cert_verify_callback BORINGSSL_PREFIX %+ _SSL_CTX_set_cert_verify_callback
-%xdefine SSL_CTX_set_chain_and_key BORINGSSL_PREFIX %+ _SSL_CTX_set_chain_and_key
-%xdefine SSL_CTX_set_cipher_list BORINGSSL_PREFIX %+ _SSL_CTX_set_cipher_list
-%xdefine SSL_CTX_set_ciphersuites BORINGSSL_PREFIX %+ _SSL_CTX_set_ciphersuites
-%xdefine SSL_CTX_set_client_CA_list BORINGSSL_PREFIX %+ _SSL_CTX_set_client_CA_list
-%xdefine SSL_CTX_set_client_cert_cb BORINGSSL_PREFIX %+ _SSL_CTX_set_client_cert_cb
-%xdefine SSL_CTX_set_current_time_cb BORINGSSL_PREFIX %+ _SSL_CTX_set_current_time_cb
-%xdefine SSL_CTX_set_custom_verify BORINGSSL_PREFIX %+ _SSL_CTX_set_custom_verify
-%xdefine SSL_CTX_set_default_passwd_cb BORINGSSL_PREFIX %+ _SSL_CTX_set_default_passwd_cb
-%xdefine SSL_CTX_set_default_passwd_cb_userdata BORINGSSL_PREFIX %+ _SSL_CTX_set_default_passwd_cb_userdata
-%xdefine SSL_CTX_set_default_verify_paths BORINGSSL_PREFIX %+ _SSL_CTX_set_default_verify_paths
-%xdefine SSL_CTX_set_dos_protection_cb BORINGSSL_PREFIX %+ _SSL_CTX_set_dos_protection_cb
-%xdefine SSL_CTX_set_early_data_enabled BORINGSSL_PREFIX %+ _SSL_CTX_set_early_data_enabled
-%xdefine SSL_CTX_set_ex_data BORINGSSL_PREFIX %+ _SSL_CTX_set_ex_data
-%xdefine SSL_CTX_set_false_start_allowed_without_alpn BORINGSSL_PREFIX %+ _SSL_CTX_set_false_start_allowed_without_alpn
-%xdefine SSL_CTX_set_grease_enabled BORINGSSL_PREFIX %+ _SSL_CTX_set_grease_enabled
-%xdefine SSL_CTX_set_info_callback BORINGSSL_PREFIX %+ _SSL_CTX_set_info_callback
-%xdefine SSL_CTX_set_keylog_callback BORINGSSL_PREFIX %+ _SSL_CTX_set_keylog_callback
-%xdefine SSL_CTX_set_max_cert_list BORINGSSL_PREFIX %+ _SSL_CTX_set_max_cert_list
-%xdefine SSL_CTX_set_max_proto_version BORINGSSL_PREFIX %+ _SSL_CTX_set_max_proto_version
-%xdefine SSL_CTX_set_max_send_fragment BORINGSSL_PREFIX %+ _SSL_CTX_set_max_send_fragment
-%xdefine SSL_CTX_set_min_proto_version BORINGSSL_PREFIX %+ _SSL_CTX_set_min_proto_version
-%xdefine SSL_CTX_set_mode BORINGSSL_PREFIX %+ _SSL_CTX_set_mode
-%xdefine SSL_CTX_set_msg_callback BORINGSSL_PREFIX %+ _SSL_CTX_set_msg_callback
-%xdefine SSL_CTX_set_msg_callback_arg BORINGSSL_PREFIX %+ _SSL_CTX_set_msg_callback_arg
-%xdefine SSL_CTX_set_next_proto_select_cb BORINGSSL_PREFIX %+ _SSL_CTX_set_next_proto_select_cb
-%xdefine SSL_CTX_set_next_protos_advertised_cb BORINGSSL_PREFIX %+ _SSL_CTX_set_next_protos_advertised_cb
-%xdefine SSL_CTX_set_num_tickets BORINGSSL_PREFIX %+ _SSL_CTX_set_num_tickets
-%xdefine SSL_CTX_set_ocsp_response BORINGSSL_PREFIX %+ _SSL_CTX_set_ocsp_response
-%xdefine SSL_CTX_set_options BORINGSSL_PREFIX %+ _SSL_CTX_set_options
-%xdefine SSL_CTX_set_permute_extensions BORINGSSL_PREFIX %+ _SSL_CTX_set_permute_extensions
-%xdefine SSL_CTX_set_private_key_method BORINGSSL_PREFIX %+ _SSL_CTX_set_private_key_method
-%xdefine SSL_CTX_set_psk_client_callback BORINGSSL_PREFIX %+ _SSL_CTX_set_psk_client_callback
-%xdefine SSL_CTX_set_psk_server_callback BORINGSSL_PREFIX %+ _SSL_CTX_set_psk_server_callback
-%xdefine SSL_CTX_set_purpose BORINGSSL_PREFIX %+ _SSL_CTX_set_purpose
-%xdefine SSL_CTX_set_quic_method BORINGSSL_PREFIX %+ _SSL_CTX_set_quic_method
-%xdefine SSL_CTX_set_quiet_shutdown BORINGSSL_PREFIX %+ _SSL_CTX_set_quiet_shutdown
-%xdefine SSL_CTX_set_read_ahead BORINGSSL_PREFIX %+ _SSL_CTX_set_read_ahead
-%xdefine SSL_CTX_set_record_protocol_version BORINGSSL_PREFIX %+ _SSL_CTX_set_record_protocol_version
-%xdefine SSL_CTX_set_retain_only_sha256_of_client_certs BORINGSSL_PREFIX %+ _SSL_CTX_set_retain_only_sha256_of_client_certs
-%xdefine SSL_CTX_set_reverify_on_resume BORINGSSL_PREFIX %+ _SSL_CTX_set_reverify_on_resume
-%xdefine SSL_CTX_set_security_level BORINGSSL_PREFIX %+ _SSL_CTX_set_security_level
-%xdefine SSL_CTX_set_select_certificate_cb BORINGSSL_PREFIX %+ _SSL_CTX_set_select_certificate_cb
-%xdefine SSL_CTX_set_session_cache_mode BORINGSSL_PREFIX %+ _SSL_CTX_set_session_cache_mode
-%xdefine SSL_CTX_set_session_id_context BORINGSSL_PREFIX %+ _SSL_CTX_set_session_id_context
-%xdefine SSL_CTX_set_session_psk_dhe_timeout BORINGSSL_PREFIX %+ _SSL_CTX_set_session_psk_dhe_timeout
-%xdefine SSL_CTX_set_signed_cert_timestamp_list BORINGSSL_PREFIX %+ _SSL_CTX_set_signed_cert_timestamp_list
-%xdefine SSL_CTX_set_signing_algorithm_prefs BORINGSSL_PREFIX %+ _SSL_CTX_set_signing_algorithm_prefs
-%xdefine SSL_CTX_set_srtp_profiles BORINGSSL_PREFIX %+ _SSL_CTX_set_srtp_profiles
-%xdefine SSL_CTX_set_strict_cipher_list BORINGSSL_PREFIX %+ _SSL_CTX_set_strict_cipher_list
-%xdefine SSL_CTX_set_ticket_aead_method BORINGSSL_PREFIX %+ _SSL_CTX_set_ticket_aead_method
-%xdefine SSL_CTX_set_timeout BORINGSSL_PREFIX %+ _SSL_CTX_set_timeout
-%xdefine SSL_CTX_set_tls_channel_id_enabled BORINGSSL_PREFIX %+ _SSL_CTX_set_tls_channel_id_enabled
-%xdefine SSL_CTX_set_tlsext_servername_arg BORINGSSL_PREFIX %+ _SSL_CTX_set_tlsext_servername_arg
-%xdefine SSL_CTX_set_tlsext_servername_callback BORINGSSL_PREFIX %+ _SSL_CTX_set_tlsext_servername_callback
-%xdefine SSL_CTX_set_tlsext_status_arg BORINGSSL_PREFIX %+ _SSL_CTX_set_tlsext_status_arg
-%xdefine SSL_CTX_set_tlsext_status_cb BORINGSSL_PREFIX %+ _SSL_CTX_set_tlsext_status_cb
-%xdefine SSL_CTX_set_tlsext_ticket_key_cb BORINGSSL_PREFIX %+ _SSL_CTX_set_tlsext_ticket_key_cb
-%xdefine SSL_CTX_set_tlsext_ticket_keys BORINGSSL_PREFIX %+ _SSL_CTX_set_tlsext_ticket_keys
-%xdefine SSL_CTX_set_tlsext_use_srtp BORINGSSL_PREFIX %+ _SSL_CTX_set_tlsext_use_srtp
-%xdefine SSL_CTX_set_tmp_dh BORINGSSL_PREFIX %+ _SSL_CTX_set_tmp_dh
-%xdefine SSL_CTX_set_tmp_dh_callback BORINGSSL_PREFIX %+ _SSL_CTX_set_tmp_dh_callback
-%xdefine SSL_CTX_set_tmp_ecdh BORINGSSL_PREFIX %+ _SSL_CTX_set_tmp_ecdh
-%xdefine SSL_CTX_set_tmp_rsa BORINGSSL_PREFIX %+ _SSL_CTX_set_tmp_rsa
-%xdefine SSL_CTX_set_tmp_rsa_callback BORINGSSL_PREFIX %+ _SSL_CTX_set_tmp_rsa_callback
-%xdefine SSL_CTX_set_trust BORINGSSL_PREFIX %+ _SSL_CTX_set_trust
-%xdefine SSL_CTX_set_verify BORINGSSL_PREFIX %+ _SSL_CTX_set_verify
-%xdefine SSL_CTX_set_verify_algorithm_prefs BORINGSSL_PREFIX %+ _SSL_CTX_set_verify_algorithm_prefs
-%xdefine SSL_CTX_set_verify_depth BORINGSSL_PREFIX %+ _SSL_CTX_set_verify_depth
-%xdefine SSL_CTX_up_ref BORINGSSL_PREFIX %+ _SSL_CTX_up_ref
-%xdefine SSL_CTX_use_PrivateKey BORINGSSL_PREFIX %+ _SSL_CTX_use_PrivateKey
-%xdefine SSL_CTX_use_PrivateKey_ASN1 BORINGSSL_PREFIX %+ _SSL_CTX_use_PrivateKey_ASN1
-%xdefine SSL_CTX_use_PrivateKey_file BORINGSSL_PREFIX %+ _SSL_CTX_use_PrivateKey_file
-%xdefine SSL_CTX_use_RSAPrivateKey BORINGSSL_PREFIX %+ _SSL_CTX_use_RSAPrivateKey
-%xdefine SSL_CTX_use_RSAPrivateKey_ASN1 BORINGSSL_PREFIX %+ _SSL_CTX_use_RSAPrivateKey_ASN1
-%xdefine SSL_CTX_use_RSAPrivateKey_file BORINGSSL_PREFIX %+ _SSL_CTX_use_RSAPrivateKey_file
-%xdefine SSL_CTX_use_certificate BORINGSSL_PREFIX %+ _SSL_CTX_use_certificate
-%xdefine SSL_CTX_use_certificate_ASN1 BORINGSSL_PREFIX %+ _SSL_CTX_use_certificate_ASN1
-%xdefine SSL_CTX_use_certificate_chain_file BORINGSSL_PREFIX %+ _SSL_CTX_use_certificate_chain_file
-%xdefine SSL_CTX_use_certificate_file BORINGSSL_PREFIX %+ _SSL_CTX_use_certificate_file
-%xdefine SSL_CTX_use_psk_identity_hint BORINGSSL_PREFIX %+ _SSL_CTX_use_psk_identity_hint
-%xdefine SSL_ECH_KEYS_add BORINGSSL_PREFIX %+ _SSL_ECH_KEYS_add
-%xdefine SSL_ECH_KEYS_free BORINGSSL_PREFIX %+ _SSL_ECH_KEYS_free
-%xdefine SSL_ECH_KEYS_has_duplicate_config_id BORINGSSL_PREFIX %+ _SSL_ECH_KEYS_has_duplicate_config_id
-%xdefine SSL_ECH_KEYS_marshal_retry_configs BORINGSSL_PREFIX %+ _SSL_ECH_KEYS_marshal_retry_configs
-%xdefine SSL_ECH_KEYS_new BORINGSSL_PREFIX %+ _SSL_ECH_KEYS_new
-%xdefine SSL_ECH_KEYS_up_ref BORINGSSL_PREFIX %+ _SSL_ECH_KEYS_up_ref
-%xdefine SSL_SESSION_copy_without_early_data BORINGSSL_PREFIX %+ _SSL_SESSION_copy_without_early_data
-%xdefine SSL_SESSION_early_data_capable BORINGSSL_PREFIX %+ _SSL_SESSION_early_data_capable
-%xdefine SSL_SESSION_free BORINGSSL_PREFIX %+ _SSL_SESSION_free
-%xdefine SSL_SESSION_from_bytes BORINGSSL_PREFIX %+ _SSL_SESSION_from_bytes
-%xdefine SSL_SESSION_get0_cipher BORINGSSL_PREFIX %+ _SSL_SESSION_get0_cipher
-%xdefine SSL_SESSION_get0_id_context BORINGSSL_PREFIX %+ _SSL_SESSION_get0_id_context
-%xdefine SSL_SESSION_get0_ocsp_response BORINGSSL_PREFIX %+ _SSL_SESSION_get0_ocsp_response
-%xdefine SSL_SESSION_get0_peer BORINGSSL_PREFIX %+ _SSL_SESSION_get0_peer
-%xdefine SSL_SESSION_get0_peer_certificates BORINGSSL_PREFIX %+ _SSL_SESSION_get0_peer_certificates
-%xdefine SSL_SESSION_get0_peer_sha256 BORINGSSL_PREFIX %+ _SSL_SESSION_get0_peer_sha256
-%xdefine SSL_SESSION_get0_signed_cert_timestamp_list BORINGSSL_PREFIX %+ _SSL_SESSION_get0_signed_cert_timestamp_list
-%xdefine SSL_SESSION_get0_ticket BORINGSSL_PREFIX %+ _SSL_SESSION_get0_ticket
-%xdefine SSL_SESSION_get_ex_data BORINGSSL_PREFIX %+ _SSL_SESSION_get_ex_data
-%xdefine SSL_SESSION_get_ex_new_index BORINGSSL_PREFIX %+ _SSL_SESSION_get_ex_new_index
-%xdefine SSL_SESSION_get_id BORINGSSL_PREFIX %+ _SSL_SESSION_get_id
-%xdefine SSL_SESSION_get_master_key BORINGSSL_PREFIX %+ _SSL_SESSION_get_master_key
-%xdefine SSL_SESSION_get_protocol_version BORINGSSL_PREFIX %+ _SSL_SESSION_get_protocol_version
-%xdefine SSL_SESSION_get_ticket_lifetime_hint BORINGSSL_PREFIX %+ _SSL_SESSION_get_ticket_lifetime_hint
-%xdefine SSL_SESSION_get_time BORINGSSL_PREFIX %+ _SSL_SESSION_get_time
-%xdefine SSL_SESSION_get_timeout BORINGSSL_PREFIX %+ _SSL_SESSION_get_timeout
-%xdefine SSL_SESSION_get_version BORINGSSL_PREFIX %+ _SSL_SESSION_get_version
-%xdefine SSL_SESSION_has_peer_sha256 BORINGSSL_PREFIX %+ _SSL_SESSION_has_peer_sha256
-%xdefine SSL_SESSION_has_ticket BORINGSSL_PREFIX %+ _SSL_SESSION_has_ticket
-%xdefine SSL_SESSION_is_resumable BORINGSSL_PREFIX %+ _SSL_SESSION_is_resumable
-%xdefine SSL_SESSION_new BORINGSSL_PREFIX %+ _SSL_SESSION_new
-%xdefine SSL_SESSION_set1_id BORINGSSL_PREFIX %+ _SSL_SESSION_set1_id
-%xdefine SSL_SESSION_set1_id_context BORINGSSL_PREFIX %+ _SSL_SESSION_set1_id_context
-%xdefine SSL_SESSION_set_ex_data BORINGSSL_PREFIX %+ _SSL_SESSION_set_ex_data
-%xdefine SSL_SESSION_set_protocol_version BORINGSSL_PREFIX %+ _SSL_SESSION_set_protocol_version
-%xdefine SSL_SESSION_set_ticket BORINGSSL_PREFIX %+ _SSL_SESSION_set_ticket
-%xdefine SSL_SESSION_set_time BORINGSSL_PREFIX %+ _SSL_SESSION_set_time
-%xdefine SSL_SESSION_set_timeout BORINGSSL_PREFIX %+ _SSL_SESSION_set_timeout
-%xdefine SSL_SESSION_should_be_single_use BORINGSSL_PREFIX %+ _SSL_SESSION_should_be_single_use
-%xdefine SSL_SESSION_to_bytes BORINGSSL_PREFIX %+ _SSL_SESSION_to_bytes
-%xdefine SSL_SESSION_to_bytes_for_ticket BORINGSSL_PREFIX %+ _SSL_SESSION_to_bytes_for_ticket
-%xdefine SSL_SESSION_up_ref BORINGSSL_PREFIX %+ _SSL_SESSION_up_ref
-%xdefine SSL_accept BORINGSSL_PREFIX %+ _SSL_accept
-%xdefine SSL_add0_chain_cert BORINGSSL_PREFIX %+ _SSL_add0_chain_cert
-%xdefine SSL_add1_chain_cert BORINGSSL_PREFIX %+ _SSL_add1_chain_cert
-%xdefine SSL_add_application_settings BORINGSSL_PREFIX %+ _SSL_add_application_settings
-%xdefine SSL_add_bio_cert_subjects_to_stack BORINGSSL_PREFIX %+ _SSL_add_bio_cert_subjects_to_stack
-%xdefine SSL_add_client_CA BORINGSSL_PREFIX %+ _SSL_add_client_CA
-%xdefine SSL_add_dir_cert_subjects_to_stack BORINGSSL_PREFIX %+ _SSL_add_dir_cert_subjects_to_stack
-%xdefine SSL_add_file_cert_subjects_to_stack BORINGSSL_PREFIX %+ _SSL_add_file_cert_subjects_to_stack
-%xdefine SSL_alert_desc_string BORINGSSL_PREFIX %+ _SSL_alert_desc_string
-%xdefine SSL_alert_desc_string_long BORINGSSL_PREFIX %+ _SSL_alert_desc_string_long
-%xdefine SSL_alert_from_verify_result BORINGSSL_PREFIX %+ _SSL_alert_from_verify_result
-%xdefine SSL_alert_type_string BORINGSSL_PREFIX %+ _SSL_alert_type_string
-%xdefine SSL_alert_type_string_long BORINGSSL_PREFIX %+ _SSL_alert_type_string_long
-%xdefine SSL_cache_hit BORINGSSL_PREFIX %+ _SSL_cache_hit
-%xdefine SSL_can_release_private_key BORINGSSL_PREFIX %+ _SSL_can_release_private_key
-%xdefine SSL_certs_clear BORINGSSL_PREFIX %+ _SSL_certs_clear
-%xdefine SSL_check_private_key BORINGSSL_PREFIX %+ _SSL_check_private_key
-%xdefine SSL_clear BORINGSSL_PREFIX %+ _SSL_clear
-%xdefine SSL_clear_chain_certs BORINGSSL_PREFIX %+ _SSL_clear_chain_certs
-%xdefine SSL_clear_mode BORINGSSL_PREFIX %+ _SSL_clear_mode
-%xdefine SSL_clear_options BORINGSSL_PREFIX %+ _SSL_clear_options
-%xdefine SSL_connect BORINGSSL_PREFIX %+ _SSL_connect
-%xdefine SSL_cutthrough_complete BORINGSSL_PREFIX %+ _SSL_cutthrough_complete
-%xdefine SSL_delegated_credential_used BORINGSSL_PREFIX %+ _SSL_delegated_credential_used
-%xdefine SSL_do_handshake BORINGSSL_PREFIX %+ _SSL_do_handshake
-%xdefine SSL_dup_CA_list BORINGSSL_PREFIX %+ _SSL_dup_CA_list
-%xdefine SSL_early_callback_ctx_extension_get BORINGSSL_PREFIX %+ _SSL_early_callback_ctx_extension_get
-%xdefine SSL_early_data_accepted BORINGSSL_PREFIX %+ _SSL_early_data_accepted
-%xdefine SSL_early_data_reason_string BORINGSSL_PREFIX %+ _SSL_early_data_reason_string
-%xdefine SSL_ech_accepted BORINGSSL_PREFIX %+ _SSL_ech_accepted
-%xdefine SSL_enable_ocsp_stapling BORINGSSL_PREFIX %+ _SSL_enable_ocsp_stapling
-%xdefine SSL_enable_signed_cert_timestamps BORINGSSL_PREFIX %+ _SSL_enable_signed_cert_timestamps
-%xdefine SSL_enable_tls_channel_id BORINGSSL_PREFIX %+ _SSL_enable_tls_channel_id
-%xdefine SSL_error_description BORINGSSL_PREFIX %+ _SSL_error_description
-%xdefine SSL_export_keying_material BORINGSSL_PREFIX %+ _SSL_export_keying_material
-%xdefine SSL_free BORINGSSL_PREFIX %+ _SSL_free
-%xdefine SSL_from_bytes BORINGSSL_PREFIX %+ _SSL_from_bytes
-%xdefine SSL_generate_key_block BORINGSSL_PREFIX %+ _SSL_generate_key_block
-%xdefine SSL_get0_alpn_selected BORINGSSL_PREFIX %+ _SSL_get0_alpn_selected
-%xdefine SSL_get0_certificate_types BORINGSSL_PREFIX %+ _SSL_get0_certificate_types
-%xdefine SSL_get0_chain_certs BORINGSSL_PREFIX %+ _SSL_get0_chain_certs
-%xdefine SSL_get0_ech_name_override BORINGSSL_PREFIX %+ _SSL_get0_ech_name_override
-%xdefine SSL_get0_ech_retry_configs BORINGSSL_PREFIX %+ _SSL_get0_ech_retry_configs
-%xdefine SSL_get0_next_proto_negotiated BORINGSSL_PREFIX %+ _SSL_get0_next_proto_negotiated
-%xdefine SSL_get0_ocsp_response BORINGSSL_PREFIX %+ _SSL_get0_ocsp_response
-%xdefine SSL_get0_param BORINGSSL_PREFIX %+ _SSL_get0_param
-%xdefine SSL_get0_peer_application_settings BORINGSSL_PREFIX %+ _SSL_get0_peer_application_settings
-%xdefine SSL_get0_peer_certificates BORINGSSL_PREFIX %+ _SSL_get0_peer_certificates
-%xdefine SSL_get0_peer_delegation_algorithms BORINGSSL_PREFIX %+ _SSL_get0_peer_delegation_algorithms
-%xdefine SSL_get0_peer_verify_algorithms BORINGSSL_PREFIX %+ _SSL_get0_peer_verify_algorithms
-%xdefine SSL_get0_server_requested_CAs BORINGSSL_PREFIX %+ _SSL_get0_server_requested_CAs
-%xdefine SSL_get0_session_id_context BORINGSSL_PREFIX %+ _SSL_get0_session_id_context
-%xdefine SSL_get0_signed_cert_timestamp_list BORINGSSL_PREFIX %+ _SSL_get0_signed_cert_timestamp_list
-%xdefine SSL_get1_session BORINGSSL_PREFIX %+ _SSL_get1_session
-%xdefine SSL_get_SSL_CTX BORINGSSL_PREFIX %+ _SSL_get_SSL_CTX
-%xdefine SSL_get_certificate BORINGSSL_PREFIX %+ _SSL_get_certificate
-%xdefine SSL_get_cipher_by_value BORINGSSL_PREFIX %+ _SSL_get_cipher_by_value
-%xdefine SSL_get_cipher_list BORINGSSL_PREFIX %+ _SSL_get_cipher_list
-%xdefine SSL_get_ciphers BORINGSSL_PREFIX %+ _SSL_get_ciphers
-%xdefine SSL_get_client_CA_list BORINGSSL_PREFIX %+ _SSL_get_client_CA_list
-%xdefine SSL_get_client_random BORINGSSL_PREFIX %+ _SSL_get_client_random
-%xdefine SSL_get_current_cipher BORINGSSL_PREFIX %+ _SSL_get_current_cipher
-%xdefine SSL_get_current_compression BORINGSSL_PREFIX %+ _SSL_get_current_compression
-%xdefine SSL_get_current_expansion BORINGSSL_PREFIX %+ _SSL_get_current_expansion
-%xdefine SSL_get_curve_id BORINGSSL_PREFIX %+ _SSL_get_curve_id
-%xdefine SSL_get_curve_name BORINGSSL_PREFIX %+ _SSL_get_curve_name
-%xdefine SSL_get_default_timeout BORINGSSL_PREFIX %+ _SSL_get_default_timeout
-%xdefine SSL_get_early_data_reason BORINGSSL_PREFIX %+ _SSL_get_early_data_reason
-%xdefine SSL_get_error BORINGSSL_PREFIX %+ _SSL_get_error
-%xdefine SSL_get_ex_data BORINGSSL_PREFIX %+ _SSL_get_ex_data
-%xdefine SSL_get_ex_data_X509_STORE_CTX_idx BORINGSSL_PREFIX %+ _SSL_get_ex_data_X509_STORE_CTX_idx
-%xdefine SSL_get_ex_new_index BORINGSSL_PREFIX %+ _SSL_get_ex_new_index
-%xdefine SSL_get_extms_support BORINGSSL_PREFIX %+ _SSL_get_extms_support
-%xdefine SSL_get_fd BORINGSSL_PREFIX %+ _SSL_get_fd
-%xdefine SSL_get_finished BORINGSSL_PREFIX %+ _SSL_get_finished
-%xdefine SSL_get_info_callback BORINGSSL_PREFIX %+ _SSL_get_info_callback
-%xdefine SSL_get_ivs BORINGSSL_PREFIX %+ _SSL_get_ivs
-%xdefine SSL_get_key_block_len BORINGSSL_PREFIX %+ _SSL_get_key_block_len
-%xdefine SSL_get_max_cert_list BORINGSSL_PREFIX %+ _SSL_get_max_cert_list
-%xdefine SSL_get_max_proto_version BORINGSSL_PREFIX %+ _SSL_get_max_proto_version
-%xdefine SSL_get_min_proto_version BORINGSSL_PREFIX %+ _SSL_get_min_proto_version
-%xdefine SSL_get_mode BORINGSSL_PREFIX %+ _SSL_get_mode
-%xdefine SSL_get_options BORINGSSL_PREFIX %+ _SSL_get_options
-%xdefine SSL_get_peer_cert_chain BORINGSSL_PREFIX %+ _SSL_get_peer_cert_chain
-%xdefine SSL_get_peer_certificate BORINGSSL_PREFIX %+ _SSL_get_peer_certificate
-%xdefine SSL_get_peer_finished BORINGSSL_PREFIX %+ _SSL_get_peer_finished
-%xdefine SSL_get_peer_full_cert_chain BORINGSSL_PREFIX %+ _SSL_get_peer_full_cert_chain
-%xdefine SSL_get_peer_quic_transport_params BORINGSSL_PREFIX %+ _SSL_get_peer_quic_transport_params
-%xdefine SSL_get_peer_signature_algorithm BORINGSSL_PREFIX %+ _SSL_get_peer_signature_algorithm
-%xdefine SSL_get_pending_cipher BORINGSSL_PREFIX %+ _SSL_get_pending_cipher
-%xdefine SSL_get_privatekey BORINGSSL_PREFIX %+ _SSL_get_privatekey
-%xdefine SSL_get_psk_identity BORINGSSL_PREFIX %+ _SSL_get_psk_identity
-%xdefine SSL_get_psk_identity_hint BORINGSSL_PREFIX %+ _SSL_get_psk_identity_hint
-%xdefine SSL_get_quiet_shutdown BORINGSSL_PREFIX %+ _SSL_get_quiet_shutdown
-%xdefine SSL_get_rbio BORINGSSL_PREFIX %+ _SSL_get_rbio
-%xdefine SSL_get_read_ahead BORINGSSL_PREFIX %+ _SSL_get_read_ahead
-%xdefine SSL_get_read_sequence BORINGSSL_PREFIX %+ _SSL_get_read_sequence
-%xdefine SSL_get_rfd BORINGSSL_PREFIX %+ _SSL_get_rfd
-%xdefine SSL_get_secure_renegotiation_support BORINGSSL_PREFIX %+ _SSL_get_secure_renegotiation_support
-%xdefine SSL_get_selected_srtp_profile BORINGSSL_PREFIX %+ _SSL_get_selected_srtp_profile
-%xdefine SSL_get_server_random BORINGSSL_PREFIX %+ _SSL_get_server_random
-%xdefine SSL_get_server_tmp_key BORINGSSL_PREFIX %+ _SSL_get_server_tmp_key
-%xdefine SSL_get_servername BORINGSSL_PREFIX %+ _SSL_get_servername
-%xdefine SSL_get_servername_type BORINGSSL_PREFIX %+ _SSL_get_servername_type
-%xdefine SSL_get_session BORINGSSL_PREFIX %+ _SSL_get_session
-%xdefine SSL_get_shared_ciphers BORINGSSL_PREFIX %+ _SSL_get_shared_ciphers
-%xdefine SSL_get_shared_sigalgs BORINGSSL_PREFIX %+ _SSL_get_shared_sigalgs
-%xdefine SSL_get_shutdown BORINGSSL_PREFIX %+ _SSL_get_shutdown
-%xdefine SSL_get_signature_algorithm_digest BORINGSSL_PREFIX %+ _SSL_get_signature_algorithm_digest
-%xdefine SSL_get_signature_algorithm_key_type BORINGSSL_PREFIX %+ _SSL_get_signature_algorithm_key_type
-%xdefine SSL_get_signature_algorithm_name BORINGSSL_PREFIX %+ _SSL_get_signature_algorithm_name
-%xdefine SSL_get_srtp_profiles BORINGSSL_PREFIX %+ _SSL_get_srtp_profiles
-%xdefine SSL_get_ticket_age_skew BORINGSSL_PREFIX %+ _SSL_get_ticket_age_skew
-%xdefine SSL_get_tls_channel_id BORINGSSL_PREFIX %+ _SSL_get_tls_channel_id
-%xdefine SSL_get_tls_unique BORINGSSL_PREFIX %+ _SSL_get_tls_unique
-%xdefine SSL_get_tlsext_status_ocsp_resp BORINGSSL_PREFIX %+ _SSL_get_tlsext_status_ocsp_resp
-%xdefine SSL_get_tlsext_status_type BORINGSSL_PREFIX %+ _SSL_get_tlsext_status_type
-%xdefine SSL_get_verify_callback BORINGSSL_PREFIX %+ _SSL_get_verify_callback
-%xdefine SSL_get_verify_depth BORINGSSL_PREFIX %+ _SSL_get_verify_depth
-%xdefine SSL_get_verify_mode BORINGSSL_PREFIX %+ _SSL_get_verify_mode
-%xdefine SSL_get_verify_result BORINGSSL_PREFIX %+ _SSL_get_verify_result
-%xdefine SSL_get_version BORINGSSL_PREFIX %+ _SSL_get_version
-%xdefine SSL_get_wbio BORINGSSL_PREFIX %+ _SSL_get_wbio
-%xdefine SSL_get_wfd BORINGSSL_PREFIX %+ _SSL_get_wfd
-%xdefine SSL_get_write_sequence BORINGSSL_PREFIX %+ _SSL_get_write_sequence
-%xdefine SSL_has_application_settings BORINGSSL_PREFIX %+ _SSL_has_application_settings
-%xdefine SSL_has_pending BORINGSSL_PREFIX %+ _SSL_has_pending
-%xdefine SSL_in_early_data BORINGSSL_PREFIX %+ _SSL_in_early_data
-%xdefine SSL_in_false_start BORINGSSL_PREFIX %+ _SSL_in_false_start
-%xdefine SSL_in_init BORINGSSL_PREFIX %+ _SSL_in_init
-%xdefine SSL_is_dtls BORINGSSL_PREFIX %+ _SSL_is_dtls
-%xdefine SSL_is_init_finished BORINGSSL_PREFIX %+ _SSL_is_init_finished
-%xdefine SSL_is_server BORINGSSL_PREFIX %+ _SSL_is_server
-%xdefine SSL_is_signature_algorithm_rsa_pss BORINGSSL_PREFIX %+ _SSL_is_signature_algorithm_rsa_pss
-%xdefine SSL_key_update BORINGSSL_PREFIX %+ _SSL_key_update
-%xdefine SSL_library_init BORINGSSL_PREFIX %+ _SSL_library_init
-%xdefine SSL_load_client_CA_file BORINGSSL_PREFIX %+ _SSL_load_client_CA_file
-%xdefine SSL_load_error_strings BORINGSSL_PREFIX %+ _SSL_load_error_strings
-%xdefine SSL_magic_pending_session_ptr BORINGSSL_PREFIX %+ _SSL_magic_pending_session_ptr
-%xdefine SSL_marshal_ech_config BORINGSSL_PREFIX %+ _SSL_marshal_ech_config
-%xdefine SSL_max_seal_overhead BORINGSSL_PREFIX %+ _SSL_max_seal_overhead
-%xdefine SSL_need_tmp_RSA BORINGSSL_PREFIX %+ _SSL_need_tmp_RSA
-%xdefine SSL_new BORINGSSL_PREFIX %+ _SSL_new
-%xdefine SSL_num_renegotiations BORINGSSL_PREFIX %+ _SSL_num_renegotiations
-%xdefine SSL_peek BORINGSSL_PREFIX %+ _SSL_peek
-%xdefine SSL_pending BORINGSSL_PREFIX %+ _SSL_pending
-%xdefine SSL_process_quic_post_handshake BORINGSSL_PREFIX %+ _SSL_process_quic_post_handshake
-%xdefine SSL_process_tls13_new_session_ticket BORINGSSL_PREFIX %+ _SSL_process_tls13_new_session_ticket
-%xdefine SSL_provide_quic_data BORINGSSL_PREFIX %+ _SSL_provide_quic_data
-%xdefine SSL_quic_max_handshake_flight_len BORINGSSL_PREFIX %+ _SSL_quic_max_handshake_flight_len
-%xdefine SSL_quic_read_level BORINGSSL_PREFIX %+ _SSL_quic_read_level
-%xdefine SSL_quic_write_level BORINGSSL_PREFIX %+ _SSL_quic_write_level
-%xdefine SSL_read BORINGSSL_PREFIX %+ _SSL_read
-%xdefine SSL_renegotiate BORINGSSL_PREFIX %+ _SSL_renegotiate
-%xdefine SSL_renegotiate_pending BORINGSSL_PREFIX %+ _SSL_renegotiate_pending
-%xdefine SSL_request_handshake_hints BORINGSSL_PREFIX %+ _SSL_request_handshake_hints
-%xdefine SSL_reset_early_data_reject BORINGSSL_PREFIX %+ _SSL_reset_early_data_reject
-%xdefine SSL_select_next_proto BORINGSSL_PREFIX %+ _SSL_select_next_proto
-%xdefine SSL_send_fatal_alert BORINGSSL_PREFIX %+ _SSL_send_fatal_alert
-%xdefine SSL_serialize_capabilities BORINGSSL_PREFIX %+ _SSL_serialize_capabilities
-%xdefine SSL_serialize_handshake_hints BORINGSSL_PREFIX %+ _SSL_serialize_handshake_hints
-%xdefine SSL_session_reused BORINGSSL_PREFIX %+ _SSL_session_reused
-%xdefine SSL_set0_chain BORINGSSL_PREFIX %+ _SSL_set0_chain
-%xdefine SSL_set0_client_CAs BORINGSSL_PREFIX %+ _SSL_set0_client_CAs
-%xdefine SSL_set0_rbio BORINGSSL_PREFIX %+ _SSL_set0_rbio
-%xdefine SSL_set0_verify_cert_store BORINGSSL_PREFIX %+ _SSL_set0_verify_cert_store
-%xdefine SSL_set0_wbio BORINGSSL_PREFIX %+ _SSL_set0_wbio
-%xdefine SSL_set1_chain BORINGSSL_PREFIX %+ _SSL_set1_chain
-%xdefine SSL_set1_curves BORINGSSL_PREFIX %+ _SSL_set1_curves
-%xdefine SSL_set1_curves_list BORINGSSL_PREFIX %+ _SSL_set1_curves_list
-%xdefine SSL_set1_delegated_credential BORINGSSL_PREFIX %+ _SSL_set1_delegated_credential
-%xdefine SSL_set1_ech_config_list BORINGSSL_PREFIX %+ _SSL_set1_ech_config_list
-%xdefine SSL_set1_groups BORINGSSL_PREFIX %+ _SSL_set1_groups
-%xdefine SSL_set1_groups_list BORINGSSL_PREFIX %+ _SSL_set1_groups_list
-%xdefine SSL_set1_host BORINGSSL_PREFIX %+ _SSL_set1_host
-%xdefine SSL_set1_param BORINGSSL_PREFIX %+ _SSL_set1_param
-%xdefine SSL_set1_sigalgs BORINGSSL_PREFIX %+ _SSL_set1_sigalgs
-%xdefine SSL_set1_sigalgs_list BORINGSSL_PREFIX %+ _SSL_set1_sigalgs_list
-%xdefine SSL_set1_tls_channel_id BORINGSSL_PREFIX %+ _SSL_set1_tls_channel_id
-%xdefine SSL_set1_verify_cert_store BORINGSSL_PREFIX %+ _SSL_set1_verify_cert_store
-%xdefine SSL_set_SSL_CTX BORINGSSL_PREFIX %+ _SSL_set_SSL_CTX
-%xdefine SSL_set_accept_state BORINGSSL_PREFIX %+ _SSL_set_accept_state
-%xdefine SSL_set_alpn_protos BORINGSSL_PREFIX %+ _SSL_set_alpn_protos
-%xdefine SSL_set_bio BORINGSSL_PREFIX %+ _SSL_set_bio
-%xdefine SSL_set_cert_cb BORINGSSL_PREFIX %+ _SSL_set_cert_cb
-%xdefine SSL_set_chain_and_key BORINGSSL_PREFIX %+ _SSL_set_chain_and_key
-%xdefine SSL_set_cipher_list BORINGSSL_PREFIX %+ _SSL_set_cipher_list
-%xdefine SSL_set_ciphersuites BORINGSSL_PREFIX %+ _SSL_set_ciphersuites
-%xdefine SSL_set_client_CA_list BORINGSSL_PREFIX %+ _SSL_set_client_CA_list
-%xdefine SSL_set_connect_state BORINGSSL_PREFIX %+ _SSL_set_connect_state
-%xdefine SSL_set_custom_verify BORINGSSL_PREFIX %+ _SSL_set_custom_verify
-%xdefine SSL_set_early_data_enabled BORINGSSL_PREFIX %+ _SSL_set_early_data_enabled
-%xdefine SSL_set_enable_ech_grease BORINGSSL_PREFIX %+ _SSL_set_enable_ech_grease
-%xdefine SSL_set_enforce_rsa_key_usage BORINGSSL_PREFIX %+ _SSL_set_enforce_rsa_key_usage
-%xdefine SSL_set_ex_data BORINGSSL_PREFIX %+ _SSL_set_ex_data
-%xdefine SSL_set_fd BORINGSSL_PREFIX %+ _SSL_set_fd
-%xdefine SSL_set_handshake_hints BORINGSSL_PREFIX %+ _SSL_set_handshake_hints
-%xdefine SSL_set_hostflags BORINGSSL_PREFIX %+ _SSL_set_hostflags
-%xdefine SSL_set_info_callback BORINGSSL_PREFIX %+ _SSL_set_info_callback
-%xdefine SSL_set_jdk11_workaround BORINGSSL_PREFIX %+ _SSL_set_jdk11_workaround
-%xdefine SSL_set_max_cert_list BORINGSSL_PREFIX %+ _SSL_set_max_cert_list
-%xdefine SSL_set_max_proto_version BORINGSSL_PREFIX %+ _SSL_set_max_proto_version
-%xdefine SSL_set_max_send_fragment BORINGSSL_PREFIX %+ _SSL_set_max_send_fragment
-%xdefine SSL_set_min_proto_version BORINGSSL_PREFIX %+ _SSL_set_min_proto_version
-%xdefine SSL_set_mode BORINGSSL_PREFIX %+ _SSL_set_mode
-%xdefine SSL_set_msg_callback BORINGSSL_PREFIX %+ _SSL_set_msg_callback
-%xdefine SSL_set_msg_callback_arg BORINGSSL_PREFIX %+ _SSL_set_msg_callback_arg
-%xdefine SSL_set_mtu BORINGSSL_PREFIX %+ _SSL_set_mtu
-%xdefine SSL_set_ocsp_response BORINGSSL_PREFIX %+ _SSL_set_ocsp_response
-%xdefine SSL_set_options BORINGSSL_PREFIX %+ _SSL_set_options
-%xdefine SSL_set_permute_extensions BORINGSSL_PREFIX %+ _SSL_set_permute_extensions
-%xdefine SSL_set_private_key_method BORINGSSL_PREFIX %+ _SSL_set_private_key_method
-%xdefine SSL_set_psk_client_callback BORINGSSL_PREFIX %+ _SSL_set_psk_client_callback
-%xdefine SSL_set_psk_server_callback BORINGSSL_PREFIX %+ _SSL_set_psk_server_callback
-%xdefine SSL_set_purpose BORINGSSL_PREFIX %+ _SSL_set_purpose
-%xdefine SSL_set_quic_early_data_context BORINGSSL_PREFIX %+ _SSL_set_quic_early_data_context
-%xdefine SSL_set_quic_method BORINGSSL_PREFIX %+ _SSL_set_quic_method
-%xdefine SSL_set_quic_transport_params BORINGSSL_PREFIX %+ _SSL_set_quic_transport_params
-%xdefine SSL_set_quic_use_legacy_codepoint BORINGSSL_PREFIX %+ _SSL_set_quic_use_legacy_codepoint
-%xdefine SSL_set_quiet_shutdown BORINGSSL_PREFIX %+ _SSL_set_quiet_shutdown
-%xdefine SSL_set_read_ahead BORINGSSL_PREFIX %+ _SSL_set_read_ahead
-%xdefine SSL_set_renegotiate_mode BORINGSSL_PREFIX %+ _SSL_set_renegotiate_mode
-%xdefine SSL_set_retain_only_sha256_of_client_certs BORINGSSL_PREFIX %+ _SSL_set_retain_only_sha256_of_client_certs
-%xdefine SSL_set_rfd BORINGSSL_PREFIX %+ _SSL_set_rfd
-%xdefine SSL_set_session BORINGSSL_PREFIX %+ _SSL_set_session
-%xdefine SSL_set_session_id_context BORINGSSL_PREFIX %+ _SSL_set_session_id_context
-%xdefine SSL_set_shed_handshake_config BORINGSSL_PREFIX %+ _SSL_set_shed_handshake_config
-%xdefine SSL_set_shutdown BORINGSSL_PREFIX %+ _SSL_set_shutdown
-%xdefine SSL_set_signed_cert_timestamp_list BORINGSSL_PREFIX %+ _SSL_set_signed_cert_timestamp_list
-%xdefine SSL_set_signing_algorithm_prefs BORINGSSL_PREFIX %+ _SSL_set_signing_algorithm_prefs
-%xdefine SSL_set_srtp_profiles BORINGSSL_PREFIX %+ _SSL_set_srtp_profiles
-%xdefine SSL_set_state BORINGSSL_PREFIX %+ _SSL_set_state
-%xdefine SSL_set_strict_cipher_list BORINGSSL_PREFIX %+ _SSL_set_strict_cipher_list
-%xdefine SSL_set_tls_channel_id_enabled BORINGSSL_PREFIX %+ _SSL_set_tls_channel_id_enabled
-%xdefine SSL_set_tlsext_host_name BORINGSSL_PREFIX %+ _SSL_set_tlsext_host_name
-%xdefine SSL_set_tlsext_status_ocsp_resp BORINGSSL_PREFIX %+ _SSL_set_tlsext_status_ocsp_resp
-%xdefine SSL_set_tlsext_status_type BORINGSSL_PREFIX %+ _SSL_set_tlsext_status_type
-%xdefine SSL_set_tlsext_use_srtp BORINGSSL_PREFIX %+ _SSL_set_tlsext_use_srtp
-%xdefine SSL_set_tmp_dh BORINGSSL_PREFIX %+ _SSL_set_tmp_dh
-%xdefine SSL_set_tmp_dh_callback BORINGSSL_PREFIX %+ _SSL_set_tmp_dh_callback
-%xdefine SSL_set_tmp_ecdh BORINGSSL_PREFIX %+ _SSL_set_tmp_ecdh
-%xdefine SSL_set_tmp_rsa BORINGSSL_PREFIX %+ _SSL_set_tmp_rsa
-%xdefine SSL_set_tmp_rsa_callback BORINGSSL_PREFIX %+ _SSL_set_tmp_rsa_callback
-%xdefine SSL_set_trust BORINGSSL_PREFIX %+ _SSL_set_trust
-%xdefine SSL_set_verify BORINGSSL_PREFIX %+ _SSL_set_verify
-%xdefine SSL_set_verify_algorithm_prefs BORINGSSL_PREFIX %+ _SSL_set_verify_algorithm_prefs
-%xdefine SSL_set_verify_depth BORINGSSL_PREFIX %+ _SSL_set_verify_depth
-%xdefine SSL_set_wfd BORINGSSL_PREFIX %+ _SSL_set_wfd
-%xdefine SSL_shutdown BORINGSSL_PREFIX %+ _SSL_shutdown
-%xdefine SSL_state BORINGSSL_PREFIX %+ _SSL_state
-%xdefine SSL_state_string BORINGSSL_PREFIX %+ _SSL_state_string
-%xdefine SSL_state_string_long BORINGSSL_PREFIX %+ _SSL_state_string_long
-%xdefine SSL_to_bytes BORINGSSL_PREFIX %+ _SSL_to_bytes
-%xdefine SSL_total_renegotiations BORINGSSL_PREFIX %+ _SSL_total_renegotiations
-%xdefine SSL_use_PrivateKey BORINGSSL_PREFIX %+ _SSL_use_PrivateKey
-%xdefine SSL_use_PrivateKey_ASN1 BORINGSSL_PREFIX %+ _SSL_use_PrivateKey_ASN1
-%xdefine SSL_use_PrivateKey_file BORINGSSL_PREFIX %+ _SSL_use_PrivateKey_file
-%xdefine SSL_use_RSAPrivateKey BORINGSSL_PREFIX %+ _SSL_use_RSAPrivateKey
-%xdefine SSL_use_RSAPrivateKey_ASN1 BORINGSSL_PREFIX %+ _SSL_use_RSAPrivateKey_ASN1
-%xdefine SSL_use_RSAPrivateKey_file BORINGSSL_PREFIX %+ _SSL_use_RSAPrivateKey_file
-%xdefine SSL_use_certificate BORINGSSL_PREFIX %+ _SSL_use_certificate
-%xdefine SSL_use_certificate_ASN1 BORINGSSL_PREFIX %+ _SSL_use_certificate_ASN1
-%xdefine SSL_use_certificate_file BORINGSSL_PREFIX %+ _SSL_use_certificate_file
-%xdefine SSL_use_psk_identity_hint BORINGSSL_PREFIX %+ _SSL_use_psk_identity_hint
-%xdefine SSL_used_hello_retry_request BORINGSSL_PREFIX %+ _SSL_used_hello_retry_request
-%xdefine SSL_version BORINGSSL_PREFIX %+ _SSL_version
-%xdefine SSL_want BORINGSSL_PREFIX %+ _SSL_want
-%xdefine SSL_was_key_usage_invalid BORINGSSL_PREFIX %+ _SSL_was_key_usage_invalid
-%xdefine SSL_write BORINGSSL_PREFIX %+ _SSL_write
 %xdefine SSLeay BORINGSSL_PREFIX %+ _SSLeay
 %xdefine SSLeay_version BORINGSSL_PREFIX %+ _SSLeay_version
-%xdefine SSLv23_client_method BORINGSSL_PREFIX %+ _SSLv23_client_method
-%xdefine SSLv23_method BORINGSSL_PREFIX %+ _SSLv23_method
-%xdefine SSLv23_server_method BORINGSSL_PREFIX %+ _SSLv23_server_method
 %xdefine TLSKDF_verify_service_indicator BORINGSSL_PREFIX %+ _TLSKDF_verify_service_indicator
-%xdefine TLS_client_method BORINGSSL_PREFIX %+ _TLS_client_method
-%xdefine TLS_method BORINGSSL_PREFIX %+ _TLS_method
-%xdefine TLS_server_method BORINGSSL_PREFIX %+ _TLS_server_method
-%xdefine TLS_with_buffers_method BORINGSSL_PREFIX %+ _TLS_with_buffers_method
-%xdefine TLSv1_1_client_method BORINGSSL_PREFIX %+ _TLSv1_1_client_method
-%xdefine TLSv1_1_method BORINGSSL_PREFIX %+ _TLSv1_1_method
-%xdefine TLSv1_1_server_method BORINGSSL_PREFIX %+ _TLSv1_1_server_method
-%xdefine TLSv1_2_client_method BORINGSSL_PREFIX %+ _TLSv1_2_client_method
-%xdefine TLSv1_2_method BORINGSSL_PREFIX %+ _TLSv1_2_method
-%xdefine TLSv1_2_server_method BORINGSSL_PREFIX %+ _TLSv1_2_server_method
-%xdefine TLSv1_client_method BORINGSSL_PREFIX %+ _TLSv1_client_method
-%xdefine TLSv1_method BORINGSSL_PREFIX %+ _TLSv1_method
-%xdefine TLSv1_server_method BORINGSSL_PREFIX %+ _TLSv1_server_method
 %xdefine TRUST_TOKEN_CLIENT_add_key BORINGSSL_PREFIX %+ _TRUST_TOKEN_CLIENT_add_key
 %xdefine TRUST_TOKEN_CLIENT_begin_issuance BORINGSSL_PREFIX %+ _TRUST_TOKEN_CLIENT_begin_issuance
 %xdefine TRUST_TOKEN_CLIENT_begin_issuance_over_message BORINGSSL_PREFIX %+ _TRUST_TOKEN_CLIENT_begin_issuance_over_message
@@ -7379,8 +6247,6 @@
 %xdefine d2i_RSA_PUBKEY BORINGSSL_PREFIX %+ _d2i_RSA_PUBKEY
 %xdefine d2i_RSA_PUBKEY_bio BORINGSSL_PREFIX %+ _d2i_RSA_PUBKEY_bio
 %xdefine d2i_RSA_PUBKEY_fp BORINGSSL_PREFIX %+ _d2i_RSA_PUBKEY_fp
-%xdefine d2i_SSL_SESSION BORINGSSL_PREFIX %+ _d2i_SSL_SESSION
-%xdefine d2i_SSL_SESSION_bio BORINGSSL_PREFIX %+ _d2i_SSL_SESSION_bio
 %xdefine d2i_USERNOTICE BORINGSSL_PREFIX %+ _d2i_USERNOTICE
 %xdefine d2i_X509 BORINGSSL_PREFIX %+ _d2i_X509
 %xdefine d2i_X509_ALGOR BORINGSSL_PREFIX %+ _d2i_X509_ALGOR
@@ -7651,8 +6517,6 @@
 %xdefine i2d_RSA_PUBKEY BORINGSSL_PREFIX %+ _i2d_RSA_PUBKEY
 %xdefine i2d_RSA_PUBKEY_bio BORINGSSL_PREFIX %+ _i2d_RSA_PUBKEY_bio
 %xdefine i2d_RSA_PUBKEY_fp BORINGSSL_PREFIX %+ _i2d_RSA_PUBKEY_fp
-%xdefine i2d_SSL_SESSION BORINGSSL_PREFIX %+ _i2d_SSL_SESSION
-%xdefine i2d_SSL_SESSION_bio BORINGSSL_PREFIX %+ _i2d_SSL_SESSION_bio
 %xdefine i2d_USERNOTICE BORINGSSL_PREFIX %+ _i2d_USERNOTICE
 %xdefine i2d_X509 BORINGSSL_PREFIX %+ _i2d_X509
 %xdefine i2d_X509_ALGOR BORINGSSL_PREFIX %+ _i2d_X509_ALGOR
@@ -7945,44 +6809,6 @@
 %xdefine sha3_update BORINGSSL_PREFIX %+ _sha3_update
 %xdefine sha512_block_data_order BORINGSSL_PREFIX %+ _sha512_block_data_order
 %xdefine sha512_func BORINGSSL_PREFIX %+ _sha512_func
-%xdefine sk_CRYPTO_BUFFER_call_copy_func BORINGSSL_PREFIX %+ _sk_CRYPTO_BUFFER_call_copy_func
-%xdefine sk_CRYPTO_BUFFER_call_free_func BORINGSSL_PREFIX %+ _sk_CRYPTO_BUFFER_call_free_func
-%xdefine sk_CRYPTO_BUFFER_deep_copy BORINGSSL_PREFIX %+ _sk_CRYPTO_BUFFER_deep_copy
-%xdefine sk_CRYPTO_BUFFER_new_null BORINGSSL_PREFIX %+ _sk_CRYPTO_BUFFER_new_null
-%xdefine sk_CRYPTO_BUFFER_num BORINGSSL_PREFIX %+ _sk_CRYPTO_BUFFER_num
-%xdefine sk_CRYPTO_BUFFER_push BORINGSSL_PREFIX %+ _sk_CRYPTO_BUFFER_push
-%xdefine sk_CRYPTO_BUFFER_set BORINGSSL_PREFIX %+ _sk_CRYPTO_BUFFER_set
-%xdefine sk_CRYPTO_BUFFER_value BORINGSSL_PREFIX %+ _sk_CRYPTO_BUFFER_value
-%xdefine sk_SRTP_PROTECTION_PROFILE_new_null BORINGSSL_PREFIX %+ _sk_SRTP_PROTECTION_PROFILE_new_null
-%xdefine sk_SRTP_PROTECTION_PROFILE_num BORINGSSL_PREFIX %+ _sk_SRTP_PROTECTION_PROFILE_num
-%xdefine sk_SRTP_PROTECTION_PROFILE_push BORINGSSL_PREFIX %+ _sk_SRTP_PROTECTION_PROFILE_push
-%xdefine sk_SSL_CIPHER_call_cmp_func BORINGSSL_PREFIX %+ _sk_SSL_CIPHER_call_cmp_func
-%xdefine sk_SSL_CIPHER_delete BORINGSSL_PREFIX %+ _sk_SSL_CIPHER_delete
-%xdefine sk_SSL_CIPHER_dup BORINGSSL_PREFIX %+ _sk_SSL_CIPHER_dup
-%xdefine sk_SSL_CIPHER_find BORINGSSL_PREFIX %+ _sk_SSL_CIPHER_find
-%xdefine sk_SSL_CIPHER_new_null BORINGSSL_PREFIX %+ _sk_SSL_CIPHER_new_null
-%xdefine sk_SSL_CIPHER_num BORINGSSL_PREFIX %+ _sk_SSL_CIPHER_num
-%xdefine sk_SSL_CIPHER_push BORINGSSL_PREFIX %+ _sk_SSL_CIPHER_push
-%xdefine sk_SSL_CIPHER_value BORINGSSL_PREFIX %+ _sk_SSL_CIPHER_value
-%xdefine sk_X509_NAME_call_cmp_func BORINGSSL_PREFIX %+ _sk_X509_NAME_call_cmp_func
-%xdefine sk_X509_NAME_call_copy_func BORINGSSL_PREFIX %+ _sk_X509_NAME_call_copy_func
-%xdefine sk_X509_NAME_call_free_func BORINGSSL_PREFIX %+ _sk_X509_NAME_call_free_func
-%xdefine sk_X509_NAME_deep_copy BORINGSSL_PREFIX %+ _sk_X509_NAME_deep_copy
-%xdefine sk_X509_NAME_find BORINGSSL_PREFIX %+ _sk_X509_NAME_find
-%xdefine sk_X509_NAME_new BORINGSSL_PREFIX %+ _sk_X509_NAME_new
-%xdefine sk_X509_NAME_new_null BORINGSSL_PREFIX %+ _sk_X509_NAME_new_null
-%xdefine sk_X509_NAME_num BORINGSSL_PREFIX %+ _sk_X509_NAME_num
-%xdefine sk_X509_NAME_pop_free BORINGSSL_PREFIX %+ _sk_X509_NAME_pop_free
-%xdefine sk_X509_NAME_set BORINGSSL_PREFIX %+ _sk_X509_NAME_set
-%xdefine sk_X509_NAME_set_cmp_func BORINGSSL_PREFIX %+ _sk_X509_NAME_set_cmp_func
-%xdefine sk_X509_NAME_sort BORINGSSL_PREFIX %+ _sk_X509_NAME_sort
-%xdefine sk_X509_NAME_value BORINGSSL_PREFIX %+ _sk_X509_NAME_value
-%xdefine sk_X509_call_free_func BORINGSSL_PREFIX %+ _sk_X509_call_free_func
-%xdefine sk_X509_new_null BORINGSSL_PREFIX %+ _sk_X509_new_null
-%xdefine sk_X509_num BORINGSSL_PREFIX %+ _sk_X509_num
-%xdefine sk_X509_pop_free BORINGSSL_PREFIX %+ _sk_X509_pop_free
-%xdefine sk_X509_shift BORINGSSL_PREFIX %+ _sk_X509_shift
-%xdefine sk_X509_value BORINGSSL_PREFIX %+ _sk_X509_value
 %xdefine sk_deep_copy BORINGSSL_PREFIX %+ _sk_deep_copy
 %xdefine sk_delete BORINGSSL_PREFIX %+ _sk_delete
 %xdefine sk_delete_if BORINGSSL_PREFIX %+ _sk_delete_if

@@ -47,7 +47,7 @@ fips = ["dep:aws-lc-fips-sys"]
 
 [dependencies]
 untrusted = { version = "0.7.1", optional = true }
-aws-lc-sys = { version = "0.22.0", path = "../aws-lc-sys", optional = true }
+aws-lc-sys = { version = "0.23.0", path = "../aws-lc-sys", optional = true }
 aws-lc-fips-sys = { version = "0.12.0", path = "../aws-lc-fips-sys", optional = true }
 zeroize = "1.7"
 mirai-annotations = "1.12.0"

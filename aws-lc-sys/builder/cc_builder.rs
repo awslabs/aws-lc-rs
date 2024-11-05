@@ -194,14 +194,31 @@ impl CcBuilder {
     fn add_includes(&self, cc_build: &mut cc::Build) {
         // The order of includes matters
         if let Some(prefix) = &self.build_prefix {
-            cc_build
-                .define("BORINGSSL_IMPLEMENTATION", "1")
-                .define("BORINGSSL_PREFIX", prefix.as_str());
-            cc_build.include(self.manifest_dir.join("generated-include"));
+            cc_build.define("BORINGSSL_PREFIX", prefix.as_str());
+            let prefix_include_dir = self.manifest_dir.join("generated-include").join("openssl");
+            let compiler = cc_build.get_compiler();
+            if compiler.is_like_gnu() || compiler.is_like_clang() {
+                cc_build.flag(format!(
+                    "--include={}",
+                    prefix_include_dir
+                        .join("boringssl_prefix_symbols.h")
+                        .display()
+                ));
+                cc_build.flag(format!(
+                    "--include={}",
+                    prefix_include_dir
+                        .join("boringssl_prefix_symbols_asm.h")
+                        .display()
+                ));
+            } else {
+                cc_build.include(self.manifest_dir.join("generated-include"));
+            }
         }
         cc_build
+            .define("BORINGSSL_IMPLEMENTATION", "1")
             .include(self.manifest_dir.join("include"))
             .include(self.manifest_dir.join("aws-lc").join("include"))
+            .define("S2N_BN_HIDE_SYMBOLS", "1")
             .include(
                 self.manifest_dir
                     .join("aws-lc")

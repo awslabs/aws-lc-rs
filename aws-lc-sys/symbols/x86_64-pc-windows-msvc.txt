@@ -850,9 +850,11 @@ EC_GROUP_get_curve_GFp
 EC_GROUP_get_curve_name
 EC_GROUP_get_degree
 EC_GROUP_get_order
+EC_GROUP_get_point_conversion_form
 EC_GROUP_get_seed_len
 EC_GROUP_method_of
 EC_GROUP_new_by_curve_name
+EC_GROUP_new_by_curve_name_mutable
 EC_GROUP_new_curve_GFp
 EC_GROUP_order_bits
 EC_GROUP_set_asn1_flag
@@ -1180,6 +1182,8 @@ EVP_PKEY_CTX_set1_hkdf_salt
 EVP_PKEY_CTX_set_app_data
 EVP_PKEY_CTX_set_cb
 EVP_PKEY_CTX_set_dh_pad
+EVP_PKEY_CTX_set_dh_paramgen_generator
+EVP_PKEY_CTX_set_dh_paramgen_prime_len
 EVP_PKEY_CTX_set_dsa_paramgen_bits
 EVP_PKEY_CTX_set_dsa_paramgen_q_bits
 EVP_PKEY_CTX_set_ec_param_enc
@@ -3095,6 +3099,7 @@ ed25519_public_key_from_hashed_seed_nohw
 ed25519_sha512
 ed25519_sign_nohw
 ed25519_verify_nohw
+evp_pkey_set_cb_translate
 evp_pkey_set_method
 extract_multiplier_2x20_win5
 extract_multiplier_2x30_win5

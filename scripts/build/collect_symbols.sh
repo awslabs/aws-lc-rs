@@ -57,7 +57,7 @@ if [[ ! -d "${AWS_LC_DIR}" ]]; then
 fi
 
 function filter_symbols() {
-  grep -E '^\w*$' | grep -v -E "^bignum_" | grep -v "curve25519_x25519" | grep -v "edwards25519_" | grep -v "p256_montjscalarmul"
+  grep -E '^\w*$' | grep -v -E "^bignum_" | grep -v "curve25519_x25519" | grep -v "edwards25519_" | grep -v "p256_montj" | grep -v "p384_montj" | grep -v "p521_montj" | grep -v "p521_jdouble"
 }
 
 function filter_nm_symbols() {
@@ -112,7 +112,7 @@ elif [[ "${LIBCRYPTO_PATH}" = *.so || "${LIBCRYPTO_PATH}" = *.lib ]]; then
   nm --extern-only --defined-only --format=just-symbols  "${LIBCRYPTO_PATH}" | sort | uniq | filter_nm_symbols | filter_symbols >"${SYMBOLS_FILE}"
 else
   pushd "${AWS_LC_DIR}"
-  go run -mod readonly "${AWS_LC_DIR}"/util/read_symbols.go "${LIBCRYPTO_PATH}" | filter_symbols >"${SYMBOLS_FILE}"
+  go run -mod readonly "${AWS_LC_DIR}"/util/read_symbols.go "${LIBCRYPTO_PATH}" | sort | uniq | filter_nm_symbols | filter_symbols >"${SYMBOLS_FILE}"
   popd
 fi
 

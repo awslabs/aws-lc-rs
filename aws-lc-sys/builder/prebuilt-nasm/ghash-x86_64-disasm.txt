@@ -5,7 +5,7 @@ Dump of file ghash-x86_64.obj
 
 File Type: COFF OBJECT
 
-aws_lc_0_23_1_gcm_init_clmul:
+aws_lc_0_24_0_gcm_init_clmul:
   0000000000000000: 48 83 EC 18        sub         rsp,18h
 L$SEH_prolog_gcm_init_clmul_2:
   0000000000000004: 0F 29 34 24        movaps      xmmword ptr [rsp],xmm6
@@ -153,7 +153,7 @@ L$SEH_end_gcm_init_clmul_4:
   000000000000026D: 90                 nop
   000000000000026E: 90                 nop
   000000000000026F: 90                 nop
-aws_lc_0_23_1_gcm_gmult_clmul:
+aws_lc_0_24_0_gcm_gmult_clmul:
   0000000000000270: F3 0F 6F 01        movdqu      xmm0,xmmword ptr [rcx]
   0000000000000274: 66 0F 6F 2D 00 00  movdqa      xmm5,xmmword ptr [.rdata]
                     00 00
@@ -218,7 +218,7 @@ aws_lc_0_23_1_gcm_gmult_clmul:
   000000000000033D: 90                 nop
   000000000000033E: 90                 nop
   000000000000033F: 90                 nop
-aws_lc_0_23_1_gcm_ghash_clmul:
+aws_lc_0_24_0_gcm_ghash_clmul:
   0000000000000340: 48 8D 84 24 78 FF  lea         rax,[rsp-88h]
                     FF FF
   0000000000000348: 48 8D 60 E0        lea         rsp,[rax-20h]
@@ -662,7 +662,7 @@ L$SEH_end_gcm_ghash_clmul_13:
   0000000000000A1D: 90                 nop
   0000000000000A1E: 90                 nop
   0000000000000A1F: 90                 nop
-aws_lc_0_23_1_gcm_init_avx:
+aws_lc_0_24_0_gcm_init_avx:
   0000000000000A20: 48 83 EC 18        sub         rsp,18h
 L$SEH_prolog_gcm_init_avx_2:
   0000000000000A24: 0F 29 34 24        movaps      xmmword ptr [rsp],xmm6
@@ -792,8 +792,8 @@ L$SEH_end_gcm_init_avx_4:
   0000000000000BDD: 90                 nop
   0000000000000BDE: 90                 nop
   0000000000000BDF: 90                 nop
-aws_lc_0_23_1_gcm_gmult_avx:
-  0000000000000BE0: E9 8B F6 FF FF     jmp         aws_lc_0_23_1_gcm_gmult_clmul
+aws_lc_0_24_0_gcm_gmult_avx:
+  0000000000000BE0: E9 8B F6 FF FF     jmp         aws_lc_0_24_0_gcm_gmult_clmul
   0000000000000BE5: 90                 nop
   0000000000000BE6: 90                 nop
   0000000000000BE7: 90                 nop
@@ -821,7 +821,7 @@ aws_lc_0_23_1_gcm_gmult_avx:
   0000000000000BFD: 90                 nop
   0000000000000BFE: 90                 nop
   0000000000000BFF: 90                 nop
-aws_lc_0_23_1_gcm_ghash_avx:
+aws_lc_0_24_0_gcm_ghash_avx:
   0000000000000C00: 48 8D 84 24 78 FF  lea         rax,[rsp-88h]
                     FF FF
   0000000000000C08: 48 8D 60 E0        lea         rsp,[rax-20h]

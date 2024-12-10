@@ -5,7 +5,7 @@ Dump of file rsaz-3k-avx512.obj
 
 File Type: COFF OBJECT
 
-aws_lc_0_23_1_rsaz_amm52x30_x1_ifma256:
+aws_lc_0_24_0_rsaz_amm52x30_x1_ifma256:
   0000000000000000: 48 89 7C 24 08     mov         qword ptr [rsp+8],rdi
   0000000000000005: 48 89 74 24 10     mov         qword ptr [rsp+10h],rsi
   000000000000000A: 48 89 E0           mov         rax,rsp
@@ -893,7 +893,7 @@ L$SEH_end_rsaz_amm52x30_x1_ifma256:
   0000000000000CFD: 90                 nop
   0000000000000CFE: 90                 nop
   0000000000000CFF: 90                 nop
-aws_lc_0_23_1_rsaz_amm52x30_x2_ifma256:
+aws_lc_0_24_0_rsaz_amm52x30_x2_ifma256:
   0000000000000D00: 48 89 7C 24 08     mov         qword ptr [rsp+8],rdi
   0000000000000D05: 48 89 74 24 10     mov         qword ptr [rsp+10h],rsi
   0000000000000D0A: 48 89 E0           mov         rax,rsp
@@ -1622,7 +1622,7 @@ L$SEH_end_rsaz_amm52x30_x2_ifma256:
   000000000000181D: 90                 nop
   000000000000181E: 90                 nop
   000000000000181F: 90                 nop
-aws_lc_0_23_1_extract_multiplier_2x30_win5:
+aws_lc_0_24_0_extract_multiplier_2x30_win5:
   0000000000001820: F3 0F 1E FA        endbr64
   0000000000001824: 62 61 FD 28 6F 35  vmovdqa64   ymm30,ymmword ptr [.rdata+20h]
                     20 00 00 00

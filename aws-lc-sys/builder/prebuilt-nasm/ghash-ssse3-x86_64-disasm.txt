@@ -5,7 +5,7 @@ Dump of file ghash-ssse3-x86_64.obj
 
 File Type: COFF OBJECT
 
-aws_lc_0_23_1_gcm_gmult_ssse3:
+aws_lc_0_24_0_gcm_gmult_ssse3:
   0000000000000000: 48 83 EC 28        sub         rsp,28h
 L$SEH_prolog_gcm_gmult_ssse3_2:
   0000000000000004: 66 0F 7F 34 24     movdqa      xmmword ptr [rsp],xmm6
@@ -148,7 +148,7 @@ L$SEH_end_gcm_gmult_ssse3_5:
   000000000000021D: 90                 nop
   000000000000021E: 90                 nop
   000000000000021F: 90                 nop
-aws_lc_0_23_1_gcm_ghash_ssse3:
+aws_lc_0_24_0_gcm_ghash_ssse3:
   0000000000000220: 48 83 EC 38        sub         rsp,38h
 L$SEH_prolog_gcm_ghash_ssse3_2:
   0000000000000224: 66 0F 7F 34 24     movdqa      xmmword ptr [rsp],xmm6

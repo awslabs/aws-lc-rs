@@ -5,7 +5,7 @@ Dump of file aesni-xts-avx512.obj
 
 File Type: COFF OBJECT
 
-aws_lc_0_23_1_aes_hw_xts_encrypt_avx512:
+aws_lc_0_24_0_aes_hw_xts_encrypt_avx512:
   0000000000000000: F3 0F 1E FA        endbr64
   0000000000000004: 55                 push        rbp
   0000000000000005: 48 89 E5           mov         rbp,rsp
@@ -2169,7 +2169,7 @@ L$_num_blocks_is_1_hEgxyDlCngwrfFe:
   000000000000291D: 90                 nop
   000000000000291E: 90                 nop
   000000000000291F: 90                 nop
-aws_lc_0_23_1_aes_hw_xts_decrypt_avx512:
+aws_lc_0_24_0_aes_hw_xts_decrypt_avx512:
   0000000000002920: F3 0F 1E FA        endbr64
   0000000000002924: 55                 push        rbp
   0000000000002925: 48 89 E5           mov         rbp,rsp

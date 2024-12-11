@@ -1,6 +1,6 @@
 // Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 // SPDX-License-Identifier: Apache-2.0 OR ISC
-// Fri Nov 22 14:24:39 UTC 2024
+// Wed Dec 11 13:51:29 UTC 2024
 
 use crate::cc_builder::Library;
 
@@ -161,7 +161,6 @@ pub(super) const CRYPTO_LIBRARY: Library = Library {
         "crypto/rand_extra/entropy_passive.c",
         "crypto/rand_extra/forkunsafe.c",
         "crypto/rand_extra/fuchsia.c",
-        "crypto/rand_extra/pq_custom_randombytes.c",
         "crypto/rand_extra/rand_extra.c",
         "crypto/rand_extra/trusty.c",
         "crypto/rand_extra/windows.c",

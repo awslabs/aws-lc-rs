@@ -1,6 +1,6 @@
 // Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 // SPDX-License-Identifier: Apache-2.0 OR ISC
-// Fri Nov 22 14:18:21 UTC 2024
+// Wed Dec 11 13:46:53 UTC 2024
 
 use crate::cc_builder::Library;
 
@@ -155,7 +155,6 @@ pub(super) const CRYPTO_LIBRARY: Library = Library {
         "crypto/poly1305/poly1305.c",
         "crypto/pool/pool.c",
         "crypto/rand_extra/forkunsafe.c",
-        "crypto/rand_extra/pq_custom_randombytes.c",
         "crypto/rand_extra/rand_extra.c",
         "crypto/rc4/rc4.c",
         "crypto/refcount_c11.c",
@@ -305,6 +304,8 @@ pub(super) const CRYPTO_LIBRARY: Library = Library {
         "third_party/s2n-bignum/arm/p384/bignum_nonzero_6.S",
         "third_party/s2n-bignum/arm/p384/bignum_sub_p384.S",
         "third_party/s2n-bignum/arm/p384/bignum_tomont_p384.S",
+        "third_party/s2n-bignum/arm/p384/p384_montjdouble.S",
+        "third_party/s2n-bignum/arm/p384/p384_montjdouble_alt.S",
         "third_party/s2n-bignum/arm/p521/bignum_add_p521.S",
         "third_party/s2n-bignum/arm/p521/bignum_fromlebytes_p521.S",
         "third_party/s2n-bignum/arm/p521/bignum_mul_p521.S",
@@ -314,5 +315,7 @@ pub(super) const CRYPTO_LIBRARY: Library = Library {
         "third_party/s2n-bignum/arm/p521/bignum_sqr_p521_alt.S",
         "third_party/s2n-bignum/arm/p521/bignum_sub_p521.S",
         "third_party/s2n-bignum/arm/p521/bignum_tolebytes_p521.S",
+        "third_party/s2n-bignum/arm/p521/p521_jdouble.S",
+        "third_party/s2n-bignum/arm/p521/p521_jdouble_alt.S",
     ],
 };

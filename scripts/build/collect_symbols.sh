@@ -57,7 +57,7 @@ if [[ ! -d "${AWS_LC_DIR}" ]]; then
 fi
 
 function filter_symbols() {
-  grep -E '^\w*$' | grep -v -E "^bignum_" | grep -v "curve25519_x25519" | grep -v "edwards25519_" | grep -v "p256_montj" | grep -v "p384_montj" | grep -v "p521_montj" | grep -v "p521_jdouble"
+  grep -E '^\w*$' | grep -v -E "^bignum_" | grep -v "curve25519_x25519" | grep -v "edwards25519_" | grep -v "p256_montj" | grep -v "p384_montj" | grep -v "p521_montj" | grep -v "p521_j"
 }
 
 function filter_nm_symbols() {

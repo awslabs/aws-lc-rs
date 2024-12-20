@@ -20,7 +20,7 @@ function cmake_build_options() {
 }
 
 function filter_symbols() {
-  grep -v "^_\?bignum_" | grep -v "_\?curve25519_x25519" | grep -v "_\?edwards25519_" | grep -v "_\?p256_montj" | grep -v "_\?p384_montj" | grep -v "_\?p521_montj" | grep -v "_\?p521_jdouble"
+  grep -v "^_\?bignum_" | grep -v "_\?curve25519_x25519" | grep -v "_\?edwards25519_" | grep -v "_\?p256_montj" | grep -v "_\?p384_montj" | grep -v "_\?p521_montj" | grep -v "_\?p521_j"
 }
 
 REPO_ROOT=$(git rev-parse --show-toplevel)

@@ -1942,6 +1942,7 @@
 %xdefine _PKCS7_is_detached _ %+ BORINGSSL_PREFIX %+ _PKCS7_is_detached
 %xdefine _PKCS7_it _ %+ BORINGSSL_PREFIX %+ _PKCS7_it
 %xdefine _PKCS7_new _ %+ BORINGSSL_PREFIX %+ _PKCS7_new
+%xdefine _PKCS7_print_ctx _ %+ BORINGSSL_PREFIX %+ _PKCS7_print_ctx
 %xdefine _PKCS7_set_cipher _ %+ BORINGSSL_PREFIX %+ _PKCS7_set_cipher
 %xdefine _PKCS7_set_content _ %+ BORINGSSL_PREFIX %+ _PKCS7_set_content
 %xdefine _PKCS7_set_digest _ %+ BORINGSSL_PREFIX %+ _PKCS7_set_digest
@@ -5892,6 +5893,7 @@
 %xdefine PKCS7_is_detached BORINGSSL_PREFIX %+ _PKCS7_is_detached
 %xdefine PKCS7_it BORINGSSL_PREFIX %+ _PKCS7_it
 %xdefine PKCS7_new BORINGSSL_PREFIX %+ _PKCS7_new
+%xdefine PKCS7_print_ctx BORINGSSL_PREFIX %+ _PKCS7_print_ctx
 %xdefine PKCS7_set_cipher BORINGSSL_PREFIX %+ _PKCS7_set_cipher
 %xdefine PKCS7_set_content BORINGSSL_PREFIX %+ _PKCS7_set_content
 %xdefine PKCS7_set_digest BORINGSSL_PREFIX %+ _PKCS7_set_digest

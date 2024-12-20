@@ -1,6 +1,6 @@
 // Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 // SPDX-License-Identifier: Apache-2.0 OR ISC
-// Wed Dec 11 13:50:30 UTC 2024
+// Fri Dec 20 15:41:10 UTC 2024
 
 use crate::cc_builder::Library;
 
@@ -304,9 +304,13 @@ pub(super) const CRYPTO_LIBRARY: Library = Library {
         "third_party/s2n-bignum/arm/generic/bignum_mul.S",
         "third_party/s2n-bignum/arm/generic/bignum_optsub.S",
         "third_party/s2n-bignum/arm/generic/bignum_sqr.S",
+        "third_party/s2n-bignum/arm/p256/bignum_montinv_p256.S",
+        "third_party/s2n-bignum/arm/p256/p256_montjscalarmul.S",
+        "third_party/s2n-bignum/arm/p256/p256_montjscalarmul_alt.S",
         "third_party/s2n-bignum/arm/p384/bignum_add_p384.S",
         "third_party/s2n-bignum/arm/p384/bignum_deamont_p384.S",
         "third_party/s2n-bignum/arm/p384/bignum_littleendian_6.S",
+        "third_party/s2n-bignum/arm/p384/bignum_montinv_p384.S",
         "third_party/s2n-bignum/arm/p384/bignum_montmul_p384.S",
         "third_party/s2n-bignum/arm/p384/bignum_montmul_p384_alt.S",
         "third_party/s2n-bignum/arm/p384/bignum_montsqr_p384.S",
@@ -317,8 +321,11 @@ pub(super) const CRYPTO_LIBRARY: Library = Library {
         "third_party/s2n-bignum/arm/p384/bignum_tomont_p384.S",
         "third_party/s2n-bignum/arm/p384/p384_montjdouble.S",
         "third_party/s2n-bignum/arm/p384/p384_montjdouble_alt.S",
+        "third_party/s2n-bignum/arm/p384/p384_montjscalarmul.S",
+        "third_party/s2n-bignum/arm/p384/p384_montjscalarmul_alt.S",
         "third_party/s2n-bignum/arm/p521/bignum_add_p521.S",
         "third_party/s2n-bignum/arm/p521/bignum_fromlebytes_p521.S",
+        "third_party/s2n-bignum/arm/p521/bignum_inv_p521.S",
         "third_party/s2n-bignum/arm/p521/bignum_mul_p521.S",
         "third_party/s2n-bignum/arm/p521/bignum_mul_p521_alt.S",
         "third_party/s2n-bignum/arm/p521/bignum_neg_p521.S",
@@ -328,5 +335,7 @@ pub(super) const CRYPTO_LIBRARY: Library = Library {
         "third_party/s2n-bignum/arm/p521/bignum_tolebytes_p521.S",
         "third_party/s2n-bignum/arm/p521/p521_jdouble.S",
         "third_party/s2n-bignum/arm/p521/p521_jdouble_alt.S",
+        "third_party/s2n-bignum/arm/p521/p521_jscalarmul.S",
+        "third_party/s2n-bignum/arm/p521/p521_jscalarmul_alt.S",
     ],
 };

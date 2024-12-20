@@ -14401,7 +14401,7 @@ extern "C" {
     pub fn DSA_do_verify(
         digest: *const u8,
         digest_len: usize,
-        sig: *mut DSA_SIG,
+        sig: *const DSA_SIG,
         dsa: *const DSA,
     ) -> ::std::os::raw::c_int;
 }
@@ -14411,7 +14411,7 @@ extern "C" {
         out_valid: *mut ::std::os::raw::c_int,
         digest: *const u8,
         digest_len: usize,
-        sig: *mut DSA_SIG,
+        sig: *const DSA_SIG,
         dsa: *const DSA,
     ) -> ::std::os::raw::c_int;
 }
@@ -16143,10 +16143,6 @@ extern "C" {
     pub fn EVP_PKEY_id(pkey: *const EVP_PKEY) -> ::std::os::raw::c_int;
 }
 extern "C" {
-    #[link_name = "\u{1}_aws_lc_0_24_0_EVP_PKEY_type"]
-    pub fn EVP_PKEY_type(nid: ::std::os::raw::c_int) -> ::std::os::raw::c_int;
-}
-extern "C" {
     #[link_name = "\u{1}_aws_lc_0_24_0_EVP_MD_get0_name"]
     pub fn EVP_MD_get0_name(md: *const EVP_MD) -> *const ::std::os::raw::c_char;
 }
@@ -17035,6 +17031,10 @@ extern "C" {
         type_: ::std::os::raw::c_int,
         key: *mut ::std::os::raw::c_void,
     ) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    #[link_name = "\u{1}_aws_lc_0_24_0_EVP_PKEY_type"]
+    pub fn EVP_PKEY_type(nid: ::std::os::raw::c_int) -> ::std::os::raw::c_int;
 }
 extern "C" {
     #[link_name = "\u{1}_aws_lc_0_24_0_EVP_PKEY_new_mac_key"]
@@ -19343,6 +19343,15 @@ extern "C" {
         p7: *mut PKCS7,
         data: *mut BIO,
         flags: ::std::os::raw::c_int,
+    ) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    #[link_name = "\u{1}_aws_lc_0_24_0_PKCS7_print_ctx"]
+    pub fn PKCS7_print_ctx(
+        bio: *mut BIO,
+        pkcs7: *mut PKCS7,
+        indent: ::std::os::raw::c_int,
+        pctx: *const ASN1_PCTX,
     ) -> ::std::os::raw::c_int;
 }
 pub type sk_CRYPTO_BUFFER_free_func =
@@ -22151,7 +22160,7 @@ extern "C" {
 }
 extern "C" {
     #[link_name = "\u{1}_aws_lc_0_24_0_X509_ALGOR_set_md"]
-    pub fn X509_ALGOR_set_md(alg: *mut X509_ALGOR, md: *const EVP_MD);
+    pub fn X509_ALGOR_set_md(alg: *mut X509_ALGOR, md: *const EVP_MD) -> ::std::os::raw::c_int;
 }
 extern "C" {
     #[link_name = "\u{1}_aws_lc_0_24_0_X509_ALGOR_cmp"]

@@ -1903,6 +1903,7 @@ PKCS7_get_signer_info
 PKCS7_is_detached
 PKCS7_it
 PKCS7_new
+PKCS7_print_ctx
 PKCS7_set_cipher
 PKCS7_set_content
 PKCS7_set_digest

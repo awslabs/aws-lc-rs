@@ -5,7 +5,7 @@ Dump of file sha256-x86_64.obj
 
 File Type: COFF OBJECT
 
-aws_lc_0_24_0_sha256_block_data_order_nohw:
+aws_lc_0_24_1_sha256_block_data_order_nohw:
   0000000000000000: 48 89 7C 24 08     mov         qword ptr [rsp+8],rdi
   0000000000000005: 48 89 74 24 10     mov         qword ptr [rsp+10h],rsi
   000000000000000A: 48 89 E0           mov         rax,rsp
@@ -1384,7 +1384,7 @@ L$SEH_end_sha256_block_data_order_nohw:
   00000000000011BD: 90                 nop
   00000000000011BE: 90                 nop
   00000000000011BF: 90                 nop
-aws_lc_0_24_0_sha256_block_data_order_hw:
+aws_lc_0_24_1_sha256_block_data_order_hw:
   00000000000011C0: 48 89 7C 24 08     mov         qword ptr [rsp+8],rdi
   00000000000011C5: 48 89 74 24 10     mov         qword ptr [rsp+10h],rsi
   00000000000011CA: 48 89 E0           mov         rax,rsp
@@ -1658,7 +1658,7 @@ L$SEH_end_sha256_block_data_order_hw:
   000000000000157D: 90                 nop
   000000000000157E: 90                 nop
   000000000000157F: 90                 nop
-aws_lc_0_24_0_sha256_block_data_order_ssse3:
+aws_lc_0_24_1_sha256_block_data_order_ssse3:
   0000000000001580: 48 89 7C 24 08     mov         qword ptr [rsp+8],rdi
   0000000000001585: 48 89 74 24 10     mov         qword ptr [rsp+10h],rsi
   000000000000158A: 48 89 E0           mov         rax,rsp
@@ -2804,7 +2804,7 @@ L$SEH_end_sha256_block_data_order_ssse3:
   00000000000024BD: 90                 nop
   00000000000024BE: 90                 nop
   00000000000024BF: 90                 nop
-aws_lc_0_24_0_sha256_block_data_order_avx:
+aws_lc_0_24_1_sha256_block_data_order_avx:
   00000000000024C0: 48 89 7C 24 08     mov         qword ptr [rsp+8],rdi
   00000000000024C5: 48 89 74 24 10     mov         qword ptr [rsp+10h],rsi
   00000000000024CA: 48 89 E0           mov         rax,rsp

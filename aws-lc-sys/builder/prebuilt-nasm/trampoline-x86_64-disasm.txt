@@ -5,7 +5,7 @@ Dump of file trampoline-x86_64.obj
 
 File Type: COFF OBJECT
 
-aws_lc_0_24_0_abi_test_trampoline:
+aws_lc_0_24_1_abi_test_trampoline:
   0000000000000000: 48 81 EC 58 01 00  sub         rsp,158h
                     00
 L$SEH_prolog_abi_test_trampoline_2:
@@ -127,14 +127,14 @@ L$args_done:
                     00 00
   00000000000001A8: 9D                 popfq
   00000000000001A9: 90                 nop
-aws_lc_0_24_0_abi_test_unwind_start:
+aws_lc_0_24_1_abi_test_unwind_start:
   00000000000001AA: FF D0              call        rax
-aws_lc_0_24_0_abi_test_unwind_return:
+aws_lc_0_24_1_abi_test_unwind_return:
   00000000000001AC: 9C                 pushfq
   00000000000001AD: 48 81 24 24 FF FE  and         qword ptr [rsp],0FFFFFFFFFFFFFEFFh
                     FF FF
   00000000000001B5: 9D                 popfq
-aws_lc_0_24_0_abi_test_unwind_stop:
+aws_lc_0_24_1_abi_test_unwind_stop:
   00000000000001B6: E9 02 00 00 00     jmp         L$call_done
 L$no_unwind:
   00000000000001BB: FF D0              call        rax
@@ -216,7 +216,7 @@ L$SEH_end_abi_test_trampoline_21:
   00000000000002DD: 90                 nop
   00000000000002DE: 90                 nop
   00000000000002DF: 90                 nop
-aws_lc_0_24_0_abi_test_clobber_rax:
+aws_lc_0_24_1_abi_test_clobber_rax:
   00000000000002E0: 48 31 C0           xor         rax,rax
   00000000000002E3: F3 C3              rep ret
   00000000000002E5: 90                 nop
@@ -230,7 +230,7 @@ aws_lc_0_24_0_abi_test_clobber_rax:
   00000000000002ED: 90                 nop
   00000000000002EE: 90                 nop
   00000000000002EF: 90                 nop
-aws_lc_0_24_0_abi_test_clobber_rbx:
+aws_lc_0_24_1_abi_test_clobber_rbx:
   00000000000002F0: 48 31 DB           xor         rbx,rbx
   00000000000002F3: F3 C3              rep ret
   00000000000002F5: 90                 nop
@@ -244,7 +244,7 @@ aws_lc_0_24_0_abi_test_clobber_rbx:
   00000000000002FD: 90                 nop
   00000000000002FE: 90                 nop
   00000000000002FF: 90                 nop
-aws_lc_0_24_0_abi_test_clobber_rcx:
+aws_lc_0_24_1_abi_test_clobber_rcx:
   0000000000000300: 48 31 C9           xor         rcx,rcx
   0000000000000303: F3 C3              rep ret
   0000000000000305: 90                 nop
@@ -258,7 +258,7 @@ aws_lc_0_24_0_abi_test_clobber_rcx:
   000000000000030D: 90                 nop
   000000000000030E: 90                 nop
   000000000000030F: 90                 nop
-aws_lc_0_24_0_abi_test_clobber_rdx:
+aws_lc_0_24_1_abi_test_clobber_rdx:
   0000000000000310: 48 31 D2           xor         rdx,rdx
   0000000000000313: F3 C3              rep ret
   0000000000000315: 90                 nop
@@ -272,7 +272,7 @@ aws_lc_0_24_0_abi_test_clobber_rdx:
   000000000000031D: 90                 nop
   000000000000031E: 90                 nop
   000000000000031F: 90                 nop
-aws_lc_0_24_0_abi_test_clobber_rdi:
+aws_lc_0_24_1_abi_test_clobber_rdi:
   0000000000000320: 48 31 FF           xor         rdi,rdi
   0000000000000323: F3 C3              rep ret
   0000000000000325: 90                 nop
@@ -286,7 +286,7 @@ aws_lc_0_24_0_abi_test_clobber_rdi:
   000000000000032D: 90                 nop
   000000000000032E: 90                 nop
   000000000000032F: 90                 nop
-aws_lc_0_24_0_abi_test_clobber_rsi:
+aws_lc_0_24_1_abi_test_clobber_rsi:
   0000000000000330: 48 31 F6           xor         rsi,rsi
   0000000000000333: F3 C3              rep ret
   0000000000000335: 90                 nop
@@ -300,7 +300,7 @@ aws_lc_0_24_0_abi_test_clobber_rsi:
   000000000000033D: 90                 nop
   000000000000033E: 90                 nop
   000000000000033F: 90                 nop
-aws_lc_0_24_0_abi_test_clobber_rbp:
+aws_lc_0_24_1_abi_test_clobber_rbp:
   0000000000000340: 48 31 ED           xor         rbp,rbp
   0000000000000343: F3 C3              rep ret
   0000000000000345: 90                 nop
@@ -314,7 +314,7 @@ aws_lc_0_24_0_abi_test_clobber_rbp:
   000000000000034D: 90                 nop
   000000000000034E: 90                 nop
   000000000000034F: 90                 nop
-aws_lc_0_24_0_abi_test_clobber_r8:
+aws_lc_0_24_1_abi_test_clobber_r8:
   0000000000000350: 4D 31 C0           xor         r8,r8
   0000000000000353: F3 C3              rep ret
   0000000000000355: 90                 nop
@@ -328,7 +328,7 @@ aws_lc_0_24_0_abi_test_clobber_r8:
   000000000000035D: 90                 nop
   000000000000035E: 90                 nop
   000000000000035F: 90                 nop
-aws_lc_0_24_0_abi_test_clobber_r9:
+aws_lc_0_24_1_abi_test_clobber_r9:
   0000000000000360: 4D 31 C9           xor         r9,r9
   0000000000000363: F3 C3              rep ret
   0000000000000365: 90                 nop
@@ -342,7 +342,7 @@ aws_lc_0_24_0_abi_test_clobber_r9:
   000000000000036D: 90                 nop
   000000000000036E: 90                 nop
   000000000000036F: 90                 nop
-aws_lc_0_24_0_abi_test_clobber_r10:
+aws_lc_0_24_1_abi_test_clobber_r10:
   0000000000000370: 4D 31 D2           xor         r10,r10
   0000000000000373: F3 C3              rep ret
   0000000000000375: 90                 nop
@@ -356,7 +356,7 @@ aws_lc_0_24_0_abi_test_clobber_r10:
   000000000000037D: 90                 nop
   000000000000037E: 90                 nop
   000000000000037F: 90                 nop
-aws_lc_0_24_0_abi_test_clobber_r11:
+aws_lc_0_24_1_abi_test_clobber_r11:
   0000000000000380: 4D 31 DB           xor         r11,r11
   0000000000000383: F3 C3              rep ret
   0000000000000385: 90                 nop
@@ -370,7 +370,7 @@ aws_lc_0_24_0_abi_test_clobber_r11:
   000000000000038D: 90                 nop
   000000000000038E: 90                 nop
   000000000000038F: 90                 nop
-aws_lc_0_24_0_abi_test_clobber_r12:
+aws_lc_0_24_1_abi_test_clobber_r12:
   0000000000000390: 4D 31 E4           xor         r12,r12
   0000000000000393: F3 C3              rep ret
   0000000000000395: 90                 nop
@@ -384,7 +384,7 @@ aws_lc_0_24_0_abi_test_clobber_r12:
   000000000000039D: 90                 nop
   000000000000039E: 90                 nop
   000000000000039F: 90                 nop
-aws_lc_0_24_0_abi_test_clobber_r13:
+aws_lc_0_24_1_abi_test_clobber_r13:
   00000000000003A0: 4D 31 ED           xor         r13,r13
   00000000000003A3: F3 C3              rep ret
   00000000000003A5: 90                 nop
@@ -398,7 +398,7 @@ aws_lc_0_24_0_abi_test_clobber_r13:
   00000000000003AD: 90                 nop
   00000000000003AE: 90                 nop
   00000000000003AF: 90                 nop
-aws_lc_0_24_0_abi_test_clobber_r14:
+aws_lc_0_24_1_abi_test_clobber_r14:
   00000000000003B0: 4D 31 F6           xor         r14,r14
   00000000000003B3: F3 C3              rep ret
   00000000000003B5: 90                 nop
@@ -412,7 +412,7 @@ aws_lc_0_24_0_abi_test_clobber_r14:
   00000000000003BD: 90                 nop
   00000000000003BE: 90                 nop
   00000000000003BF: 90                 nop
-aws_lc_0_24_0_abi_test_clobber_r15:
+aws_lc_0_24_1_abi_test_clobber_r15:
   00000000000003C0: 4D 31 FF           xor         r15,r15
   00000000000003C3: F3 C3              rep ret
   00000000000003C5: 90                 nop
@@ -426,7 +426,7 @@ aws_lc_0_24_0_abi_test_clobber_r15:
   00000000000003CD: 90                 nop
   00000000000003CE: 90                 nop
   00000000000003CF: 90                 nop
-aws_lc_0_24_0_abi_test_clobber_xmm0:
+aws_lc_0_24_1_abi_test_clobber_xmm0:
   00000000000003D0: 66 0F EF C0        pxor        xmm0,xmm0
   00000000000003D4: F3 C3              rep ret
   00000000000003D6: 90                 nop
@@ -439,7 +439,7 @@ aws_lc_0_24_0_abi_test_clobber_xmm0:
   00000000000003DD: 90                 nop
   00000000000003DE: 90                 nop
   00000000000003DF: 90                 nop
-aws_lc_0_24_0_abi_test_clobber_xmm1:
+aws_lc_0_24_1_abi_test_clobber_xmm1:
   00000000000003E0: 66 0F EF C9        pxor        xmm1,xmm1
   00000000000003E4: F3 C3              rep ret
   00000000000003E6: 90                 nop
@@ -452,7 +452,7 @@ aws_lc_0_24_0_abi_test_clobber_xmm1:
   00000000000003ED: 90                 nop
   00000000000003EE: 90                 nop
   00000000000003EF: 90                 nop
-aws_lc_0_24_0_abi_test_clobber_xmm2:
+aws_lc_0_24_1_abi_test_clobber_xmm2:
   00000000000003F0: 66 0F EF D2        pxor        xmm2,xmm2
   00000000000003F4: F3 C3              rep ret
   00000000000003F6: 90                 nop
@@ -465,7 +465,7 @@ aws_lc_0_24_0_abi_test_clobber_xmm2:
   00000000000003FD: 90                 nop
   00000000000003FE: 90                 nop
   00000000000003FF: 90                 nop
-aws_lc_0_24_0_abi_test_clobber_xmm3:
+aws_lc_0_24_1_abi_test_clobber_xmm3:
   0000000000000400: 66 0F EF DB        pxor        xmm3,xmm3
   0000000000000404: F3 C3              rep ret
   0000000000000406: 90                 nop
@@ -478,7 +478,7 @@ aws_lc_0_24_0_abi_test_clobber_xmm3:
   000000000000040D: 90                 nop
   000000000000040E: 90                 nop
   000000000000040F: 90                 nop
-aws_lc_0_24_0_abi_test_clobber_xmm4:
+aws_lc_0_24_1_abi_test_clobber_xmm4:
   0000000000000410: 66 0F EF E4        pxor        xmm4,xmm4
   0000000000000414: F3 C3              rep ret
   0000000000000416: 90                 nop
@@ -491,7 +491,7 @@ aws_lc_0_24_0_abi_test_clobber_xmm4:
   000000000000041D: 90                 nop
   000000000000041E: 90                 nop
   000000000000041F: 90                 nop
-aws_lc_0_24_0_abi_test_clobber_xmm5:
+aws_lc_0_24_1_abi_test_clobber_xmm5:
   0000000000000420: 66 0F EF ED        pxor        xmm5,xmm5
   0000000000000424: F3 C3              rep ret
   0000000000000426: 90                 nop
@@ -504,7 +504,7 @@ aws_lc_0_24_0_abi_test_clobber_xmm5:
   000000000000042D: 90                 nop
   000000000000042E: 90                 nop
   000000000000042F: 90                 nop
-aws_lc_0_24_0_abi_test_clobber_xmm6:
+aws_lc_0_24_1_abi_test_clobber_xmm6:
   0000000000000430: 66 0F EF F6        pxor        xmm6,xmm6
   0000000000000434: F3 C3              rep ret
   0000000000000436: 90                 nop
@@ -517,7 +517,7 @@ aws_lc_0_24_0_abi_test_clobber_xmm6:
   000000000000043D: 90                 nop
   000000000000043E: 90                 nop
   000000000000043F: 90                 nop
-aws_lc_0_24_0_abi_test_clobber_xmm7:
+aws_lc_0_24_1_abi_test_clobber_xmm7:
   0000000000000440: 66 0F EF FF        pxor        xmm7,xmm7
   0000000000000444: F3 C3              rep ret
   0000000000000446: 90                 nop
@@ -530,7 +530,7 @@ aws_lc_0_24_0_abi_test_clobber_xmm7:
   000000000000044D: 90                 nop
   000000000000044E: 90                 nop
   000000000000044F: 90                 nop
-aws_lc_0_24_0_abi_test_clobber_xmm8:
+aws_lc_0_24_1_abi_test_clobber_xmm8:
   0000000000000450: 66 45 0F EF C0     pxor        xmm8,xmm8
   0000000000000455: F3 C3              rep ret
   0000000000000457: 90                 nop
@@ -542,7 +542,7 @@ aws_lc_0_24_0_abi_test_clobber_xmm8:
   000000000000045D: 90                 nop
   000000000000045E: 90                 nop
   000000000000045F: 90                 nop
-aws_lc_0_24_0_abi_test_clobber_xmm9:
+aws_lc_0_24_1_abi_test_clobber_xmm9:
   0000000000000460: 66 45 0F EF C9     pxor        xmm9,xmm9
   0000000000000465: F3 C3              rep ret
   0000000000000467: 90                 nop
@@ -554,7 +554,7 @@ aws_lc_0_24_0_abi_test_clobber_xmm9:
   000000000000046D: 90                 nop
   000000000000046E: 90                 nop
   000000000000046F: 90                 nop
-aws_lc_0_24_0_abi_test_clobber_xmm10:
+aws_lc_0_24_1_abi_test_clobber_xmm10:
   0000000000000470: 66 45 0F EF D2     pxor        xmm10,xmm10
   0000000000000475: F3 C3              rep ret
   0000000000000477: 90                 nop
@@ -566,7 +566,7 @@ aws_lc_0_24_0_abi_test_clobber_xmm10:
   000000000000047D: 90                 nop
   000000000000047E: 90                 nop
   000000000000047F: 90                 nop
-aws_lc_0_24_0_abi_test_clobber_xmm11:
+aws_lc_0_24_1_abi_test_clobber_xmm11:
   0000000000000480: 66 45 0F EF DB     pxor        xmm11,xmm11
   0000000000000485: F3 C3              rep ret
   0000000000000487: 90                 nop
@@ -578,7 +578,7 @@ aws_lc_0_24_0_abi_test_clobber_xmm11:
   000000000000048D: 90                 nop
   000000000000048E: 90                 nop
   000000000000048F: 90                 nop
-aws_lc_0_24_0_abi_test_clobber_xmm12:
+aws_lc_0_24_1_abi_test_clobber_xmm12:
   0000000000000490: 66 45 0F EF E4     pxor        xmm12,xmm12
   0000000000000495: F3 C3              rep ret
   0000000000000497: 90                 nop
@@ -590,7 +590,7 @@ aws_lc_0_24_0_abi_test_clobber_xmm12:
   000000000000049D: 90                 nop
   000000000000049E: 90                 nop
   000000000000049F: 90                 nop
-aws_lc_0_24_0_abi_test_clobber_xmm13:
+aws_lc_0_24_1_abi_test_clobber_xmm13:
   00000000000004A0: 66 45 0F EF ED     pxor        xmm13,xmm13
   00000000000004A5: F3 C3              rep ret
   00000000000004A7: 90                 nop
@@ -602,7 +602,7 @@ aws_lc_0_24_0_abi_test_clobber_xmm13:
   00000000000004AD: 90                 nop
   00000000000004AE: 90                 nop
   00000000000004AF: 90                 nop
-aws_lc_0_24_0_abi_test_clobber_xmm14:
+aws_lc_0_24_1_abi_test_clobber_xmm14:
   00000000000004B0: 66 45 0F EF F6     pxor        xmm14,xmm14
   00000000000004B5: F3 C3              rep ret
   00000000000004B7: 90                 nop
@@ -614,7 +614,7 @@ aws_lc_0_24_0_abi_test_clobber_xmm14:
   00000000000004BD: 90                 nop
   00000000000004BE: 90                 nop
   00000000000004BF: 90                 nop
-aws_lc_0_24_0_abi_test_clobber_xmm15:
+aws_lc_0_24_1_abi_test_clobber_xmm15:
   00000000000004C0: 66 45 0F EF FF     pxor        xmm15,xmm15
   00000000000004C5: F3 C3              rep ret
   00000000000004C7: 90                 nop
@@ -626,7 +626,7 @@ aws_lc_0_24_0_abi_test_clobber_xmm15:
   00000000000004CD: 90                 nop
   00000000000004CE: 90                 nop
   00000000000004CF: 90                 nop
-aws_lc_0_24_0_abi_test_bad_unwind_wrong_register:
+aws_lc_0_24_1_abi_test_bad_unwind_wrong_register:
   00000000000004D0: 41 54              push        r12
 L$SEH_prolog_abi_test_bad_unwind_wrong_register_2:
   00000000000004D2: 90                 nop
@@ -642,7 +642,7 @@ L$SEH_end_abi_test_bad_unwind_wrong_register_3:
   00000000000004DD: 90                 nop
   00000000000004DE: 90                 nop
   00000000000004DF: 90                 nop
-aws_lc_0_24_0_abi_test_bad_unwind_temporary:
+aws_lc_0_24_1_abi_test_bad_unwind_temporary:
   00000000000004E0: 41 54              push        r12
 L$SEH_prolog_abi_test_bad_unwind_temporary_2:
   00000000000004E2: 4C 89 E0           mov         rax,r12
@@ -651,14 +651,14 @@ L$SEH_prolog_abi_test_bad_unwind_temporary_2:
   00000000000004EC: 4C 89 24 24        mov         qword ptr [rsp],r12
   00000000000004F0: 41 5C              pop         r12
   00000000000004F2: F3 C3              rep ret
-aws_lc_0_24_0_abi_test_get_and_clear_direction_flag:
+aws_lc_0_24_1_abi_test_get_and_clear_direction_flag:
   00000000000004F4: 9C                 pushfq
   00000000000004F5: 58                 pop         rax
   00000000000004F6: 48 25 00 04 00 00  and         rax,400h
   00000000000004FC: 48 C1 E8 0A        shr         rax,0Ah
   0000000000000500: FC                 cld
   0000000000000501: F3 C3              rep ret
-aws_lc_0_24_0_abi_test_set_direction_flag:
+aws_lc_0_24_1_abi_test_set_direction_flag:
   0000000000000503: FD                 std
   0000000000000504: F3 C3              rep ret
   0000000000000506: 90                 nop
@@ -671,7 +671,7 @@ aws_lc_0_24_0_abi_test_set_direction_flag:
   000000000000050D: 90                 nop
   000000000000050E: 90                 nop
   000000000000050F: 90                 nop
-aws_lc_0_24_0_abi_test_bad_unwind_epilog:
+aws_lc_0_24_1_abi_test_bad_unwind_epilog:
   0000000000000510: 41 54              push        r12
 L$SEH_prolog_abi_test_bad_unwind_epilog_2:
   0000000000000512: 90                 nop

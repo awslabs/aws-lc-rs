@@ -637,7 +637,7 @@ L$schedule_mangle_both:
   000000000000094D: 90                 nop
   000000000000094E: 90                 nop
   000000000000094F: 90                 nop
-aws_lc_0_24_0_vpaes_set_encrypt_key:
+aws_lc_0_24_1_vpaes_set_encrypt_key:
   0000000000000950: 48 89 7C 24 08     mov         qword ptr [rsp+8],rdi
   0000000000000955: 48 89 74 24 10     mov         qword ptr [rsp+10h],rsi
   000000000000095A: 48 89 E0           mov         rax,rsp
@@ -697,7 +697,7 @@ L$SEH_end_vpaes_set_encrypt_key:
   0000000000000A2D: 90                 nop
   0000000000000A2E: 90                 nop
   0000000000000A2F: 90                 nop
-aws_lc_0_24_0_vpaes_set_decrypt_key:
+aws_lc_0_24_1_vpaes_set_decrypt_key:
   0000000000000A30: 48 89 7C 24 08     mov         qword ptr [rsp+8],rdi
   0000000000000A35: 48 89 74 24 10     mov         qword ptr [rsp+10h],rsi
   0000000000000A3A: 48 89 E0           mov         rax,rsp
@@ -762,7 +762,7 @@ L$SEH_end_vpaes_set_decrypt_key:
   0000000000000B1D: 90                 nop
   0000000000000B1E: 90                 nop
   0000000000000B1F: 90                 nop
-aws_lc_0_24_0_vpaes_encrypt:
+aws_lc_0_24_1_vpaes_encrypt:
   0000000000000B20: 48 89 7C 24 08     mov         qword ptr [rsp+8],rdi
   0000000000000B25: 48 89 74 24 10     mov         qword ptr [rsp+10h],rsi
   0000000000000B2A: 48 89 E0           mov         rax,rsp
@@ -816,7 +816,7 @@ L$SEH_end_vpaes_encrypt:
   0000000000000BED: 90                 nop
   0000000000000BEE: 90                 nop
   0000000000000BEF: 90                 nop
-aws_lc_0_24_0_vpaes_decrypt:
+aws_lc_0_24_1_vpaes_decrypt:
   0000000000000BF0: 48 89 7C 24 08     mov         qword ptr [rsp+8],rdi
   0000000000000BF5: 48 89 74 24 10     mov         qword ptr [rsp+10h],rsi
   0000000000000BFA: 48 89 E0           mov         rax,rsp
@@ -870,7 +870,7 @@ L$SEH_end_vpaes_decrypt:
   0000000000000CBD: 90                 nop
   0000000000000CBE: 90                 nop
   0000000000000CBF: 90                 nop
-aws_lc_0_24_0_vpaes_cbc_encrypt:
+aws_lc_0_24_1_vpaes_cbc_encrypt:
   0000000000000CC0: 48 89 7C 24 08     mov         qword ptr [rsp+8],rdi
   0000000000000CC5: 48 89 74 24 10     mov         qword ptr [rsp+10h],rsi
   0000000000000CCA: 48 89 E0           mov         rax,rsp
@@ -976,7 +976,7 @@ L$SEH_end_vpaes_cbc_encrypt:
   0000000000000E1D: 90                 nop
   0000000000000E1E: 90                 nop
   0000000000000E1F: 90                 nop
-aws_lc_0_24_0_vpaes_ctr32_encrypt_blocks:
+aws_lc_0_24_1_vpaes_ctr32_encrypt_blocks:
   0000000000000E20: 48 89 7C 24 08     mov         qword ptr [rsp+8],rdi
   0000000000000E25: 48 89 74 24 10     mov         qword ptr [rsp+10h],rsi
   0000000000000E2A: 48 89 E0           mov         rax,rsp

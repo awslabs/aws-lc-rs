@@ -5,7 +5,7 @@ Dump of file sha1-x86_64.obj
 
 File Type: COFF OBJECT
 
-aws_lc_0_24_0_sha1_block_data_order_nohw:
+aws_lc_0_24_1_sha1_block_data_order_nohw:
   0000000000000000: 48 89 7C 24 08     mov         qword ptr [rsp+8],rdi
   0000000000000005: 48 89 74 24 10     mov         qword ptr [rsp+10h],rsi
   000000000000000A: 48 89 E0           mov         rax,rsp
@@ -1310,7 +1310,7 @@ L$SEH_end_sha1_block_data_order_nohw:
   000000000000103D: 90                 nop
   000000000000103E: 90                 nop
   000000000000103F: 90                 nop
-aws_lc_0_24_0_sha1_block_data_order_hw:
+aws_lc_0_24_1_sha1_block_data_order_hw:
   0000000000001040: 48 89 7C 24 08     mov         qword ptr [rsp+8],rdi
   0000000000001045: 48 89 74 24 10     mov         qword ptr [rsp+10h],rsi
   000000000000104A: 48 89 E0           mov         rax,rsp
@@ -1493,7 +1493,7 @@ L$SEH_end_sha1_block_data_order_hw:
   000000000000130D: 90                 nop
   000000000000130E: 90                 nop
   000000000000130F: 90                 nop
-aws_lc_0_24_0_sha1_block_data_order_ssse3:
+aws_lc_0_24_1_sha1_block_data_order_ssse3:
   0000000000001310: 48 89 7C 24 08     mov         qword ptr [rsp+8],rdi
   0000000000001315: 48 89 74 24 10     mov         qword ptr [rsp+10h],rsi
   000000000000131A: 48 89 E0           mov         rax,rsp
@@ -2710,7 +2710,7 @@ L$SEH_end_sha1_block_data_order_ssse3:
   00000000000021AD: 90                 nop
   00000000000021AE: 90                 nop
   00000000000021AF: 90                 nop
-aws_lc_0_24_0_sha1_block_data_order_avx:
+aws_lc_0_24_1_sha1_block_data_order_avx:
   00000000000021B0: 48 89 7C 24 08     mov         qword ptr [rsp+8],rdi
   00000000000021B5: 48 89 74 24 10     mov         qword ptr [rsp+10h],rsi
   00000000000021BA: 48 89 E0           mov         rax,rsp
@@ -3869,7 +3869,7 @@ L$SEH_end_sha1_block_data_order_avx:
   0000000000002FAD: 90                 nop
   0000000000002FAE: 90                 nop
   0000000000002FAF: 90                 nop
-aws_lc_0_24_0_sha1_block_data_order_avx2:
+aws_lc_0_24_1_sha1_block_data_order_avx2:
   0000000000002FB0: 48 89 7C 24 08     mov         qword ptr [rsp+8],rdi
   0000000000002FB5: 48 89 74 24 10     mov         qword ptr [rsp+10h],rsi
   0000000000002FBA: 48 89 E0           mov         rax,rsp

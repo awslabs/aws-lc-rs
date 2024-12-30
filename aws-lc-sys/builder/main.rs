@@ -430,6 +430,7 @@ fn initialize() {
         let target = target();
         let supported_platform = match target.as_str() {
             "aarch64-apple-darwin"
+            | "aarch64-linux-android"
             | "aarch64-pc-windows-msvc"
             | "aarch64-unknown-linux-gnu"
             | "aarch64-unknown-linux-musl"

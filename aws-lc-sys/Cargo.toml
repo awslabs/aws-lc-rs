@@ -69,4 +69,4 @@ bindgen = { version = "0.69.5" }
 paste = "1.0.11"
 
 [package.metadata.aws-lc-sys]
-commit-hash = "1be42a3e16a53c229690ae8215f0de8e2a1a54e7"
+commit-hash = "cee1db1b777a856f34c95d29bff4797b65cfaa6d"

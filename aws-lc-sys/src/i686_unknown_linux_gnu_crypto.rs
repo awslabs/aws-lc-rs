@@ -111,7 +111,7 @@ pub const AWSLC_VERSION_NAME: &[u8; 7] = b"AWS-LC\0";
 pub const OPENSSL_VERSION_NUMBER: i32 = 269488255;
 pub const SSLEAY_VERSION_NUMBER: i32 = 269488255;
 pub const AWSLC_API_VERSION: i32 = 32;
-pub const AWSLC_VERSION_NUMBER_STRING: &[u8; 7] = b"1.41.1\0";
+pub const AWSLC_VERSION_NUMBER_STRING: &[u8; 7] = b"1.42.0\0";
 pub const AES_ENCRYPT: i32 = 1;
 pub const AES_DECRYPT: i32 = 0;
 pub const AES_MAXNR: i32 = 14;
@@ -132,7 +132,7 @@ pub const CRYPTO_LOCK: i32 = 1;
 pub const CRYPTO_UNLOCK: i32 = 2;
 pub const CRYPTO_READ: i32 = 4;
 pub const CRYPTO_WRITE: i32 = 8;
-pub const OPENSSL_VERSION_TEXT: &[u8; 42] = b"OpenSSL 1.1.1 (compatible; AWS-LC 1.41.1)\0";
+pub const OPENSSL_VERSION_TEXT: &[u8; 42] = b"OpenSSL 1.1.1 (compatible; AWS-LC 1.42.0)\0";
 pub const OPENSSL_VERSION: i32 = 0;
 pub const OPENSSL_CFLAGS: i32 = 1;
 pub const OPENSSL_BUILT_ON: i32 = 2;
@@ -3293,6 +3293,7 @@ pub const EVP_PKEY_X25519: i32 = 948;
 pub const EVP_PKEY_HKDF: i32 = 969;
 pub const EVP_PKEY_HMAC: i32 = 855;
 pub const EVP_PKEY_DH: i32 = 28;
+pub const EVP_PKEY_PQDSA: i32 = 993;
 pub const EVP_PKEY_KEM: i32 = 970;
 pub const PKCS5_SALT_LEN: i32 = 8;
 pub const EVP_PKEY_RSA2: i32 = 19;
@@ -6248,6 +6249,10 @@ extern "C" {
 extern "C" {
     #[link_name = "\u{1}aws_lc_0_24_1_FIPS_mode"]
     pub fn FIPS_mode() -> ::std::os::raw::c_int;
+}
+extern "C" {
+    #[link_name = "\u{1}aws_lc_0_24_1_FIPS_is_entropy_cpu_jitter"]
+    pub fn FIPS_is_entropy_cpu_jitter() -> ::std::os::raw::c_int;
 }
 pub const fips_counter_t_fips_counter_evp_aes_128_gcm: fips_counter_t = 0;
 pub const fips_counter_t_fips_counter_evp_aes_256_gcm: fips_counter_t = 1;
@@ -14437,7 +14442,7 @@ extern "C" {
     pub fn DSA_do_verify(
         digest: *const u8,
         digest_len: usize,
-        sig: *mut DSA_SIG,
+        sig: *const DSA_SIG,
         dsa: *const DSA,
     ) -> ::std::os::raw::c_int;
 }
@@ -14447,7 +14452,7 @@ extern "C" {
         out_valid: *mut ::std::os::raw::c_int,
         digest: *const u8,
         digest_len: usize,
-        sig: *mut DSA_SIG,
+        sig: *const DSA_SIG,
         dsa: *const DSA,
     ) -> ::std::os::raw::c_int;
 }
@@ -16179,10 +16184,6 @@ extern "C" {
     pub fn EVP_PKEY_id(pkey: *const EVP_PKEY) -> ::std::os::raw::c_int;
 }
 extern "C" {
-    #[link_name = "\u{1}aws_lc_0_24_1_EVP_PKEY_type"]
-    pub fn EVP_PKEY_type(nid: ::std::os::raw::c_int) -> ::std::os::raw::c_int;
-}
-extern "C" {
     #[link_name = "\u{1}aws_lc_0_24_1_EVP_MD_get0_name"]
     pub fn EVP_MD_get0_name(md: *const EVP_MD) -> *const ::std::os::raw::c_char;
 }
@@ -16827,6 +16828,29 @@ extern "C" {
     pub fn EVP_PKEY_kem_check_key(key: *mut EVP_PKEY) -> ::std::os::raw::c_int;
 }
 extern "C" {
+    #[link_name = "\u{1}aws_lc_0_24_1_EVP_PKEY_CTX_pqdsa_set_params"]
+    pub fn EVP_PKEY_CTX_pqdsa_set_params(
+        ctx: *mut EVP_PKEY_CTX,
+        nid: ::std::os::raw::c_int,
+    ) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    #[link_name = "\u{1}aws_lc_0_24_1_EVP_PKEY_pqdsa_new_raw_public_key"]
+    pub fn EVP_PKEY_pqdsa_new_raw_public_key(
+        nid: ::std::os::raw::c_int,
+        in_: *const u8,
+        len: usize,
+    ) -> *mut EVP_PKEY;
+}
+extern "C" {
+    #[link_name = "\u{1}aws_lc_0_24_1_EVP_PKEY_pqdsa_new_raw_private_key"]
+    pub fn EVP_PKEY_pqdsa_new_raw_private_key(
+        nid: ::std::os::raw::c_int,
+        in_: *const u8,
+        len: usize,
+    ) -> *mut EVP_PKEY;
+}
+extern "C" {
     #[link_name = "\u{1}aws_lc_0_24_1_EVP_PKEY_CTX_set_dh_pad"]
     pub fn EVP_PKEY_CTX_set_dh_pad(
         ctx: *mut EVP_PKEY_CTX,
@@ -17071,6 +17095,10 @@ extern "C" {
         type_: ::std::os::raw::c_int,
         key: *mut ::std::os::raw::c_void,
     ) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    #[link_name = "\u{1}aws_lc_0_24_1_EVP_PKEY_type"]
+    pub fn EVP_PKEY_type(nid: ::std::os::raw::c_int) -> ::std::os::raw::c_int;
 }
 extern "C" {
     #[link_name = "\u{1}aws_lc_0_24_1_EVP_PKEY_new_mac_key"]
@@ -19379,6 +19407,15 @@ extern "C" {
         p7: *mut PKCS7,
         data: *mut BIO,
         flags: ::std::os::raw::c_int,
+    ) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    #[link_name = "\u{1}aws_lc_0_24_1_PKCS7_print_ctx"]
+    pub fn PKCS7_print_ctx(
+        bio: *mut BIO,
+        pkcs7: *mut PKCS7,
+        indent: ::std::os::raw::c_int,
+        pctx: *const ASN1_PCTX,
     ) -> ::std::os::raw::c_int;
 }
 pub type sk_CRYPTO_BUFFER_free_func =
@@ -22187,7 +22224,7 @@ extern "C" {
 }
 extern "C" {
     #[link_name = "\u{1}aws_lc_0_24_1_X509_ALGOR_set_md"]
-    pub fn X509_ALGOR_set_md(alg: *mut X509_ALGOR, md: *const EVP_MD);
+    pub fn X509_ALGOR_set_md(alg: *mut X509_ALGOR, md: *const EVP_MD) -> ::std::os::raw::c_int;
 }
 extern "C" {
     #[link_name = "\u{1}aws_lc_0_24_1_X509_ALGOR_cmp"]

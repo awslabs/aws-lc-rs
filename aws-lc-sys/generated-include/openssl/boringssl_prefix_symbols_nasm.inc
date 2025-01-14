@@ -1223,6 +1223,7 @@
 %xdefine _EVP_PKEY_CTX_md _ %+ BORINGSSL_PREFIX %+ _EVP_PKEY_CTX_md
 %xdefine _EVP_PKEY_CTX_new _ %+ BORINGSSL_PREFIX %+ _EVP_PKEY_CTX_new
 %xdefine _EVP_PKEY_CTX_new_id _ %+ BORINGSSL_PREFIX %+ _EVP_PKEY_CTX_new_id
+%xdefine _EVP_PKEY_CTX_pqdsa_set_params _ %+ BORINGSSL_PREFIX %+ _EVP_PKEY_CTX_pqdsa_set_params
 %xdefine _EVP_PKEY_CTX_set0_rsa_oaep_label _ %+ BORINGSSL_PREFIX %+ _EVP_PKEY_CTX_set0_rsa_oaep_label
 %xdefine _EVP_PKEY_CTX_set1_hkdf_key _ %+ BORINGSSL_PREFIX %+ _EVP_PKEY_CTX_set1_hkdf_key
 %xdefine _EVP_PKEY_CTX_set1_hkdf_salt _ %+ BORINGSSL_PREFIX %+ _EVP_PKEY_CTX_set1_hkdf_salt
@@ -1306,6 +1307,9 @@
 %xdefine _EVP_PKEY_new_raw_public_key _ %+ BORINGSSL_PREFIX %+ _EVP_PKEY_new_raw_public_key
 %xdefine _EVP_PKEY_paramgen _ %+ BORINGSSL_PREFIX %+ _EVP_PKEY_paramgen
 %xdefine _EVP_PKEY_paramgen_init _ %+ BORINGSSL_PREFIX %+ _EVP_PKEY_paramgen_init
+%xdefine _EVP_PKEY_pqdsa_new_raw_private_key _ %+ BORINGSSL_PREFIX %+ _EVP_PKEY_pqdsa_new_raw_private_key
+%xdefine _EVP_PKEY_pqdsa_new_raw_public_key _ %+ BORINGSSL_PREFIX %+ _EVP_PKEY_pqdsa_new_raw_public_key
+%xdefine _EVP_PKEY_pqdsa_set_params _ %+ BORINGSSL_PREFIX %+ _EVP_PKEY_pqdsa_set_params
 %xdefine _EVP_PKEY_print_params _ %+ BORINGSSL_PREFIX %+ _EVP_PKEY_print_params
 %xdefine _EVP_PKEY_print_private _ %+ BORINGSSL_PREFIX %+ _EVP_PKEY_print_private
 %xdefine _EVP_PKEY_print_public _ %+ BORINGSSL_PREFIX %+ _EVP_PKEY_print_public
@@ -1532,6 +1536,12 @@
 %xdefine _KEM_KEY_set_raw_public_key _ %+ BORINGSSL_PREFIX %+ _KEM_KEY_set_raw_public_key
 %xdefine _KEM_KEY_set_raw_secret_key _ %+ BORINGSSL_PREFIX %+ _KEM_KEY_set_raw_secret_key
 %xdefine _KEM_find_kem_by_nid _ %+ BORINGSSL_PREFIX %+ _KEM_find_kem_by_nid
+%xdefine _Keccak1600_Absorb _ %+ BORINGSSL_PREFIX %+ _Keccak1600_Absorb
+%xdefine _Keccak1600_Absorb_cext _ %+ BORINGSSL_PREFIX %+ _Keccak1600_Absorb_cext
+%xdefine _Keccak1600_Absorb_hw _ %+ BORINGSSL_PREFIX %+ _Keccak1600_Absorb_hw
+%xdefine _Keccak1600_Squeeze _ %+ BORINGSSL_PREFIX %+ _Keccak1600_Squeeze
+%xdefine _Keccak1600_Squeeze_cext _ %+ BORINGSSL_PREFIX %+ _Keccak1600_Squeeze_cext
+%xdefine _Keccak1600_Squeeze_hw _ %+ BORINGSSL_PREFIX %+ _Keccak1600_Squeeze_hw
 %xdefine _MD4 _ %+ BORINGSSL_PREFIX %+ _MD4
 %xdefine _MD4_Final _ %+ BORINGSSL_PREFIX %+ _MD4_Final
 %xdefine _MD4_Init _ %+ BORINGSSL_PREFIX %+ _MD4_Init
@@ -1976,6 +1986,14 @@
 %xdefine _POLICY_MAPPING_free _ %+ BORINGSSL_PREFIX %+ _POLICY_MAPPING_free
 %xdefine _POLICY_MAPPING_it _ %+ BORINGSSL_PREFIX %+ _POLICY_MAPPING_it
 %xdefine _POLICY_MAPPING_new _ %+ BORINGSSL_PREFIX %+ _POLICY_MAPPING_new
+%xdefine _PQDSA_KEY_free _ %+ BORINGSSL_PREFIX %+ _PQDSA_KEY_free
+%xdefine _PQDSA_KEY_get0_dsa _ %+ BORINGSSL_PREFIX %+ _PQDSA_KEY_get0_dsa
+%xdefine _PQDSA_KEY_init _ %+ BORINGSSL_PREFIX %+ _PQDSA_KEY_init
+%xdefine _PQDSA_KEY_new _ %+ BORINGSSL_PREFIX %+ _PQDSA_KEY_new
+%xdefine _PQDSA_KEY_set_raw_private_key _ %+ BORINGSSL_PREFIX %+ _PQDSA_KEY_set_raw_private_key
+%xdefine _PQDSA_KEY_set_raw_public_key _ %+ BORINGSSL_PREFIX %+ _PQDSA_KEY_set_raw_public_key
+%xdefine _PQDSA_find_asn1_by_nid _ %+ BORINGSSL_PREFIX %+ _PQDSA_find_asn1_by_nid
+%xdefine _PQDSA_find_dsa_by_nid _ %+ BORINGSSL_PREFIX %+ _PQDSA_find_dsa_by_nid
 %xdefine _RAND_OpenSSL _ %+ BORINGSSL_PREFIX %+ _RAND_OpenSSL
 %xdefine _RAND_SSLeay _ %+ BORINGSSL_PREFIX %+ _RAND_SSLeay
 %xdefine _RAND_add _ %+ BORINGSSL_PREFIX %+ _RAND_add
@@ -2141,15 +2159,9 @@
 %xdefine _SHA3_256 _ %+ BORINGSSL_PREFIX %+ _SHA3_256
 %xdefine _SHA3_384 _ %+ BORINGSSL_PREFIX %+ _SHA3_384
 %xdefine _SHA3_512 _ %+ BORINGSSL_PREFIX %+ _SHA3_512
-%xdefine _SHA3_Absorb _ %+ BORINGSSL_PREFIX %+ _SHA3_Absorb
-%xdefine _SHA3_Absorb_cext _ %+ BORINGSSL_PREFIX %+ _SHA3_Absorb_cext
-%xdefine _SHA3_Absorb_hw _ %+ BORINGSSL_PREFIX %+ _SHA3_Absorb_hw
 %xdefine _SHA3_Final _ %+ BORINGSSL_PREFIX %+ _SHA3_Final
 %xdefine _SHA3_Init _ %+ BORINGSSL_PREFIX %+ _SHA3_Init
 %xdefine _SHA3_Reset _ %+ BORINGSSL_PREFIX %+ _SHA3_Reset
-%xdefine _SHA3_Squeeze _ %+ BORINGSSL_PREFIX %+ _SHA3_Squeeze
-%xdefine _SHA3_Squeeze_cext _ %+ BORINGSSL_PREFIX %+ _SHA3_Squeeze_cext
-%xdefine _SHA3_Squeeze_hw _ %+ BORINGSSL_PREFIX %+ _SHA3_Squeeze_hw
 %xdefine _SHA3_Update _ %+ BORINGSSL_PREFIX %+ _SHA3_Update
 %xdefine _SHA512 _ %+ BORINGSSL_PREFIX %+ _SHA512
 %xdefine _SHA512_224 _ %+ BORINGSSL_PREFIX %+ _SHA512_224
@@ -3572,6 +3584,103 @@
 %xdefine _library_init_constructor _ %+ BORINGSSL_PREFIX %+ _library_init_constructor
 %xdefine _md4_block_data_order _ %+ BORINGSSL_PREFIX %+ _md4_block_data_order
 %xdefine _md5_block_asm_data_order _ %+ BORINGSSL_PREFIX %+ _md5_block_asm_data_order
+%xdefine _ml_dsa_44_keypair _ %+ BORINGSSL_PREFIX %+ _ml_dsa_44_keypair
+%xdefine _ml_dsa_44_keypair_internal _ %+ BORINGSSL_PREFIX %+ _ml_dsa_44_keypair_internal
+%xdefine _ml_dsa_44_params_init _ %+ BORINGSSL_PREFIX %+ _ml_dsa_44_params_init
+%xdefine _ml_dsa_44_sign _ %+ BORINGSSL_PREFIX %+ _ml_dsa_44_sign
+%xdefine _ml_dsa_44_sign_internal _ %+ BORINGSSL_PREFIX %+ _ml_dsa_44_sign_internal
+%xdefine _ml_dsa_44_verify _ %+ BORINGSSL_PREFIX %+ _ml_dsa_44_verify
+%xdefine _ml_dsa_44_verify_internal _ %+ BORINGSSL_PREFIX %+ _ml_dsa_44_verify_internal
+%xdefine _ml_dsa_65_keypair _ %+ BORINGSSL_PREFIX %+ _ml_dsa_65_keypair
+%xdefine _ml_dsa_65_keypair_internal _ %+ BORINGSSL_PREFIX %+ _ml_dsa_65_keypair_internal
+%xdefine _ml_dsa_65_params_init _ %+ BORINGSSL_PREFIX %+ _ml_dsa_65_params_init
+%xdefine _ml_dsa_65_sign _ %+ BORINGSSL_PREFIX %+ _ml_dsa_65_sign
+%xdefine _ml_dsa_65_sign_internal _ %+ BORINGSSL_PREFIX %+ _ml_dsa_65_sign_internal
+%xdefine _ml_dsa_65_verify _ %+ BORINGSSL_PREFIX %+ _ml_dsa_65_verify
+%xdefine _ml_dsa_65_verify_internal _ %+ BORINGSSL_PREFIX %+ _ml_dsa_65_verify_internal
+%xdefine _ml_dsa_87_keypair _ %+ BORINGSSL_PREFIX %+ _ml_dsa_87_keypair
+%xdefine _ml_dsa_87_keypair_internal _ %+ BORINGSSL_PREFIX %+ _ml_dsa_87_keypair_internal
+%xdefine _ml_dsa_87_params_init _ %+ BORINGSSL_PREFIX %+ _ml_dsa_87_params_init
+%xdefine _ml_dsa_87_sign _ %+ BORINGSSL_PREFIX %+ _ml_dsa_87_sign
+%xdefine _ml_dsa_87_sign_internal _ %+ BORINGSSL_PREFIX %+ _ml_dsa_87_sign_internal
+%xdefine _ml_dsa_87_verify _ %+ BORINGSSL_PREFIX %+ _ml_dsa_87_verify
+%xdefine _ml_dsa_87_verify_internal _ %+ BORINGSSL_PREFIX %+ _ml_dsa_87_verify_internal
+%xdefine _ml_dsa_caddq _ %+ BORINGSSL_PREFIX %+ _ml_dsa_caddq
+%xdefine _ml_dsa_decompose _ %+ BORINGSSL_PREFIX %+ _ml_dsa_decompose
+%xdefine _ml_dsa_fqmul _ %+ BORINGSSL_PREFIX %+ _ml_dsa_fqmul
+%xdefine _ml_dsa_freeze _ %+ BORINGSSL_PREFIX %+ _ml_dsa_freeze
+%xdefine _ml_dsa_invntt_tomont _ %+ BORINGSSL_PREFIX %+ _ml_dsa_invntt_tomont
+%xdefine _ml_dsa_keypair _ %+ BORINGSSL_PREFIX %+ _ml_dsa_keypair
+%xdefine _ml_dsa_keypair_internal _ %+ BORINGSSL_PREFIX %+ _ml_dsa_keypair_internal
+%xdefine _ml_dsa_make_hint _ %+ BORINGSSL_PREFIX %+ _ml_dsa_make_hint
+%xdefine _ml_dsa_ntt _ %+ BORINGSSL_PREFIX %+ _ml_dsa_ntt
+%xdefine _ml_dsa_pack_pk _ %+ BORINGSSL_PREFIX %+ _ml_dsa_pack_pk
+%xdefine _ml_dsa_pack_sig _ %+ BORINGSSL_PREFIX %+ _ml_dsa_pack_sig
+%xdefine _ml_dsa_pack_sk _ %+ BORINGSSL_PREFIX %+ _ml_dsa_pack_sk
+%xdefine _ml_dsa_poly_add _ %+ BORINGSSL_PREFIX %+ _ml_dsa_poly_add
+%xdefine _ml_dsa_poly_caddq _ %+ BORINGSSL_PREFIX %+ _ml_dsa_poly_caddq
+%xdefine _ml_dsa_poly_challenge _ %+ BORINGSSL_PREFIX %+ _ml_dsa_poly_challenge
+%xdefine _ml_dsa_poly_chknorm _ %+ BORINGSSL_PREFIX %+ _ml_dsa_poly_chknorm
+%xdefine _ml_dsa_poly_decompose _ %+ BORINGSSL_PREFIX %+ _ml_dsa_poly_decompose
+%xdefine _ml_dsa_poly_invntt_tomont _ %+ BORINGSSL_PREFIX %+ _ml_dsa_poly_invntt_tomont
+%xdefine _ml_dsa_poly_make_hint _ %+ BORINGSSL_PREFIX %+ _ml_dsa_poly_make_hint
+%xdefine _ml_dsa_poly_ntt _ %+ BORINGSSL_PREFIX %+ _ml_dsa_poly_ntt
+%xdefine _ml_dsa_poly_pointwise_montgomery _ %+ BORINGSSL_PREFIX %+ _ml_dsa_poly_pointwise_montgomery
+%xdefine _ml_dsa_poly_power2round _ %+ BORINGSSL_PREFIX %+ _ml_dsa_poly_power2round
+%xdefine _ml_dsa_poly_reduce _ %+ BORINGSSL_PREFIX %+ _ml_dsa_poly_reduce
+%xdefine _ml_dsa_poly_shiftl _ %+ BORINGSSL_PREFIX %+ _ml_dsa_poly_shiftl
+%xdefine _ml_dsa_poly_sub _ %+ BORINGSSL_PREFIX %+ _ml_dsa_poly_sub
+%xdefine _ml_dsa_poly_uniform _ %+ BORINGSSL_PREFIX %+ _ml_dsa_poly_uniform
+%xdefine _ml_dsa_poly_uniform_eta _ %+ BORINGSSL_PREFIX %+ _ml_dsa_poly_uniform_eta
+%xdefine _ml_dsa_poly_uniform_gamma1 _ %+ BORINGSSL_PREFIX %+ _ml_dsa_poly_uniform_gamma1
+%xdefine _ml_dsa_poly_use_hint _ %+ BORINGSSL_PREFIX %+ _ml_dsa_poly_use_hint
+%xdefine _ml_dsa_polyeta_pack _ %+ BORINGSSL_PREFIX %+ _ml_dsa_polyeta_pack
+%xdefine _ml_dsa_polyeta_unpack _ %+ BORINGSSL_PREFIX %+ _ml_dsa_polyeta_unpack
+%xdefine _ml_dsa_polyt0_pack _ %+ BORINGSSL_PREFIX %+ _ml_dsa_polyt0_pack
+%xdefine _ml_dsa_polyt0_unpack _ %+ BORINGSSL_PREFIX %+ _ml_dsa_polyt0_unpack
+%xdefine _ml_dsa_polyt1_pack _ %+ BORINGSSL_PREFIX %+ _ml_dsa_polyt1_pack
+%xdefine _ml_dsa_polyt1_unpack _ %+ BORINGSSL_PREFIX %+ _ml_dsa_polyt1_unpack
+%xdefine _ml_dsa_polyvec_matrix_expand _ %+ BORINGSSL_PREFIX %+ _ml_dsa_polyvec_matrix_expand
+%xdefine _ml_dsa_polyvec_matrix_pointwise_montgomery _ %+ BORINGSSL_PREFIX %+ _ml_dsa_polyvec_matrix_pointwise_montgomery
+%xdefine _ml_dsa_polyveck_add _ %+ BORINGSSL_PREFIX %+ _ml_dsa_polyveck_add
+%xdefine _ml_dsa_polyveck_caddq _ %+ BORINGSSL_PREFIX %+ _ml_dsa_polyveck_caddq
+%xdefine _ml_dsa_polyveck_chknorm _ %+ BORINGSSL_PREFIX %+ _ml_dsa_polyveck_chknorm
+%xdefine _ml_dsa_polyveck_decompose _ %+ BORINGSSL_PREFIX %+ _ml_dsa_polyveck_decompose
+%xdefine _ml_dsa_polyveck_invntt_tomont _ %+ BORINGSSL_PREFIX %+ _ml_dsa_polyveck_invntt_tomont
+%xdefine _ml_dsa_polyveck_make_hint _ %+ BORINGSSL_PREFIX %+ _ml_dsa_polyveck_make_hint
+%xdefine _ml_dsa_polyveck_ntt _ %+ BORINGSSL_PREFIX %+ _ml_dsa_polyveck_ntt
+%xdefine _ml_dsa_polyveck_pack_w1 _ %+ BORINGSSL_PREFIX %+ _ml_dsa_polyveck_pack_w1
+%xdefine _ml_dsa_polyveck_pointwise_poly_montgomery _ %+ BORINGSSL_PREFIX %+ _ml_dsa_polyveck_pointwise_poly_montgomery
+%xdefine _ml_dsa_polyveck_power2round _ %+ BORINGSSL_PREFIX %+ _ml_dsa_polyveck_power2round
+%xdefine _ml_dsa_polyveck_reduce _ %+ BORINGSSL_PREFIX %+ _ml_dsa_polyveck_reduce
+%xdefine _ml_dsa_polyveck_shiftl _ %+ BORINGSSL_PREFIX %+ _ml_dsa_polyveck_shiftl
+%xdefine _ml_dsa_polyveck_sub _ %+ BORINGSSL_PREFIX %+ _ml_dsa_polyveck_sub
+%xdefine _ml_dsa_polyveck_uniform_eta _ %+ BORINGSSL_PREFIX %+ _ml_dsa_polyveck_uniform_eta
+%xdefine _ml_dsa_polyveck_use_hint _ %+ BORINGSSL_PREFIX %+ _ml_dsa_polyveck_use_hint
+%xdefine _ml_dsa_polyvecl_add _ %+ BORINGSSL_PREFIX %+ _ml_dsa_polyvecl_add
+%xdefine _ml_dsa_polyvecl_chknorm _ %+ BORINGSSL_PREFIX %+ _ml_dsa_polyvecl_chknorm
+%xdefine _ml_dsa_polyvecl_invntt_tomont _ %+ BORINGSSL_PREFIX %+ _ml_dsa_polyvecl_invntt_tomont
+%xdefine _ml_dsa_polyvecl_ntt _ %+ BORINGSSL_PREFIX %+ _ml_dsa_polyvecl_ntt
+%xdefine _ml_dsa_polyvecl_pointwise_acc_montgomery _ %+ BORINGSSL_PREFIX %+ _ml_dsa_polyvecl_pointwise_acc_montgomery
+%xdefine _ml_dsa_polyvecl_pointwise_poly_montgomery _ %+ BORINGSSL_PREFIX %+ _ml_dsa_polyvecl_pointwise_poly_montgomery
+%xdefine _ml_dsa_polyvecl_reduce _ %+ BORINGSSL_PREFIX %+ _ml_dsa_polyvecl_reduce
+%xdefine _ml_dsa_polyvecl_uniform_eta _ %+ BORINGSSL_PREFIX %+ _ml_dsa_polyvecl_uniform_eta
+%xdefine _ml_dsa_polyvecl_uniform_gamma1 _ %+ BORINGSSL_PREFIX %+ _ml_dsa_polyvecl_uniform_gamma1
+%xdefine _ml_dsa_polyw1_pack _ %+ BORINGSSL_PREFIX %+ _ml_dsa_polyw1_pack
+%xdefine _ml_dsa_polyz_pack _ %+ BORINGSSL_PREFIX %+ _ml_dsa_polyz_pack
+%xdefine _ml_dsa_polyz_unpack _ %+ BORINGSSL_PREFIX %+ _ml_dsa_polyz_unpack
+%xdefine _ml_dsa_power2round _ %+ BORINGSSL_PREFIX %+ _ml_dsa_power2round
+%xdefine _ml_dsa_reduce32 _ %+ BORINGSSL_PREFIX %+ _ml_dsa_reduce32
+%xdefine _ml_dsa_sign _ %+ BORINGSSL_PREFIX %+ _ml_dsa_sign
+%xdefine _ml_dsa_sign_internal _ %+ BORINGSSL_PREFIX %+ _ml_dsa_sign_internal
+%xdefine _ml_dsa_sign_message _ %+ BORINGSSL_PREFIX %+ _ml_dsa_sign_message
+%xdefine _ml_dsa_unpack_pk _ %+ BORINGSSL_PREFIX %+ _ml_dsa_unpack_pk
+%xdefine _ml_dsa_unpack_sig _ %+ BORINGSSL_PREFIX %+ _ml_dsa_unpack_sig
+%xdefine _ml_dsa_unpack_sk _ %+ BORINGSSL_PREFIX %+ _ml_dsa_unpack_sk
+%xdefine _ml_dsa_use_hint _ %+ BORINGSSL_PREFIX %+ _ml_dsa_use_hint
+%xdefine _ml_dsa_verify _ %+ BORINGSSL_PREFIX %+ _ml_dsa_verify
+%xdefine _ml_dsa_verify_internal _ %+ BORINGSSL_PREFIX %+ _ml_dsa_verify_internal
+%xdefine _ml_dsa_verify_message _ %+ BORINGSSL_PREFIX %+ _ml_dsa_verify_message
 %xdefine _ml_kem_1024_decapsulate _ %+ BORINGSSL_PREFIX %+ _ml_kem_1024_decapsulate
 %xdefine _ml_kem_1024_encapsulate _ %+ BORINGSSL_PREFIX %+ _ml_kem_1024_encapsulate
 %xdefine _ml_kem_1024_encapsulate_deterministic _ %+ BORINGSSL_PREFIX %+ _ml_kem_1024_encapsulate_deterministic
@@ -3833,6 +3942,8 @@
 %xdefine _pqcrystals_kyber_fips202_ref_shake256_init _ %+ BORINGSSL_PREFIX %+ _pqcrystals_kyber_fips202_ref_shake256_init
 %xdefine _pqcrystals_kyber_fips202_ref_shake256_squeeze _ %+ BORINGSSL_PREFIX %+ _pqcrystals_kyber_fips202_ref_shake256_squeeze
 %xdefine _pqcrystals_kyber_fips202_ref_shake256_squeezeblocks _ %+ BORINGSSL_PREFIX %+ _pqcrystals_kyber_fips202_ref_shake256_squeezeblocks
+%xdefine _pqdsa_asn1_meth _ %+ BORINGSSL_PREFIX %+ _pqdsa_asn1_meth
+%xdefine _pqdsa_pkey_meth _ %+ BORINGSSL_PREFIX %+ _pqdsa_pkey_meth
 %xdefine _rand_fork_unsafe_buffering_enabled _ %+ BORINGSSL_PREFIX %+ _rand_fork_unsafe_buffering_enabled
 %xdefine _rsa_asn1_meth _ %+ BORINGSSL_PREFIX %+ _rsa_asn1_meth
 %xdefine _rsa_default_private_transform _ %+ BORINGSSL_PREFIX %+ _rsa_default_private_transform
@@ -5175,6 +5286,7 @@
 %xdefine EVP_PKEY_CTX_md BORINGSSL_PREFIX %+ _EVP_PKEY_CTX_md
 %xdefine EVP_PKEY_CTX_new BORINGSSL_PREFIX %+ _EVP_PKEY_CTX_new
 %xdefine EVP_PKEY_CTX_new_id BORINGSSL_PREFIX %+ _EVP_PKEY_CTX_new_id
+%xdefine EVP_PKEY_CTX_pqdsa_set_params BORINGSSL_PREFIX %+ _EVP_PKEY_CTX_pqdsa_set_params
 %xdefine EVP_PKEY_CTX_set0_rsa_oaep_label BORINGSSL_PREFIX %+ _EVP_PKEY_CTX_set0_rsa_oaep_label
 %xdefine EVP_PKEY_CTX_set1_hkdf_key BORINGSSL_PREFIX %+ _EVP_PKEY_CTX_set1_hkdf_key
 %xdefine EVP_PKEY_CTX_set1_hkdf_salt BORINGSSL_PREFIX %+ _EVP_PKEY_CTX_set1_hkdf_salt
@@ -5258,6 +5370,9 @@
 %xdefine EVP_PKEY_new_raw_public_key BORINGSSL_PREFIX %+ _EVP_PKEY_new_raw_public_key
 %xdefine EVP_PKEY_paramgen BORINGSSL_PREFIX %+ _EVP_PKEY_paramgen
 %xdefine EVP_PKEY_paramgen_init BORINGSSL_PREFIX %+ _EVP_PKEY_paramgen_init
+%xdefine EVP_PKEY_pqdsa_new_raw_private_key BORINGSSL_PREFIX %+ _EVP_PKEY_pqdsa_new_raw_private_key
+%xdefine EVP_PKEY_pqdsa_new_raw_public_key BORINGSSL_PREFIX %+ _EVP_PKEY_pqdsa_new_raw_public_key
+%xdefine EVP_PKEY_pqdsa_set_params BORINGSSL_PREFIX %+ _EVP_PKEY_pqdsa_set_params
 %xdefine EVP_PKEY_print_params BORINGSSL_PREFIX %+ _EVP_PKEY_print_params
 %xdefine EVP_PKEY_print_private BORINGSSL_PREFIX %+ _EVP_PKEY_print_private
 %xdefine EVP_PKEY_print_public BORINGSSL_PREFIX %+ _EVP_PKEY_print_public
@@ -5484,6 +5599,12 @@
 %xdefine KEM_KEY_set_raw_public_key BORINGSSL_PREFIX %+ _KEM_KEY_set_raw_public_key
 %xdefine KEM_KEY_set_raw_secret_key BORINGSSL_PREFIX %+ _KEM_KEY_set_raw_secret_key
 %xdefine KEM_find_kem_by_nid BORINGSSL_PREFIX %+ _KEM_find_kem_by_nid
+%xdefine Keccak1600_Absorb BORINGSSL_PREFIX %+ _Keccak1600_Absorb
+%xdefine Keccak1600_Absorb_cext BORINGSSL_PREFIX %+ _Keccak1600_Absorb_cext
+%xdefine Keccak1600_Absorb_hw BORINGSSL_PREFIX %+ _Keccak1600_Absorb_hw
+%xdefine Keccak1600_Squeeze BORINGSSL_PREFIX %+ _Keccak1600_Squeeze
+%xdefine Keccak1600_Squeeze_cext BORINGSSL_PREFIX %+ _Keccak1600_Squeeze_cext
+%xdefine Keccak1600_Squeeze_hw BORINGSSL_PREFIX %+ _Keccak1600_Squeeze_hw
 %xdefine MD4 BORINGSSL_PREFIX %+ _MD4
 %xdefine MD4_Final BORINGSSL_PREFIX %+ _MD4_Final
 %xdefine MD4_Init BORINGSSL_PREFIX %+ _MD4_Init
@@ -5928,6 +6049,14 @@
 %xdefine POLICY_MAPPING_free BORINGSSL_PREFIX %+ _POLICY_MAPPING_free
 %xdefine POLICY_MAPPING_it BORINGSSL_PREFIX %+ _POLICY_MAPPING_it
 %xdefine POLICY_MAPPING_new BORINGSSL_PREFIX %+ _POLICY_MAPPING_new
+%xdefine PQDSA_KEY_free BORINGSSL_PREFIX %+ _PQDSA_KEY_free
+%xdefine PQDSA_KEY_get0_dsa BORINGSSL_PREFIX %+ _PQDSA_KEY_get0_dsa
+%xdefine PQDSA_KEY_init BORINGSSL_PREFIX %+ _PQDSA_KEY_init
+%xdefine PQDSA_KEY_new BORINGSSL_PREFIX %+ _PQDSA_KEY_new
+%xdefine PQDSA_KEY_set_raw_private_key BORINGSSL_PREFIX %+ _PQDSA_KEY_set_raw_private_key
+%xdefine PQDSA_KEY_set_raw_public_key BORINGSSL_PREFIX %+ _PQDSA_KEY_set_raw_public_key
+%xdefine PQDSA_find_asn1_by_nid BORINGSSL_PREFIX %+ _PQDSA_find_asn1_by_nid
+%xdefine PQDSA_find_dsa_by_nid BORINGSSL_PREFIX %+ _PQDSA_find_dsa_by_nid
 %xdefine RAND_OpenSSL BORINGSSL_PREFIX %+ _RAND_OpenSSL
 %xdefine RAND_SSLeay BORINGSSL_PREFIX %+ _RAND_SSLeay
 %xdefine RAND_add BORINGSSL_PREFIX %+ _RAND_add
@@ -6093,15 +6222,9 @@
 %xdefine SHA3_256 BORINGSSL_PREFIX %+ _SHA3_256
 %xdefine SHA3_384 BORINGSSL_PREFIX %+ _SHA3_384
 %xdefine SHA3_512 BORINGSSL_PREFIX %+ _SHA3_512
-%xdefine SHA3_Absorb BORINGSSL_PREFIX %+ _SHA3_Absorb
-%xdefine SHA3_Absorb_cext BORINGSSL_PREFIX %+ _SHA3_Absorb_cext
-%xdefine SHA3_Absorb_hw BORINGSSL_PREFIX %+ _SHA3_Absorb_hw
 %xdefine SHA3_Final BORINGSSL_PREFIX %+ _SHA3_Final
 %xdefine SHA3_Init BORINGSSL_PREFIX %+ _SHA3_Init
 %xdefine SHA3_Reset BORINGSSL_PREFIX %+ _SHA3_Reset
-%xdefine SHA3_Squeeze BORINGSSL_PREFIX %+ _SHA3_Squeeze
-%xdefine SHA3_Squeeze_cext BORINGSSL_PREFIX %+ _SHA3_Squeeze_cext
-%xdefine SHA3_Squeeze_hw BORINGSSL_PREFIX %+ _SHA3_Squeeze_hw
 %xdefine SHA3_Update BORINGSSL_PREFIX %+ _SHA3_Update
 %xdefine SHA512 BORINGSSL_PREFIX %+ _SHA512
 %xdefine SHA512_224 BORINGSSL_PREFIX %+ _SHA512_224
@@ -7524,6 +7647,103 @@
 %xdefine library_init_constructor BORINGSSL_PREFIX %+ _library_init_constructor
 %xdefine md4_block_data_order BORINGSSL_PREFIX %+ _md4_block_data_order
 %xdefine md5_block_asm_data_order BORINGSSL_PREFIX %+ _md5_block_asm_data_order
+%xdefine ml_dsa_44_keypair BORINGSSL_PREFIX %+ _ml_dsa_44_keypair
+%xdefine ml_dsa_44_keypair_internal BORINGSSL_PREFIX %+ _ml_dsa_44_keypair_internal
+%xdefine ml_dsa_44_params_init BORINGSSL_PREFIX %+ _ml_dsa_44_params_init
+%xdefine ml_dsa_44_sign BORINGSSL_PREFIX %+ _ml_dsa_44_sign
+%xdefine ml_dsa_44_sign_internal BORINGSSL_PREFIX %+ _ml_dsa_44_sign_internal
+%xdefine ml_dsa_44_verify BORINGSSL_PREFIX %+ _ml_dsa_44_verify
+%xdefine ml_dsa_44_verify_internal BORINGSSL_PREFIX %+ _ml_dsa_44_verify_internal
+%xdefine ml_dsa_65_keypair BORINGSSL_PREFIX %+ _ml_dsa_65_keypair
+%xdefine ml_dsa_65_keypair_internal BORINGSSL_PREFIX %+ _ml_dsa_65_keypair_internal
+%xdefine ml_dsa_65_params_init BORINGSSL_PREFIX %+ _ml_dsa_65_params_init
+%xdefine ml_dsa_65_sign BORINGSSL_PREFIX %+ _ml_dsa_65_sign
+%xdefine ml_dsa_65_sign_internal BORINGSSL_PREFIX %+ _ml_dsa_65_sign_internal
+%xdefine ml_dsa_65_verify BORINGSSL_PREFIX %+ _ml_dsa_65_verify
+%xdefine ml_dsa_65_verify_internal BORINGSSL_PREFIX %+ _ml_dsa_65_verify_internal
+%xdefine ml_dsa_87_keypair BORINGSSL_PREFIX %+ _ml_dsa_87_keypair
+%xdefine ml_dsa_87_keypair_internal BORINGSSL_PREFIX %+ _ml_dsa_87_keypair_internal
+%xdefine ml_dsa_87_params_init BORINGSSL_PREFIX %+ _ml_dsa_87_params_init
+%xdefine ml_dsa_87_sign BORINGSSL_PREFIX %+ _ml_dsa_87_sign
+%xdefine ml_dsa_87_sign_internal BORINGSSL_PREFIX %+ _ml_dsa_87_sign_internal
+%xdefine ml_dsa_87_verify BORINGSSL_PREFIX %+ _ml_dsa_87_verify
+%xdefine ml_dsa_87_verify_internal BORINGSSL_PREFIX %+ _ml_dsa_87_verify_internal
+%xdefine ml_dsa_caddq BORINGSSL_PREFIX %+ _ml_dsa_caddq
+%xdefine ml_dsa_decompose BORINGSSL_PREFIX %+ _ml_dsa_decompose
+%xdefine ml_dsa_fqmul BORINGSSL_PREFIX %+ _ml_dsa_fqmul
+%xdefine ml_dsa_freeze BORINGSSL_PREFIX %+ _ml_dsa_freeze
+%xdefine ml_dsa_invntt_tomont BORINGSSL_PREFIX %+ _ml_dsa_invntt_tomont
+%xdefine ml_dsa_keypair BORINGSSL_PREFIX %+ _ml_dsa_keypair
+%xdefine ml_dsa_keypair_internal BORINGSSL_PREFIX %+ _ml_dsa_keypair_internal
+%xdefine ml_dsa_make_hint BORINGSSL_PREFIX %+ _ml_dsa_make_hint
+%xdefine ml_dsa_ntt BORINGSSL_PREFIX %+ _ml_dsa_ntt
+%xdefine ml_dsa_pack_pk BORINGSSL_PREFIX %+ _ml_dsa_pack_pk
+%xdefine ml_dsa_pack_sig BORINGSSL_PREFIX %+ _ml_dsa_pack_sig
+%xdefine ml_dsa_pack_sk BORINGSSL_PREFIX %+ _ml_dsa_pack_sk
+%xdefine ml_dsa_poly_add BORINGSSL_PREFIX %+ _ml_dsa_poly_add
+%xdefine ml_dsa_poly_caddq BORINGSSL_PREFIX %+ _ml_dsa_poly_caddq
+%xdefine ml_dsa_poly_challenge BORINGSSL_PREFIX %+ _ml_dsa_poly_challenge
+%xdefine ml_dsa_poly_chknorm BORINGSSL_PREFIX %+ _ml_dsa_poly_chknorm
+%xdefine ml_dsa_poly_decompose BORINGSSL_PREFIX %+ _ml_dsa_poly_decompose
+%xdefine ml_dsa_poly_invntt_tomont BORINGSSL_PREFIX %+ _ml_dsa_poly_invntt_tomont
+%xdefine ml_dsa_poly_make_hint BORINGSSL_PREFIX %+ _ml_dsa_poly_make_hint
+%xdefine ml_dsa_poly_ntt BORINGSSL_PREFIX %+ _ml_dsa_poly_ntt
+%xdefine ml_dsa_poly_pointwise_montgomery BORINGSSL_PREFIX %+ _ml_dsa_poly_pointwise_montgomery
+%xdefine ml_dsa_poly_power2round BORINGSSL_PREFIX %+ _ml_dsa_poly_power2round
+%xdefine ml_dsa_poly_reduce BORINGSSL_PREFIX %+ _ml_dsa_poly_reduce
+%xdefine ml_dsa_poly_shiftl BORINGSSL_PREFIX %+ _ml_dsa_poly_shiftl
+%xdefine ml_dsa_poly_sub BORINGSSL_PREFIX %+ _ml_dsa_poly_sub
+%xdefine ml_dsa_poly_uniform BORINGSSL_PREFIX %+ _ml_dsa_poly_uniform
+%xdefine ml_dsa_poly_uniform_eta BORINGSSL_PREFIX %+ _ml_dsa_poly_uniform_eta
+%xdefine ml_dsa_poly_uniform_gamma1 BORINGSSL_PREFIX %+ _ml_dsa_poly_uniform_gamma1
+%xdefine ml_dsa_poly_use_hint BORINGSSL_PREFIX %+ _ml_dsa_poly_use_hint
+%xdefine ml_dsa_polyeta_pack BORINGSSL_PREFIX %+ _ml_dsa_polyeta_pack
+%xdefine ml_dsa_polyeta_unpack BORINGSSL_PREFIX %+ _ml_dsa_polyeta_unpack
+%xdefine ml_dsa_polyt0_pack BORINGSSL_PREFIX %+ _ml_dsa_polyt0_pack
+%xdefine ml_dsa_polyt0_unpack BORINGSSL_PREFIX %+ _ml_dsa_polyt0_unpack
+%xdefine ml_dsa_polyt1_pack BORINGSSL_PREFIX %+ _ml_dsa_polyt1_pack
+%xdefine ml_dsa_polyt1_unpack BORINGSSL_PREFIX %+ _ml_dsa_polyt1_unpack
+%xdefine ml_dsa_polyvec_matrix_expand BORINGSSL_PREFIX %+ _ml_dsa_polyvec_matrix_expand
+%xdefine ml_dsa_polyvec_matrix_pointwise_montgomery BORINGSSL_PREFIX %+ _ml_dsa_polyvec_matrix_pointwise_montgomery
+%xdefine ml_dsa_polyveck_add BORINGSSL_PREFIX %+ _ml_dsa_polyveck_add
+%xdefine ml_dsa_polyveck_caddq BORINGSSL_PREFIX %+ _ml_dsa_polyveck_caddq
+%xdefine ml_dsa_polyveck_chknorm BORINGSSL_PREFIX %+ _ml_dsa_polyveck_chknorm
+%xdefine ml_dsa_polyveck_decompose BORINGSSL_PREFIX %+ _ml_dsa_polyveck_decompose
+%xdefine ml_dsa_polyveck_invntt_tomont BORINGSSL_PREFIX %+ _ml_dsa_polyveck_invntt_tomont
+%xdefine ml_dsa_polyveck_make_hint BORINGSSL_PREFIX %+ _ml_dsa_polyveck_make_hint
+%xdefine ml_dsa_polyveck_ntt BORINGSSL_PREFIX %+ _ml_dsa_polyveck_ntt
+%xdefine ml_dsa_polyveck_pack_w1 BORINGSSL_PREFIX %+ _ml_dsa_polyveck_pack_w1
+%xdefine ml_dsa_polyveck_pointwise_poly_montgomery BORINGSSL_PREFIX %+ _ml_dsa_polyveck_pointwise_poly_montgomery
+%xdefine ml_dsa_polyveck_power2round BORINGSSL_PREFIX %+ _ml_dsa_polyveck_power2round
+%xdefine ml_dsa_polyveck_reduce BORINGSSL_PREFIX %+ _ml_dsa_polyveck_reduce
+%xdefine ml_dsa_polyveck_shiftl BORINGSSL_PREFIX %+ _ml_dsa_polyveck_shiftl
+%xdefine ml_dsa_polyveck_sub BORINGSSL_PREFIX %+ _ml_dsa_polyveck_sub
+%xdefine ml_dsa_polyveck_uniform_eta BORINGSSL_PREFIX %+ _ml_dsa_polyveck_uniform_eta
+%xdefine ml_dsa_polyveck_use_hint BORINGSSL_PREFIX %+ _ml_dsa_polyveck_use_hint
+%xdefine ml_dsa_polyvecl_add BORINGSSL_PREFIX %+ _ml_dsa_polyvecl_add
+%xdefine ml_dsa_polyvecl_chknorm BORINGSSL_PREFIX %+ _ml_dsa_polyvecl_chknorm
+%xdefine ml_dsa_polyvecl_invntt_tomont BORINGSSL_PREFIX %+ _ml_dsa_polyvecl_invntt_tomont
+%xdefine ml_dsa_polyvecl_ntt BORINGSSL_PREFIX %+ _ml_dsa_polyvecl_ntt
+%xdefine ml_dsa_polyvecl_pointwise_acc_montgomery BORINGSSL_PREFIX %+ _ml_dsa_polyvecl_pointwise_acc_montgomery
+%xdefine ml_dsa_polyvecl_pointwise_poly_montgomery BORINGSSL_PREFIX %+ _ml_dsa_polyvecl_pointwise_poly_montgomery
+%xdefine ml_dsa_polyvecl_reduce BORINGSSL_PREFIX %+ _ml_dsa_polyvecl_reduce
+%xdefine ml_dsa_polyvecl_uniform_eta BORINGSSL_PREFIX %+ _ml_dsa_polyvecl_uniform_eta
+%xdefine ml_dsa_polyvecl_uniform_gamma1 BORINGSSL_PREFIX %+ _ml_dsa_polyvecl_uniform_gamma1
+%xdefine ml_dsa_polyw1_pack BORINGSSL_PREFIX %+ _ml_dsa_polyw1_pack
+%xdefine ml_dsa_polyz_pack BORINGSSL_PREFIX %+ _ml_dsa_polyz_pack
+%xdefine ml_dsa_polyz_unpack BORINGSSL_PREFIX %+ _ml_dsa_polyz_unpack
+%xdefine ml_dsa_power2round BORINGSSL_PREFIX %+ _ml_dsa_power2round
+%xdefine ml_dsa_reduce32 BORINGSSL_PREFIX %+ _ml_dsa_reduce32
+%xdefine ml_dsa_sign BORINGSSL_PREFIX %+ _ml_dsa_sign
+%xdefine ml_dsa_sign_internal BORINGSSL_PREFIX %+ _ml_dsa_sign_internal
+%xdefine ml_dsa_sign_message BORINGSSL_PREFIX %+ _ml_dsa_sign_message
+%xdefine ml_dsa_unpack_pk BORINGSSL_PREFIX %+ _ml_dsa_unpack_pk
+%xdefine ml_dsa_unpack_sig BORINGSSL_PREFIX %+ _ml_dsa_unpack_sig
+%xdefine ml_dsa_unpack_sk BORINGSSL_PREFIX %+ _ml_dsa_unpack_sk
+%xdefine ml_dsa_use_hint BORINGSSL_PREFIX %+ _ml_dsa_use_hint
+%xdefine ml_dsa_verify BORINGSSL_PREFIX %+ _ml_dsa_verify
+%xdefine ml_dsa_verify_internal BORINGSSL_PREFIX %+ _ml_dsa_verify_internal
+%xdefine ml_dsa_verify_message BORINGSSL_PREFIX %+ _ml_dsa_verify_message
 %xdefine ml_kem_1024_decapsulate BORINGSSL_PREFIX %+ _ml_kem_1024_decapsulate
 %xdefine ml_kem_1024_encapsulate BORINGSSL_PREFIX %+ _ml_kem_1024_encapsulate
 %xdefine ml_kem_1024_encapsulate_deterministic BORINGSSL_PREFIX %+ _ml_kem_1024_encapsulate_deterministic
@@ -7785,6 +8005,8 @@
 %xdefine pqcrystals_kyber_fips202_ref_shake256_init BORINGSSL_PREFIX %+ _pqcrystals_kyber_fips202_ref_shake256_init
 %xdefine pqcrystals_kyber_fips202_ref_shake256_squeeze BORINGSSL_PREFIX %+ _pqcrystals_kyber_fips202_ref_shake256_squeeze
 %xdefine pqcrystals_kyber_fips202_ref_shake256_squeezeblocks BORINGSSL_PREFIX %+ _pqcrystals_kyber_fips202_ref_shake256_squeezeblocks
+%xdefine pqdsa_asn1_meth BORINGSSL_PREFIX %+ _pqdsa_asn1_meth
+%xdefine pqdsa_pkey_meth BORINGSSL_PREFIX %+ _pqdsa_pkey_meth
 %xdefine rand_fork_unsafe_buffering_enabled BORINGSSL_PREFIX %+ _rand_fork_unsafe_buffering_enabled
 %xdefine rsa_asn1_meth BORINGSSL_PREFIX %+ _rsa_asn1_meth
 %xdefine rsa_default_private_transform BORINGSSL_PREFIX %+ _rsa_default_private_transform

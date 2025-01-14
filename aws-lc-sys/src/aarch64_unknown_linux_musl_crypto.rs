@@ -3293,6 +3293,7 @@ pub const EVP_PKEY_X25519: i32 = 948;
 pub const EVP_PKEY_HKDF: i32 = 969;
 pub const EVP_PKEY_HMAC: i32 = 855;
 pub const EVP_PKEY_DH: i32 = 28;
+pub const EVP_PKEY_PQDSA: i32 = 993;
 pub const EVP_PKEY_KEM: i32 = 970;
 pub const PKCS5_SALT_LEN: i32 = 8;
 pub const EVP_PKEY_RSA2: i32 = 19;
@@ -16522,6 +16523,29 @@ extern "C" {
 extern "C" {
     #[link_name = "\u{1}aws_lc_0_25_0_EVP_PKEY_kem_check_key"]
     pub fn EVP_PKEY_kem_check_key(key: *mut EVP_PKEY) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    #[link_name = "\u{1}aws_lc_0_25_0_EVP_PKEY_CTX_pqdsa_set_params"]
+    pub fn EVP_PKEY_CTX_pqdsa_set_params(
+        ctx: *mut EVP_PKEY_CTX,
+        nid: ::std::os::raw::c_int,
+    ) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    #[link_name = "\u{1}aws_lc_0_25_0_EVP_PKEY_pqdsa_new_raw_public_key"]
+    pub fn EVP_PKEY_pqdsa_new_raw_public_key(
+        nid: ::std::os::raw::c_int,
+        in_: *const u8,
+        len: usize,
+    ) -> *mut EVP_PKEY;
+}
+extern "C" {
+    #[link_name = "\u{1}aws_lc_0_25_0_EVP_PKEY_pqdsa_new_raw_private_key"]
+    pub fn EVP_PKEY_pqdsa_new_raw_private_key(
+        nid: ::std::os::raw::c_int,
+        in_: *const u8,
+        len: usize,
+    ) -> *mut EVP_PKEY;
 }
 extern "C" {
     #[link_name = "\u{1}aws_lc_0_25_0_EVP_PKEY_CTX_set_dh_pad"]

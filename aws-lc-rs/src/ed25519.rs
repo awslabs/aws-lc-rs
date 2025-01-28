@@ -12,16 +12,15 @@ use std::marker::PhantomData;
 use untrusted::Input;
 
 use crate::aws_lc::{
-    EVP_DigestSign, EVP_DigestSignInit, EVP_DigestVerify, EVP_DigestVerifyInit,
     EVP_PKEY_CTX_new_id, EVP_PKEY_keygen, EVP_PKEY_keygen_init, EVP_PKEY, EVP_PKEY_ED25519,
 };
 
 use crate::buffer::Buffer;
-use crate::digest::digest_ctx::DigestContext;
 use crate::encoding::{
     AsBigEndian, AsDer, Curve25519SeedBin, Pkcs8V1Der, Pkcs8V2Der, PublicKeyX509Der,
 };
 use crate::error::{KeyRejected, Unspecified};
+use crate::evp_pkey::No_EVP_PKEY_CTX_consumer;
 use crate::fips::indicator_check;
 use crate::pkcs8::{Document, Version};
 use crate::ptr::LcPtr;
@@ -30,8 +29,8 @@ use crate::signature::{KeyPair, Signature, VerificationAlgorithm};
 use crate::{constant_time, hex, sealed};
 
 /// The length of an Ed25519 public key.
-pub const ED25519_PUBLIC_KEY_LEN: usize = aws_lc::ED25519_PUBLIC_KEY_LEN as usize;
-const ED25519_SIGNATURE_LEN: usize = aws_lc::ED25519_SIGNATURE_LEN as usize;
+pub const ED25519_PUBLIC_KEY_LEN: usize = crate::aws_lc::ED25519_PUBLIC_KEY_LEN as usize;
+const ED25519_SIGNATURE_LEN: usize = crate::aws_lc::ED25519_SIGNATURE_LEN as usize;
 const ED25519_SEED_LEN: usize = 32;
 
 /// Parameters for `EdDSA` signing and verification.
@@ -49,9 +48,11 @@ impl VerificationAlgorithm for EdDSAParameters {
         msg: Input<'_>,
         signature: Input<'_>,
     ) -> Result<(), Unspecified> {
-        self.verify_sig(
-            public_key.as_slice_less_safe(),
+        let evp_pkey = try_ed25519_public_key_from_bytes(public_key.as_slice_less_safe())?;
+        evp_pkey.verify(
             msg.as_slice_less_safe(),
+            None,
+            No_EVP_PKEY_CTX_consumer,
             signature.as_slice_less_safe(),
         )
     }
@@ -62,35 +63,8 @@ impl VerificationAlgorithm for EdDSAParameters {
         msg: &[u8],
         signature: &[u8],
     ) -> Result<(), Unspecified> {
-        let public_key = try_ed25519_public_key_from_bytes(public_key)?;
-
-        let mut evp_md_ctx = DigestContext::new_uninit();
-
-        if 1 != unsafe {
-            EVP_DigestVerifyInit(
-                evp_md_ctx.as_mut_ptr(),
-                null_mut(),
-                null_mut(),
-                null_mut(),
-                *public_key.as_mut_unsafe(),
-            )
-        } {
-            return Err(Unspecified);
-        }
-
-        if 1 != indicator_check!(unsafe {
-            EVP_DigestVerify(
-                evp_md_ctx.as_mut_ptr(),
-                signature.as_ptr(),
-                signature.len(),
-                msg.as_ptr(),
-                msg.len(),
-            )
-        }) {
-            return Err(Unspecified);
-        }
-
-        Ok(())
+        let evp_pkey = try_ed25519_public_key_from_bytes(public_key)?;
+        evp_pkey.verify(msg, None, No_EVP_PKEY_CTX_consumer, signature)
     }
 }
 
@@ -433,36 +407,7 @@ impl Ed25519KeyPair {
 
     #[inline]
     fn try_sign(&self, msg: &[u8]) -> Result<Signature, Unspecified> {
-        let mut sig_bytes = [0u8; ED25519_SIGNATURE_LEN];
-
-        let mut evp_md_ctx = DigestContext::new_uninit();
-
-        if 1 != unsafe {
-            EVP_DigestSignInit(
-                evp_md_ctx.as_mut_ptr(),
-                null_mut(),
-                null_mut(),
-                null_mut(),
-                *self.evp_pkey.as_mut_unsafe(),
-            )
-        } {
-            return Err(Unspecified);
-        }
-
-        let mut out_sig_len = sig_bytes.len();
-        if 1 != indicator_check!(unsafe {
-            EVP_DigestSign(
-                evp_md_ctx.as_mut_ptr(),
-                sig_bytes.as_mut_ptr().cast(),
-                &mut out_sig_len,
-                msg.as_ptr(),
-                msg.len(),
-            )
-        }) {
-            return Err(Unspecified);
-        }
-
-        debug_assert_eq!(out_sig_len, sig_bytes.len());
+        let sig_bytes = self.evp_pkey.sign(msg, None, No_EVP_PKEY_CTX_consumer)?;
 
         Ok(Signature::new(|slice| {
             slice[0..ED25519_SIGNATURE_LEN].copy_from_slice(&sig_bytes);

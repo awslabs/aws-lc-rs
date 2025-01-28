@@ -2,11 +2,10 @@
 // SPDX-License-Identifier: Apache-2.0 OR ISC
 
 use crate::aws_lc::{
-    ECDSA_SIG_new, ECDSA_SIG_set0, ECDSA_SIG_to_bytes, EVP_DigestVerify, EVP_DigestVerifyInit,
-    NID_X9_62_prime256v1, NID_secp256k1, NID_secp384r1, NID_secp521r1, BIGNUM, ECDSA_SIG, EVP_PKEY,
+    ECDSA_SIG_new, ECDSA_SIG_set0, ECDSA_SIG_to_bytes, NID_X9_62_prime256v1, NID_secp256k1,
+    NID_secp384r1, NID_secp521r1, BIGNUM, ECDSA_SIG, EVP_PKEY,
 };
 
-use crate::digest::digest_ctx::DigestContext;
 use crate::ec::compressed_public_key_size_bytes;
 use crate::ec::encoding::parse_ec_public_key;
 use crate::ec::encoding::sec1::marshal_sec1_public_point;
@@ -14,7 +13,7 @@ use crate::encoding::{
     AsBigEndian, AsDer, EcPublicKeyCompressedBin, EcPublicKeyUncompressedBin, PublicKeyX509Der,
 };
 use crate::error::Unspecified;
-use crate::fips::indicator_check;
+use crate::evp_pkey::No_EVP_PKEY_CTX_consumer;
 use crate::ptr::{DetachableLcPtr, LcPtr};
 use crate::signature::VerificationAlgorithm;
 use crate::{digest, sealed};
@@ -232,37 +231,8 @@ fn verify_asn1_signature(
     msg: &[u8],
     signature: &[u8],
 ) -> Result<(), Unspecified> {
-    let mut pkey = parse_ec_public_key(public_key, alg.nid())?;
-
-    let mut md_ctx = DigestContext::new_uninit();
-
-    let digest = digest::match_digest_type(&digest.id);
-
-    if 1 != unsafe {
-        EVP_DigestVerifyInit(
-            md_ctx.as_mut_ptr(),
-            null_mut(),
-            *digest,
-            null_mut(),
-            *pkey.as_mut(),
-        )
-    } {
-        return Err(Unspecified);
-    }
-
-    if 1 != indicator_check!(unsafe {
-        EVP_DigestVerify(
-            md_ctx.as_mut_ptr(),
-            signature.as_ptr(),
-            signature.len(),
-            msg.as_ptr(),
-            msg.len(),
-        )
-    }) {
-        return Err(Unspecified);
-    }
-
-    Ok(())
+    let evp_pkey = parse_ec_public_key(public_key, alg.nid())?;
+    evp_pkey.verify(msg, Some(digest), No_EVP_PKEY_CTX_consumer, signature)
 }
 
 #[inline]

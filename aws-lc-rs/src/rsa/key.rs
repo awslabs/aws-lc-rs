@@ -2,18 +2,18 @@
 // SPDX-License-Identifier: ISC
 // Modifications copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 // SPDX-License-Identifier: Apache-2.0 OR ISC
-use super::signature::{compute_rsa_signature, RsaEncoding, RsaPadding};
+use super::signature::{RsaEncoding, RsaPadding};
 use super::{encoding, RsaParameters};
 #[cfg(feature = "fips")]
 use crate::aws_lc::RSA;
 use crate::aws_lc::{
-    EVP_DigestSignInit, EVP_PKEY_assign_RSA, EVP_PKEY_new, RSA_generate_key_ex,
-    RSA_generate_key_fips, RSA_new, RSA_set0_key, RSA_size, BIGNUM, EVP_PKEY, EVP_PKEY_CTX,
-    EVP_PKEY_RSA, EVP_PKEY_RSA_PSS,
+    EVP_PKEY_assign_RSA, EVP_PKEY_new, RSA_generate_key_ex, RSA_generate_key_fips, RSA_new,
+    RSA_set0_key, RSA_size, BIGNUM, EVP_PKEY, EVP_PKEY_RSA, EVP_PKEY_RSA_PSS,
 };
 #[cfg(feature = "ring-io")]
 use crate::aws_lc::{RSA_get0_e, RSA_get0_n};
 use crate::encoding::{AsDer, Pkcs8V1Der};
+use crate::error::{KeyRejected, Unspecified};
 use crate::fips::indicator_check;
 #[cfg(feature = "ring-io")]
 use crate::io;
@@ -22,7 +22,7 @@ use crate::ptr::ConstPointer;
 use crate::ptr::{DetachableLcPtr, LcPtr};
 use crate::rsa::PublicEncryptingKey;
 use crate::sealed::Sealed;
-use crate::{digest, hex, rand};
+use crate::{hex, rand};
 #[cfg(feature = "fips")]
 use aws_lc::RSA_check_fips;
 use core::fmt::{self, Debug, Formatter};
@@ -32,9 +32,8 @@ use core::ptr::null_mut;
 // use core::ffi::c_int;
 use std::os::raw::c_int;
 
-use crate::digest::digest_ctx::DigestContext;
-use crate::error::{KeyRejected, Unspecified};
 use crate::pkcs8::Version;
+use crate::rsa::signature::configure_rsa_pkcs1_pss_padding;
 #[cfg(feature = "ring-io")]
 use untrusted::Input;
 use zeroize::Zeroize;
@@ -209,40 +208,17 @@ impl KeyPair {
         signature: &mut [u8],
     ) -> Result<(), Unspecified> {
         let encoding = padding_alg.encoding();
+        let padding_fn = if let RsaPadding::RSA_PKCS1_PSS_PADDING = encoding.padding() {
+            Some(configure_rsa_pkcs1_pss_padding)
+        } else {
+            None
+        };
 
-        let mut md_ctx = DigestContext::new_uninit();
-        let mut pctx = null_mut::<EVP_PKEY_CTX>();
-        let digest = digest::match_digest_type(&encoding.digest_algorithm().id);
+        let sig_bytes = self
+            .evp_pkey
+            .sign(msg, Some(encoding.digest_algorithm()), padding_fn)?;
 
-        if 1 != unsafe {
-            // EVP_DigestSignInit does not mutate |pkey| for thread-safety purposes and may be
-            // used concurrently with other non-mutating functions on |pkey|.
-            // https://github.com/aws/aws-lc/blob/9b4b5a15a97618b5b826d742419ccd54c819fa42/include/openssl/evp.h#L297-L313
-            EVP_DigestSignInit(
-                md_ctx.as_mut_ptr(),
-                &mut pctx,
-                *digest,
-                null_mut(),
-                *self.evp_pkey.as_mut_unsafe(),
-            )
-        } {
-            return Err(Unspecified);
-        }
-
-        if let RsaPadding::RSA_PKCS1_PSS_PADDING = encoding.padding() {
-            // AWS-LC owns pctx, check for null and then immediately detach so we don't drop it.
-            let pctx = DetachableLcPtr::new(pctx)?.detach();
-            super::signature::configure_rsa_pkcs1_pss_padding(pctx)?;
-        }
-
-        let max_len = super::signature::get_signature_length(&mut md_ctx)?;
-
-        debug_assert!(signature.len() >= max_len);
-
-        let computed_signature = compute_rsa_signature(&mut md_ctx, msg, signature)?;
-
-        debug_assert!(computed_signature.len() >= signature.len());
-
+        signature.copy_from_slice(&sig_bytes);
         Ok(())
     }
 

@@ -3,21 +3,23 @@
 #![allow(unused)]
 
 use crate::aws_lc::{
-    d2i_PrivateKey, CBB_init, EVP_DigestSign, EVP_DigestVerify, EVP_PKEY_CTX_new_id,
-    EVP_PKEY_CTX_pqdsa_set_params, EVP_PKEY_get_raw_private_key, EVP_PKEY_get_raw_public_key,
-    EVP_PKEY_keygen, EVP_PKEY_keygen_init, EVP_PKEY_new, EVP_PKEY_pqdsa_new_raw_private_key,
+    d2i_PrivateKey, CBB_init, EVP_PKEY_CTX_new_id, EVP_PKEY_CTX_pqdsa_set_params,
+    EVP_PKEY_get_raw_private_key, EVP_PKEY_get_raw_public_key, EVP_PKEY_keygen,
+    EVP_PKEY_keygen_init, EVP_PKEY_new, EVP_PKEY_pqdsa_new_raw_private_key,
     EVP_PKEY_pqdsa_new_raw_public_key, EVP_marshal_private_key, EVP_marshal_public_key,
     EVP_parse_public_key, CBB, EVP_PKEY, EVP_PKEY_PQDSA,
 };
 use crate::cbb::LcCBB;
 use crate::cbs::build_CBS;
+use crate::digest;
 use crate::digest::digest_ctx::DigestContext;
-use crate::error::KeyRejected;
+use crate::error::{KeyRejected, Unspecified};
 use crate::evp_pkey::*;
+use crate::fips::indicator_check;
+use crate::ptr::LcPtr;
 use crate::signature::MAX_LEN;
-use crate::{digest, error::Unspecified, fips::indicator_check, ptr::LcPtr};
-use aws_lc_sys::{EVP_DigestSignInit, EVP_DigestVerifyInit};
-use std::{ffi::c_int, ptr::null_mut};
+use std::ffi::c_int;
+use std::ptr::null_mut;
 
 pub(crate) fn evp_key_pqdsa_generate(nid: c_int) -> Result<LcPtr<EVP_PKEY>, Unspecified> {
     let mut pkey_ctx = LcPtr::new(unsafe { EVP_PKEY_CTX_new_id(EVP_PKEY_PQDSA, null_mut()) })?;
@@ -97,10 +99,14 @@ mod tests {
 
     fn test_signing_for(evp_pkey: &LcPtr<EVP_PKEY>) {
         let message = b"hello world";
-        let signature = evp_pkey.sign(message, None).unwrap();
+        let signature = evp_pkey
+            .sign(message, None, No_EVP_PKEY_CTX_consumer)
+            .unwrap();
         println!("signature size: {}", signature.len());
         assert_eq!(signature.len(), evp_pkey.signature_size_bytes());
-        evp_pkey.verify(message, None, &signature).unwrap();
+        evp_pkey
+            .verify(message, None, No_EVP_PKEY_CTX_consumer, &signature)
+            .unwrap();
         println!("verified: {:?}", signature);
     }
 }

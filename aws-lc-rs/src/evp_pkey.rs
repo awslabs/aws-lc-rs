@@ -2,11 +2,12 @@
 // SPDX-License-Identifier: Apache-2.0 OR ISC
 
 use crate::aws_lc::{
-    EVP_PKEY_CTX_new, EVP_PKEY_bits, EVP_PKEY_get0_EC_KEY, EVP_PKEY_get0_RSA,
-    EVP_PKEY_get_raw_private_key, EVP_PKEY_get_raw_public_key, EVP_PKEY_id,
-    EVP_PKEY_new_raw_private_key, EVP_PKEY_new_raw_public_key, EVP_PKEY_size, EVP_PKEY_up_ref,
-    EVP_marshal_private_key, EVP_marshal_private_key_v2, EVP_marshal_public_key,
-    EVP_parse_private_key, EVP_parse_public_key, EC_KEY, EVP_PKEY, EVP_PKEY_CTX, RSA,
+    EVP_DigestSign, EVP_DigestSignInit, EVP_DigestVerify, EVP_DigestVerifyInit, EVP_PKEY_CTX_new,
+    EVP_PKEY_bits, EVP_PKEY_get0_EC_KEY, EVP_PKEY_get0_RSA, EVP_PKEY_get_raw_private_key,
+    EVP_PKEY_get_raw_public_key, EVP_PKEY_id, EVP_PKEY_new_raw_private_key,
+    EVP_PKEY_new_raw_public_key, EVP_PKEY_size, EVP_PKEY_up_ref, EVP_marshal_private_key,
+    EVP_marshal_private_key_v2, EVP_marshal_public_key, EVP_parse_private_key,
+    EVP_parse_public_key, EC_KEY, EVP_PKEY, EVP_PKEY_CTX, RSA,
 };
 #[cfg(not(feature = "fips"))]
 use crate::aws_lc::{
@@ -14,14 +15,16 @@ use crate::aws_lc::{
     NID_MLDSA44, NID_MLDSA65, NID_MLDSA87,
 };
 use crate::cbb::LcCBB;
-use crate::cbs;
 use crate::error::{KeyRejected, Unspecified};
 use crate::pkcs8::Version;
 use crate::ptr::{ConstPointer, LcPtr};
+use crate::{cbs, digest};
 // TODO: Uncomment when MSRV >= 1.64
 // use core::ffi::c_int;
+use crate::digest::digest_ctx::DigestContext;
+use crate::fips::indicator_check;
 use std::os::raw::c_int;
-use std::ptr::null_mut;
+use std::ptr::{null, null_mut};
 
 impl LcPtr<EVP_PKEY> {
     pub(crate) fn validate_as_ed25519(&self) -> Result<(), KeyRejected> {
@@ -271,6 +274,105 @@ impl LcPtr<EVP_PKEY> {
             EVP_PKEY_new_raw_public_key(evp_pkey_type, null_mut(), bytes.as_ptr(), bytes.len())
         })
         .map_err(|()| KeyRejected::invalid_encoding())
+    }
+
+    pub(crate) fn sign(
+        &self,
+        message: &[u8],
+        digest: Option<&'static digest::Algorithm>,
+    ) -> Result<Box<[u8]>, Unspecified> {
+        let mut md_ctx = DigestContext::new_uninit();
+        let evp_md = if let Some(alg) = digest {
+            *digest::match_digest_type(&alg.id)
+        } else {
+            null()
+        };
+
+        if 1 != unsafe {
+            // EVP_DigestSignInit does not mutate |pkey| for thread-safety purposes and may be
+            // used concurrently with other non-mutating functions on |pkey|.
+            // https://github.com/aws/aws-lc/blob/9b4b5a15a97618b5b826d742419ccd54c819fa42/include/openssl/evp.h#L297-L313
+            EVP_DigestSignInit(
+                md_ctx.as_mut_ptr(),
+                null_mut(),
+                evp_md,
+                null_mut(),
+                *self.as_mut_unsafe(),
+            )
+        } {
+            return Err(Unspecified);
+        }
+        // Determine the maximum length of the signature.
+        let mut sig_len = 0;
+        if 1 != unsafe {
+            EVP_DigestSign(
+                md_ctx.as_mut_ptr(),
+                null_mut(),
+                &mut sig_len,
+                message.as_ptr(),
+                message.len(),
+            )
+        } {
+            return Err(Unspecified);
+        }
+        if sig_len == 0 {
+            return Err(Unspecified);
+        }
+        let mut signature = vec![0u8; sig_len];
+
+        if 1 != indicator_check!(unsafe {
+            EVP_DigestSign(
+                md_ctx.as_mut_ptr(),
+                signature.as_mut_ptr(),
+                &mut sig_len,
+                message.as_ptr(),
+                message.len(),
+            )
+        }) {
+            return Err(Unspecified);
+        }
+        signature.truncate(sig_len);
+        Ok(signature.into_boxed_slice())
+    }
+
+    pub(crate) fn verify(
+        &self,
+        msg: &[u8],
+        digest: Option<&'static digest::Algorithm>,
+        signature: &[u8],
+    ) -> Result<(), Unspecified> {
+        let mut md_ctx = DigestContext::new_uninit();
+
+        let evp_md = if let Some(alg) = digest {
+            *digest::match_digest_type(&alg.id)
+        } else {
+            null()
+        };
+        if 1 != unsafe {
+            EVP_DigestVerifyInit(
+                md_ctx.as_mut_ptr(),
+                null_mut(),
+                evp_md,
+                null_mut(),
+                *self.as_mut_unsafe(),
+            )
+        } {
+            return Err(Unspecified);
+        }
+
+        if 1 != indicator_check!(unsafe {
+            EVP_DigestVerify(
+                md_ctx.as_mut_ptr(),
+                signature.as_ptr(),
+                signature.len(),
+                msg.as_ptr(),
+                msg.len(),
+            )
+        }) {
+            return Err(Unspecified);
+        }
+
+        Ok(())
     }
 }
 

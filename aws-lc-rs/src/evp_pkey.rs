@@ -8,6 +8,11 @@ use crate::aws_lc::{
     EVP_marshal_private_key, EVP_marshal_private_key_v2, EVP_marshal_public_key,
     EVP_parse_private_key, EVP_parse_public_key, EC_KEY, EVP_PKEY, EVP_PKEY_CTX, RSA,
 };
+#[cfg(not(feature = "fips"))]
+use crate::aws_lc::{
+    EVP_PKEY_pqdsa_new_raw_private_key, EVP_PKEY_pqdsa_new_raw_public_key, EVP_PKEY_PQDSA,
+    NID_MLDSA44, NID_MLDSA65, NID_MLDSA87,
+};
 use crate::cbb::LcCBB;
 use crate::cbs;
 use crate::error::{KeyRejected, Unspecified};
@@ -185,6 +190,18 @@ impl LcPtr<EVP_PKEY> {
         }
     }
 
+    #[allow(dead_code)]
+    pub(crate) fn marshal_raw_public_key(&self) -> Result<Vec<u8>, Unspecified> {
+        let mut size = 0;
+        if 1 != unsafe { EVP_PKEY_get_raw_public_key(*self.as_const(), null_mut(), &mut size) } {
+            return Err(Unspecified);
+        }
+        let mut buffer = vec![0u8; size];
+        let buffer_size = self.marshal_raw_public_to_buffer(&mut buffer)?;
+        debug_assert_eq!(buffer_size, size);
+        Ok(buffer)
+    }
+
     pub(crate) fn marshal_raw_public_to_buffer(
         &self,
         buffer: &mut [u8],
@@ -206,16 +223,50 @@ impl LcPtr<EVP_PKEY> {
         bytes: &[u8],
         evp_pkey_type: c_int,
     ) -> Result<Self, KeyRejected> {
+        #[cfg(not(feature = "fips"))]
+        if evp_pkey_type == EVP_PKEY_PQDSA {
+            return match bytes.len() {
+                2560 => Self::new(unsafe {
+                    EVP_PKEY_pqdsa_new_raw_private_key(NID_MLDSA44, bytes.as_ptr(), bytes.len())
+                }),
+                4032 => Self::new(unsafe {
+                    EVP_PKEY_pqdsa_new_raw_private_key(NID_MLDSA65, bytes.as_ptr(), bytes.len())
+                }),
+                4896 => Self::new(unsafe {
+                    EVP_PKEY_pqdsa_new_raw_private_key(NID_MLDSA87, bytes.as_ptr(), bytes.len())
+                }),
+                _ => Err(()),
+            }
+            .map_err(|()| KeyRejected::unspecified());
+        }
+
         Self::new(unsafe {
             EVP_PKEY_new_raw_private_key(evp_pkey_type, null_mut(), bytes.as_ptr(), bytes.len())
         })
-        .map_err(|()| KeyRejected::invalid_encoding())
+        .map_err(|()| KeyRejected::unspecified())
     }
 
     pub(crate) fn parse_raw_public_key(
         bytes: &[u8],
         evp_pkey_type: c_int,
     ) -> Result<Self, KeyRejected> {
+        #[cfg(not(feature = "fips"))]
+        if evp_pkey_type == EVP_PKEY_PQDSA {
+            return match bytes.len() {
+                1312 => Self::new(unsafe {
+                    EVP_PKEY_pqdsa_new_raw_public_key(NID_MLDSA44, bytes.as_ptr(), bytes.len())
+                }),
+                1952 => Self::new(unsafe {
+                    EVP_PKEY_pqdsa_new_raw_public_key(NID_MLDSA65, bytes.as_ptr(), bytes.len())
+                }),
+                2592 => Self::new(unsafe {
+                    EVP_PKEY_pqdsa_new_raw_public_key(NID_MLDSA87, bytes.as_ptr(), bytes.len())
+                }),
+                _ => Err(()),
+            }
+            .map_err(|()| KeyRejected::unspecified());
+        }
+
         Self::new(unsafe {
             EVP_PKEY_new_raw_public_key(evp_pkey_type, null_mut(), bytes.as_ptr(), bytes.len())
         })

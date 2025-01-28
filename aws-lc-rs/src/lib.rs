@@ -160,7 +160,6 @@ extern crate alloc;
 extern crate aws_lc_fips_sys as aws_lc;
 #[cfg(not(feature = "fips"))]
 extern crate aws_lc_sys as aws_lc;
-extern crate core;
 
 pub mod aead;
 pub mod agreement;
@@ -195,6 +194,8 @@ pub mod iv;
 pub mod kdf;
 #[allow(clippy::module_name_repetitions)]
 pub mod kem;
+#[cfg(not(feature = "fips"))]
+mod pq;
 mod ptr;
 pub mod rsa;
 pub mod tls_prf;

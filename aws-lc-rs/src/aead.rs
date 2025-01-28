@@ -1006,7 +1006,6 @@ impl core::fmt::Debug for Tag {
     }
 }
 
-#[allow(dead_code)]
 const MAX_KEY_LEN: usize = 32;
 
 // All the AEADs we support use 128-bit tags.

@@ -2,21 +2,18 @@
 // SPDX-License-Identifier: ISC
 // Modifications copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 // SPDX-License-Identifier: Apache-2.0 OR ISC
-
 use super::signature::{compute_rsa_signature, RsaEncoding, RsaPadding};
 use super::{encoding, RsaParameters};
 #[cfg(feature = "fips")]
-use crate::aws_lc::RSA_check_fips;
+use crate::aws_lc::RSA;
 use crate::aws_lc::{
-    EVP_DigestSignInit, EVP_PKEY_assign_RSA, EVP_PKEY_bits, EVP_PKEY_new, EVP_PKEY_size,
-    RSA_generate_key_ex, RSA_generate_key_fips, RSA_new, RSA_set0_key, RSA_size, BIGNUM, EVP_PKEY,
-    EVP_PKEY_CTX,
+    EVP_DigestSignInit, EVP_PKEY_assign_RSA, EVP_PKEY_new, RSA_generate_key_ex,
+    RSA_generate_key_fips, RSA_new, RSA_set0_key, RSA_size, BIGNUM, EVP_PKEY, EVP_PKEY_CTX,
+    EVP_PKEY_RSA, EVP_PKEY_RSA_PSS,
 };
 #[cfg(feature = "ring-io")]
 use crate::aws_lc::{RSA_get0_e, RSA_get0_n};
-use crate::digest::{self};
 use crate::encoding::{AsDer, Pkcs8V1Der};
-use crate::error::{KeyRejected, Unspecified};
 use crate::fips::indicator_check;
 #[cfg(feature = "ring-io")]
 use crate::io;
@@ -25,7 +22,9 @@ use crate::ptr::ConstPointer;
 use crate::ptr::{DetachableLcPtr, LcPtr};
 use crate::rsa::PublicEncryptingKey;
 use crate::sealed::Sealed;
-use crate::{hex, rand};
+use crate::{digest, hex, rand};
+#[cfg(feature = "fips")]
+use aws_lc::RSA_check_fips;
 use core::fmt::{self, Debug, Formatter};
 use core::ptr::null_mut;
 
@@ -33,6 +32,9 @@ use core::ptr::null_mut;
 // use core::ffi::c_int;
 use std::os::raw::c_int;
 
+use crate::digest::digest_ctx::DigestContext;
+use crate::error::{KeyRejected, Unspecified};
+use crate::pkcs8::Version;
 #[cfg(feature = "ring-io")]
 use untrusted::Input;
 use zeroize::Zeroize;
@@ -148,7 +150,7 @@ impl KeyPair {
     /// `error::KeyRejected` if bytes do not encode an RSA private key or if the key is otherwise
     /// not acceptable.
     pub fn from_pkcs8(pkcs8: &[u8]) -> Result<Self, KeyRejected> {
-        let key = encoding::pkcs8::decode_der(pkcs8)?;
+        let key = LcPtr::<EVP_PKEY>::parse_rfc5208_private_key(pkcs8, EVP_PKEY_RSA)?;
         Self::new(key)
     }
 
@@ -172,7 +174,7 @@ impl KeyPair {
         if !is_rsa_key(key) {
             return Err(KeyRejected::unspecified());
         };
-        match key_size_bits(key) {
+        match key.key_size_bits() {
             2048..=8192 => Ok(()),
             _ => Err(KeyRejected::unspecified()),
         }
@@ -208,7 +210,7 @@ impl KeyPair {
     ) -> Result<(), Unspecified> {
         let encoding = padding_alg.encoding();
 
-        let mut md_ctx = digest::digest_ctx::DigestContext::new_uninit();
+        let mut md_ctx = DigestContext::new_uninit();
         let mut pctx = null_mut::<EVP_PKEY_CTX>();
         let digest = digest::match_digest_type(&encoding.digest_algorithm().id);
 
@@ -253,7 +255,7 @@ impl KeyPair {
         match self.evp_pkey.get_rsa() {
             Ok(rsa) => {
                 // https://github.com/awslabs/aws-lc/blob/main/include/openssl/rsa.h#L99
-                unsafe { RSA_size(*rsa.as_const()) as usize }
+                unsafe { RSA_size(*rsa) as usize }
             }
             Err(_) => unreachable!(),
         }
@@ -279,9 +281,9 @@ impl crate::signature::KeyPair for KeyPair {
 
 impl AsDer<Pkcs8V1Der<'static>> for KeyPair {
     fn as_der(&self) -> Result<Pkcs8V1Der<'static>, Unspecified> {
-        Ok(Pkcs8V1Der::new(encoding::pkcs8::encode_v1_der(
-            &self.evp_pkey,
-        )?))
+        Ok(Pkcs8V1Der::new(
+            self.evp_pkey.marshal_rfc5208_private_key(Version::V1)?,
+        ))
     }
 }
 
@@ -312,9 +314,9 @@ impl PublicKey {
         #[cfg(feature = "ring-io")]
         {
             let pubkey = evp_pkey.get_rsa()?;
-            let modulus = ConstPointer::new(unsafe { RSA_get0_n(*pubkey.as_const()) })?;
+            let modulus = ConstPointer::new(unsafe { RSA_get0_n(*pubkey) })?;
             let modulus = modulus.to_be_bytes().into_boxed_slice();
-            let exponent = ConstPointer::new(unsafe { RSA_get0_e(*pubkey.as_const()) })?;
+            let exponent = ConstPointer::new(unsafe { RSA_get0_e(*pubkey) })?;
             let exponent = exponent.to_be_bytes().into_boxed_slice();
             Ok(PublicKey {
                 key,
@@ -500,23 +502,10 @@ pub(super) fn is_valid_fips_key(key: &LcPtr<EVP_PKEY>) -> bool {
     // This should always be an RSA key and must-never panic.
     let rsa_key = key.get_rsa().expect("RSA EVP_PKEY");
 
-    1 == unsafe { RSA_check_fips(*rsa_key.as_mut_unsafe()) }
-}
-
-pub(super) fn key_size_bytes(key: &LcPtr<EVP_PKEY>) -> usize {
-    // Safety: RSA modulous byte sizes supported fit an usize
-    unsafe { EVP_PKEY_size(*key.as_const()) }
-        .try_into()
-        .expect("modulous to fit in usize")
-}
-
-pub(super) fn key_size_bits(key: &LcPtr<EVP_PKEY>) -> usize {
-    // Safety: RSA modulous byte sizes supported fit an usize
-    unsafe { EVP_PKEY_bits(*key.as_const()) }
-        .try_into()
-        .expect("modulous to fit in usize")
+    1 == unsafe { RSA_check_fips(*rsa_key as *mut RSA) }
 }
 
 pub(super) fn is_rsa_key(key: &LcPtr<EVP_PKEY>) -> bool {
-    key.get_rsa().is_ok()
+    let id = key.id();
+    id == EVP_PKEY_RSA || id == EVP_PKEY_RSA_PSS
 }

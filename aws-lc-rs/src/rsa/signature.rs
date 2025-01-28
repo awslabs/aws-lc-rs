@@ -115,7 +115,7 @@ impl RsaParameters {
     /// `error::Unspecified` on parse error.
     pub fn public_modulus_len(public_key: &[u8]) -> Result<u32, Unspecified> {
         let rsa = encoding::rfc8017::decode_public_key_der(public_key)?;
-        Ok(unsafe { RSA_bits(*rsa.get_rsa()?.as_const()) })
+        Ok(unsafe { RSA_bits(*rsa.get_rsa()?) })
     }
 
     #[must_use]

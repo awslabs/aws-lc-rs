@@ -31,11 +31,6 @@ impl<P: Pointer> ManagedPointer<P> {
     pub unsafe fn as_slice(&self, len: usize) -> &[P::T] {
         core::slice::from_raw_parts(self.pointer.as_const_ptr(), len)
     }
-
-    #[allow(clippy::mut_from_ref)]
-    pub unsafe fn as_slice_mut(&mut self, len: usize) -> &mut [P::T] {
-        core::slice::from_raw_parts_mut(self.pointer.as_mut_ptr(), len)
-    }
 }
 
 impl<P: Pointer> Drop for ManagedPointer<P> {
@@ -69,13 +64,6 @@ impl<P: Pointer> ManagedPointer<P> {
 }
 
 impl<P: Pointer> DetachablePointer<P> {
-    #[inline]
-    pub fn as_const(&self) -> ConstPointer<P::T> {
-        ConstPointer {
-            ptr: self.pointer.as_ref().unwrap().as_const_ptr(),
-        }
-    }
-
     #[inline]
     pub fn as_mut(&mut self) -> MutPointer<P::T> {
         MutPointer {

@@ -5,7 +5,7 @@ Dump of file p256-x86_64-asm.obj
 
 File Type: COFF OBJECT
 
-aws_lc_0_25_0_ecp_nistz256_neg:
+aws_lc_0_26_0_ecp_nistz256_neg:
   0000000000000000: 48 89 7C 24 08     mov         qword ptr [rsp+8],rdi
   0000000000000005: 48 89 74 24 10     mov         qword ptr [rsp+10h],rsi
   000000000000000A: 48 89 E0           mov         rax,rsp
@@ -61,7 +61,7 @@ L$SEH_end_ecp_nistz256_neg:
   000000000000009D: 90                 nop
   000000000000009E: 90                 nop
   000000000000009F: 90                 nop
-aws_lc_0_25_0_ecp_nistz256_ord_mul_mont:
+aws_lc_0_26_0_ecp_nistz256_ord_mul_mont:
   00000000000000A0: 48 89 7C 24 08     mov         qword ptr [rsp+8],rdi
   00000000000000A5: 48 89 74 24 10     mov         qword ptr [rsp+10h],rsi
   00000000000000AA: 48 89 E0           mov         rax,rsp
@@ -69,7 +69,7 @@ L$SEH_begin_ecp_nistz256_ord_mul_mont:
   00000000000000AD: 48 89 CF           mov         rdi,rcx
   00000000000000B0: 48 89 D6           mov         rsi,rdx
   00000000000000B3: 4C 89 C2           mov         rdx,r8
-  00000000000000B6: 48 8D 0D 00 00 00  lea         rcx,[aws_lc_0_25_0_OPENSSL_ia32cap_P]
+  00000000000000B6: 48 8D 0D 00 00 00  lea         rcx,[aws_lc_0_26_0_OPENSSL_ia32cap_P]
                     00
   00000000000000BD: 48 8B 49 08        mov         rcx,qword ptr [rcx+8]
   00000000000000C1: 81 E1 00 01 08 00  and         ecx,80100h
@@ -344,7 +344,7 @@ L$SEH_end_ecp_nistz256_ord_mul_mont:
   000000000000041D: 90                 nop
   000000000000041E: 90                 nop
   000000000000041F: 90                 nop
-aws_lc_0_25_0_ecp_nistz256_ord_sqr_mont:
+aws_lc_0_26_0_ecp_nistz256_ord_sqr_mont:
   0000000000000420: 48 89 7C 24 08     mov         qword ptr [rsp+8],rdi
   0000000000000425: 48 89 74 24 10     mov         qword ptr [rsp+10h],rsi
   000000000000042A: 48 89 E0           mov         rax,rsp
@@ -352,7 +352,7 @@ L$SEH_begin_ecp_nistz256_ord_sqr_mont:
   000000000000042D: 48 89 CF           mov         rdi,rcx
   0000000000000430: 48 89 D6           mov         rsi,rdx
   0000000000000433: 4C 89 C2           mov         rdx,r8
-  0000000000000436: 48 8D 0D 00 00 00  lea         rcx,[aws_lc_0_25_0_OPENSSL_ia32cap_P]
+  0000000000000436: 48 8D 0D 00 00 00  lea         rcx,[aws_lc_0_26_0_OPENSSL_ia32cap_P]
                     00
   000000000000043D: 48 8B 49 08        mov         rcx,qword ptr [rcx+8]
   0000000000000441: 81 E1 00 01 08 00  and         ecx,80100h
@@ -1024,7 +1024,7 @@ L$SEH_end_ecp_nistz256_ord_sqr_montx:
   0000000000000E3D: 90                 nop
   0000000000000E3E: 90                 nop
   0000000000000E3F: 90                 nop
-aws_lc_0_25_0_ecp_nistz256_mul_mont:
+aws_lc_0_26_0_ecp_nistz256_mul_mont:
   0000000000000E40: 48 89 7C 24 08     mov         qword ptr [rsp+8],rdi
   0000000000000E45: 48 89 74 24 10     mov         qword ptr [rsp+10h],rsi
   0000000000000E4A: 48 89 E0           mov         rax,rsp
@@ -1032,7 +1032,7 @@ L$SEH_begin_ecp_nistz256_mul_mont:
   0000000000000E4D: 48 89 CF           mov         rdi,rcx
   0000000000000E50: 48 89 D6           mov         rsi,rdx
   0000000000000E53: 4C 89 C2           mov         rdx,r8
-  0000000000000E56: 48 8D 0D 00 00 00  lea         rcx,[aws_lc_0_25_0_OPENSSL_ia32cap_P]
+  0000000000000E56: 48 8D 0D 00 00 00  lea         rcx,[aws_lc_0_26_0_OPENSSL_ia32cap_P]
                     00
   0000000000000E5D: 48 8B 49 08        mov         rcx,qword ptr [rcx+8]
   0000000000000E61: 81 E1 00 01 08 00  and         ecx,80100h
@@ -1286,14 +1286,14 @@ __ecp_nistz256_mul_montq:
   000000000000113D: 90                 nop
   000000000000113E: 90                 nop
   000000000000113F: 90                 nop
-aws_lc_0_25_0_ecp_nistz256_sqr_mont:
+aws_lc_0_26_0_ecp_nistz256_sqr_mont:
   0000000000001140: 48 89 7C 24 08     mov         qword ptr [rsp+8],rdi
   0000000000001145: 48 89 74 24 10     mov         qword ptr [rsp+10h],rsi
   000000000000114A: 48 89 E0           mov         rax,rsp
 L$SEH_begin_ecp_nistz256_sqr_mont:
   000000000000114D: 48 89 CF           mov         rdi,rcx
   0000000000001150: 48 89 D6           mov         rsi,rdx
-  0000000000001153: 48 8D 0D 00 00 00  lea         rcx,[aws_lc_0_25_0_OPENSSL_ia32cap_P]
+  0000000000001153: 48 8D 0D 00 00 00  lea         rcx,[aws_lc_0_26_0_OPENSSL_ia32cap_P]
                     00
   000000000000115A: 48 8B 49 08        mov         rcx,qword ptr [rcx+8]
   000000000000115E: 81 E1 00 01 08 00  and         ecx,80100h
@@ -1803,8 +1803,8 @@ __ecp_nistz256_sqr_montx:
   00000000000017DD: 90                 nop
   00000000000017DE: 90                 nop
   00000000000017DF: 90                 nop
-aws_lc_0_25_0_ecp_nistz256_select_w5:
-  00000000000017E0: 48 8D 05 00 00 00  lea         rax,[aws_lc_0_25_0_OPENSSL_ia32cap_P]
+aws_lc_0_26_0_ecp_nistz256_select_w5:
+  00000000000017E0: 48 8D 05 00 00 00  lea         rax,[aws_lc_0_26_0_OPENSSL_ia32cap_P]
                     00
   00000000000017E7: 48 8B 40 08        mov         rax,qword ptr [rax+8]
   00000000000017EB: A9 20 00 00 00     test        eax,20h
@@ -1908,12 +1908,12 @@ L$SEH_end_ecp_nistz256_select_w5:
   000000000000195D: 90                 nop
   000000000000195E: 90                 nop
   000000000000195F: 90                 nop
-aws_lc_0_25_0_ecp_nistz256_select_w7:
-  0000000000001960: 48 8D 05 00 00 00  lea         rax,[aws_lc_0_25_0_OPENSSL_ia32cap_P]
+aws_lc_0_26_0_ecp_nistz256_select_w7:
+  0000000000001960: 48 8D 05 00 00 00  lea         rax,[aws_lc_0_26_0_OPENSSL_ia32cap_P]
                     00
   0000000000001967: 48 8B 40 08        mov         rax,qword ptr [rax+8]
   000000000000196B: A9 20 00 00 00     test        eax,20h
-  0000000000001970: 0F 85 8A 02 00 00  jne         aws_lc_0_25_0_ecp_nistz256_avx2_select_w7
+  0000000000001970: 0F 85 8A 02 00 00  jne         aws_lc_0_26_0_ecp_nistz256_avx2_select_w7
   0000000000001976: 48 8D 84 24 78 FF  lea         rax,[rsp-88h]
                     FF FF
 L$SEH_begin_ecp_nistz256_select_w7:
@@ -2083,7 +2083,7 @@ L$SEH_end_ecp_nistz256_avx2_select_w5:
   0000000000001BFD: 90                 nop
   0000000000001BFE: 90                 nop
   0000000000001BFF: 90                 nop
-aws_lc_0_25_0_ecp_nistz256_avx2_select_w7:
+aws_lc_0_26_0_ecp_nistz256_avx2_select_w7:
   0000000000001C00: C5 F8 77           vzeroupper
   0000000000001C03: 49 89 E3           mov         r11,rsp
   0000000000001C06: 48 8D 84 24 78 FF  lea         rax,[rsp-88h]
@@ -2327,14 +2327,14 @@ __ecp_nistz256_mul_by_2q:
   0000000000001EDD: 90                 nop
   0000000000001EDE: 90                 nop
   0000000000001EDF: 90                 nop
-aws_lc_0_25_0_ecp_nistz256_point_double:
+aws_lc_0_26_0_ecp_nistz256_point_double:
   0000000000001EE0: 48 89 7C 24 08     mov         qword ptr [rsp+8],rdi
   0000000000001EE5: 48 89 74 24 10     mov         qword ptr [rsp+10h],rsi
   0000000000001EEA: 48 89 E0           mov         rax,rsp
 L$SEH_begin_ecp_nistz256_point_double:
   0000000000001EED: 48 89 CF           mov         rdi,rcx
   0000000000001EF0: 48 89 D6           mov         rsi,rdx
-  0000000000001EF3: 48 8D 0D 00 00 00  lea         rcx,[aws_lc_0_25_0_OPENSSL_ia32cap_P]
+  0000000000001EF3: 48 8D 0D 00 00 00  lea         rcx,[aws_lc_0_26_0_OPENSSL_ia32cap_P]
                     00
   0000000000001EFA: 48 8B 49 08        mov         rcx,qword ptr [rcx+8]
   0000000000001EFE: 81 E1 00 01 08 00  and         ecx,80100h
@@ -2537,7 +2537,7 @@ L$SEH_end_ecp_nistz256_point_double:
   000000000000221D: 90                 nop
   000000000000221E: 90                 nop
   000000000000221F: 90                 nop
-aws_lc_0_25_0_ecp_nistz256_point_add:
+aws_lc_0_26_0_ecp_nistz256_point_add:
   0000000000002220: 48 89 7C 24 08     mov         qword ptr [rsp+8],rdi
   0000000000002225: 48 89 74 24 10     mov         qword ptr [rsp+10h],rsi
   000000000000222A: 48 89 E0           mov         rax,rsp
@@ -2545,7 +2545,7 @@ L$SEH_begin_ecp_nistz256_point_add:
   000000000000222D: 48 89 CF           mov         rdi,rcx
   0000000000002230: 48 89 D6           mov         rsi,rdx
   0000000000002233: 4C 89 C2           mov         rdx,r8
-  0000000000002236: 48 8D 0D 00 00 00  lea         rcx,[aws_lc_0_25_0_OPENSSL_ia32cap_P]
+  0000000000002236: 48 8D 0D 00 00 00  lea         rcx,[aws_lc_0_26_0_OPENSSL_ia32cap_P]
                     00
   000000000000223D: 48 8B 49 08        mov         rcx,qword ptr [rcx+8]
   0000000000002241: 81 E1 00 01 08 00  and         ecx,80100h
@@ -3029,7 +3029,7 @@ L$SEH_end_ecp_nistz256_point_add:
   00000000000029BD: 90                 nop
   00000000000029BE: 90                 nop
   00000000000029BF: 90                 nop
-aws_lc_0_25_0_ecp_nistz256_point_add_affine:
+aws_lc_0_26_0_ecp_nistz256_point_add_affine:
   00000000000029C0: 48 89 7C 24 08     mov         qword ptr [rsp+8],rdi
   00000000000029C5: 48 89 74 24 10     mov         qword ptr [rsp+10h],rsi
   00000000000029CA: 48 89 E0           mov         rax,rsp
@@ -3037,7 +3037,7 @@ L$SEH_begin_ecp_nistz256_point_add_affine:
   00000000000029CD: 48 89 CF           mov         rdi,rcx
   00000000000029D0: 48 89 D6           mov         rsi,rdx
   00000000000029D3: 4C 89 C2           mov         rdx,r8
-  00000000000029D6: 48 8D 0D 00 00 00  lea         rcx,[aws_lc_0_25_0_OPENSSL_ia32cap_P]
+  00000000000029D6: 48 8D 0D 00 00 00  lea         rcx,[aws_lc_0_26_0_OPENSSL_ia32cap_P]
                     00
   00000000000029DD: 48 8B 49 08        mov         rcx,qword ptr [rcx+8]
   00000000000029E1: 81 E1 00 01 08 00  and         ecx,80100h

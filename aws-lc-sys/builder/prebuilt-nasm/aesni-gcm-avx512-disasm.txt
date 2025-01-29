@@ -5,7 +5,7 @@ Dump of file aesni-gcm-avx512.obj
 
 File Type: COFF OBJECT
 
-aws_lc_0_25_0_gcm_ghash_avx512:
+aws_lc_0_26_0_gcm_ghash_avx512:
   0000000000000000: 0F 0B              ud2
   0000000000000002: F3 C3              rep ret
 

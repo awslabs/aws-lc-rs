@@ -5,7 +5,7 @@ Dump of file sha512-x86_64.obj
 
 File Type: COFF OBJECT
 
-aws_lc_0_25_0_sha512_block_data_order_nohw:
+aws_lc_0_26_0_sha512_block_data_order_nohw:
   0000000000000000: 48 89 7C 24 08     mov         qword ptr [rsp+8],rdi
   0000000000000005: 48 89 74 24 10     mov         qword ptr [rsp+10h],rsi
   000000000000000A: 48 89 E0           mov         rax,rsp
@@ -1408,7 +1408,7 @@ L$SEH_end_sha512_block_data_order_nohw:
   000000000000123D: 90                 nop
   000000000000123E: 90                 nop
   000000000000123F: 90                 nop
-aws_lc_0_25_0_sha512_block_data_order_avx:
+aws_lc_0_26_0_sha512_block_data_order_avx:
   0000000000001240: 48 89 7C 24 08     mov         qword ptr [rsp+8],rdi
   0000000000001245: 48 89 74 24 10     mov         qword ptr [rsp+10h],rsi
   000000000000124A: 48 89 E0           mov         rax,rsp

@@ -199,7 +199,7 @@ L$hash_ad_done:
   000000000000023D: 90                 nop
   000000000000023E: 90                 nop
   000000000000023F: 90                 nop
-aws_lc_0_25_0_chacha20_poly1305_open:
+aws_lc_0_26_0_chacha20_poly1305_open:
   0000000000000240: 48 89 7C 24 08     mov         qword ptr [rsp+8],rdi
   0000000000000245: 48 89 74 24 10     mov         qword ptr [rsp+10h],rsi
   000000000000024A: 48 89 E0           mov         rax,rsp
@@ -238,7 +238,7 @@ L$SEH_begin_chacha20_poly1305_open:
                     00
   00000000000002BF: 48 89 9D C8 00 00  mov         qword ptr [rbp+0C8h],rbx
                     00
-  00000000000002C6: 8B 05 08 00 00 00  mov         eax,dword ptr [aws_lc_0_25_0_OPENSSL_ia32cap_P+8]
+  00000000000002C6: 8B 05 08 00 00 00  mov         eax,dword ptr [aws_lc_0_26_0_OPENSSL_ia32cap_P+8]
   00000000000002CC: 25 20 01 00 00     and         eax,120h
   00000000000002D1: 35 20 01 00 00     xor         eax,120h
   00000000000002D6: 0F 84 24 48 00 00  je          chacha20_poly1305_open_avx2
@@ -2420,7 +2420,7 @@ L$SEH_end_chacha20_poly1305_open:
   000000000000263D: 90                 nop
   000000000000263E: 90                 nop
   000000000000263F: 90                 nop
-aws_lc_0_25_0_chacha20_poly1305_seal:
+aws_lc_0_26_0_chacha20_poly1305_seal:
   0000000000002640: 48 89 7C 24 08     mov         qword ptr [rsp+8],rdi
   0000000000002645: 48 89 74 24 10     mov         qword ptr [rsp+10h],rsi
   000000000000264A: 48 89 E0           mov         rax,rsp
@@ -2461,7 +2461,7 @@ L$SEH_begin_chacha20_poly1305_seal:
   00000000000026C3: 48 89 9D C8 00 00  mov         qword ptr [rbp+0C8h],rbx
                     00
   00000000000026CA: 48 89 D3           mov         rbx,rdx
-  00000000000026CD: 8B 05 08 00 00 00  mov         eax,dword ptr [aws_lc_0_25_0_OPENSSL_ia32cap_P+8]
+  00000000000026CD: 8B 05 08 00 00 00  mov         eax,dword ptr [aws_lc_0_26_0_OPENSSL_ia32cap_P+8]
   00000000000026D3: 25 20 01 00 00     and         eax,120h
   00000000000026D8: 35 20 01 00 00     xor         eax,120h
   00000000000026DD: 0F 84 9D 4B 00 00  je          chacha20_poly1305_seal_avx2

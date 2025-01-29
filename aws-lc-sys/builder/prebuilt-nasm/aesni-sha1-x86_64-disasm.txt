@@ -5,10 +5,10 @@ Dump of file aesni-sha1-x86_64.obj
 
 File Type: COFF OBJECT
 
-aws_lc_0_25_0_aesni_cbc_sha1_enc:
-  0000000000000000: 44 8B 15 00 00 00  mov         r10d,dword ptr [aws_lc_0_25_0_OPENSSL_ia32cap_P]
+aws_lc_0_26_0_aesni_cbc_sha1_enc:
+  0000000000000000: 44 8B 15 00 00 00  mov         r10d,dword ptr [aws_lc_0_26_0_OPENSSL_ia32cap_P]
                     00
-  0000000000000007: 4C 8B 1D 04 00 00  mov         r11,qword ptr [aws_lc_0_25_0_OPENSSL_ia32cap_P+4]
+  0000000000000007: 4C 8B 1D 04 00 00  mov         r11,qword ptr [aws_lc_0_26_0_OPENSSL_ia32cap_P+4]
                     00
   000000000000000E: 49 0F BA E3 3D     bt          r11,3Dh
   0000000000000013: 0F 82 E7 24 00 00  jb          aesni_cbc_sha1_enc_shaext

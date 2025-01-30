@@ -312,3 +312,19 @@ jobs:
       - name: Build
         run: |
           docker run -v "${{ github.workspace }}:/aws_lc_rs" ohos:5.0.0
+
+  alpine-linux:
+    runs-on: ubuntu-latest
+    env:
+      DOCKER_BUILDKIT: 1
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: "recursive"
+      - name: Build Docker Image
+        working-directory: .github/docker_images/alpine-3.20
+        run: |
+          ./build_image.sh
+      - name: Build
+        run: |
+          docker run -v "${{ github.workspace }}:/aws_lc_rs" alpine:3.20

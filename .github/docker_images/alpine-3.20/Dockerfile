@@ -1,5 +1,9 @@
 FROM alpine:3.20
 
+VOLUME ["/aws_lc_rs"]
+
+WORKDIR /
+
 RUN apk add \
 	alpine-sdk \
 	bash \
@@ -28,3 +32,8 @@ ENV CARGO_HTTP_MULTIPLEXING=false
 #    cargo install --locked bindgen-cli && \
 #    rustup component add rustfmt clippy && \
 #    rm ./rustup.sh
+
+COPY aws_lc_rs_build.sh /
+COPY entry.sh /
+
+ENTRYPOINT ["/entry.sh"]

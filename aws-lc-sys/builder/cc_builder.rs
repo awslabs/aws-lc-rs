@@ -14,8 +14,8 @@ mod x86_64_unknown_linux_gnu;
 mod x86_64_unknown_linux_musl;
 
 use crate::{
-    cargo_env, emit_warning, env_var_to_bool, execute_command, get_crate_cflags, is_no_asm,
-    option_env, out_dir, requested_c_std, target, target_arch, target_env, target_os,
+    cargo_env, effective_target, emit_warning, env_var_to_bool, execute_command, get_crate_cflags,
+    is_no_asm, option_env, out_dir, requested_c_std, target, target_arch, target_env, target_os,
     target_vendor, CStdRequested, OutputLibType,
 };
 use std::path::PathBuf;
@@ -78,7 +78,7 @@ impl PlatformConfig {
 
 impl Default for PlatformConfig {
     fn default() -> Self {
-        Self::default_for(&target()).unwrap()
+        Self::default_for(&effective_target()).unwrap()
     }
 }
 
@@ -394,12 +394,12 @@ impl crate::Builder for CcBuilder {
             return Err("CcBuilder only supports static builds".to_string());
         }
 
-        if PlatformConfig::default_for(&target()).is_none() {
-            return Err(format!("Platform not supported: {}", target()));
+        if PlatformConfig::default_for(&effective_target()).is_none() {
+            return Err(format!("Platform not supported: {}", effective_target()));
         }
 
         if Some(true) == env_var_to_bool("CARGO_FEATURE_SSL") {
-            return Err(format!("libssl not supported: {}", target()));
+            return Err(format!("cc_builder for libssl not supported"));
         }
 
         Ok(())

@@ -7,7 +7,8 @@ RUN apk add \
 	build-base \
 	busybox-suid \
 	clang-dev \
-    curl \
+	cargo \
+	curl \
 	cmake \
 	openssl-dev
 
@@ -17,12 +18,13 @@ USER satoshi
 WORKDIR /home/satoshi
 ENV CARGO_HTTP_MULTIPLEXING=false
 
-RUN cd "${HOME}" && \
-    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs > ./rustup.sh && \
-    chmod +x ./rustup.sh && \
-    ./rustup.sh -y && \
-    . "${HOME}/.cargo/env" && \
-    echo '. "${HOME}/.cargo/env"' >> ${HOME}/.profile && \
-    cargo install --locked bindgen-cli && \
-    rustup component add rustfmt clippy && \
-    rm ./rustup.sh
+# If needed, setup Rust environment for user
+#RUN cd "${HOME}" && \
+#    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs > ./rustup.sh && \
+#    chmod +x ./rustup.sh && \
+#    ./rustup.sh -y && \
+#    . "${HOME}/.cargo/env" && \
+#    echo '. "${HOME}/.cargo/env"' >> ${HOME}/.profile && \
+#    cargo install --locked bindgen-cli && \
+#    rustup component add rustfmt clippy && \
+#    rm ./rustup.sh

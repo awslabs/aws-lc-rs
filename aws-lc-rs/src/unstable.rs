@@ -14,3 +14,5 @@ pub mod kdf;
 
 #[deprecated(note = "use `aws_lc_rs::kem` instead")]
 pub mod kem;
+
+pub mod signature;

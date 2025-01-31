@@ -46,9 +46,8 @@
 //! # Ok::<(), aws_lc_rs::error::Unspecified>(())
 //! ```
 use crate::aws_lc::{
-    EVP_PKEY_CTX_kem_set_params, EVP_PKEY_CTX_new_id, EVP_PKEY_decapsulate, EVP_PKEY_encapsulate,
-    EVP_PKEY_get_raw_private_key, EVP_PKEY_get_raw_public_key, EVP_PKEY_kem_new_raw_public_key,
-    EVP_PKEY_keygen, EVP_PKEY_keygen_init, EVP_PKEY, EVP_PKEY_KEM,
+    EVP_PKEY_CTX_kem_set_params, EVP_PKEY_decapsulate, EVP_PKEY_encapsulate,
+    EVP_PKEY_kem_new_raw_public_key, EVP_PKEY, EVP_PKEY_KEM,
 };
 use crate::buffer::Buffer;
 use crate::encoding::generated_encodings;
@@ -56,7 +55,6 @@ use crate::error::{KeyRejected, Unspecified};
 use crate::ptr::LcPtr;
 use alloc::borrow::Cow;
 use core::cmp::Ordering;
-use core::ptr::null_mut;
 use zeroize::Zeroize;
 
 const ML_KEM_512_SHARED_SECRET_LENGTH: usize = 32;
@@ -135,6 +133,7 @@ where
     }
 
     #[inline]
+    #[allow(dead_code)]
     pub(crate) fn decapsulate_key_size(&self) -> usize {
         self.decapsulate_key_size
     }
@@ -208,18 +207,7 @@ where
     /// # Errors
     /// `error::Unspecified` when operation fails due to internal error.
     pub fn generate(alg: &'static Algorithm<Id>) -> Result<Self, Unspecified> {
-        let mut secret_key_size = alg.decapsulate_key_size();
-        let mut priv_key_bytes = vec![0u8; secret_key_size];
         let kyber_key = kem_key_generate(alg.id.nid())?;
-        if 1 != unsafe {
-            EVP_PKEY_get_raw_private_key(
-                *kyber_key.as_const(),
-                priv_key_bytes.as_mut_ptr(),
-                &mut secret_key_size,
-            )
-        } {
-            return Err(Unspecified);
-        }
         Ok(DecapsulationKey {
             algorithm: alg,
             evp_pkey: kyber_key,
@@ -371,22 +359,11 @@ where
     /// # Errors
     /// * `Unspecified`: Any failure to retrieve the `EnscapsulationKey` bytes.
     pub fn key_bytes(&self) -> Result<EncapsulationKeyBytes<'static>, Unspecified> {
-        let mut encapsulate_key_size = self.algorithm.encapsulate_key_size();
-        let mut encapsulate_bytes = vec![0u8; encapsulate_key_size];
-        if 1 != unsafe {
-            EVP_PKEY_get_raw_public_key(
-                *self.evp_pkey.as_const(),
-                encapsulate_bytes.as_mut_ptr(),
-                &mut encapsulate_key_size,
-            )
-        } {
-            return Err(Unspecified);
-        }
+        let mut encapsulate_bytes = vec![0u8; self.algorithm.encapsulate_key_size()];
+        let encapsulate_key_size = self
+            .evp_pkey
+            .marshal_raw_public_to_buffer(&mut encapsulate_bytes)?;
 
-        // This is currently pedantic but done for safety in-case the encapsulation key
-        // size changes in the future. `EVP_PKEY_get_raw_public_key` writes the total length
-        // to `encapsulate_key_size` in the event that the buffer we provide is larger then
-        // required.
         debug_assert_eq!(encapsulate_key_size, encapsulate_bytes.len());
         encapsulate_bytes.truncate(encapsulate_key_size);
 
@@ -491,18 +468,15 @@ impl AsRef<[u8]> for SharedSecret {
 // Returns an LcPtr to an EVP_PKEY
 #[inline]
 fn kem_key_generate(nid: i32) -> Result<LcPtr<EVP_PKEY>, Unspecified> {
-    let mut ctx = LcPtr::new(unsafe { EVP_PKEY_CTX_new_id(EVP_PKEY_KEM, null_mut()) })?;
-    if 1 != unsafe { EVP_PKEY_CTX_kem_set_params(*ctx.as_mut(), nid) }
-        || 1 != unsafe { EVP_PKEY_keygen_init(*ctx.as_mut()) }
-    {
-        return Err(Unspecified);
-    }
+    let params_fn = |ctx| {
+        if 1 == unsafe { EVP_PKEY_CTX_kem_set_params(ctx, nid) } {
+            Ok(())
+        } else {
+            Err(())
+        }
+    };
 
-    let mut key_raw: *mut EVP_PKEY = null_mut();
-    if 1 != unsafe { EVP_PKEY_keygen(*ctx.as_mut(), &mut key_raw) } {
-        return Err(Unspecified);
-    }
-    Ok(LcPtr::new(key_raw)?)
+    LcPtr::<EVP_PKEY>::generate(EVP_PKEY_KEM, Some(params_fn))
 }
 
 #[cfg(test)]

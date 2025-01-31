@@ -216,7 +216,7 @@ fn prefix_string() -> String {
 
 #[cfg(feature = "bindgen")]
 fn target_platform_prefix(name: &str) -> String {
-    format!("{}_{}", target().replace('-', "_"), name)
+    format!("{}_{}", effective_target().replace('-', "_"), name)
 }
 
 pub(crate) struct TestCommandResult {
@@ -319,9 +319,18 @@ fn target() -> String {
     cargo_env("TARGET")
 }
 
+fn effective_target() -> String {
+    let target = target();
+    match target.as_str() {
+        "x86_64-alpine-linux-musl" => "x86_64-unknown-linux-musl".to_string(),
+        "aarch64-alpine-linux-musl" => "aarch64-unknown-linux-musl".to_string(),
+        _ => target,
+    }
+}
+
 #[allow(unused)]
 fn target_underscored() -> String {
-    target().replace('-', "_")
+    effective_target().replace('-', "_")
 }
 
 fn out_dir() -> PathBuf {
@@ -428,7 +437,7 @@ fn initialize() {
     }
 
     if !is_external_bindgen() && (is_pregenerating_bindings() || !has_bindgen_feature()) {
-        let target = target();
+        let target = effective_target();
         let supported_platform = match target.as_str() {
             "aarch64-apple-darwin"
             | "aarch64-linux-android"
@@ -548,7 +557,7 @@ bindgen_available!(
         if internal_bindgen_supported() && !is_external_bindgen() {
             emit_warning(&format!(
                 "Generating bindings - internal bindgen. Platform: {}",
-                target()
+                effective_target()
             ));
             let gen_bindings_path = out_dir().join("bindings.rs");
             generate_bindings(manifest_dir, prefix, &gen_bindings_path);
@@ -764,7 +773,7 @@ fn invoke_external_bindgen(
 
     emit_warning(&format!(
         "Generating bindings - external bindgen. Platform: {}",
-        target()
+        effective_target()
     ));
 
     let options = BindingOptions {

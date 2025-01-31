@@ -135,7 +135,7 @@ fn test_ed25519_from_pkcs8() {
                     test::to_hex(input)
                 );
             }
-        };
+        }
     }
 
     // Just test that we can parse the input.

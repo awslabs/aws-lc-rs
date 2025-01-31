@@ -62,7 +62,7 @@ impl Pkcs1PublicEncryptingKey {
             )
         }) {
             return Err(Unspecified);
-        };
+        }
 
         Ok(&mut ciphertext[..out_len])
     }
@@ -149,7 +149,7 @@ impl Pkcs1PrivateDecryptingKey {
             )
         }) {
             return Err(Unspecified);
-        };
+        }
 
         Ok(&mut plaintext[..out_len])
     }
@@ -185,7 +185,7 @@ fn configure_pkcs1_crypto_operation(
 ) -> Result<(), Unspecified> {
     if 1 != unsafe { EVP_PKEY_CTX_set_rsa_padding(*evp_pkey_ctx.as_mut(), RSA_PKCS1_PADDING) } {
         return Err(Unspecified);
-    };
+    }
 
     Ok(())
 }

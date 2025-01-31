@@ -4,10 +4,10 @@
 use crate::cc_builder::CcBuilder;
 use crate::OutputLib::{Crypto, RustWrapper, Ssl};
 use crate::{
-    allow_prebuilt_nasm, cargo_env, emit_warning, execute_command, get_crate_cflags, is_crt_static,
-    is_no_asm, option_env, requested_c_std, target, target_arch, target_env, target_os,
-    target_underscored, target_vendor, test_nasm_command, use_prebuilt_nasm, CStdRequested,
-    OutputLibType,
+    allow_prebuilt_nasm, cargo_env, effective_target, emit_warning, execute_command,
+    get_crate_cflags, is_crt_static, is_no_asm, option_env, requested_c_std, target_arch,
+    target_env, target_os, target_underscored, target_vendor, test_nasm_command, use_prebuilt_nasm,
+    CStdRequested, OutputLibType,
 };
 use std::env;
 use std::ffi::OsString;
@@ -215,7 +215,7 @@ impl CmakeBuilder {
 
         if target_vendor() == "apple" && target_os().to_lowercase() == "ios" {
             cmake_cfg.define("CMAKE_SYSTEM_NAME", "iOS");
-            if target().ends_with("-ios-sim") || target_arch() == "x86_64" {
+            if effective_target().ends_with("-ios-sim") || target_arch() == "x86_64" {
                 cmake_cfg.define("CMAKE_OSX_SYSROOT", "iphonesimulator");
             } else {
                 cmake_cfg.define("CMAKE_OSX_SYSROOT", "iphoneos");
@@ -331,7 +331,7 @@ impl CmakeBuilder {
             }
         }
 
-        match target().as_str() {
+        match effective_target().as_str() {
             "aarch64-unknown-linux-ohos" => {
                 cmake_cfg.define("OHOS_ARCH", "arm64-v8a");
             }
@@ -400,7 +400,7 @@ impl crate::Builder for CmakeBuilder {
         } else {
             eprintln!("Missing dependency: cmake");
             missing_dependency = true;
-        };
+        }
 
         if missing_dependency {
             return Err("Required build dependency is missing. Halting build.".to_owned());

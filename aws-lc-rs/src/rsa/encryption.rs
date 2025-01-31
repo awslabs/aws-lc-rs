@@ -42,7 +42,7 @@ impl PrivateDecryptingKey {
     fn validate_key(key: &LcPtr<EVP_PKEY>) -> Result<(), Unspecified> {
         if !is_rsa_key(key) {
             return Err(Unspecified);
-        };
+        }
         match key_size_bits(key) {
             2048..=8192 => Ok(()),
             _ => Err(Unspecified),
@@ -149,7 +149,7 @@ impl PublicEncryptingKey {
     fn validate_key(key: &LcPtr<EVP_PKEY>) -> Result<(), Unspecified> {
         if !is_rsa_key(key) {
             return Err(Unspecified);
-        };
+        }
         match key_size_bits(key) {
             2048..=8192 => Ok(()),
             _ => Err(Unspecified),

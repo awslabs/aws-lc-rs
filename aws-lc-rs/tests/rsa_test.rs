@@ -47,7 +47,7 @@ fn rsa_from_pkcs8_test() {
                     "Input: {}",
                     test::to_hex(input.as_slice())
                 ),
-            };
+            }
 
             Ok(())
         },

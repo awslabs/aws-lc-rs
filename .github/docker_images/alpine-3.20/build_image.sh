@@ -4,13 +4,7 @@
 
 set -ex
 
-REPO_ROOT=$(git rev-parse --show-toplevel)
-
-#############################################
-# Build images from aws-lc-rs GitHub repo #
-#############################################
-
-# Linux hosts might not have "jq" installed.
+SCRIPT_DIR=$(cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd)
 
 # Ubuntu:
 # sudo apt-get install jq
@@ -27,10 +21,6 @@ if [[ -n "${GOPROXY:+x}" ]]; then
     EXTRA_ARGS=("--build-arg" "GOPROXY=${GOPROXY}" "${EXTRA_ARGS[@]}")
 fi
 
-pushd "${REPO_ROOT}/docker" &>/dev/null
-docker build -t rust:linux-386 linux-386 --load "${EXTRA_ARGS[@]}"
-docker build -t rust:linux-arm64 linux-arm64 --load "${EXTRA_ARGS[@]}"
-docker build -t rust:linux-x86_64 linux-x86_64 --load "${EXTRA_ARGS[@]}"
-docker build -t ubuntu:18.04 ubuntu-18.04 --load "${EXTRA_ARGS[@]}"
-docker build -t alpine:3.20 alpine-3.20 --build-arg UID=$(id -u) --load "${EXTRA_ARGS[@]}"
-popd &>/dev/null
+pushd "${SCRIPT_DIR}"
+docker build -t alpine:3.20 . --build-arg UID=$(id -u) --load "${EXTRA_ARGS[@]}"
+popd

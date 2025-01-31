@@ -207,12 +207,13 @@ impl CmakeBuilder {
             return cmake_cfg;
         }
 
-        // If the build environment vendor is Apple
-        #[cfg(target_vendor = "apple")]
-        {
-            const NO_OVERRIDE_T_OPTION: &str = "-Wno-overriding-t-option";
-            if let Ok(true) = cc_build.is_flag_supported(NO_OVERRIDE_T_OPTION) {
-                cmake_cfg.cflag(NO_OVERRIDE_T_OPTION);
+        if target_vendor() == "apple" {
+            let disable_warnings: [&str; 2] =
+                ["-Wno-overriding-t-option", "-Wno-overriding-option"];
+            for disabler in disable_warnings {
+                if let Ok(true) = cc_build.is_flag_supported(disabler) {
+                    cmake_cfg.cflag(disabler);
+                }
             }
             if target_arch() == "aarch64" {
                 cmake_cfg.define("CMAKE_OSX_ARCHITECTURES", "arm64");
@@ -222,12 +223,11 @@ impl CmakeBuilder {
                 cmake_cfg.define("CMAKE_OSX_ARCHITECTURES", "x86_64");
                 cmake_cfg.define("CMAKE_SYSTEM_PROCESSOR", "x86_64");
             }
-        }
-
-        if target_vendor() == "apple" && target_os().trim() == "ios" {
-            cmake_cfg.define("CMAKE_SYSTEM_NAME", "iOS");
-            if target().trim().ends_with("-ios-sim") {
-                cmake_cfg.define("CMAKE_OSX_SYSROOT", "iphonesimulator");
+            if target_os().trim() == "ios" {
+                cmake_cfg.define("CMAKE_SYSTEM_NAME", "iOS");
+                if target().trim().ends_with("-ios-sim") {
+                    cmake_cfg.define("CMAKE_OSX_SYSROOT", "iphonesimulator");
+                }
             }
         }
 

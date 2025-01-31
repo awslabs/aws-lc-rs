@@ -7,14 +7,13 @@ use super::{encoding, RsaParameters};
 #[cfg(feature = "fips")]
 use crate::aws_lc::RSA;
 use crate::aws_lc::{
-    EVP_PKEY_assign_RSA, EVP_PKEY_new, RSA_generate_key_ex, RSA_generate_key_fips, RSA_new,
-    RSA_set0_key, RSA_size, BIGNUM, EVP_PKEY, EVP_PKEY_RSA, EVP_PKEY_RSA_PSS,
+    EVP_PKEY_CTX_set_rsa_keygen_bits, EVP_PKEY_assign_RSA, EVP_PKEY_new, RSA_new, RSA_set0_key,
+    RSA_size, EVP_PKEY, EVP_PKEY_RSA, EVP_PKEY_RSA_PSS,
 };
 #[cfg(feature = "ring-io")]
 use crate::aws_lc::{RSA_get0_e, RSA_get0_n};
 use crate::encoding::{AsDer, Pkcs8V1Der};
 use crate::error::{KeyRejected, Unspecified};
-use crate::fips::indicator_check;
 #[cfg(feature = "ring-io")]
 use crate::io;
 #[cfg(feature = "ring-io")]
@@ -111,26 +110,30 @@ impl KeyPair {
 
     /// Generate a RSA `KeyPair` of the specified key-strength.
     ///
+    /// Supports the following key sizes:
+    /// * `KeySize::Rsa2048`
+    /// * `KeySize::Rsa3072`
+    /// * `KeySize::Rsa4096`
+    /// * `KeySize::Rsa8192`
+    ///
     /// # Errors
     /// * `Unspecified`: Any key generation failure.
     pub fn generate(size: KeySize) -> Result<Self, Unspecified> {
-        let private_key = generate_rsa_key(size.bits(), false)?;
+        let private_key = generate_rsa_key(size.bits())?;
         Ok(Self::new(private_key)?)
     }
 
     /// Generate a RSA `KeyPair` of the specified key-strength.
     ///
-    /// Supports the following key sizes:
-    /// * `SignatureKeySize::Rsa2048`
-    /// * `SignatureKeySize::Rsa3072`
-    /// * `SignatureKeySize::Rsa4096`
+    /// ## Deprecated
+    /// This is equivalent to `KeyPair::generate`.
     ///
     /// # Errors
     /// * `Unspecified`: Any key generation failure.
     #[cfg(feature = "fips")]
+    #[deprecated]
     pub fn generate_fips(size: KeySize) -> Result<Self, Unspecified> {
-        let private_key = generate_rsa_key(size.bits(), true)?;
-        Ok(Self::new(private_key)?)
+        Self::generate(size)
     }
 
     /// Parses an unencrypted PKCS#8 DER encoded RSA private key.
@@ -443,33 +446,16 @@ where
     }
 }
 
-pub(super) fn generate_rsa_key(size: c_int, fips: bool) -> Result<LcPtr<EVP_PKEY>, Unspecified> {
-    // We explicitly don't use `EVP_PKEY_keygen`, as it will force usage of either the FIPS or non-FIPS
-    // keygen function based on the whether the build of AWS-LC had FIPS enbaled. Rather we delegate to the desired
-    // generation function.
-
-    const RSA_F4: u64 = 65537;
-
-    let mut rsa = DetachableLcPtr::new(unsafe { RSA_new() })?;
-
-    if 1 != if fips {
-        indicator_check!(unsafe { RSA_generate_key_fips(*rsa.as_mut(), size, null_mut()) })
-    } else {
-        let e: LcPtr<BIGNUM> = RSA_F4.try_into()?;
-        unsafe { RSA_generate_key_ex(*rsa.as_mut(), size, *e.as_const(), null_mut()) }
-    } {
-        return Err(Unspecified);
-    }
-
-    let mut evp_pkey = LcPtr::new(unsafe { EVP_PKEY_new() })?;
-
-    if 1 != unsafe { EVP_PKEY_assign_RSA(*evp_pkey.as_mut(), *rsa) } {
-        return Err(Unspecified);
+pub(super) fn generate_rsa_key(size: c_int) -> Result<LcPtr<EVP_PKEY>, Unspecified> {
+    let params_fn = |ctx| {
+        if 1 == unsafe { EVP_PKEY_CTX_set_rsa_keygen_bits(ctx, size) } {
+            Ok(())
+        } else {
+            Err(())
+        }
     };
 
-    rsa.detach();
-
-    Ok(evp_pkey)
+    LcPtr::<EVP_PKEY>::generate(EVP_PKEY_RSA, Some(params_fn))
 }
 
 #[cfg(feature = "fips")]

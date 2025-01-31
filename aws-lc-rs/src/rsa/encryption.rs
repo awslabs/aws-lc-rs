@@ -61,7 +61,7 @@ impl PrivateDecryptingKey {
     /// # Errors
     /// * `Unspecified` for any error that occurs during the generation of the RSA keypair.
     pub fn generate(size: KeySize) -> Result<Self, Unspecified> {
-        let key = generate_rsa_key(size.bits(), false)?;
+        let key = generate_rsa_key(size.bits())?;
         Self::new(key)
     }
 
@@ -71,13 +71,17 @@ impl PrivateDecryptingKey {
     /// * `KeySize::Rsa2048`
     /// * `KeySize::Rsa3072`
     /// * `KeySize::Rsa4096`
+    /// * `KeySize::Rsa8192`
+    ///
+    /// ## Deprecated
+    /// This is equivalent to `KeyPair::generate`.
     ///
     /// # Errors
-    /// * `Unspecified`: Any key generation failure.
+    /// * `Unspecified` for any error that occurs during the generation of the RSA keypair.
     #[cfg(feature = "fips")]
+    #[deprecated]
     pub fn generate_fips(size: KeySize) -> Result<Self, Unspecified> {
-        let key = generate_rsa_key(size.bits(), true)?;
-        Self::new(key)
+        Self::generate(size)
     }
 
     /// Construct a `PrivateDecryptingKey` from the provided PKCS#8 (v1) document.

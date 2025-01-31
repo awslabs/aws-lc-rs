@@ -62,9 +62,8 @@ use crate::ptr::ConstPointer;
 pub use ephemeral::{agree_ephemeral, EphemeralPrivateKey};
 
 use crate::aws_lc::{
-    EVP_PKEY_CTX_new_id, EVP_PKEY_derive, EVP_PKEY_derive_init, EVP_PKEY_derive_set_peer,
-    EVP_PKEY_get0_EC_KEY, EVP_PKEY_keygen, EVP_PKEY_keygen_init, NID_X9_62_prime256v1,
-    NID_secp384r1, NID_secp521r1, EVP_PKEY, EVP_PKEY_X25519, NID_X25519,
+    EVP_PKEY_derive, EVP_PKEY_derive_init, EVP_PKEY_derive_set_peer, EVP_PKEY_get0_EC_KEY,
+    NID_X9_62_prime256v1, NID_secp384r1, NID_secp521r1, EVP_PKEY, EVP_PKEY_X25519, NID_X25519,
 };
 
 use crate::buffer::Buffer;
@@ -74,6 +73,7 @@ use crate::encoding::{
     AsBigEndian, AsDer, Curve25519SeedBin, EcPrivateKeyBin, EcPrivateKeyRfc5915Der,
     EcPublicKeyCompressedBin, EcPublicKeyUncompressedBin, PublicKeyX509Der,
 };
+use crate::evp_pkey::No_EVP_PKEY_CTX_consumer;
 use crate::fips::indicator_check;
 use crate::ptr::LcPtr;
 use core::fmt;
@@ -482,21 +482,7 @@ impl AsBigEndian<Curve25519SeedBin<'static>> for PrivateKey {
 }
 
 pub(crate) fn generate_x25519() -> Result<LcPtr<EVP_PKEY>, Unspecified> {
-    let mut pkey_ctx = LcPtr::new(unsafe { EVP_PKEY_CTX_new_id(EVP_PKEY_X25519, null_mut()) })?;
-
-    if 1 != unsafe { EVP_PKEY_keygen_init(*pkey_ctx.as_mut()) } {
-        return Err(Unspecified);
-    }
-
-    let mut pkey: *mut EVP_PKEY = null_mut();
-
-    if 1 != indicator_check!(unsafe { EVP_PKEY_keygen(*pkey_ctx.as_mut(), &mut pkey) }) {
-        return Err(Unspecified);
-    }
-
-    let pkey = LcPtr::new(pkey)?;
-
-    Ok(pkey)
+    LcPtr::<EVP_PKEY>::generate(EVP_PKEY_X25519, No_EVP_PKEY_CTX_consumer)
 }
 
 const MAX_PUBLIC_KEY_LEN: usize = ec::PUBLIC_KEY_MAX_LEN;

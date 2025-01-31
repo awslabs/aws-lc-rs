@@ -4,7 +4,6 @@
 // SPDX-License-Identifier: Apache-2.0 OR ISC
 
 use crate::ec::signature::AlgorithmID;
-use core::ptr::null_mut;
 // TODO: Uncomment when MSRV >= 1.64
 use std::os::raw::c_int;
 
@@ -15,12 +14,12 @@ use crate::aws_lc::EC_KEY_check_key;
 use crate::aws_lc::{
     ECDSA_SIG_from_bytes, ECDSA_SIG_get0_r, ECDSA_SIG_get0_s, EC_GROUP_get_curve_name,
     EC_KEY_get0_group, EC_group_p224, EC_group_p256, EC_group_p384, EC_group_p521,
-    EC_group_secp256k1, EVP_PKEY_CTX_new_id, EVP_PKEY_CTX_set_ec_paramgen_curve_nid,
-    EVP_PKEY_get0_EC_KEY, EVP_PKEY_keygen, EVP_PKEY_keygen_init, NID_X9_62_prime256v1,
-    NID_secp224r1, NID_secp256k1, NID_secp384r1, NID_secp521r1, EC_GROUP, EC_KEY, EVP_PKEY,
-    EVP_PKEY_EC,
+    EC_group_secp256k1, EVP_PKEY_CTX_set_ec_paramgen_curve_nid, EVP_PKEY_get0_EC_KEY,
+    NID_X9_62_prime256v1, NID_secp224r1, NID_secp256k1, NID_secp384r1, NID_secp521r1, EC_GROUP,
+    EC_KEY, EVP_PKEY, EVP_PKEY_EC,
 };
 use crate::error::{KeyRejected, Unspecified};
+#[cfg(feature = "fips")]
 use crate::fips::indicator_check;
 use crate::ptr::{ConstPointer, LcPtr};
 use crate::signature::Signature;
@@ -85,25 +84,14 @@ pub(crate) fn validate_evp_key(
 
 #[inline]
 pub(crate) fn evp_key_generate(nid: c_int) -> Result<LcPtr<EVP_PKEY>, Unspecified> {
-    let mut pkey_ctx = LcPtr::new(unsafe { EVP_PKEY_CTX_new_id(EVP_PKEY_EC, null_mut()) })?;
-
-    if 1 != unsafe { EVP_PKEY_keygen_init(*pkey_ctx.as_mut()) } {
-        return Err(Unspecified);
-    }
-
-    if 1 != unsafe { EVP_PKEY_CTX_set_ec_paramgen_curve_nid(*pkey_ctx.as_mut(), nid) } {
-        return Err(Unspecified);
-    }
-
-    let mut pkey = null_mut::<EVP_PKEY>();
-
-    if 1 != indicator_check!(unsafe { EVP_PKEY_keygen(*pkey_ctx.as_mut(), &mut pkey) }) {
-        return Err(Unspecified);
-    }
-
-    let pkey = LcPtr::new(pkey)?;
-
-    Ok(pkey)
+    let params_fn = |ctx| {
+        if 1 == unsafe { EVP_PKEY_CTX_set_ec_paramgen_curve_nid(ctx, nid) } {
+            Ok(())
+        } else {
+            Err(())
+        }
+    };
+    LcPtr::<EVP_PKEY>::generate(EVP_PKEY_EC, Some(params_fn))
 }
 
 #[inline]

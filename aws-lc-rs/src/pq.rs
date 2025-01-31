@@ -4,10 +4,9 @@
 
 use crate::aws_lc::{
     d2i_PrivateKey, CBB_init, EVP_PKEY_CTX_new_id, EVP_PKEY_CTX_pqdsa_set_params,
-    EVP_PKEY_get_raw_private_key, EVP_PKEY_get_raw_public_key, EVP_PKEY_keygen,
-    EVP_PKEY_keygen_init, EVP_PKEY_new, EVP_PKEY_pqdsa_new_raw_private_key,
-    EVP_PKEY_pqdsa_new_raw_public_key, EVP_marshal_private_key, EVP_marshal_public_key,
-    EVP_parse_public_key, CBB, EVP_PKEY, EVP_PKEY_PQDSA,
+    EVP_PKEY_get_raw_private_key, EVP_PKEY_get_raw_public_key, EVP_PKEY_new,
+    EVP_PKEY_pqdsa_new_raw_private_key, EVP_PKEY_pqdsa_new_raw_public_key, EVP_marshal_private_key,
+    EVP_marshal_public_key, EVP_parse_public_key, CBB, EVP_PKEY, EVP_PKEY_PQDSA,
 };
 use crate::cbb::LcCBB;
 use crate::cbs::build_CBS;
@@ -18,29 +17,18 @@ use crate::evp_pkey::*;
 use crate::fips::indicator_check;
 use crate::ptr::LcPtr;
 use crate::signature::MAX_LEN;
-use std::ffi::c_int;
+use std::os::raw::c_int;
 use std::ptr::null_mut;
 
 pub(crate) fn evp_key_pqdsa_generate(nid: c_int) -> Result<LcPtr<EVP_PKEY>, Unspecified> {
-    let mut pkey_ctx = LcPtr::new(unsafe { EVP_PKEY_CTX_new_id(EVP_PKEY_PQDSA, null_mut()) })?;
-
-    if 1 != unsafe { EVP_PKEY_keygen_init(*pkey_ctx.as_mut()) } {
-        return Err(Unspecified);
-    }
-
-    if 1 != unsafe { EVP_PKEY_CTX_pqdsa_set_params(*pkey_ctx.as_mut(), nid) } {
-        return Err(Unspecified);
-    }
-
-    let mut pkey = null_mut::<EVP_PKEY>();
-
-    if 1 != indicator_check!(unsafe { EVP_PKEY_keygen(*pkey_ctx.as_mut(), &mut pkey) }) {
-        return Err(Unspecified);
-    }
-
-    let pkey = LcPtr::new(pkey)?;
-
-    Ok(pkey)
+    let params_fn = |ctx| {
+        if 1 == unsafe { EVP_PKEY_CTX_pqdsa_set_params(ctx, nid) } {
+            return Ok(());
+        } else {
+            return Err(());
+        }
+    };
+    LcPtr::<EVP_PKEY>::generate(EVP_PKEY_PQDSA, Some(params_fn))
 }
 
 #[cfg(test)]

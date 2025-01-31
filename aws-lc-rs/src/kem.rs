@@ -46,8 +46,8 @@
 //! # Ok::<(), aws_lc_rs::error::Unspecified>(())
 //! ```
 use crate::aws_lc::{
-    EVP_PKEY_CTX_kem_set_params, EVP_PKEY_CTX_new_id, EVP_PKEY_decapsulate, EVP_PKEY_encapsulate,
-    EVP_PKEY_kem_new_raw_public_key, EVP_PKEY_keygen, EVP_PKEY_keygen_init, EVP_PKEY, EVP_PKEY_KEM,
+    EVP_PKEY_CTX_kem_set_params, EVP_PKEY_decapsulate, EVP_PKEY_encapsulate,
+    EVP_PKEY_kem_new_raw_public_key, EVP_PKEY, EVP_PKEY_KEM,
 };
 use crate::buffer::Buffer;
 use crate::encoding::generated_encodings;
@@ -55,7 +55,6 @@ use crate::error::{KeyRejected, Unspecified};
 use crate::ptr::LcPtr;
 use alloc::borrow::Cow;
 use core::cmp::Ordering;
-use core::ptr::null_mut;
 use zeroize::Zeroize;
 
 const ML_KEM_512_SHARED_SECRET_LENGTH: usize = 32;
@@ -469,18 +468,15 @@ impl AsRef<[u8]> for SharedSecret {
 // Returns an LcPtr to an EVP_PKEY
 #[inline]
 fn kem_key_generate(nid: i32) -> Result<LcPtr<EVP_PKEY>, Unspecified> {
-    let mut ctx = LcPtr::new(unsafe { EVP_PKEY_CTX_new_id(EVP_PKEY_KEM, null_mut()) })?;
-    if 1 != unsafe { EVP_PKEY_CTX_kem_set_params(*ctx.as_mut(), nid) }
-        || 1 != unsafe { EVP_PKEY_keygen_init(*ctx.as_mut()) }
-    {
-        return Err(Unspecified);
-    }
+    let params_fn = |ctx| {
+        if 1 == unsafe { EVP_PKEY_CTX_kem_set_params(ctx, nid) } {
+            Ok(())
+        } else {
+            Err(())
+        }
+    };
 
-    let mut key_raw: *mut EVP_PKEY = null_mut();
-    if 1 != unsafe { EVP_PKEY_keygen(*ctx.as_mut(), &mut key_raw) } {
-        return Err(Unspecified);
-    }
-    Ok(LcPtr::new(key_raw)?)
+    LcPtr::<EVP_PKEY>::generate(EVP_PKEY_KEM, Some(params_fn))
 }
 
 #[cfg(test)]

@@ -5,15 +5,12 @@
 
 use core::fmt;
 use core::fmt::{Debug, Formatter};
-use core::ptr::null_mut;
 use std::marker::PhantomData;
 
 #[cfg(feature = "ring-sig-verify")]
 use untrusted::Input;
 
-use crate::aws_lc::{
-    EVP_PKEY_CTX_new_id, EVP_PKEY_keygen, EVP_PKEY_keygen_init, EVP_PKEY, EVP_PKEY_ED25519,
-};
+use crate::aws_lc::{EVP_PKEY, EVP_PKEY_ED25519};
 
 use crate::buffer::Buffer;
 use crate::encoding::{
@@ -21,7 +18,6 @@ use crate::encoding::{
 };
 use crate::error::{KeyRejected, Unspecified};
 use crate::evp_pkey::No_EVP_PKEY_CTX_consumer;
-use crate::fips::indicator_check;
 use crate::pkcs8::{Document, Version};
 use crate::ptr::LcPtr;
 use crate::rand::SecureRandom;
@@ -172,22 +168,8 @@ impl KeyPair for Ed25519KeyPair {
 unsafe impl Send for Ed25519KeyPair {}
 unsafe impl Sync for Ed25519KeyPair {}
 
-pub(crate) fn generate_key() -> Result<LcPtr<EVP_PKEY>, ()> {
-    let mut pkey_ctx = LcPtr::new(unsafe { EVP_PKEY_CTX_new_id(EVP_PKEY_ED25519, null_mut()) })?;
-
-    if 1 != unsafe { EVP_PKEY_keygen_init(*pkey_ctx.as_mut()) } {
-        return Err(());
-    }
-
-    let mut pkey = null_mut::<EVP_PKEY>();
-
-    if 1 != indicator_check!(unsafe { EVP_PKEY_keygen(*pkey_ctx.as_mut(), &mut pkey) }) {
-        return Err(());
-    }
-
-    let pkey = LcPtr::new(pkey)?;
-
-    Ok(pkey)
+pub(crate) fn generate_key() -> Result<LcPtr<EVP_PKEY>, Unspecified> {
+    LcPtr::<EVP_PKEY>::generate(EVP_PKEY_ED25519, No_EVP_PKEY_CTX_consumer)
 }
 
 impl Ed25519KeyPair {

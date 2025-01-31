@@ -3,11 +3,12 @@
 
 use crate::aws_lc::{
     EVP_DigestSign, EVP_DigestSignInit, EVP_DigestVerify, EVP_DigestVerifyInit, EVP_PKEY_CTX_new,
-    EVP_PKEY_bits, EVP_PKEY_get0_EC_KEY, EVP_PKEY_get0_RSA, EVP_PKEY_get_raw_private_key,
-    EVP_PKEY_get_raw_public_key, EVP_PKEY_id, EVP_PKEY_new_raw_private_key,
-    EVP_PKEY_new_raw_public_key, EVP_PKEY_size, EVP_PKEY_up_ref, EVP_marshal_private_key,
-    EVP_marshal_private_key_v2, EVP_marshal_public_key, EVP_parse_private_key,
-    EVP_parse_public_key, EC_KEY, EVP_PKEY, EVP_PKEY_CTX, EVP_PKEY_ED25519, RSA,
+    EVP_PKEY_CTX_new_id, EVP_PKEY_bits, EVP_PKEY_get0_EC_KEY, EVP_PKEY_get0_RSA,
+    EVP_PKEY_get_raw_private_key, EVP_PKEY_get_raw_public_key, EVP_PKEY_id, EVP_PKEY_keygen,
+    EVP_PKEY_keygen_init, EVP_PKEY_new_raw_private_key, EVP_PKEY_new_raw_public_key, EVP_PKEY_size,
+    EVP_PKEY_up_ref, EVP_marshal_private_key, EVP_marshal_private_key_v2, EVP_marshal_public_key,
+    EVP_parse_private_key, EVP_parse_public_key, EC_KEY, EVP_PKEY, EVP_PKEY_CTX, EVP_PKEY_ED25519,
+    RSA,
 };
 #[cfg(not(feature = "fips"))]
 use crate::aws_lc::{
@@ -400,6 +401,29 @@ impl LcPtr<EVP_PKEY> {
         }
 
         Ok(())
+    }
+
+    pub(crate) fn generate<F>(pkey_type: c_int, params_fn: Option<F>) -> Result<Self, Unspecified>
+    where
+        F: EVP_PKEY_CTX_consumer,
+    {
+        let mut pkey_ctx = LcPtr::new(unsafe { EVP_PKEY_CTX_new_id(pkey_type, null_mut()) })?;
+
+        if 1 != unsafe { EVP_PKEY_keygen_init(*pkey_ctx.as_mut()) } {
+            return Err(Unspecified);
+        }
+
+        if let Some(pad_fn) = params_fn {
+            pad_fn(*pkey_ctx.as_mut())?;
+        }
+
+        let mut pkey = null_mut::<EVP_PKEY>();
+
+        if 1 != indicator_check!(unsafe { EVP_PKEY_keygen(*pkey_ctx.as_mut(), &mut pkey) }) {
+            return Err(Unspecified);
+        }
+
+        Ok(LcPtr::new(pkey)?)
     }
 }
 

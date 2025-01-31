@@ -194,6 +194,7 @@ impl CcBuilder {
             // clang: error: overriding '-mmacosx-version-min=13.7' option with '--target=x86_64-apple-macosx14.2' [-Werror,-Woverriding-t-option]
             // ```
             cc_build.flag_if_supported("-Wno-overriding-t-option");
+            cc_build.flag_if_supported("-Wno-overriding-option");
         }
 
         cc_build

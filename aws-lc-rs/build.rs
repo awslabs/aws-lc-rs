@@ -19,6 +19,7 @@ fn main() {
             println!("cargo:warning=### Slow tests are enabled: {disable}! ###");
         }
     }
+    println!("cargo:rerun-if-env-changed=AWS_LC_RS_DISABLE_SLOW_TESTS");
 
     // This appears asymmetric, but it reflects the `cfg` statements in lib.rs that
     // require `aws-lc-sys` to be present when "fips" is not enabled.

@@ -11,11 +11,11 @@ use zeroize::Zeroize;
 
 /// A generated PKCS#8 document.
 pub struct Document {
-    bytes: Box<[u8]>,
+    bytes: Vec<u8>,
 }
 
 impl Document {
-    pub(crate) fn new(bytes: Box<[u8]>) -> Self {
+    pub(crate) fn new(bytes: Vec<u8>) -> Self {
         Self { bytes }
     }
 }

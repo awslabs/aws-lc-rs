@@ -37,12 +37,6 @@ impl<'a, T> Buffer<'a, T> {
         slice.zeroize();
         Buffer(Cow::Owned(owned), PhantomData)
     }
-
-    // TODO: remove this "allow" once this is used.
-    #[allow(dead_code)]
-    pub(crate) fn public_from_slice(slice: &[u8]) -> Buffer<'_, T> {
-        Buffer(Cow::Borrowed(slice), PhantomData)
-    }
 }
 
 impl<T> fmt::Debug for Buffer<'_, T> {
@@ -74,12 +68,5 @@ mod tests {
         let buffer: Buffer<u8> = Buffer::take_from_slice(&mut slice);
         assert_eq!(buffer.as_ref(), &[1, 2, 3]);
         assert_eq!(slice, [0, 0, 0]);
-    }
-
-    #[test]
-    fn test_public_from_slice() {
-        let slice = [1, 2, 3];
-        let buffer: Buffer<u8> = Buffer::public_from_slice(&slice);
-        assert_eq!(buffer.as_ref(), &[1, 2, 3]);
     }
 }

@@ -5,7 +5,7 @@ Dump of file rsaz-avx2.obj
 
 File Type: COFF OBJECT
 
-aws_lc_0_25_0_rsaz_1024_sqr_avx2:
+aws_lc_0_26_0_rsaz_1024_sqr_avx2:
   0000000000000000: 48 89 7C 24 08     mov         qword ptr [rsp+8],rdi
   0000000000000005: 48 89 74 24 10     mov         qword ptr [rsp+10h],rsi
   000000000000000A: 48 89 E0           mov         rax,rsp
@@ -773,7 +773,7 @@ L$SEH_end_rsaz_1024_sqr_avx2:
   0000000000000C7D: 90                 nop
   0000000000000C7E: 90                 nop
   0000000000000C7F: 90                 nop
-aws_lc_0_25_0_rsaz_1024_mul_avx2:
+aws_lc_0_26_0_rsaz_1024_mul_avx2:
   0000000000000C80: 48 89 7C 24 08     mov         qword ptr [rsp+8],rdi
   0000000000000C85: 48 89 74 24 10     mov         qword ptr [rsp+10h],rsi
   0000000000000C8A: 48 89 E0           mov         rax,rsp
@@ -1360,7 +1360,7 @@ L$SEH_end_rsaz_1024_mul_avx2:
   000000000000165D: 90                 nop
   000000000000165E: 90                 nop
   000000000000165F: 90                 nop
-aws_lc_0_25_0_rsaz_1024_red2norm_avx2:
+aws_lc_0_26_0_rsaz_1024_red2norm_avx2:
   0000000000001660: 48 83 EA 80        sub         rdx,0FFFFFFFFFFFFFF80h
   0000000000001664: 48 31 C0           xor         rax,rax
   0000000000001667: 4C 8B 42 80        mov         r8,qword ptr [rdx-80h]
@@ -1558,7 +1558,7 @@ aws_lc_0_25_0_rsaz_1024_red2norm_avx2:
   000000000000191C: F3 C3              rep ret
   000000000000191E: 90                 nop
   000000000000191F: 90                 nop
-aws_lc_0_25_0_rsaz_1024_norm2red_avx2:
+aws_lc_0_26_0_rsaz_1024_norm2red_avx2:
   0000000000001920: 48 83 E9 80        sub         rcx,0FFFFFFFFFFFFFF80h
   0000000000001924: 4C 8B 02           mov         r8,qword ptr [rdx]
   0000000000001927: B8 FF FF FF 1F     mov         eax,1FFFFFFFh
@@ -1739,7 +1739,7 @@ aws_lc_0_25_0_rsaz_1024_norm2red_avx2:
   0000000000001B7D: 90                 nop
   0000000000001B7E: 90                 nop
   0000000000001B7F: 90                 nop
-aws_lc_0_25_0_rsaz_1024_scatter5_avx2:
+aws_lc_0_26_0_rsaz_1024_scatter5_avx2:
   0000000000001B80: C5 F8 77           vzeroupper
   0000000000001B83: C5 FE 6F 2D 20 00  vmovdqu     ymm5,ymmword ptr [.rdata+20h]
                     00 00
@@ -1788,7 +1788,7 @@ L$oop_scatter_1024:
   0000000000001BDD: 90                 nop
   0000000000001BDE: 90                 nop
   0000000000001BDF: 90                 nop
-aws_lc_0_25_0_rsaz_1024_gather5_avx2:
+aws_lc_0_26_0_rsaz_1024_gather5_avx2:
   0000000000001BE0: C5 F8 77           vzeroupper
   0000000000001BE3: 49 89 E3           mov         r11,rsp
   0000000000001BE6: 48 8D 84 24 78 FF  lea         rax,[rsp-88h]

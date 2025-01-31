@@ -2,11 +2,15 @@
 // SPDX-License-Identifier: Apache-2.0 OR ISC
 #![allow(unused)]
 
+pub(crate) mod key_pair;
+pub(crate) mod signature;
+
 use crate::aws_lc::{
     d2i_PrivateKey, CBB_init, EVP_PKEY_CTX_new_id, EVP_PKEY_CTX_pqdsa_set_params,
     EVP_PKEY_get_raw_private_key, EVP_PKEY_get_raw_public_key, EVP_PKEY_new,
     EVP_PKEY_pqdsa_new_raw_private_key, EVP_PKEY_pqdsa_new_raw_public_key, EVP_marshal_private_key,
-    EVP_marshal_public_key, EVP_parse_public_key, CBB, EVP_PKEY, EVP_PKEY_PQDSA,
+    EVP_marshal_public_key, EVP_parse_public_key, CBB, EVP_PKEY, EVP_PKEY_PQDSA, NID_MLDSA44,
+    NID_MLDSA65, NID_MLDSA87,
 };
 use crate::cbb::LcCBB;
 use crate::cbs::build_CBS;
@@ -16,19 +20,25 @@ use crate::error::{KeyRejected, Unspecified};
 use crate::evp_pkey::*;
 use crate::fips::indicator_check;
 use crate::ptr::LcPtr;
-use crate::signature::MAX_LEN;
 use std::os::raw::c_int;
 use std::ptr::null_mut;
 
-pub(crate) fn evp_key_pqdsa_generate(nid: c_int) -> Result<LcPtr<EVP_PKEY>, Unspecified> {
-    let params_fn = |ctx| {
-        if 1 == unsafe { EVP_PKEY_CTX_pqdsa_set_params(ctx, nid) } {
-            return Ok(());
-        } else {
-            return Err(());
+#[derive(Debug, Eq, PartialEq)]
+#[allow(non_camel_case_types)]
+pub(crate) enum AlgorithmID {
+    MLDSA_44,
+    MLDSA_65,
+    MLDSA_87,
+}
+
+impl AlgorithmID {
+    pub(crate) fn nid(&self) -> c_int {
+        match self {
+            Self::MLDSA_44 => NID_MLDSA44,
+            Self::MLDSA_65 => NID_MLDSA65,
+            Self::MLDSA_87 => NID_MLDSA87,
         }
-    };
-    LcPtr::<EVP_PKEY>::generate(EVP_PKEY_PQDSA, Some(params_fn))
+    }
 }
 
 #[cfg(test)]
@@ -40,7 +50,7 @@ mod tests {
     use crate::evp_pkey::*;
     use crate::hmac::sign;
     use crate::pkcs8::Version;
-    use crate::pq::evp_key_pqdsa_generate;
+    use crate::pqdsa::key_pair::evp_key_pqdsa_generate;
     use crate::ptr::LcPtr;
     use std::ffi::c_int;
 

@@ -167,7 +167,7 @@ fn test_aead<Seal, Open>(
                 return Ok(());
             }
             _ => (),
-        };
+        }
 
         let mut s_in_out = plaintext.clone();
         let nonce = Nonce::try_assume_unique_for_key(&nonce_bytes).unwrap();
@@ -242,7 +242,7 @@ fn test_aead<Seal, Open>(
                 Some(error) => {
                     panic!("Unexpected error test case: {error}");
                 }
-            };
+            }
         }
 
         Ok(())

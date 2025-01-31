@@ -400,7 +400,7 @@ impl crate::Builder for CmakeBuilder {
         } else {
             eprintln!("Missing dependency: cmake");
             missing_dependency = true;
-        };
+        }
 
         if missing_dependency {
             return Err("Required build dependency is missing. Halting build.".to_owned());

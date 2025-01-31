@@ -306,7 +306,7 @@ impl Key {
                 null_mut(),
             ) {
                 return Err(Unspecified);
-            };
+            }
             let result = Self {
                 algorithm,
                 ctx: LcHmacCtx(ctx.assume_init()),

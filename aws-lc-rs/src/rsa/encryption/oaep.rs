@@ -136,7 +136,7 @@ impl OaepPublicEncryptingKey {
             )
         }) {
             return Err(Unspecified);
-        };
+        }
 
         Ok(&mut ciphertext[..out_len])
     }
@@ -240,7 +240,7 @@ impl OaepPrivateDecryptingKey {
             )
         }) {
             return Err(Unspecified);
-        };
+        }
 
         Ok(&mut plaintext[..out_len])
     }
@@ -280,15 +280,15 @@ fn configure_oaep_crypto_operation(
     if 1 != unsafe { EVP_PKEY_CTX_set_rsa_padding(*evp_pkey_ctx.as_mut(), RSA_PKCS1_OAEP_PADDING) }
     {
         return Err(Unspecified);
-    };
+    }
 
     if 1 != unsafe { EVP_PKEY_CTX_set_rsa_oaep_md(*evp_pkey_ctx.as_mut(), oaep_hash_fn()) } {
         return Err(Unspecified);
-    };
+    }
 
     if 1 != unsafe { EVP_PKEY_CTX_set_rsa_mgf1_md(*evp_pkey_ctx.as_mut(), mgf1_hash_fn()) } {
         return Err(Unspecified);
-    };
+    }
 
     let label = label.unwrap_or(&[0u8; 0]);
 
@@ -315,7 +315,7 @@ fn configure_oaep_crypto_operation(
         EVP_PKEY_CTX_set0_rsa_oaep_label(*evp_pkey_ctx.as_mut(), *label_ptr, label.len())
     } {
         return Err(Unspecified);
-    };
+    }
 
     // AWS-LC owns the allocation now, so we detach it to avoid freeing it here when label_ptr goes out of scope.
     label_ptr.detach();

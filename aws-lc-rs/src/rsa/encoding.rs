@@ -143,7 +143,7 @@ pub(in crate::rsa) mod rfc5280 {
 
         if 1 != unsafe { EVP_marshal_public_key(der.as_mut_ptr(), *key.as_const()) } {
             return Err(Unspecified);
-        };
+        }
 
         Ok(PublicKeyX509Der::from(der.into_buffer()?))
     }

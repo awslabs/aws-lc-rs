@@ -252,7 +252,7 @@ impl PrkMode {
                     return Err(Unspecified);
                 }
             }
-        };
+        }
 
         Ok(())
     }

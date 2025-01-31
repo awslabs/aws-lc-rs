@@ -404,7 +404,7 @@ impl KeyWrapPadded for KeyEncryptionKey<AesBlockCipher> {
             )
         }) {
             return Err(Unspecified);
-        };
+        }
 
         Ok(&mut output[..out_len])
     }

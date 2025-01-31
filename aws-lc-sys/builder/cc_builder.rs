@@ -136,7 +136,7 @@ impl CcBuilder {
                     cc_build.std("c99");
                 }
             }
-        };
+        }
 
         if let Some(cc) = option_env("CC") {
             emit_warning(&format!("CC environment variable set: {}", cc.clone()));
@@ -399,7 +399,7 @@ impl crate::Builder for CcBuilder {
         }
 
         if Some(true) == env_var_to_bool("CARGO_FEATURE_SSL") {
-            return Err(format!("cc_builder for libssl not supported"));
+            return Err("cc_builder for libssl not supported".to_string());
         }
 
         Ok(())

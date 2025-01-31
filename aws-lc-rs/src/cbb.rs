@@ -29,7 +29,7 @@ impl LcCBB<'static> {
 
         if 1 != unsafe { CBB_finish(self.as_mut_ptr(), &mut out_data, &mut out_len) } {
             return Err(Unspecified);
-        };
+        }
 
         let mut out_data = LcPtr::new(out_data)?;
 

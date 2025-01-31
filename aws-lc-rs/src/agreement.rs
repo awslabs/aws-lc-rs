@@ -623,7 +623,7 @@ impl AsDer<PublicKeyX509Der<'static>> for PublicKey {
                 let mut der = LcCBB::new(key_size_bytes * 5);
                 if 1 != unsafe { EVP_marshal_public_key(der.as_mut_ptr(), *evp_pkey.as_const()) } {
                     return Err(Unspecified);
-                };
+                }
                 Ok(PublicKeyX509Der::from(der.into_buffer()?))
             }
         }
@@ -794,7 +794,7 @@ fn ec_key_ecdh<'a>(
 
     if 1 != unsafe { EVP_PKEY_derive_init(*pkey_ctx.as_mut()) } {
         return Err(());
-    };
+    }
 
     if 1 != unsafe { EVP_PKEY_derive_set_peer(*pkey_ctx.as_mut(), *pub_key.as_mut()) } {
         return Err(());
@@ -825,7 +825,7 @@ fn x25519_diffie_hellman<'a>(
 
     if 1 != unsafe { EVP_PKEY_derive_init(*pkey_ctx.as_mut()) } {
         return Err(());
-    };
+    }
 
     let mut pub_key = try_parse_x25519_public_key_bytes(peer_pub_key)?;
 

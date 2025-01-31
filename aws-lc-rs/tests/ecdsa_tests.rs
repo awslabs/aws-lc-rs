@@ -84,7 +84,7 @@ fn ecdsa_from_pkcs8_test() {
                     "Input: {}",
                     test::to_hex(&input)
                 ),
-            };
+            }
 
             match (EcdsaKeyPair::from_pkcs8(this_asn1, &input), error) {
                 (Ok(_), None) => (),
@@ -93,7 +93,7 @@ fn ecdsa_from_pkcs8_test() {
                 }
                 (Ok(_), Some(e)) => panic!("Succeeded, but expected error \"{e}\""),
                 (Err(actual), Some(expected)) => assert_eq!(format!("{actual}"), expected),
-            };
+            }
 
             assert!(
                 EcdsaKeyPair::from_pkcs8(other_fixed, &input).is_err(),

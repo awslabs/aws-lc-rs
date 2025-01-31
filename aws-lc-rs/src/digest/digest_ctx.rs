@@ -18,7 +18,7 @@ impl DigestContext {
         unsafe {
             if 1 != EVP_DigestInit_ex(dc.as_mut_ptr(), *evp_md_type, null_mut()) {
                 return Err(Unspecified);
-            };
+            }
             Ok(dc)
         }
     }
@@ -65,7 +65,7 @@ impl DigestContext {
             // https://github.com/aws/aws-lc/blob/98ccf4a316401112943bed604562102ad52efac6/include/openssl/digest.h#L280
             if 1 != EVP_MD_CTX_copy(dc.as_mut_ptr(), self.as_ptr()) {
                 return Err("EVP_MD_CTX_copy failed");
-            };
+            }
             Ok(Self(dc.assume_init()))
         }
     }

@@ -235,10 +235,10 @@ pub(super) fn compute_rsa_signature<'a>(
 pub(crate) fn configure_rsa_pkcs1_pss_padding(pctx: *mut EVP_PKEY_CTX) -> Result<(), ()> {
     if 1 != unsafe { EVP_PKEY_CTX_set_rsa_padding(pctx, RSA_PKCS1_PSS_PADDING) } {
         return Err(());
-    };
+    }
     if 1 != unsafe { EVP_PKEY_CTX_set_rsa_pss_saltlen(pctx, RSA_PSS_SALTLEN_DIGEST) } {
         return Err(());
-    };
+    }
     Ok(())
 }
 

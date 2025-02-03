@@ -5,7 +5,7 @@ Dump of file chacha-x86_64.obj
 
 File Type: COFF OBJECT
 
-aws_lc_0_25_0_ChaCha20_ctr32_nohw:
+aws_lc_0_25_1_ChaCha20_ctr32_nohw:
   0000000000000000: 48 89 7C 24 08     mov         qword ptr [rsp+8],rdi
   0000000000000005: 48 89 74 24 10     mov         qword ptr [rsp+10h],rsi
   000000000000000A: 48 89 E0           mov         rax,rsp
@@ -315,7 +315,7 @@ L$SEH_end_ChaCha20_ctr32_nohw:
   00000000000003DD: 90                 nop
   00000000000003DE: 90                 nop
   00000000000003DF: 90                 nop
-aws_lc_0_25_0_ChaCha20_ctr32_ssse3:
+aws_lc_0_25_1_ChaCha20_ctr32_ssse3:
   00000000000003E0: 48 89 7C 24 08     mov         qword ptr [rsp+8],rdi
   00000000000003E5: 48 89 74 24 10     mov         qword ptr [rsp+10h],rsi
   00000000000003EA: 48 89 E0           mov         rax,rsp
@@ -501,7 +501,7 @@ L$SEH_end_ChaCha20_ctr32_ssse3:
   000000000000063D: 90                 nop
   000000000000063E: 90                 nop
   000000000000063F: 90                 nop
-aws_lc_0_25_0_ChaCha20_ctr32_ssse3_4x:
+aws_lc_0_25_1_ChaCha20_ctr32_ssse3_4x:
   0000000000000640: 48 89 7C 24 08     mov         qword ptr [rsp+8],rdi
   0000000000000645: 48 89 74 24 10     mov         qword ptr [rsp+10h],rsi
   000000000000064A: 48 89 E0           mov         rax,rsp
@@ -1201,7 +1201,7 @@ L$SEH_end_ChaCha20_ctr32_ssse3_4x:
   000000000000111D: 90                 nop
   000000000000111E: 90                 nop
   000000000000111F: 90                 nop
-aws_lc_0_25_0_ChaCha20_ctr32_avx2:
+aws_lc_0_25_1_ChaCha20_ctr32_avx2:
   0000000000001120: 48 89 7C 24 08     mov         qword ptr [rsp+8],rdi
   0000000000001125: 48 89 74 24 10     mov         qword ptr [rsp+10h],rsi
   000000000000112A: 48 89 E0           mov         rax,rsp

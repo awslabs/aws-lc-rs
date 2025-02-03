@@ -31,7 +31,7 @@ GFMUL:
   000000000000005D: 90                 nop
   000000000000005E: 90                 nop
   000000000000005F: 90                 nop
-aws_lc_0_25_0_aesgcmsiv_htable_init:
+aws_lc_0_25_1_aesgcmsiv_htable_init:
   0000000000000060: 48 89 7C 24 08     mov         qword ptr [rsp+8],rdi
   0000000000000065: 48 89 74 24 10     mov         qword ptr [rsp+10h],rsi
   000000000000006A: 48 89 E0           mov         rax,rsp
@@ -74,7 +74,7 @@ L$SEH_end_aesgcmsiv_htable_init:
   00000000000000DD: 90                 nop
   00000000000000DE: 90                 nop
   00000000000000DF: 90                 nop
-aws_lc_0_25_0_aesgcmsiv_htable6_init:
+aws_lc_0_25_1_aesgcmsiv_htable6_init:
   00000000000000E0: 48 89 7C 24 08     mov         qword ptr [rsp+8],rdi
   00000000000000E5: 48 89 74 24 10     mov         qword ptr [rsp+10h],rsi
   00000000000000EA: 48 89 E0           mov         rax,rsp
@@ -101,7 +101,7 @@ L$SEH_end_aesgcmsiv_htable6_init:
   000000000000013D: 90                 nop
   000000000000013E: 90                 nop
   000000000000013F: 90                 nop
-aws_lc_0_25_0_aesgcmsiv_htable_polyval:
+aws_lc_0_25_1_aesgcmsiv_htable_polyval:
   0000000000000140: 48 89 7C 24 08     mov         qword ptr [rsp+8],rdi
   0000000000000145: 48 89 74 24 10     mov         qword ptr [rsp+10h],rsi
   000000000000014A: 48 89 E0           mov         rax,rsp
@@ -401,7 +401,7 @@ L$SEH_end_aesgcmsiv_htable_polyval:
   000000000000049D: 90                 nop
   000000000000049E: 90                 nop
   000000000000049F: 90                 nop
-aws_lc_0_25_0_aesgcmsiv_polyval_horner:
+aws_lc_0_25_1_aesgcmsiv_polyval_horner:
   00000000000004A0: 48 89 7C 24 08     mov         qword ptr [rsp+8],rdi
   00000000000004A5: 48 89 74 24 10     mov         qword ptr [rsp+10h],rsi
   00000000000004AA: 48 89 E0           mov         rax,rsp
@@ -442,7 +442,7 @@ L$SEH_end_aesgcmsiv_polyval_horner:
   000000000000050D: 90                 nop
   000000000000050E: 90                 nop
   000000000000050F: 90                 nop
-aws_lc_0_25_0_aes128gcmsiv_aes_ks:
+aws_lc_0_25_1_aes128gcmsiv_aes_ks:
   0000000000000510: 48 89 7C 24 08     mov         qword ptr [rsp+8],rdi
   0000000000000515: 48 89 74 24 10     mov         qword ptr [rsp+10h],rsi
   000000000000051A: 48 89 E0           mov         rax,rsp
@@ -509,7 +509,7 @@ L$SEH_end_aes128gcmsiv_aes_ks:
   00000000000005FD: 90                 nop
   00000000000005FE: 90                 nop
   00000000000005FF: 90                 nop
-aws_lc_0_25_0_aes256gcmsiv_aes_ks:
+aws_lc_0_25_1_aes256gcmsiv_aes_ks:
   0000000000000600: 48 89 7C 24 08     mov         qword ptr [rsp+8],rdi
   0000000000000605: 48 89 74 24 10     mov         qword ptr [rsp+10h],rsi
   000000000000060A: 48 89 E0           mov         rax,rsp
@@ -569,7 +569,7 @@ L$ks256_loop:
   00000000000006DD: 90                 nop
   00000000000006DE: 90                 nop
   00000000000006DF: 90                 nop
-aws_lc_0_25_0_aes128gcmsiv_aes_ks_enc_x1:
+aws_lc_0_25_1_aes128gcmsiv_aes_ks_enc_x1:
   00000000000006E0: 48 89 7C 24 08     mov         qword ptr [rsp+8],rdi
   00000000000006E5: 48 89 74 24 10     mov         qword ptr [rsp+10h],rsi
   00000000000006EA: 48 89 E0           mov         rax,rsp
@@ -718,7 +718,7 @@ L$SEH_end_aes128gcmsiv_aes_ks_enc_x1:
   000000000000093D: 90                 nop
   000000000000093E: 90                 nop
   000000000000093F: 90                 nop
-aws_lc_0_25_0_aes128gcmsiv_kdf:
+aws_lc_0_25_1_aes128gcmsiv_kdf:
   0000000000000940: 48 89 7C 24 08     mov         qword ptr [rsp+8],rdi
   0000000000000945: 48 89 74 24 10     mov         qword ptr [rsp+10h],rsi
   000000000000094A: 48 89 E0           mov         rax,rsp
@@ -808,7 +808,7 @@ L$SEH_end_aes128gcmsiv_kdf:
   0000000000000ABD: 90                 nop
   0000000000000ABE: 90                 nop
   0000000000000ABF: 90                 nop
-aws_lc_0_25_0_aes128gcmsiv_enc_msg_x4:
+aws_lc_0_25_1_aes128gcmsiv_enc_msg_x4:
   0000000000000AC0: 48 89 7C 24 08     mov         qword ptr [rsp+8],rdi
   0000000000000AC5: 48 89 74 24 10     mov         qword ptr [rsp+10h],rsi
   0000000000000ACA: 48 89 E0           mov         rax,rsp
@@ -971,7 +971,7 @@ L$SEH_end_aes128gcmsiv_enc_msg_x4:
   0000000000000D4D: 90                 nop
   0000000000000D4E: 90                 nop
   0000000000000D4F: 90                 nop
-aws_lc_0_25_0_aes128gcmsiv_enc_msg_x8:
+aws_lc_0_25_1_aes128gcmsiv_enc_msg_x8:
   0000000000000D50: 48 89 7C 24 08     mov         qword ptr [rsp+8],rdi
   0000000000000D55: 48 89 74 24 10     mov         qword ptr [rsp+10h],rsi
   0000000000000D5A: 48 89 E0           mov         rax,rsp
@@ -1224,7 +1224,7 @@ L$SEH_end_aes128gcmsiv_enc_msg_x8:
   000000000000116D: 90                 nop
   000000000000116E: 90                 nop
   000000000000116F: 90                 nop
-aws_lc_0_25_0_aes128gcmsiv_dec:
+aws_lc_0_25_1_aes128gcmsiv_dec:
   0000000000001170: 48 89 7C 24 08     mov         qword ptr [rsp+8],rdi
   0000000000001175: 48 89 74 24 10     mov         qword ptr [rsp+10h],rsi
   000000000000117A: 48 89 E0           mov         rax,rsp
@@ -1684,7 +1684,7 @@ L$128_dec_out:
   0000000000001994: 48 8B 7C 24 08     mov         rdi,qword ptr [rsp+8]
   0000000000001999: 48 8B 74 24 10     mov         rsi,qword ptr [rsp+10h]
   000000000000199E: F3 C3              rep ret
-aws_lc_0_25_0_aes128gcmsiv_ecb_enc_block:
+aws_lc_0_25_1_aes128gcmsiv_ecb_enc_block:
   00000000000019A0: 48 89 7C 24 08     mov         qword ptr [rsp+8],rdi
   00000000000019A5: 48 89 74 24 10     mov         qword ptr [rsp+10h],rsi
   00000000000019AA: 48 89 E0           mov         rax,rsp
@@ -1725,7 +1725,7 @@ L$SEH_end_aes128gcmsiv_ecb_enc_block:
   0000000000001A1D: 90                 nop
   0000000000001A1E: 90                 nop
   0000000000001A1F: 90                 nop
-aws_lc_0_25_0_aes256gcmsiv_aes_ks_enc_x1:
+aws_lc_0_25_1_aes256gcmsiv_aes_ks_enc_x1:
   0000000000001A20: 48 89 7C 24 08     mov         qword ptr [rsp+8],rdi
   0000000000001A25: 48 89 74 24 10     mov         qword ptr [rsp+10h],rsi
   0000000000001A2A: 48 89 E0           mov         rax,rsp
@@ -1916,7 +1916,7 @@ L$SEH_end_aes256gcmsiv_aes_ks_enc_x1:
   0000000000001D4D: 90                 nop
   0000000000001D4E: 90                 nop
   0000000000001D4F: 90                 nop
-aws_lc_0_25_0_aes256gcmsiv_ecb_enc_block:
+aws_lc_0_25_1_aes256gcmsiv_ecb_enc_block:
   0000000000001D50: 48 89 7C 24 08     mov         qword ptr [rsp+8],rdi
   0000000000001D55: 48 89 74 24 10     mov         qword ptr [rsp+10h],rsi
   0000000000001D5A: 48 89 E0           mov         rax,rsp
@@ -1961,7 +1961,7 @@ L$SEH_end_aes256gcmsiv_ecb_enc_block:
   0000000000001DED: 90                 nop
   0000000000001DEE: 90                 nop
   0000000000001DEF: 90                 nop
-aws_lc_0_25_0_aes256gcmsiv_enc_msg_x4:
+aws_lc_0_25_1_aes256gcmsiv_enc_msg_x4:
   0000000000001DF0: 48 89 7C 24 08     mov         qword ptr [rsp+8],rdi
   0000000000001DF5: 48 89 74 24 10     mov         qword ptr [rsp+10h],rsi
   0000000000001DFA: 48 89 E0           mov         rax,rsp
@@ -2160,7 +2160,7 @@ L$SEH_end_aes256gcmsiv_enc_msg_x4:
   000000000000211D: 90                 nop
   000000000000211E: 90                 nop
   000000000000211F: 90                 nop
-aws_lc_0_25_0_aes256gcmsiv_enc_msg_x8:
+aws_lc_0_25_1_aes256gcmsiv_enc_msg_x8:
   0000000000002120: 48 89 7C 24 08     mov         qword ptr [rsp+8],rdi
   0000000000002125: 48 89 74 24 10     mov         qword ptr [rsp+10h],rsi
   000000000000212A: 48 89 E0           mov         rax,rsp
@@ -2451,7 +2451,7 @@ L$SEH_end_aes256gcmsiv_enc_msg_x8:
   000000000000261D: 90                 nop
   000000000000261E: 90                 nop
   000000000000261F: 90                 nop
-aws_lc_0_25_0_aes256gcmsiv_dec:
+aws_lc_0_25_1_aes256gcmsiv_dec:
   0000000000002620: 48 89 7C 24 08     mov         qword ptr [rsp+8],rdi
   0000000000002625: 48 89 74 24 10     mov         qword ptr [rsp+10h],rsi
   000000000000262A: 48 89 E0           mov         rax,rsp
@@ -2971,7 +2971,7 @@ L$256_dec_out:
   0000000000002F94: 48 8B 7C 24 08     mov         rdi,qword ptr [rsp+8]
   0000000000002F99: 48 8B 74 24 10     mov         rsi,qword ptr [rsp+10h]
   0000000000002F9E: F3 C3              rep ret
-aws_lc_0_25_0_aes256gcmsiv_kdf:
+aws_lc_0_25_1_aes256gcmsiv_kdf:
   0000000000002FA0: 48 89 7C 24 08     mov         qword ptr [rsp+8],rdi
   0000000000002FA5: 48 89 74 24 10     mov         qword ptr [rsp+10h],rsi
   0000000000002FAA: 48 89 E0           mov         rax,rsp

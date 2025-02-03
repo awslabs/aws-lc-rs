@@ -5,7 +5,7 @@ Dump of file x86_64-mont5.obj
 
 File Type: COFF OBJECT
 
-aws_lc_0_25_0_bn_mul_mont_gather5:
+aws_lc_0_25_1_bn_mul_mont_gather5:
   0000000000000000: 48 89 7C 24 08     mov         qword ptr [rsp+8],rdi
   0000000000000005: 48 89 74 24 10     mov         qword ptr [rsp+10h],rsi
   000000000000000A: 48 89 E0           mov         rax,rsp
@@ -21,7 +21,7 @@ L$SEH_begin_bn_mul_mont_gather5:
   0000000000000029: 41 F7 C1 07 00 00  test        r9d,7
                     00
   0000000000000030: 0F 85 1A 00 00 00  jne         L$mul_enter
-  0000000000000036: 4C 8D 1D 00 00 00  lea         r11,[aws_lc_0_25_0_OPENSSL_ia32cap_P]
+  0000000000000036: 4C 8D 1D 00 00 00  lea         r11,[aws_lc_0_25_1_OPENSSL_ia32cap_P]
                     00
   000000000000003D: 45 8B 5B 08        mov         r11d,dword ptr [r11+8]
   0000000000000041: E9 A1 06 00 00     jmp         L$mul4x_enter
@@ -1166,7 +1166,7 @@ L$inner4x:
   0000000000000FBD: 90                 nop
   0000000000000FBE: 90                 nop
   0000000000000FBF: 90                 nop
-aws_lc_0_25_0_bn_power5:
+aws_lc_0_25_1_bn_power5:
   0000000000000FC0: 48 89 7C 24 08     mov         qword ptr [rsp+8],rdi
   0000000000000FC5: 48 89 74 24 10     mov         qword ptr [rsp+10h],rsi
   0000000000000FCA: 48 89 E0           mov         rax,rsp
@@ -1178,7 +1178,7 @@ L$SEH_begin_bn_power5:
   0000000000000FD9: 4C 8B 44 24 28     mov         r8,qword ptr [rsp+28h]
   0000000000000FDE: 4C 8B 4C 24 30     mov         r9,qword ptr [rsp+30h]
   0000000000000FE3: 48 89 E0           mov         rax,rsp
-  0000000000000FE6: 4C 8D 1D 00 00 00  lea         r11,[aws_lc_0_25_0_OPENSSL_ia32cap_P]
+  0000000000000FE6: 4C 8D 1D 00 00 00  lea         r11,[aws_lc_0_25_1_OPENSSL_ia32cap_P]
                     00
   0000000000000FED: 45 8B 5B 08        mov         r11d,dword ptr [r11+8]
   0000000000000FF1: 41 81 E3 08 01 08  and         r11d,80108h
@@ -1266,15 +1266,15 @@ L$power5_body:
   00000000000010D1: 66 48 0F 6E D1     movq        xmm2,rcx
   00000000000010D6: 66 49 0F 6E DA     movq        xmm3,r10
   00000000000010DB: 66 48 0F 6E E2     movq        xmm4,rdx
-  00000000000010E0: E8 7B 00 00 00     call        aws_lc_0_25_0_bn_sqr8x_internal
+  00000000000010E0: E8 7B 00 00 00     call        aws_lc_0_25_1_bn_sqr8x_internal
   00000000000010E5: E8 76 09 00 00     call        __bn_post4x_internal
-  00000000000010EA: E8 71 00 00 00     call        aws_lc_0_25_0_bn_sqr8x_internal
+  00000000000010EA: E8 71 00 00 00     call        aws_lc_0_25_1_bn_sqr8x_internal
   00000000000010EF: E8 6C 09 00 00     call        __bn_post4x_internal
-  00000000000010F4: E8 67 00 00 00     call        aws_lc_0_25_0_bn_sqr8x_internal
+  00000000000010F4: E8 67 00 00 00     call        aws_lc_0_25_1_bn_sqr8x_internal
   00000000000010F9: E8 62 09 00 00     call        __bn_post4x_internal
-  00000000000010FE: E8 5D 00 00 00     call        aws_lc_0_25_0_bn_sqr8x_internal
+  00000000000010FE: E8 5D 00 00 00     call        aws_lc_0_25_1_bn_sqr8x_internal
   0000000000001103: E8 58 09 00 00     call        __bn_post4x_internal
-  0000000000001108: E8 53 00 00 00     call        aws_lc_0_25_0_bn_sqr8x_internal
+  0000000000001108: E8 53 00 00 00     call        aws_lc_0_25_1_bn_sqr8x_internal
   000000000000110D: E8 4E 09 00 00     call        __bn_post4x_internal
   0000000000001112: 66 48 0F 7E D1     movq        rcx,xmm2
   0000000000001117: 66 48 0F 7E E2     movq        rdx,xmm4
@@ -1297,7 +1297,7 @@ L$power5_epilogue:
   000000000000115D: F3 C3              rep ret
 L$SEH_end_bn_power5:
   000000000000115F: 90                 nop
-aws_lc_0_25_0_bn_sqr8x_internal:
+aws_lc_0_25_1_bn_sqr8x_internal:
   0000000000001160: 49 8D 6A 20        lea         rbp,[r10+20h]
   0000000000001164: 4A 8D 34 0E        lea         rsi,[rsi+r9]
   0000000000001168: 4C 89 C9           mov         rcx,r9
@@ -2805,15 +2805,15 @@ L$pwrx_page_walk_done:
   000000000000251A: 4C 89 44 24 20     mov         qword ptr [rsp+20h],r8
   000000000000251F: 48 89 44 24 28     mov         qword ptr [rsp+28h],rax
 L$powerx5_body:
-  0000000000002524: E8 97 00 00 00     call        aws_lc_0_25_0_bn_sqrx8x_internal
+  0000000000002524: E8 97 00 00 00     call        aws_lc_0_25_1_bn_sqrx8x_internal
   0000000000002529: E8 32 0A 00 00     call        __bn_postx4x_internal
-  000000000000252E: E8 8D 00 00 00     call        aws_lc_0_25_0_bn_sqrx8x_internal
+  000000000000252E: E8 8D 00 00 00     call        aws_lc_0_25_1_bn_sqrx8x_internal
   0000000000002533: E8 28 0A 00 00     call        __bn_postx4x_internal
-  0000000000002538: E8 83 00 00 00     call        aws_lc_0_25_0_bn_sqrx8x_internal
+  0000000000002538: E8 83 00 00 00     call        aws_lc_0_25_1_bn_sqrx8x_internal
   000000000000253D: E8 1E 0A 00 00     call        __bn_postx4x_internal
-  0000000000002542: E8 79 00 00 00     call        aws_lc_0_25_0_bn_sqrx8x_internal
+  0000000000002542: E8 79 00 00 00     call        aws_lc_0_25_1_bn_sqrx8x_internal
   0000000000002547: E8 14 0A 00 00     call        __bn_postx4x_internal
-  000000000000254C: E8 6F 00 00 00     call        aws_lc_0_25_0_bn_sqrx8x_internal
+  000000000000254C: E8 6F 00 00 00     call        aws_lc_0_25_1_bn_sqrx8x_internal
   0000000000002551: E8 0A 0A 00 00     call        __bn_postx4x_internal
   0000000000002556: 4D 89 D1           mov         r9,r10
   0000000000002559: 48 89 F7           mov         rdi,rsi
@@ -2866,7 +2866,7 @@ L$SEH_end_bn_powerx5:
   00000000000025BD: 90                 nop
   00000000000025BE: 90                 nop
   00000000000025BF: 90                 nop
-aws_lc_0_25_0_bn_sqrx8x_internal:
+aws_lc_0_25_1_bn_sqrx8x_internal:
   00000000000025C0: 48 8D 7C 24 38     lea         rdi,[rsp+38h]
   00000000000025C5: 4A 8D 2C 0E        lea         rbp,[rsi+r9]
   00000000000025C9: 4C 89 4C 24 08     mov         qword ptr [rsp+8],r9
@@ -3560,7 +3560,7 @@ L$sqrx4x_sub_entry:
   000000000000300D: 90                 nop
   000000000000300E: 90                 nop
   000000000000300F: 90                 nop
-aws_lc_0_25_0_bn_scatter5:
+aws_lc_0_25_1_bn_scatter5:
   0000000000003010: 83 FA 00           cmp         edx,0
   0000000000003013: 0F 84 1E 00 00 00  je          L$scatter_epilogue
   0000000000003019: 4F 8D 04 C8        lea         r8,[r8+r9*8]
@@ -3581,7 +3581,7 @@ L$scatter_epilogue:
   000000000000303D: 90                 nop
   000000000000303E: 90                 nop
   000000000000303F: 90                 nop
-aws_lc_0_25_0_bn_gather5:
+aws_lc_0_25_1_bn_gather5:
   0000000000003040: 4C 8D 14 24        lea         r10,[rsp]
   0000000000003044: 48 81 EC 08 01 00  sub         rsp,108h
                     00

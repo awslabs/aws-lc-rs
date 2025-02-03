@@ -325,7 +325,7 @@ L$6x_done:
   000000000000059D: 90                 nop
   000000000000059E: 90                 nop
   000000000000059F: 90                 nop
-aws_lc_0_25_0_aesni_gcm_decrypt:
+aws_lc_0_25_1_aesni_gcm_decrypt:
   00000000000005A0: 48 31 C0           xor         rax,rax
   00000000000005A3: 49 83 F8 60        cmp         r8,60h
   00000000000005A7: 0F 82 BE 01 00 00  jb          L$gcm_dec_abort
@@ -579,7 +579,7 @@ L$handle_ctr32_2:
   00000000000008FD: 90                 nop
   00000000000008FE: 90                 nop
   00000000000008FF: 90                 nop
-aws_lc_0_25_0_aesni_gcm_encrypt:
+aws_lc_0_25_1_aesni_gcm_encrypt:
   0000000000000900: 48 31 C0           xor         rax,rax
   0000000000000903: 49 81 F8 20 01 00  cmp         r8,120h
                     00

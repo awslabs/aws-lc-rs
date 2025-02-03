@@ -5,7 +5,7 @@ Dump of file md5-x86_64.obj
 
 File Type: COFF OBJECT
 
-aws_lc_0_25_0_md5_block_asm_data_order:
+aws_lc_0_25_1_md5_block_asm_data_order:
   0000000000000000: 48 89 7C 24 08     mov         qword ptr [rsp+8],rdi
   0000000000000005: 48 89 74 24 10     mov         qword ptr [rsp+10h],rsi
   000000000000000A: 48 89 E0           mov         rax,rsp

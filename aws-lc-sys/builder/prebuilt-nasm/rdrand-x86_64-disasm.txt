@@ -5,7 +5,7 @@ Dump of file rdrand-x86_64.obj
 
 File Type: COFF OBJECT
 
-aws_lc_0_25_0_CRYPTO_rdrand:
+aws_lc_0_25_1_CRYPTO_rdrand:
   0000000000000000: 48 31 C0           xor         rax,rax
   0000000000000003: 49 0F C7 F0        rdrand      r8
   0000000000000007: 4D 85 C0           test        r8,r8
@@ -27,7 +27,7 @@ L$err:
   000000000000002D: 90                 nop
   000000000000002E: 90                 nop
   000000000000002F: 90                 nop
-aws_lc_0_25_0_CRYPTO_rdrand_multiple8_buf:
+aws_lc_0_25_1_CRYPTO_rdrand_multiple8_buf:
   0000000000000030: 48 85 D2           test        rdx,rdx
   0000000000000033: 0F 84 32 00 00 00  je          L$out
   0000000000000039: 41 B8 08 00 00 00  mov         r8d,8

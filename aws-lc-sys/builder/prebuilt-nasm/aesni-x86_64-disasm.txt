@@ -5,7 +5,7 @@ Dump of file aesni-x86_64.obj
 
 File Type: COFF OBJECT
 
-aws_lc_0_25_0_aes_hw_encrypt:
+aws_lc_0_25_1_aes_hw_encrypt:
   0000000000000000: 0F 10 11           movups      xmm2,xmmword ptr [rcx]
   0000000000000003: 41 8B 80 F0 00 00  mov         eax,dword ptr [r8+0F0h]
                     00
@@ -36,7 +36,7 @@ L$oop_enc1_1:
   000000000000004D: 90                 nop
   000000000000004E: 90                 nop
   000000000000004F: 90                 nop
-aws_lc_0_25_0_aes_hw_decrypt:
+aws_lc_0_25_1_aes_hw_decrypt:
   0000000000000050: 0F 10 11           movups      xmm2,xmmword ptr [rcx]
   0000000000000053: 41 8B 80 F0 00 00  mov         eax,dword ptr [r8+0F0h]
                     00
@@ -541,7 +541,7 @@ L$dec_loop8_enter:
   000000000000075D: 90                 nop
   000000000000075E: 90                 nop
   000000000000075F: 90                 nop
-aws_lc_0_25_0_aes_hw_ecb_encrypt:
+aws_lc_0_25_1_aes_hw_ecb_encrypt:
   0000000000000760: 48 89 7C 24 08     mov         qword ptr [rsp+8],rdi
   0000000000000765: 48 89 74 24 10     mov         qword ptr [rsp+10h],rsi
   000000000000076A: 48 89 E0           mov         rax,rsp
@@ -1043,7 +1043,7 @@ L$SEH_end_aes_hw_ecb_encrypt:
   0000000000000D5D: 90                 nop
   0000000000000D5E: 90                 nop
   0000000000000D5F: 90                 nop
-aws_lc_0_25_0_aes_hw_ctr32_encrypt_blocks:
+aws_lc_0_25_1_aes_hw_ctr32_encrypt_blocks:
   0000000000000D60: 48 89 7C 24 08     mov         qword ptr [rsp+8],rdi
   0000000000000D65: 48 89 74 24 10     mov         qword ptr [rsp+10h],rsi
   0000000000000D6A: 48 89 E0           mov         rax,rsp
@@ -1564,7 +1564,7 @@ L$SEH_end_aes_hw_ctr32_encrypt_blocks:
   00000000000015CD: 90                 nop
   00000000000015CE: 90                 nop
   00000000000015CF: 90                 nop
-aws_lc_0_25_0_aes_hw_xts_encrypt:
+aws_lc_0_25_1_aes_hw_xts_encrypt:
   00000000000015D0: 48 89 7C 24 08     mov         qword ptr [rsp+8],rdi
   00000000000015D5: 48 89 74 24 10     mov         qword ptr [rsp+10h],rsi
   00000000000015DA: 48 89 E0           mov         rax,rsp
@@ -2121,7 +2121,7 @@ L$SEH_end_aes_hw_xts_encrypt:
   0000000000001E1D: 90                 nop
   0000000000001E1E: 90                 nop
   0000000000001E1F: 90                 nop
-aws_lc_0_25_0_aes_hw_xts_decrypt:
+aws_lc_0_25_1_aes_hw_xts_decrypt:
   0000000000001E20: 48 89 7C 24 08     mov         qword ptr [rsp+8],rdi
   0000000000001E25: 48 89 74 24 10     mov         qword ptr [rsp+10h],rsi
   0000000000001E2A: 48 89 E0           mov         rax,rsp
@@ -2740,7 +2740,7 @@ L$SEH_end_aes_hw_xts_decrypt:
   000000000000270D: 90                 nop
   000000000000270E: 90                 nop
   000000000000270F: 90                 nop
-aws_lc_0_25_0_aes_hw_cbc_encrypt:
+aws_lc_0_25_1_aes_hw_cbc_encrypt:
   0000000000002710: 48 89 7C 24 08     mov         qword ptr [rsp+8],rdi
   0000000000002715: 48 89 74 24 10     mov         qword ptr [rsp+10h],rsi
   000000000000271A: 48 89 E0           mov         rax,rsp
@@ -3379,9 +3379,9 @@ L$SEH_end_aes_hw_cbc_encrypt:
   000000000000309D: 90                 nop
   000000000000309E: 90                 nop
   000000000000309F: 90                 nop
-aws_lc_0_25_0_aes_hw_set_decrypt_key:
+aws_lc_0_25_1_aes_hw_set_decrypt_key:
   00000000000030A0: 48 83 EC 08        sub         rsp,8
-  00000000000030A4: E8 77 00 00 00     call        aws_lc_0_25_0_aes_hw_set_encrypt_key
+  00000000000030A4: E8 77 00 00 00     call        aws_lc_0_25_1_aes_hw_set_encrypt_key
   00000000000030A9: C1 E2 04           shl         edx,4
   00000000000030AC: 85 C0              test        eax,eax
   00000000000030AE: 0F 85 5A 00 00 00  jne         L$dec_key_ret
@@ -3424,7 +3424,7 @@ L$SEH_end_set_decrypt_key:
   000000000000311D: 90                 nop
   000000000000311E: 90                 nop
   000000000000311F: 90                 nop
-aws_lc_0_25_0_aes_hw_set_encrypt_key:
+aws_lc_0_25_1_aes_hw_set_encrypt_key:
   0000000000003120: 48 83 EC 08        sub         rsp,8
   0000000000003124: 48 C7 C0 FF FF FF  mov         rax,0FFFFFFFFFFFFFFFFh
                     FF
@@ -3434,7 +3434,7 @@ aws_lc_0_25_0_aes_hw_set_encrypt_key:
   0000000000003137: 0F 84 7A 04 00 00  je          L$enc_key_ret
   000000000000313D: 0F 10 01           movups      xmm0,xmmword ptr [rcx]
   0000000000003140: 0F 57 E4           xorps       xmm4,xmm4
-  0000000000003143: 4C 8D 15 00 00 00  lea         r10,[aws_lc_0_25_0_OPENSSL_ia32cap_P]
+  0000000000003143: 4C 8D 15 00 00 00  lea         r10,[aws_lc_0_25_1_OPENSSL_ia32cap_P]
                     00
   000000000000314A: 45 8B 52 04        mov         r10d,dword ptr [r10+4]
   000000000000314E: 41 81 E2 00 08 00  and         r10d,10000800h

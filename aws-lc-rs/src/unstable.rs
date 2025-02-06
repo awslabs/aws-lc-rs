@@ -14,3 +14,6 @@ pub mod kdf;
 
 #[deprecated(note = "use `aws_lc_rs::kem` instead")]
 pub mod kem;
+
+#[cfg(not(feature = "fips"))]
+pub mod signature;

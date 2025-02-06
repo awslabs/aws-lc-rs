@@ -10,7 +10,7 @@ use crate::aws_lc::{
     EVP_parse_private_key, EVP_parse_public_key, EC_KEY, EVP_PKEY, EVP_PKEY_CTX, EVP_PKEY_ED25519,
     RSA,
 };
-#[cfg(not(feature = "fips"))]
+#[cfg(all(feature = "unstable", not(feature = "fips")))]
 use crate::aws_lc::{
     EVP_PKEY_pqdsa_new_raw_private_key, EVP_PKEY_pqdsa_new_raw_public_key, EVP_PKEY_PQDSA,
     NID_MLDSA44, NID_MLDSA65, NID_MLDSA87,
@@ -243,7 +243,7 @@ impl LcPtr<EVP_PKEY> {
         bytes: &[u8],
         evp_pkey_type: c_int,
     ) -> Result<Self, KeyRejected> {
-        #[cfg(not(feature = "fips"))]
+        #[cfg(all(feature = "unstable", not(feature = "fips")))]
         if evp_pkey_type == EVP_PKEY_PQDSA {
             return match bytes.len() {
                 2560 => Self::new(unsafe {
@@ -270,7 +270,7 @@ impl LcPtr<EVP_PKEY> {
         bytes: &[u8],
         evp_pkey_type: c_int,
     ) -> Result<Self, KeyRejected> {
-        #[cfg(not(feature = "fips"))]
+        #[cfg(all(feature = "unstable", not(feature = "fips")))]
         if evp_pkey_type == EVP_PKEY_PQDSA {
             return match bytes.len() {
                 1312 => Self::new(unsafe {

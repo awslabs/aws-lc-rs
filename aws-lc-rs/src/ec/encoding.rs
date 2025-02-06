@@ -3,7 +3,7 @@
 
 use crate::aws_lc::{EVP_PKEY, EVP_PKEY_EC};
 use crate::ec::encoding::sec1::parse_sec1_public_point;
-use crate::ec::validate_evp_key;
+use crate::ec::validate_ec_evp_key;
 
 use crate::error::KeyRejected;
 use crate::ptr::LcPtr;
@@ -23,7 +23,7 @@ pub(crate) mod sec1 {
     use crate::cbb::LcCBB;
     use crate::ec::{
         compressed_public_key_size_bytes, ec_group_from_nid, uncompressed_public_key_size_bytes,
-        validate_evp_key, KeyRejected,
+        validate_ec_evp_key, KeyRejected,
     };
     use crate::error::Unspecified;
     use crate::ptr::{ConstPointer, DetachableLcPtr, LcPtr};
@@ -72,7 +72,7 @@ pub(crate) mod sec1 {
 
         ec_key.detach();
 
-        validate_evp_key(&pkey.as_const(), nid)?;
+        validate_ec_evp_key(&pkey.as_const(), nid)?;
 
         Ok(pkey)
     }
@@ -126,7 +126,7 @@ pub(crate) mod sec1 {
         ec_key.detach();
 
         // Validate the EC_KEY before returning it.
-        validate_evp_key(&pkey.as_const(), expected_curve_nid)?;
+        validate_ec_evp_key(&pkey.as_const(), expected_curve_nid)?;
 
         Ok(pkey)
     }
@@ -250,5 +250,5 @@ pub(crate) fn parse_ec_public_key(
 ) -> Result<LcPtr<EVP_PKEY>, KeyRejected> {
     LcPtr::<EVP_PKEY>::parse_rfc5280_public_key(key_bytes, EVP_PKEY_EC)
         .or(parse_sec1_public_point(key_bytes, expected_curve_nid))
-        .and_then(|key| validate_evp_key(&key.as_const(), expected_curve_nid).map(|()| key))
+        .and_then(|key| validate_ec_evp_key(&key.as_const(), expected_curve_nid).map(|()| key))
 }

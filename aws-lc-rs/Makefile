@@ -28,16 +28,19 @@ coverage:
 coverage-fips:
 	cargo llvm-cov --features "${AWS_LC_RS_COV_EXTRA_FEATURES},fips" --no-fail-fast --fail-under-lines 95 --ignore-filename-regex "aws-lc(-fips|)-sys/*" --lcov --output-path lcov.info
 
+test: export AWS_LC_RS_DISABLE_SLOW_TESTS = 1
 test:
+	cargo test --all-targets
 	cargo test --all-targets --features unstable
-	cargo test --release --all-targets
 	cargo test --release --all-targets --features bindgen,unstable
-	cargo test --release --all-targets --features fips,unstable
-	cargo test --no-default-features --all-targets --features fips,unstable
+	cargo test --release --all-targets --features fips,bindgen,unstable
+	cargo test --no-default-features --all-targets --features aws-lc-sys
 	cargo test --no-default-features --all-targets --features aws-lc-sys,unstable
-	cargo test --no-default-features --all-targets --features aws-lc-sys,ring-sig-verify,unstable
-	cargo test --no-default-features --all-targets --features aws-lc-sys,ring-io,unstable
-	cargo test --no-default-features --all-targets --features aws-lc-sys,alloc,unstable
+	cargo test --no-default-features --all-targets --features fips
+	cargo test --no-default-features --all-targets --features fips,unstable
+	cargo test --no-default-features --all-targets --features aws-lc-sys,ring-sig-verify
+	cargo test --no-default-features --all-targets --features aws-lc-sys,ring-io
+	cargo test --no-default-features --all-targets --features aws-lc-sys,alloc
 
 msrv:
 	cargo msrv verify
@@ -45,8 +48,11 @@ msrv:
 clippy:
 	cargo +nightly clippy --all-targets --features bindgen,fips,unstable -- -W clippy::all  -W clippy::pedantic
 
-clippy-fix:
+clippy-fips-fix:
 	cargo +nightly clippy --all-targets --features bindgen,fips,unstable --fix --allow-dirty -- -W clippy::all  -W clippy::pedantic
+
+clippy-fix:
+	cargo +nightly clippy --all-targets --features bindgen,unstable --fix --allow-dirty -- -W clippy::all  -W clippy::pedantic
 
 ci: format clippy msrv test coverage api-diff-pub
 

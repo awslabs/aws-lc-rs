@@ -31,8 +31,6 @@ pub(crate) mod signature;
 const ELEM_MAX_BITS: usize = 521;
 pub(crate) const ELEM_MAX_BYTES: usize = (ELEM_MAX_BITS + 7) / 8;
 
-pub(crate) const SCALAR_MAX_BYTES: usize = ELEM_MAX_BYTES;
-
 /// The maximum length, in bytes, of an encoded public key.
 pub(crate) const PUBLIC_KEY_MAX_LEN: usize = 1 + (2 * ELEM_MAX_BYTES);
 
@@ -62,7 +60,7 @@ pub(crate) fn verify_evp_key_nid(
 }
 
 #[inline]
-pub(crate) fn validate_evp_key(
+pub(crate) fn validate_ec_evp_key(
     evp_pkey: &ConstPointer<EVP_PKEY>,
     expected_curve_nid: i32,
 ) -> Result<(), KeyRejected> {

@@ -10,7 +10,7 @@ use core::fmt::{Debug, Formatter};
 use crate::ec::evp_key_generate;
 use crate::ec::signature::{EcdsaSignatureFormat, EcdsaSigningAlgorithm, PublicKey};
 #[cfg(feature = "fips")]
-use crate::ec::validate_evp_key;
+use crate::ec::validate_ec_evp_key;
 #[cfg(not(feature = "fips"))]
 use crate::ec::verify_evp_key_nid;
 
@@ -97,7 +97,7 @@ impl EcdsaKeyPair {
         #[cfg(not(feature = "fips"))]
         verify_evp_key_nid(&evp_pkey.as_const(), alg.id.nid())?;
         #[cfg(feature = "fips")]
-        validate_evp_key(&evp_pkey.as_const(), alg.id.nid())?;
+        validate_ec_evp_key(&evp_pkey.as_const(), alg.id.nid())?;
 
         let key_pair = Self::new(alg, evp_pkey)?;
 

@@ -13,20 +13,6 @@ impl TryFrom<&[u8]> for LcPtr<BIGNUM> {
     }
 }
 
-impl TryFrom<u64> for LcPtr<BIGNUM> {
-    type Error = ();
-
-    fn try_from(value: u64) -> Result<Self, Self::Error> {
-        unsafe {
-            let mut bn = LcPtr::new(BN_new())?;
-            if 1 != BN_set_u64(*bn.as_mut(), value) {
-                return Err(());
-            }
-            Ok(bn)
-        }
-    }
-}
-
 impl TryFrom<&[u8]> for DetachableLcPtr<BIGNUM> {
     type Error = ();
 

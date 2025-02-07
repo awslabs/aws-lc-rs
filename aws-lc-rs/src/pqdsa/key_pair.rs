@@ -16,8 +16,10 @@ use crate::pqdsa::signature::{PqdsaSigningAlgorithm, PublicKey};
 use crate::pqdsa::validate_pqdsa_evp_key;
 use crate::ptr::LcPtr;
 use crate::signature::KeyPair;
+use aws_lc_sys::{EVP_PKEY_new_raw_private_key, EVP_PKEY_pqdsa_new_raw_private_key};
 use core::fmt::{Debug, Formatter};
 use std::ffi::c_int;
+use std::ptr::null_mut;
 
 /// A PQDSA (Post-Quantum Digital Signature Algorithm) key pair, used for signing.
 ///
@@ -122,7 +124,7 @@ impl PqdsaKeyPair {
         })
     }
 
-    /// Parses a PKCS#8 v1 key from the specified bytes.
+    /// Parses a raw private key from the specified bytes.
     ///
     /// # Errors
     /// Returns `Unspecified` if the key is invalid.
@@ -144,6 +146,30 @@ impl PqdsaKeyPair {
         Ok(Self {
             algorithm,
             evp_pkey: priv_evp_pkey,
+            pubkey,
+        })
+    }
+
+    /// Parses a raw seed from the specified bytes.
+    ///
+    /// # Errors
+    /// Returns `Unspecified` if the key is invalid.
+    pub fn from_raw_seed(
+        algorithm: &'static PqdsaSigningAlgorithm,
+        raw_seed: &[u8],
+    ) -> Result<Self, Unspecified> {
+        let evp_pkey = LcPtr::<EVP_PKEY>::new(unsafe {
+            EVP_PKEY_pqdsa_new_raw_private_key(
+                algorithm.0.id.nid(),
+                raw_seed.as_ptr(),
+                raw_seed.len(),
+            )
+        })?;
+        validate_pqdsa_evp_key(&evp_pkey, algorithm.0.id)?;
+        let pubkey = PublicKey::from_private_evp_pkey(&evp_pkey)?;
+        Ok(Self {
+            algorithm,
+            evp_pkey,
             pubkey,
         })
     }

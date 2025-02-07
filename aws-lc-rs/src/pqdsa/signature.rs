@@ -4,7 +4,7 @@
 // TODO: Remove
 #![allow(missing_docs)]
 
-use crate::aws_lc::EVP_PKEY;
+use crate::aws_lc::{EVP_PKEY_CTX_pqdsa_set_params, EVP_PKEY};
 use crate::buffer::Buffer;
 use crate::encoding::{AsDer, Pkcs8V1Der, PublicKeyX509Der};
 use crate::error::Unspecified;
@@ -81,8 +81,8 @@ impl VerificationAlgorithm for PqdsaVerificationAlgorithm {
         msg: &[u8],
         signature: &[u8],
     ) -> Result<(), Unspecified> {
-        // TODO: Do we need to also allow "raw" public keys?
         let evp_pkey = parse_pqdsa_public_key(public_key, self.id)?;
+
         evp_pkey.verify(msg, None, No_EVP_PKEY_CTX_consumer, signature)
     }
 }

@@ -247,6 +247,16 @@ impl TestCase {
         s.parse::<usize>().unwrap()
     }
 
+    /// Returns the value of an attribute that is an integer, in decimal
+    /// notation.
+    pub fn consume_bool(&mut self, key: &str) -> bool {
+        let value_str = self
+            .consume_optional_string(key)
+            .unwrap_or_else(|| panic!("No attribute named \"{key}\""))
+            .to_ascii_lowercase();
+        value_str.starts_with('t') || value_str.starts_with('y')
+    }
+
     /// Returns the raw value of an attribute, without any unquoting or
     /// other interpretation.
     pub fn consume_string(&mut self, key: &str) -> String {
@@ -272,7 +282,7 @@ impl TestCase {
 #[macro_export]
 #[allow(clippy::module_name_repetitions)]
 macro_rules! test_file {
-    ($file_name:expr) => {
+    ($file_name: expr) => {
         $crate::test::File {
             file_name: $file_name,
             contents: include_str!($file_name),

@@ -51,6 +51,8 @@ impl KeyPair for PqdsaKeyPair {
 
 pub struct PqdsaPrivateKey<'a>(&'a PqdsaKeyPair);
 
+pub struct PqdsaSeed<'a>(&'a PqdsaKeyPair);
+
 impl AsDer<Pkcs8V1Der<'static>> for PqdsaPrivateKey<'_> {
     /// Serializes the key to PKCS#8 v1 DER.
     ///
@@ -206,6 +208,12 @@ impl PqdsaKeyPair {
     /// Returns the private key associated with this key pair.
     #[must_use]
     pub fn private_key(&self) -> PqdsaPrivateKey {
+        PqdsaPrivateKey(self)
+    }
+
+    /// Returns the seed associated with this key pair.
+    #[must_use]
+    pub fn seed(&self) -> PqdsaPrivateKey {
         PqdsaPrivateKey(self)
     }
 }

@@ -342,7 +342,7 @@ pub const MAX_CHAINING_LEN: usize = MAX_OUTPUT_LEN;
 /// Match digest types for `EVP_MD` functions.
 pub(crate) fn match_digest_type(algorithm_id: &AlgorithmID) -> ConstPointer<EVP_MD> {
     unsafe {
-        ConstPointer::new(match algorithm_id {
+        ConstPointer::new_static(match algorithm_id {
             AlgorithmID::SHA1 => EVP_sha1(),
             AlgorithmID::SHA224 => EVP_sha224(),
             AlgorithmID::SHA256 => EVP_sha256(),

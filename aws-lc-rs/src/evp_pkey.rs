@@ -100,17 +100,15 @@ impl LcPtr<EVP_PKEY> {
 
     #[allow(dead_code)]
     pub(crate) fn get_ec_key(&self) -> Result<ConstPointer<EC_KEY>, KeyRejected> {
-        unsafe {
-            ConstPointer::new(EVP_PKEY_get0_EC_KEY(*self.as_const()))
-                .map_err(|()| KeyRejected::wrong_algorithm())
-        }
+        self.project_const_lifetime(unsafe {
+            |evp_pkey| EVP_PKEY_get0_EC_KEY(*evp_pkey.as_const())
+        })
+        .map_err(|()| KeyRejected::wrong_algorithm())
     }
 
     pub(crate) fn get_rsa(&self) -> Result<ConstPointer<RSA>, KeyRejected> {
-        unsafe {
-            ConstPointer::new(EVP_PKEY_get0_RSA(*self.as_const()))
-                .map_err(|()| KeyRejected::wrong_algorithm())
-        }
+        self.project_const_lifetime(unsafe { |evp_pkey| EVP_PKEY_get0_RSA(*evp_pkey.as_const()) })
+            .map_err(|()| KeyRejected::wrong_algorithm())
     }
 
     pub(crate) fn marshal_rfc5280_public_key(&self) -> Result<Vec<u8>, Unspecified> {

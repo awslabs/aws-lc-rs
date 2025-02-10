@@ -16,8 +16,6 @@ use crate::encoding::{AsDer, Pkcs8V1Der};
 use crate::error::{KeyRejected, Unspecified};
 #[cfg(feature = "ring-io")]
 use crate::io;
-#[cfg(feature = "ring-io")]
-use crate::ptr::ConstPointer;
 use crate::ptr::{DetachableLcPtr, LcPtr};
 use crate::rsa::PublicEncryptingKey;
 use crate::sealed::Sealed;
@@ -293,9 +291,11 @@ impl PublicKey {
         #[cfg(feature = "ring-io")]
         {
             let pubkey = evp_pkey.get_rsa()?;
-            let modulus = ConstPointer::new(unsafe { RSA_get0_n(*pubkey) })?;
+            let modulus =
+                pubkey.project_const_lifetime(unsafe { |pubkey| RSA_get0_n(**pubkey) })?;
             let modulus = modulus.to_be_bytes().into_boxed_slice();
-            let exponent = ConstPointer::new(unsafe { RSA_get0_e(*pubkey) })?;
+            let exponent =
+                pubkey.project_const_lifetime(unsafe { |pubkey| RSA_get0_e(**pubkey) })?;
             let exponent = exponent.to_be_bytes().into_boxed_slice();
             Ok(PublicKey {
                 key,

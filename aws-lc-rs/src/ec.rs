@@ -5,8 +5,6 @@
 
 use crate::ec::signature::AlgorithmID;
 // TODO: Uncomment when MSRV >= 1.64
-use std::os::raw::c_int;
-
 #[cfg(feature = "fips")]
 use crate::aws_lc::EC_KEY_check_fips;
 #[cfg(not(feature = "fips"))]
@@ -23,6 +21,8 @@ use crate::error::{KeyRejected, Unspecified};
 use crate::fips::indicator_check;
 use crate::ptr::{ConstPointer, LcPtr};
 use crate::signature::Signature;
+use std::os::raw::c_int;
+use std::ptr::null;
 
 pub(crate) mod encoding;
 pub(crate) mod key_pair;
@@ -38,7 +38,8 @@ fn verify_ec_key_nid(
     ec_key: &ConstPointer<EC_KEY>,
     expected_curve_nid: i32,
 ) -> Result<(), KeyRejected> {
-    let ec_group = ConstPointer::new(unsafe { EC_KEY_get0_group(**ec_key) })?;
+    let ec_group =
+        ec_key.project_const_lifetime(unsafe { |ec_key| EC_KEY_get0_group(**ec_key) })?;
     let key_nid = unsafe { EC_GROUP_get_curve_name(*ec_group) };
 
     if key_nid != expected_curve_nid {
@@ -53,7 +54,8 @@ pub(crate) fn verify_evp_key_nid(
     evp_pkey: &ConstPointer<EVP_PKEY>,
     expected_curve_nid: i32,
 ) -> Result<(), KeyRejected> {
-    let ec_key = ConstPointer::new(unsafe { EVP_PKEY_get0_EC_KEY(**evp_pkey) })?;
+    let ec_key =
+        evp_pkey.project_const_lifetime(unsafe { |evp_pkey| EVP_PKEY_get0_EC_KEY(**evp_pkey) })?;
     verify_ec_key_nid(&ec_key, expected_curve_nid)?;
 
     Ok(())
@@ -64,7 +66,8 @@ pub(crate) fn validate_ec_evp_key(
     evp_pkey: &ConstPointer<EVP_PKEY>,
     expected_curve_nid: i32,
 ) -> Result<(), KeyRejected> {
-    let ec_key = ConstPointer::new(unsafe { EVP_PKEY_get0_EC_KEY(**evp_pkey) })?;
+    let ec_key =
+        evp_pkey.project_const_lifetime(unsafe { |evp_pkey| EVP_PKEY_get0_EC_KEY(**evp_pkey) })?;
     verify_ec_key_nid(&ec_key, expected_curve_nid)?;
 
     #[cfg(not(feature = "fips"))]
@@ -94,18 +97,20 @@ pub(crate) fn evp_key_generate(nid: c_int) -> Result<LcPtr<EVP_PKEY>, Unspecifie
 
 #[inline]
 #[allow(non_upper_case_globals)]
-pub(crate) fn ec_group_from_nid(nid: i32) -> Result<ConstPointer<EC_GROUP>, Unspecified> {
-    Ok(ConstPointer::new(match nid {
-        NID_secp224r1 => Ok(unsafe { EC_group_p224() }),
-        NID_X9_62_prime256v1 => Ok(unsafe { EC_group_p256() }),
-        NID_secp384r1 => Ok(unsafe { EC_group_p384() }),
-        NID_secp521r1 => Ok(unsafe { EC_group_p521() }),
-        NID_secp256k1 => Ok(unsafe { EC_group_secp256k1() }),
-        _ => {
-            // OPENSSL_PUT_ERROR(EC, EC_R_UNKNOWN_GROUP);
-            Err(Unspecified)
-        }
-    }?)?)
+pub(crate) fn ec_group_from_nid(nid: i32) -> Result<ConstPointer<'static, EC_GROUP>, Unspecified> {
+    Ok(unsafe {
+        ConstPointer::new_static(match nid {
+            NID_secp224r1 => EC_group_p224(),
+            NID_X9_62_prime256v1 => EC_group_p256(),
+            NID_secp384r1 => EC_group_p384(),
+            NID_secp521r1 => EC_group_p521(),
+            NID_secp256k1 => EC_group_secp256k1(),
+            _ => {
+                // OPENSSL_PUT_ERROR(EC, EC_R_UNKNOWN_GROUP);
+                null()
+            }
+        })?
+    })
 }
 
 #[inline]
@@ -114,10 +119,12 @@ fn ecdsa_asn1_to_fixed(alg_id: &'static AlgorithmID, sig: &[u8]) -> Result<Signa
 
     let ecdsa_sig = LcPtr::new(unsafe { ECDSA_SIG_from_bytes(sig.as_ptr(), sig.len()) })?;
 
-    let r_bn = ConstPointer::new(unsafe { ECDSA_SIG_get0_r(*ecdsa_sig.as_const()) })?;
+    let r_bn = ecdsa_sig
+        .project_const_lifetime(unsafe { |ecdsa_sig| ECDSA_SIG_get0_r(*ecdsa_sig.as_const()) })?;
     let r_buffer = r_bn.to_be_bytes();
 
-    let s_bn = ConstPointer::new(unsafe { ECDSA_SIG_get0_s(*ecdsa_sig.as_const()) })?;
+    let s_bn = ecdsa_sig
+        .project_const_lifetime(unsafe { |ecdsa_sig| ECDSA_SIG_get0_s(*ecdsa_sig.as_const()) })?;
     let s_buffer = s_bn.to_be_bytes();
 
     Ok(Signature::new(|slice| {

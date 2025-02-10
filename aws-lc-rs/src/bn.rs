@@ -35,7 +35,7 @@ impl TryFrom<u64> for DetachableLcPtr<BIGNUM> {
     }
 }
 
-impl ConstPointer<BIGNUM> {
+impl ConstPointer<'_, BIGNUM> {
     pub(crate) fn to_be_bytes(&self) -> Vec<u8> {
         unsafe {
             let bn_bytes = BN_num_bytes(**self);

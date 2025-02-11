@@ -98,9 +98,7 @@ impl ConstPointer<'_, EVP_PKEY> {
         &self,
         version: Version,
     ) -> Result<Vec<u8>, Unspecified> {
-        let key_size_bytes =
-            TryInto::<usize>::try_into(unsafe { EVP_PKEY_bits(**self) }).expect("fit in usize") / 8;
-        let mut cbb = LcCBB::new(key_size_bytes * 5);
+        let mut cbb = LcCBB::new(self.key_size_bytes() * 5);
         match version {
             Version::V1 => {
                 if 1 != unsafe { EVP_marshal_private_key(cbb.as_mut_ptr(), **self) } {

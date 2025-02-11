@@ -3,7 +3,7 @@
 
 use crate::aws_lc::{EVP_PKEY, EVP_PKEY_EC};
 use crate::ec::encoding::sec1::parse_sec1_public_point;
-use crate::ec::validate_evp_key;
+use crate::ec::validate_ec_evp_key;
 
 use crate::error::KeyRejected;
 use crate::ptr::LcPtr;
@@ -23,7 +23,7 @@ pub(crate) mod sec1 {
     use crate::cbb::LcCBB;
     use crate::ec::{
         compressed_public_key_size_bytes, ec_group_from_nid, uncompressed_public_key_size_bytes,
-        validate_evp_key, KeyRejected,
+        validate_ec_evp_key, KeyRejected,
     };
     use crate::error::Unspecified;
     use crate::ptr::{ConstPointer, DetachableLcPtr, LcPtr};
@@ -72,7 +72,7 @@ pub(crate) mod sec1 {
 
         ec_key.detach();
 
-        validate_evp_key(&pkey.as_const(), nid)?;
+        validate_ec_evp_key(&pkey.as_const(), nid)?;
 
         Ok(pkey)
     }
@@ -126,7 +126,7 @@ pub(crate) mod sec1 {
         ec_key.detach();
 
         // Validate the EC_KEY before returning it.
-        validate_evp_key(&pkey.as_const(), expected_curve_nid)?;
+        validate_ec_evp_key(&pkey.as_const(), expected_curve_nid)?;
 
         Ok(pkey)
     }
@@ -135,9 +135,9 @@ pub(crate) mod sec1 {
         compressed: bool,
     ) -> Result<Vec<u8>, Unspecified> {
         let pub_key_size = if compressed {
-            compressed_public_key_size_bytes(evp_pkey.key_size_bits())
+            compressed_public_key_size_bytes(evp_pkey.as_const().key_size_bits())
         } else {
-            uncompressed_public_key_size_bytes(evp_pkey.key_size_bits())
+            uncompressed_public_key_size_bytes(evp_pkey.as_const().key_size_bits())
         };
         let mut cbb = LcCBB::new(pub_key_size);
         marshal_sec1_public_point_into_cbb(&mut cbb, evp_pkey, compressed)?;
@@ -159,9 +159,13 @@ pub(crate) mod sec1 {
         evp_pkey: &LcPtr<EVP_PKEY>,
         compressed: bool,
     ) -> Result<(), Unspecified> {
-        let ec_key = ConstPointer::new(unsafe { EVP_PKEY_get0_EC_KEY(*evp_pkey.as_const()) })?;
-        let ec_group = ConstPointer::new(unsafe { EC_KEY_get0_group(*ec_key) })?;
-        let ec_point = ConstPointer::new(unsafe { EC_KEY_get0_public_key(*ec_key) })?;
+        let ec_key = evp_pkey.project_const_lifetime(unsafe {
+            |evp_pkey| EVP_PKEY_get0_EC_KEY(*evp_pkey.as_const())
+        })?;
+        let ec_group =
+            ec_key.project_const_lifetime(unsafe { |ec_key| EC_KEY_get0_group(**ec_key) })?;
+        let ec_point =
+            ec_key.project_const_lifetime(unsafe { |ec_key| EC_KEY_get0_public_key(**ec_key) })?;
 
         let point_conversion_form = if compressed {
             point_conversion_form_t::POINT_CONVERSION_COMPRESSED
@@ -186,8 +190,11 @@ pub(crate) mod sec1 {
     pub(crate) fn marshal_sec1_private_key(
         evp_pkey: &LcPtr<EVP_PKEY>,
     ) -> Result<Vec<u8>, Unspecified> {
-        let ec_key = ConstPointer::new(unsafe { EVP_PKEY_get0_EC_KEY(*evp_pkey.as_const()) })?;
-        let ec_group = ConstPointer::new(unsafe { EC_KEY_get0_group(*ec_key) })?;
+        let ec_key = evp_pkey.project_const_lifetime(unsafe {
+            |evp_pkey| EVP_PKEY_get0_EC_KEY(*evp_pkey.as_const())
+        })?;
+        let ec_group =
+            ec_key.project_const_lifetime(unsafe { |ec_key| EC_KEY_get0_group(**ec_key) })?;
         let nid = unsafe { EC_GROUP_get_curve_name(*ec_group) };
         #[allow(non_upper_case_globals)]
         let key_size: usize = match nid {
@@ -196,7 +203,8 @@ pub(crate) mod sec1 {
             NID_secp521r1 => Ok(66usize),
             _ => Err(Unspecified),
         }?;
-        let private_bn = ConstPointer::new(unsafe { EC_KEY_get0_private_key(*ec_key) })?;
+        let private_bn =
+            ec_key.project_const_lifetime(unsafe { |ec_key| EC_KEY_get0_private_key(**ec_key) })?;
 
         let mut cbb = LcCBB::new(key_size);
         if 1 != unsafe { BN_bn2cbb_padded(cbb.as_mut_ptr(), key_size, *private_bn) } {
@@ -215,7 +223,7 @@ pub(crate) mod rfc5915 {
     use crate::cbs::build_CBS;
     use crate::ec::ec_group_from_nid;
     use crate::error::{KeyRejected, Unspecified};
-    use crate::ptr::{ConstPointer, LcPtr};
+    use crate::ptr::LcPtr;
 
     pub(crate) fn parse_rfc5915_private_key(
         key_bytes: &[u8],
@@ -234,8 +242,10 @@ pub(crate) mod rfc5915 {
     pub(crate) fn marshal_rfc5915_private_key(
         evp_pkey: &LcPtr<EVP_PKEY>,
     ) -> Result<Vec<u8>, Unspecified> {
-        let ec_key = ConstPointer::new(unsafe { EVP_PKEY_get0_EC_KEY(*evp_pkey.as_const()) })?;
-        let mut cbb = LcCBB::new(evp_pkey.key_size_bytes());
+        let ec_key = evp_pkey.project_const_lifetime(unsafe {
+            |evp_pkey| EVP_PKEY_get0_EC_KEY(*evp_pkey.as_const())
+        })?;
+        let mut cbb = LcCBB::new(evp_pkey.as_const().key_size_bytes());
         let enc_flags = unsafe { EC_KEY_get_enc_flags(*ec_key) };
         if 1 != unsafe { EC_KEY_marshal_private_key(cbb.as_mut_ptr(), *ec_key, enc_flags) } {
             return Err(Unspecified);
@@ -250,5 +260,5 @@ pub(crate) fn parse_ec_public_key(
 ) -> Result<LcPtr<EVP_PKEY>, KeyRejected> {
     LcPtr::<EVP_PKEY>::parse_rfc5280_public_key(key_bytes, EVP_PKEY_EC)
         .or(parse_sec1_public_point(key_bytes, expected_curve_nid))
-        .and_then(|key| validate_evp_key(&key.as_const(), expected_curve_nid).map(|()| key))
+        .and_then(|key| validate_ec_evp_key(&key.as_const(), expected_curve_nid).map(|()| key))
 }

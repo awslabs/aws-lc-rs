@@ -11,13 +11,15 @@ macro_rules! generate_key {
         #[test]
         fn $name() {
             // Using the non-fips generator will not set the indicator
+            #[cfg(not(feature = "fips"))]
             let _ =
                 assert_fips_status_indicator!(KeyPair::generate($size), FipsServiceStatus::Unset)
                     .expect("key generated");
 
             // Using the fips generator should set the indicator
+            #[cfg(feature = "fips")]
             let _ = assert_fips_status_indicator!(
-                KeyPair::generate_fips($size),
+                KeyPair::generate($size),
                 FipsServiceStatus::Approved
             )
             .expect("key generated");
@@ -27,6 +29,7 @@ macro_rules! generate_key {
         #[test]
         fn $name() {
             // Using the non-fips generator will not set the indicator
+            #[cfg(not(feature = "fips"))]
             let _ = assert_fips_status_indicator!(
                 PrivateDecryptingKey::generate($size),
                 FipsServiceStatus::Unset
@@ -34,8 +37,9 @@ macro_rules! generate_key {
             .expect("key generated");
 
             // Using the fips generator should set the indicator
+            #[cfg(feature = "fips")]
             let _ = assert_fips_status_indicator!(
-                PrivateDecryptingKey::generate_fips($size),
+                PrivateDecryptingKey::generate($size),
                 FipsServiceStatus::Approved
             )
             .expect("key generated");

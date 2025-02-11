@@ -58,13 +58,11 @@ use crate::ec::encoding::sec1::{
 use crate::ec::{encoding, evp_key_generate};
 use crate::error::{KeyRejected, Unspecified};
 use crate::hex;
-use crate::ptr::ConstPointer;
 pub use ephemeral::{agree_ephemeral, EphemeralPrivateKey};
 
 use crate::aws_lc::{
-    EVP_PKEY_CTX_new_id, EVP_PKEY_derive, EVP_PKEY_derive_init, EVP_PKEY_derive_set_peer,
-    EVP_PKEY_get0_EC_KEY, EVP_PKEY_keygen, EVP_PKEY_keygen_init, NID_X9_62_prime256v1,
-    NID_secp384r1, NID_secp521r1, EVP_PKEY, EVP_PKEY_X25519, NID_X25519,
+    EVP_PKEY_derive, EVP_PKEY_derive_init, EVP_PKEY_derive_set_peer, EVP_PKEY_get0_EC_KEY,
+    NID_X9_62_prime256v1, NID_secp384r1, NID_secp521r1, EVP_PKEY, EVP_PKEY_X25519, NID_X25519,
 };
 
 use crate::buffer::Buffer;
@@ -74,6 +72,7 @@ use crate::encoding::{
     AsBigEndian, AsDer, Curve25519SeedBin, EcPrivateKeyBin, EcPrivateKeyRfc5915Der,
     EcPublicKeyCompressedBin, EcPublicKeyUncompressedBin, PublicKeyX509Der,
 };
+use crate::evp_pkey::No_EVP_PKEY_CTX_consumer;
 use crate::fips::indicator_check;
 use crate::ptr::LcPtr;
 use core::fmt;
@@ -404,7 +403,7 @@ impl PrivateKey {
             }
             KeyInner::X25519(priv_key) => {
                 let mut buffer = [0u8; MAX_PUBLIC_KEY_LEN];
-                let out_len = priv_key.marshal_raw_public_to_buffer(&mut buffer)?;
+                let out_len = priv_key.as_const().marshal_raw_public_to_buffer(&mut buffer)?;
                 Ok(PublicKey {
                     inner_key: self.inner_key.clone(),
                     public_key: buffer,
@@ -436,9 +435,11 @@ impl AsDer<EcPrivateKeyRfc5915Der<'static>> for PrivateKey {
 
         let mut outp = null_mut::<u8>();
         let ec_key = {
-            ConstPointer::new(unsafe {
-                EVP_PKEY_get0_EC_KEY(*self.inner_key.get_evp_pkey().as_const())
-            })?
+            self.inner_key
+                .get_evp_pkey()
+                .project_const_lifetime(unsafe {
+                    |evp_pkey| EVP_PKEY_get0_EC_KEY(*evp_pkey.as_const())
+                })?
         };
         let length = usize::try_from(unsafe { aws_lc::i2d_ECPrivateKey(*ec_key, &mut outp) })
             .map_err(|_| Unspecified)?;
@@ -477,26 +478,12 @@ impl AsBigEndian<Curve25519SeedBin<'static>> for PrivateKey {
             return Err(Unspecified);
         }
         let evp_pkey = self.inner_key.get_evp_pkey();
-        Ok(Curve25519SeedBin::new(evp_pkey.marshal_raw_private_key()?))
+        Ok(Curve25519SeedBin::new(evp_pkey.as_const().marshal_raw_private_key()?))
     }
 }
 
 pub(crate) fn generate_x25519() -> Result<LcPtr<EVP_PKEY>, Unspecified> {
-    let mut pkey_ctx = LcPtr::new(unsafe { EVP_PKEY_CTX_new_id(EVP_PKEY_X25519, null_mut()) })?;
-
-    if 1 != unsafe { EVP_PKEY_keygen_init(*pkey_ctx.as_mut()) } {
-        return Err(Unspecified);
-    }
-
-    let mut pkey: *mut EVP_PKEY = null_mut();
-
-    if 1 != indicator_check!(unsafe { EVP_PKEY_keygen(*pkey_ctx.as_mut(), &mut pkey) }) {
-        return Err(Unspecified);
-    }
-
-    let pkey = LcPtr::new(pkey)?;
-
-    Ok(pkey)
+    LcPtr::<EVP_PKEY>::generate(EVP_PKEY_X25519, No_EVP_PKEY_CTX_consumer)
 }
 
 const MAX_PUBLIC_KEY_LEN: usize = ec::PUBLIC_KEY_MAX_LEN;
@@ -558,7 +545,7 @@ impl AsDer<PublicKeyX509Der<'static>> for PublicKey {
             | KeyInner::ECDH_P384(evp_pkey)
             | KeyInner::ECDH_P521(evp_pkey)
             | KeyInner::X25519(evp_pkey) => {
-                let der = evp_pkey.marshal_rfc5280_public_key()?;
+                let der = evp_pkey.as_const().marshal_rfc5280_public_key()?;
                 Ok(PublicKeyX509Der::from(Buffer::new(der)))
             }
         }

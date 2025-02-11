@@ -317,7 +317,7 @@ macro_rules! generate_fips_encode_decode {
         #[cfg(feature = "fips")]
         #[test]
         fn $name() {
-            let private_key = RsaKeyPair::generate_fips($size).expect("generation");
+            let private_key = RsaKeyPair::generate($size).expect("generation");
 
             assert_eq!(true, private_key.is_valid_fips_key());
 
@@ -388,7 +388,7 @@ macro_rules! encryption_generate_fips_encode_decode {
         #[cfg(feature = "fips")]
         #[test]
         fn $name() {
-            let private_key = PrivateDecryptingKey::generate_fips($size).expect("generation");
+            let private_key = PrivateDecryptingKey::generate($size).expect("generation");
 
             assert_eq!(true, private_key.is_valid_fips_key());
 

@@ -63,7 +63,8 @@ generated_encodings!(
     PublicKeyX509Der,
     Curve25519SeedBin,
     Pkcs8V1Der,
-    Pkcs8V2Der
+    Pkcs8V2Der,
+    PqdsaPrivateKeyBin
 );
 
 /// Trait for types that can be serialized into a DER format.
@@ -82,4 +83,13 @@ pub trait AsBigEndian<T> {
     /// # Errors
     /// Returns Unspecified if serialization fails.
     fn as_be_bytes(&self) -> Result<T, crate::error::Unspecified>;
+}
+
+/// Trait for values that can be serialized into a raw format
+pub trait AsRawBytes<T> {
+    /// Serializes into a raw format.
+    ///
+    /// # Errors
+    /// Returns Unspecified if serialization fails.
+    fn as_raw_bytes(&self) -> Result<T, crate::error::Unspecified>;
 }

@@ -1,14 +1,14 @@
 // Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 // SPDX-License-Identifier: Apache-2.0 OR ISC
 
-use core::ops::Deref;
-
 use crate::aws_lc::{
     BN_free, ECDSA_SIG_free, EC_GROUP_free, EC_KEY_free, EC_POINT_free, EVP_AEAD_CTX_free,
     EVP_CIPHER_CTX_free, EVP_PKEY_CTX_free, EVP_PKEY_free, OPENSSL_free, RSA_free, BIGNUM,
     ECDSA_SIG, EC_GROUP, EC_KEY, EC_POINT, EVP_AEAD_CTX, EVP_CIPHER_CTX, EVP_PKEY, EVP_PKEY_CTX,
     RSA,
 };
+use core::ops::Deref;
+use std::marker::PhantomData;
 
 pub(crate) type LcPtr<T> = ManagedPointer<*mut T>;
 pub(crate) type DetachableLcPtr<T> = DetachablePointer<*mut T>;
@@ -40,12 +40,33 @@ impl<P: Pointer> Drop for ManagedPointer<P> {
     }
 }
 
+impl<'a, P: Pointer> From<&'a ManagedPointer<P>> for ConstPointer<'a, P::T> {
+    fn from(ptr: &'a ManagedPointer<P>) -> ConstPointer<'a, P::T> {
+        ConstPointer {
+            ptr: ptr.pointer.as_const_ptr(),
+            _lifetime: PhantomData,
+        }
+    }
+}
+
 impl<P: Pointer> ManagedPointer<P> {
     #[inline]
     pub fn as_const(&self) -> ConstPointer<P::T> {
-        ConstPointer {
-            ptr: self.pointer.as_const_ptr(),
+        self.into()
+    }
+
+    pub fn project_const_lifetime<'a, C>(
+        &'a self,
+        f: unsafe fn(&'a Self) -> *const C,
+    ) -> Result<ConstPointer<'a, C>, ()> {
+        let ptr = unsafe { f(self) };
+        if ptr.is_null() {
+            return Err(());
         }
+        Ok(ConstPointer {
+            ptr,
+            _lifetime: PhantomData,
+        })
     }
 
     #[inline]
@@ -133,20 +154,40 @@ impl<P: Pointer> Drop for DetachablePointer<P> {
 }
 
 #[derive(Debug)]
-pub(crate) struct ConstPointer<T> {
+pub(crate) struct ConstPointer<'a, T> {
     ptr: *const T,
+    _lifetime: PhantomData<&'a T>,
 }
 
-impl<T> ConstPointer<T> {
-    pub fn new(ptr: *const T) -> Result<ConstPointer<T>, ()> {
+impl<T> ConstPointer<'static, T> {
+    pub unsafe fn new_static(ptr: *const T) -> Result<Self, ()> {
         if ptr.is_null() {
             return Err(());
         }
-        Ok(ConstPointer { ptr })
+        Ok(ConstPointer {
+            ptr,
+            _lifetime: PhantomData,
+        })
     }
 }
 
-impl<T> Deref for ConstPointer<T> {
+impl<T> ConstPointer<'_, T> {
+    pub fn project_const_lifetime<'a, C>(
+        &'a self,
+        f: unsafe fn(&'a Self) -> *const C,
+    ) -> Result<ConstPointer<'a, C>, ()> {
+        let ptr = unsafe { f(self) };
+        if ptr.is_null() {
+            return Err(());
+        }
+        Ok(ConstPointer {
+            ptr,
+            _lifetime: PhantomData,
+        })
+    }
+}
+
+impl<T> Deref for ConstPointer<'_, T> {
     type Target = *const T;
 
     fn deref(&self) -> &Self::Target {

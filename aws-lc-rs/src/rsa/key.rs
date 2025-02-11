@@ -174,7 +174,7 @@ impl KeyPair {
         if !is_rsa_key(key) {
             return Err(KeyRejected::unspecified());
         }
-        match key.key_size_bits() {
+        match key.as_const().key_size_bits() {
             2048..=8192 => Ok(()),
             _ => Err(KeyRejected::unspecified()),
         }
@@ -229,7 +229,7 @@ impl KeyPair {
     #[must_use]
     pub fn public_modulus_len(&self) -> usize {
         // This was already validated to be an RSA key so this can't fail
-        match self.evp_pkey.get_rsa() {
+        match self.evp_pkey.as_const().get_rsa() {
             Ok(rsa) => {
                 // https://github.com/awslabs/aws-lc/blob/main/include/openssl/rsa.h#L99
                 unsafe { RSA_size(*rsa) as usize }
@@ -259,7 +259,9 @@ impl crate::signature::KeyPair for KeyPair {
 impl AsDer<Pkcs8V1Der<'static>> for KeyPair {
     fn as_der(&self) -> Result<Pkcs8V1Der<'static>, Unspecified> {
         Ok(Pkcs8V1Der::new(
-            self.evp_pkey.marshal_rfc5208_private_key(Version::V1)?,
+            self.evp_pkey
+                .as_const()
+                .marshal_rfc5208_private_key(Version::V1)?,
         ))
     }
 }
@@ -290,6 +292,7 @@ impl PublicKey {
         let key = encoding::rfc8017::encode_public_key_der(evp_pkey)?;
         #[cfg(feature = "ring-io")]
         {
+            let evp_pkey = evp_pkey.as_const();
             let pubkey = evp_pkey.get_rsa()?;
             let modulus =
                 pubkey.project_const_lifetime(unsafe { |pubkey| RSA_get0_n(**pubkey) })?;
@@ -462,12 +465,13 @@ pub(super) fn generate_rsa_key(size: c_int) -> Result<LcPtr<EVP_PKEY>, Unspecifi
 #[must_use]
 pub(super) fn is_valid_fips_key(key: &LcPtr<EVP_PKEY>) -> bool {
     // This should always be an RSA key and must-never panic.
-    let rsa_key = key.get_rsa().expect("RSA EVP_PKEY");
+    let evp_pkey = key.as_const();
+    let rsa_key = evp_pkey.get_rsa().expect("RSA EVP_PKEY");
 
     1 == unsafe { RSA_check_fips(*rsa_key as *mut RSA) }
 }
 
 pub(super) fn is_rsa_key(key: &LcPtr<EVP_PKEY>) -> bool {
-    let id = key.id();
+    let id = key.as_const().id();
     id == EVP_PKEY_RSA || id == EVP_PKEY_RSA_PSS
 }

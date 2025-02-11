@@ -81,7 +81,7 @@ pub(crate) fn validate_pqdsa_evp_key(
     evp_pkey: &LcPtr<EVP_PKEY>,
     id: &'static AlgorithmID,
 ) -> Result<(), KeyRejected> {
-    if evp_pkey.key_size_bytes() == id.pub_key_size_bytes() {
+    if evp_pkey.as_const().key_size_bytes() == id.pub_key_size_bytes() {
         Ok(())
     } else {
         Err(KeyRejected::unspecified())
@@ -118,24 +118,27 @@ mod tests {
     fn test_keygen() {
         for nid in [NID_MLDSA44, NID_MLDSA65, NID_MLDSA87] {
             let key = evp_key_pqdsa_generate(nid).unwrap();
-            println!("key size: {:?}", key.key_size_bytes());
+            println!("key size: {:?}", key.as_const().key_size_bytes());
             test_serialization_for(&key, &AlgorithmID::from_nid(nid).unwrap());
             test_signing_for(&key, &AlgorithmID::from_nid(nid).unwrap());
         }
     }
 
     fn test_serialization_for(evp_pkey: &LcPtr<EVP_PKEY>, id: &AlgorithmID) {
-        let public_buffer = evp_pkey.marshal_rfc5280_public_key().unwrap();
+        let public_buffer = evp_pkey.as_const().marshal_rfc5280_public_key().unwrap();
         println!("public marshall: {public_buffer:?}");
         let key_public =
             LcPtr::<EVP_PKEY>::parse_rfc5280_public_key(&public_buffer, EVP_PKEY_PQDSA).unwrap();
 
-        let private_buffer = evp_pkey.marshal_rfc5208_private_key(Version::V1).unwrap();
+        let private_buffer = evp_pkey
+            .as_const()
+            .marshal_rfc5208_private_key(Version::V1)
+            .unwrap();
         println!("private marshall: {private_buffer:?}");
         let key_private =
             LcPtr::<EVP_PKEY>::parse_rfc5208_private_key(&private_buffer, EVP_PKEY_PQDSA).unwrap();
 
-        let raw_public_buffer = key_public.marshal_raw_public_key().unwrap();
+        let raw_public_buffer = key_public.as_const().marshal_raw_public_key().unwrap();
         assert_eq!(raw_public_buffer.len(), id.pub_key_size_bytes());
         println!("raw public size: {}", raw_public_buffer.len());
         let key_public2 =
@@ -145,7 +148,7 @@ mod tests {
             EVP_PKEY_cmp(*key_public.as_const(), *key_public2.as_const())
         });
 
-        let raw_private_buffer = key_private.marshal_raw_private_key().unwrap();
+        let raw_private_buffer = key_private.as_const().marshal_raw_private_key().unwrap();
         assert_eq!(raw_private_buffer.len(), id.priv_key_size_bytes());
         println!("raw private size: {}", raw_private_buffer.len());
         let key_private2 =
@@ -161,7 +164,7 @@ mod tests {
             .sign(message, None, No_EVP_PKEY_CTX_consumer)
             .unwrap();
         println!("signature size: {}", signature.len());
-        assert_eq!(signature.len(), evp_pkey.signature_size_bytes());
+        assert_eq!(signature.len(), evp_pkey.as_const().signature_size_bytes());
         assert_eq!(signature.len(), id.signature_size_bytes());
         evp_pkey
             .verify(message, None, No_EVP_PKEY_CTX_consumer, &signature)

@@ -43,7 +43,7 @@ impl<T> EVP_PKEY_CTX_consumer for T where T: Fn(*mut EVP_PKEY_CTX) -> Result<(),
 #[allow(non_upper_case_globals, clippy::type_complexity)]
 pub(crate) const No_EVP_PKEY_CTX_consumer: Option<fn(*mut EVP_PKEY_CTX) -> Result<(), ()>> = None;
 
-impl LcPtr<EVP_PKEY> {
+impl ConstPointer<'_, EVP_PKEY> {
     pub(crate) fn validate_as_ed25519(&self) -> Result<(), KeyRejected> {
         const ED25519_KEY_TYPE: c_int = EVP_PKEY_ED25519;
         const ED25519_MIN_BITS: c_int = 253;
@@ -79,7 +79,7 @@ impl LcPtr<EVP_PKEY> {
     // EVP_PKEY_X448 = 961;
     // EVP_PKEY_ED448 = 960;
     pub(crate) fn id(&self) -> i32 {
-        unsafe { EVP_PKEY_id(*self.as_const()) }
+        unsafe { EVP_PKEY_id(**self) }
     }
 
     pub(crate) fn key_size_bytes(&self) -> usize {
@@ -87,27 +87,21 @@ impl LcPtr<EVP_PKEY> {
     }
 
     pub(crate) fn key_size_bits(&self) -> usize {
-        unsafe { EVP_PKEY_bits(*self.as_const()) }
-            .try_into()
-            .unwrap()
+        unsafe { EVP_PKEY_bits(**self) }.try_into().unwrap()
     }
 
     pub(crate) fn signature_size_bytes(&self) -> usize {
-        unsafe { EVP_PKEY_size(*self.as_const()) }
-            .try_into()
-            .unwrap()
+        unsafe { EVP_PKEY_size(**self) }.try_into().unwrap()
     }
 
     #[allow(dead_code)]
     pub(crate) fn get_ec_key(&self) -> Result<ConstPointer<EC_KEY>, KeyRejected> {
-        self.project_const_lifetime(unsafe {
-            |evp_pkey| EVP_PKEY_get0_EC_KEY(*evp_pkey.as_const())
-        })
-        .map_err(|()| KeyRejected::wrong_algorithm())
+        self.project_const_lifetime(unsafe { |evp_pkey| EVP_PKEY_get0_EC_KEY(**evp_pkey) })
+            .map_err(|()| KeyRejected::wrong_algorithm())
     }
 
     pub(crate) fn get_rsa(&self) -> Result<ConstPointer<RSA>, KeyRejected> {
-        self.project_const_lifetime(unsafe { |evp_pkey| EVP_PKEY_get0_RSA(*evp_pkey.as_const()) })
+        self.project_const_lifetime(unsafe { |evp_pkey| EVP_PKEY_get0_RSA(**evp_pkey) })
             .map_err(|()| KeyRejected::wrong_algorithm())
     }
 
@@ -116,43 +110,27 @@ impl LcPtr<EVP_PKEY> {
         // size in bytes for keys ranging from 2048-bit to 4096-bit. So size the initial capacity to be roughly
         // 500% as a conservative estimate to avoid needing to reallocate for any key in that range.
         let mut cbb = LcCBB::new(self.key_size_bytes() * 5);
-        if 1 != unsafe { EVP_marshal_public_key(cbb.as_mut_ptr(), *self.as_const()) } {
+        if 1 != unsafe { EVP_marshal_public_key(cbb.as_mut_ptr(), **self) } {
             return Err(Unspecified);
         }
         cbb.into_vec()
-    }
-
-    pub(crate) fn parse_rfc5280_public_key(
-        bytes: &[u8],
-        evp_pkey_type: c_int,
-    ) -> Result<Self, KeyRejected> {
-        let mut cbs = cbs::build_CBS(bytes);
-        // Also checks the validity of the key
-        let evp_pkey = LcPtr::new(unsafe { EVP_parse_public_key(&mut cbs) })
-            .map_err(|()| KeyRejected::invalid_encoding())?;
-        evp_pkey
-            .id()
-            .eq(&evp_pkey_type)
-            .then_some(evp_pkey)
-            .ok_or(KeyRejected::wrong_algorithm())
     }
 
     pub(crate) fn marshal_rfc5208_private_key(
         &self,
         version: Version,
     ) -> Result<Vec<u8>, Unspecified> {
-        let key_size_bytes = TryInto::<usize>::try_into(unsafe { EVP_PKEY_bits(*self.as_const()) })
-            .expect("fit in usize")
-            / 8;
+        let key_size_bytes =
+            TryInto::<usize>::try_into(unsafe { EVP_PKEY_bits(**self) }).expect("fit in usize") / 8;
         let mut cbb = LcCBB::new(key_size_bytes * 5);
         match version {
             Version::V1 => {
-                if 1 != unsafe { EVP_marshal_private_key(cbb.as_mut_ptr(), *self.as_const()) } {
+                if 1 != unsafe { EVP_marshal_private_key(cbb.as_mut_ptr(), **self) } {
                     return Err(Unspecified);
                 }
             }
             Version::V2 => {
-                if 1 != unsafe { EVP_marshal_private_key_v2(cbb.as_mut_ptr(), *self.as_const()) } {
+                if 1 != unsafe { EVP_marshal_private_key_v2(cbb.as_mut_ptr(), **self) } {
                     return Err(Unspecified);
                 }
             }
@@ -160,32 +138,9 @@ impl LcPtr<EVP_PKEY> {
         cbb.into_vec()
     }
 
-    pub(crate) fn parse_rfc5208_private_key(
-        bytes: &[u8],
-        evp_pkey_type: c_int,
-    ) -> Result<Self, KeyRejected> {
-        let mut cbs = cbs::build_CBS(bytes);
-        // Also checks the validity of the key
-        let evp_pkey = LcPtr::new(unsafe { EVP_parse_private_key(&mut cbs) })
-            .map_err(|()| KeyRejected::invalid_encoding())?;
-        evp_pkey
-            .id()
-            .eq(&evp_pkey_type)
-            .then_some(evp_pkey)
-            .ok_or(KeyRejected::wrong_algorithm())
-    }
-
-    #[allow(non_snake_case)]
-    pub(crate) fn create_EVP_PKEY_CTX(&self) -> Result<LcPtr<EVP_PKEY_CTX>, ()> {
-        // The only modification made by EVP_PKEY_CTX_new to `priv_key` is to increment its
-        // refcount. The modification is made while holding a global lock:
-        // https://github.com/aws/aws-lc/blob/61503f7fe72457e12d3446853a5452d175560c49/crypto/refcount_lock.c#L29
-        LcPtr::new(unsafe { EVP_PKEY_CTX_new(*self.as_mut_unsafe(), null_mut()) })
-    }
-
     pub(crate) fn marshal_raw_private_key(&self) -> Result<Vec<u8>, Unspecified> {
         let mut size = 0;
-        if 1 != unsafe { EVP_PKEY_get_raw_private_key(*self.as_const(), null_mut(), &mut size) } {
+        if 1 != unsafe { EVP_PKEY_get_raw_private_key(**self, null_mut(), &mut size) } {
             return Err(Unspecified);
         }
         let mut buffer = vec![0u8; size];
@@ -199,9 +154,7 @@ impl LcPtr<EVP_PKEY> {
         buffer: &mut [u8],
     ) -> Result<usize, Unspecified> {
         let mut key_len = buffer.len();
-        if 1 == unsafe {
-            EVP_PKEY_get_raw_private_key(*self.as_const(), buffer.as_mut_ptr(), &mut key_len)
-        } {
+        if 1 == unsafe { EVP_PKEY_get_raw_private_key(**self, buffer.as_mut_ptr(), &mut key_len) } {
             Ok(key_len)
         } else {
             Err(Unspecified)
@@ -211,7 +164,7 @@ impl LcPtr<EVP_PKEY> {
     #[allow(dead_code)]
     pub(crate) fn marshal_raw_public_key(&self) -> Result<Vec<u8>, Unspecified> {
         let mut size = 0;
-        if 1 != unsafe { EVP_PKEY_get_raw_public_key(*self.as_const(), null_mut(), &mut size) } {
+        if 1 != unsafe { EVP_PKEY_get_raw_public_key(**self, null_mut(), &mut size) } {
             return Err(Unspecified);
         }
         let mut buffer = vec![0u8; size];
@@ -229,12 +182,55 @@ impl LcPtr<EVP_PKEY> {
             // `EVP_PKEY_get_raw_public_key` writes the total length
             // to `encapsulate_key_size` in the event that the buffer we provide is larger then
             // required.
-            EVP_PKEY_get_raw_public_key(*self.as_const(), buffer.as_mut_ptr(), &mut key_len)
+            EVP_PKEY_get_raw_public_key(**self, buffer.as_mut_ptr(), &mut key_len)
         } {
             Ok(key_len)
         } else {
             Err(Unspecified)
         }
+    }
+
+}
+
+impl LcPtr<EVP_PKEY> {
+    pub(crate) fn parse_rfc5280_public_key(
+        bytes: &[u8],
+        evp_pkey_type: c_int,
+    ) -> Result<Self, KeyRejected> {
+        let mut cbs = cbs::build_CBS(bytes);
+        // Also checks the validity of the key
+        let evp_pkey = LcPtr::new(unsafe { EVP_parse_public_key(&mut cbs) })
+            .map_err(|()| KeyRejected::invalid_encoding())?;
+        evp_pkey
+            .as_const()
+            .id()
+            .eq(&evp_pkey_type)
+            .then_some(evp_pkey)
+            .ok_or(KeyRejected::wrong_algorithm())
+    }
+
+    pub(crate) fn parse_rfc5208_private_key(
+        bytes: &[u8],
+        evp_pkey_type: c_int,
+    ) -> Result<Self, KeyRejected> {
+        let mut cbs = cbs::build_CBS(bytes);
+        // Also checks the validity of the key
+        let evp_pkey = LcPtr::new(unsafe { EVP_parse_private_key(&mut cbs) })
+            .map_err(|()| KeyRejected::invalid_encoding())?;
+        evp_pkey
+            .as_const()
+            .id()
+            .eq(&evp_pkey_type)
+            .then_some(evp_pkey)
+            .ok_or(KeyRejected::wrong_algorithm())
+    }
+
+    #[allow(non_snake_case)]
+    pub(crate) fn create_EVP_PKEY_CTX(&self) -> Result<LcPtr<EVP_PKEY_CTX>, ()> {
+        // The only modification made by EVP_PKEY_CTX_new to `priv_key` is to increment its
+        // refcount. The modification is made while holding a global lock:
+        // https://github.com/aws/aws-lc/blob/61503f7fe72457e12d3446853a5452d175560c49/crypto/refcount_lock.c#L29
+        LcPtr::new(unsafe { EVP_PKEY_CTX_new(*self.as_mut_unsafe(), null_mut()) })
     }
 
     pub(crate) fn parse_raw_private_key(

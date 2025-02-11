@@ -44,7 +44,7 @@ unsafe impl Sync for PublicKey {}
 
 impl PublicKey {
     pub(crate) fn from_private_evp_pkey(evp_pkey: &LcPtr<EVP_PKEY>) -> Result<Self, Unspecified> {
-        let octets = evp_pkey.marshal_raw_public_key()?;
+        let octets = evp_pkey.as_const().marshal_raw_public_key()?;
         Ok(Self {
             evp_pkey: evp_pkey.clone(),
             octets: octets.into_boxed_slice(),
@@ -99,7 +99,7 @@ impl AsDer<PublicKeyX509Der<'static>> for PublicKey {
     /// # Errors
     /// Returns an error if the public key fails to marshal to X.509.
     fn as_der(&self) -> Result<PublicKeyX509Der<'static>, crate::error::Unspecified> {
-        let der = self.evp_pkey.marshal_rfc5280_public_key()?;
+        let der = self.evp_pkey.as_const().marshal_rfc5280_public_key()?;
         Ok(PublicKeyX509Der::from(Buffer::new(der)))
     }
 }

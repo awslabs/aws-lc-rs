@@ -109,7 +109,7 @@ impl RsaParameters {
     /// `error::Unspecified` on parse error.
     pub fn public_modulus_len(public_key: &[u8]) -> Result<u32, Unspecified> {
         let rsa = encoding::rfc8017::decode_public_key_der(public_key)?;
-        Ok(unsafe { RSA_bits(*rsa.get_rsa()?) })
+        Ok(unsafe { RSA_bits(*rsa.as_const().get_rsa()?) })
     }
 
     #[must_use]
@@ -222,7 +222,7 @@ pub(crate) fn verify_rsa_signature(
     signature: &[u8],
     allowed_bit_size: &RangeInclusive<u32>,
 ) -> Result<(), Unspecified> {
-    if !allowed_bit_size.contains(&public_key.key_size_bits().try_into()?) {
+    if !allowed_bit_size.contains(&public_key.as_const().key_size_bits().try_into()?) {
         return Err(Unspecified);
     }
 

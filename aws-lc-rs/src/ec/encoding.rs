@@ -135,9 +135,9 @@ pub(crate) mod sec1 {
         compressed: bool,
     ) -> Result<Vec<u8>, Unspecified> {
         let pub_key_size = if compressed {
-            compressed_public_key_size_bytes(evp_pkey.key_size_bits())
+            compressed_public_key_size_bytes(evp_pkey.as_const().key_size_bits())
         } else {
-            uncompressed_public_key_size_bytes(evp_pkey.key_size_bits())
+            uncompressed_public_key_size_bytes(evp_pkey.as_const().key_size_bits())
         };
         let mut cbb = LcCBB::new(pub_key_size);
         marshal_sec1_public_point_into_cbb(&mut cbb, evp_pkey, compressed)?;
@@ -245,7 +245,7 @@ pub(crate) mod rfc5915 {
         let ec_key = evp_pkey.project_const_lifetime(unsafe {
             |evp_pkey| EVP_PKEY_get0_EC_KEY(*evp_pkey.as_const())
         })?;
-        let mut cbb = LcCBB::new(evp_pkey.key_size_bytes());
+        let mut cbb = LcCBB::new(evp_pkey.as_const().key_size_bytes());
         let enc_flags = unsafe { EC_KEY_get_enc_flags(*ec_key) };
         if 1 != unsafe { EC_KEY_marshal_private_key(cbb.as_mut_ptr(), *ec_key, enc_flags) } {
             return Err(Unspecified);

@@ -362,7 +362,7 @@ where
         let mut encapsulate_bytes = vec![0u8; self.algorithm.encapsulate_key_size()];
         let encapsulate_key_size = self
             .evp_pkey
-            .marshal_raw_public_to_buffer(&mut encapsulate_bytes)?;
+            .as_const().marshal_raw_public_to_buffer(&mut encapsulate_bytes)?;
 
         debug_assert_eq!(encapsulate_key_size, encapsulate_bytes.len());
         encapsulate_bytes.truncate(encapsulate_key_size);

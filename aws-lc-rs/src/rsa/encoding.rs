@@ -21,7 +21,7 @@ pub(in crate::rsa) mod rfc8017 {
         let mut pubkey_bytes = null_mut::<u8>();
         let mut outlen: usize = 0;
         if 1 != unsafe {
-            RSA_public_key_to_bytes(&mut pubkey_bytes, &mut outlen, *pubkey.get_rsa()?)
+            RSA_public_key_to_bytes(&mut pubkey_bytes, &mut outlen, *pubkey.as_const().get_rsa()?)
         } {
             return Err(Unspecified);
         }
@@ -85,7 +85,7 @@ pub(in crate::rsa) mod rfc5280 {
     pub(in crate::rsa) fn encode_public_key_der(
         key: &LcPtr<EVP_PKEY>,
     ) -> Result<PublicKeyX509Der<'static>, Unspecified> {
-        let der = key.marshal_rfc5280_public_key()?;
+        let der = key.as_const().marshal_rfc5280_public_key()?;
         Ok(PublicKeyX509Der::from(Buffer::new(der)))
     }
 

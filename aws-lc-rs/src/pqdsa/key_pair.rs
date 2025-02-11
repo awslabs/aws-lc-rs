@@ -62,7 +62,7 @@ impl AsDer<Pkcs8V1Der<'static>> for PqdsaPrivateKey<'_> {
         Ok(Pkcs8V1Der::new(
             self.0
                 .evp_pkey
-                .marshal_rfc5208_private_key(pkcs8::Version::V1)?,
+                .as_const().marshal_rfc5208_private_key(pkcs8::Version::V1)?,
         ))
     }
 }
@@ -70,7 +70,7 @@ impl AsDer<Pkcs8V1Der<'static>> for PqdsaPrivateKey<'_> {
 impl AsRawBytes<PqdsaPrivateKeyBin<'static>> for PqdsaPrivateKey<'_> {
     fn as_raw_bytes(&self) -> Result<PqdsaPrivateKeyBin<'static>, Unspecified> {
         Ok(PqdsaPrivateKeyBin::new(
-            self.0.evp_pkey.marshal_raw_private_key()?,
+            self.0.evp_pkey.as_const().marshal_raw_private_key()?,
         ))
     }
 }
@@ -142,7 +142,7 @@ impl PqdsaKeyPair {
 
         // Verify the public/private key correspond
         let pub_evp_pkey = LcPtr::<EVP_PKEY>::parse_raw_public_key(raw_public_key, EVP_PKEY_PQDSA)?;
-        let pubkey_octets = priv_evp_pkey.marshal_raw_public_key()?;
+        let pubkey_octets = priv_evp_pkey.as_const().marshal_raw_public_key()?;
         verify_slices_are_equal(pubkey_octets.as_slice(), &pubkey.octets)?;
 
         Ok(Self {
@@ -182,7 +182,7 @@ impl PqdsaKeyPair {
     /// Returns `Unspecified` if serialization fails.
     pub fn to_pkcs8(&self) -> Result<Document, Unspecified> {
         Ok(Document::new(
-            self.evp_pkey.marshal_rfc5208_private_key(Version::V1)?,
+            self.evp_pkey.as_const().marshal_rfc5208_private_key(Version::V1)?,
         ))
     }
 

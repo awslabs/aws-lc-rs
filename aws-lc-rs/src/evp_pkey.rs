@@ -7,8 +7,7 @@ use crate::aws_lc::{
     EVP_PKEY_get_raw_private_key, EVP_PKEY_get_raw_public_key, EVP_PKEY_id, EVP_PKEY_keygen,
     EVP_PKEY_keygen_init, EVP_PKEY_new_raw_private_key, EVP_PKEY_new_raw_public_key, EVP_PKEY_size,
     EVP_PKEY_up_ref, EVP_marshal_private_key, EVP_marshal_private_key_v2, EVP_marshal_public_key,
-    EVP_parse_private_key, EVP_parse_public_key, EC_KEY, EVP_PKEY, EVP_PKEY_CTX, EVP_PKEY_ED25519,
-    RSA,
+    EVP_parse_private_key, EVP_parse_public_key, EC_KEY, EVP_PKEY, EVP_PKEY_CTX, RSA,
 };
 #[cfg(all(feature = "unstable", not(feature = "fips")))]
 use crate::aws_lc::{
@@ -44,27 +43,6 @@ impl<T> EVP_PKEY_CTX_consumer for T where T: Fn(*mut EVP_PKEY_CTX) -> Result<(),
 pub(crate) const No_EVP_PKEY_CTX_consumer: Option<fn(*mut EVP_PKEY_CTX) -> Result<(), ()>> = None;
 
 impl ConstPointer<'_, EVP_PKEY> {
-    pub(crate) fn validate_as_ed25519(&self) -> Result<(), KeyRejected> {
-        const ED25519_KEY_TYPE: c_int = EVP_PKEY_ED25519;
-        const ED25519_MIN_BITS: c_int = 253;
-        const ED25519_MAX_BITS: c_int = 256;
-
-        let key_type = self.id();
-        if key_type != ED25519_KEY_TYPE {
-            return Err(KeyRejected::wrong_algorithm());
-        }
-
-        let bits: c_int = self.key_size_bits().try_into().unwrap();
-        if bits < ED25519_MIN_BITS {
-            return Err(KeyRejected::too_small());
-        }
-
-        if bits > ED25519_MAX_BITS {
-            return Err(KeyRejected::too_large());
-        }
-        Ok(())
-    }
-
     // EVP_PKEY_NONE = 0;
     // EVP_PKEY_RSA = 6;
     // EVP_PKEY_RSA_PSS = 912;
@@ -189,7 +167,6 @@ impl ConstPointer<'_, EVP_PKEY> {
             Err(Unspecified)
         }
     }
-
 }
 
 impl LcPtr<EVP_PKEY> {

@@ -126,7 +126,11 @@ impl CmakeBuilder {
             if opt_level.eq("1") || opt_level.eq("2") {
                 cmake_cfg.define("CMAKE_BUILD_TYPE", "relwithdebinfo");
             } else {
-                cmake_cfg.define("CMAKE_BUILD_TYPE", "release");
+                if opt_level.eq("s") || opt_level.eq("z") {
+                    cmake_cfg.define("CMAKE_BUILD_TYPE", "minsizerel");
+                } else {
+                    cmake_cfg.define("CMAKE_BUILD_TYPE", "release");
+                }
                 // TODO: Due to the nature of the FIPS build (e.g., its dynamic generation of
                 // assembly files and its custom compilation commands within CMake), not all
                 // source paths are stripped from the resulting binary.

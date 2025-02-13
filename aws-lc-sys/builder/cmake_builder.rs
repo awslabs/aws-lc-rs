@@ -112,6 +112,8 @@ impl CmakeBuilder {
         if opt_level.ne("0") {
             if opt_level.eq("1") || opt_level.eq("2") {
                 cmake_cfg.define("CMAKE_BUILD_TYPE", "relwithdebinfo");
+            } else if opt_level.eq("s") || opt_level.eq("z") {
+                cmake_cfg.define("CMAKE_BUILD_TYPE", "minsizerel");
             } else {
                 cmake_cfg.define("CMAKE_BUILD_TYPE", "release");
             }
